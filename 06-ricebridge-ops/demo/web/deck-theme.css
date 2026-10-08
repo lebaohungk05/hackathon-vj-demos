@@ -25,3 +25,14 @@ header{background:#0c1630}.logo{background:#d5b271;color:#111b33}.tab.on{backgro
 @media(max-width:620px){.shead h2,.shead p{white-space:normal;overflow:visible}.focal{overflow:visible;flex-direction:column}.focal>div{flex:auto}.tiles{flex-wrap:wrap}.wx{min-height:12rem}.hero{flex:auto}.chatcol{height:28rem}}
 
 @media(min-width:621px){html{font-size:clamp(8px,min(.8333vw,1.34vh),22px)}}
+
+/* Rice, Earth observation and the Vietnam–Japan partnership. */
+.deck-banner{background:linear-gradient(105deg,#0a122b,#132640);border-bottom-color:#d7b67455}
+.deck-banner::before{background-image:url("rice-landscape.svg");background-size:auto 100%;opacity:1}
+.deck-brand{position:relative;z-index:1}.deck-mark{color:#edcf8d;border-color:#d9b66e;background:#18233b;box-shadow:0 0 0 .3rem #e7c77a0a}.deck-mark svg{width:2rem;height:2.6rem}
+.country-pair{position:absolute;left:48%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:1rem;padding:.55rem 1.25rem;border:1px solid #d8ba7055;border-radius:1rem;background:#0d1933ed;box-shadow:0 .25rem 1rem #0002}
+.country{display:flex;align-items:center;gap:.65rem;font-size:.68rem;font-weight:800;letter-spacing:.13em;color:#ecdbb5}
+.country svg{display:block;width:3rem;height:2rem;border-radius:.22rem;box-shadow:0 0 0 1px #ffffff20}
+.country-link{color:#d4b477;font-size:1.2rem}.deck-credit{background:#0b1633ba;padding:.25rem .5rem;border-radius:.3rem}
+@media(max-width:1000px){.country-pair{left:57%;gap:.7rem;padding:.5rem .8rem}.country span{display:none}.deck-banner::before{opacity:.8}}
+@media(max-width:620px){.country-pair{left:auto;right:.3rem;transform:translateY(-50%);padding:.5rem;gap:.45rem}.country svg{width:2.3rem;height:1.53rem}.deck-title{font-size:1.5rem}.deck-overline{font-size:.5rem;letter-spacing:.13em}.deck-banner::before{opacity:.6}.deck-brand{max-width:68%}}
