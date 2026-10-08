@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 6023,
+ "tries": 1,
+ "created": "2026-10-07T09:46:16",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"ambiguous_label\",\n  \"wcag\": \"2.4.6 Headings and Labels\",\n  \"element_id\": \"seinengappi\",\n  \"screen_reader_heard\": \"fld_seinengappi_01, 編集\",\n  \"evidence\": \"Screen reader reads a code instead of the label (accessible name “fld_seinengappi_01” does not contain the visible label “生年月日”)\",\n  \"visible_caption\": \"生年月日\"\n },\n \"page_language\": \"ja-JP\",\n \"file\": \"step1.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"ja\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>ステップ1/3 – 申請者の情報</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body class=\\\"jp\\\">\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">みどり市 電子申請 <b>（模擬）</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ</div></header>\\n<main>\\n<h1>住民票の写し交付申請（模擬）</h1>\\n<ol class=\\\"steps\\\"><li class=\\\"on\\\">1. 申請者</li><li>2. 請求内容</li><li>3. 確認</li></ol>\\n<h2>ステップ1/3: 申請者の情報</h2>\\n<div class=\\\"field\\\"><label for=\\\"shimei\\\">氏名</label><input id=\\\"shimei\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><div class=\\\"lbl\\\">生年月日</div><input id=\\\"seinengappi\\\" aria-label=\\\"fld_seinengappi_01\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"jusho\\\">住所</label><input id=\\\"jusho\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"honseki\\\" class=\\\"lbl\\\">本籍地 <span class=\\\"hint\\\">（外国籍の方は国籍・地域）</span></label><input id=\\\"honseki\\\" type=\\\"text\\\"></div>\\n<div class=\\\"actions\\\"><button type=\\\"button\\\" id=\\\"next1\\\" class=\\\"btn\\\" onclick=\\\"location.href='step2.html'\\\">次へ</button></div>\\n<p class=\\\"foot\\\">お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "<div class=\"lbl\">生年月日</div><input id=\"seinengappi\" aria-label=\"fld_seinengappi_01\" type=\"text\">",
+    "replace": "<label for=\"seinengappi\" class=\"lbl\">生年月日</label><input id=\"seinengappi\" type=\"text\">"
+   }
+  ],
+  "explanation": "The birth date field had a hidden technical name (fld_seinengappi_01) that overrode the visible caption, so screen readers read that code. The caption was changed from a plain div to a real label linked to the input, and the hidden code name was removed. Screen readers now read 生年月日, and clicking the caption focuses the field. The look is unchanged because the same lbl class is kept.",
+  "explanation_local": "生年月日の入力欄には、画面に見える見出しとは別に「fld_seinengappi_01」という内部名が設定されており、スクリーンリーダーがその記号を読み上げていました。見出しを通常のdivから入力欄に関連付けたlabel要素に変え、内部名を削除しました。これにより「生年月日」と読み上げられ、見出しをクリックしても入力欄に移動できます。lblクラスはそのままなので見た目は変わりません。",
+  "technique": "Replace the aria-label override with a native label element linked by for/id"
+ }
+}

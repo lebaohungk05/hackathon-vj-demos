@@ -1,0 +1,1175 @@
+{
+ "blocking_rule": "Lỗi là BLOCKING khi người chỉ dùng bàn phím + trình đọc màn hình không thể hoàn thành bước chứa lỗi: trường BẮT BUỘC không có tên truy cập được hoặc tên không mô tả; nút tiếp tục không có tên hoặc không thao tác được bằng bàn phím; bẫy bàn phím; CAPTCHA ảnh không có phương án thay thế. Mọi lỗi còn lại (trường tuỳ chọn, ảnh trang trí, heading/bảng sai cấu trúc, link mơ hồ, chức năng phụ chỉ dùng chuột) là NON-BLOCKING.",
+ "variants": [
+  {
+   "name": "dev_0_B",
+   "seed": 0,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_req",
+     "step": 3,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "so_ban",
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d1",
+     "type": "missing_label_opt",
+     "step": 3,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_0_B.html"
+  },
+  {
+   "name": "dev_1_A",
+   "seed": 1,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "img_button_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_1_A.html"
+  },
+  {
+   "name": "dev_2_A",
+   "seed": 2,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "img_button_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_2_A.html"
+  },
+  {
+   "name": "dev_3_A",
+   "seed": 3,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "fake_heading",
+     "step": 1,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    },
+    {
+     "id": "d1",
+     "type": "mouse_only_extra",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3_A.html"
+  },
+  {
+   "name": "dev_4_A",
+   "seed": 4,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_label_req",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": true,
+     "fixable": true,
+     "target": "ma_ho_so",
+     "detect_key": "2.4.6"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_4_A.html"
+  },
+  {
+   "name": "dev_5_C",
+   "seed": 5,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 2,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_heading",
+     "step": 3,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_5_C.html"
+  },
+  {
+   "name": "dev_6_C",
+   "seed": 6,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_6_C.html"
+  },
+  {
+   "name": "dev_7_B",
+   "seed": 7,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_opt",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_7_B.html"
+  },
+  {
+   "name": "dev_8_A",
+   "seed": 8,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_opt",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d1",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_8_A.html"
+  },
+  {
+   "name": "dev_9_B",
+   "seed": 9,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "captcha",
+     "step": 3,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    },
+    {
+     "id": "d1",
+     "type": "kbd_trap",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "dia_chi",
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "missing_label_req",
+     "step": 3,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "so_ban",
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_9_B.html"
+  },
+  {
+   "name": "dev_10_C",
+   "seed": 10,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_opt",
+     "step": 2,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_10_C.html"
+  },
+  {
+   "name": "dev_11_B",
+   "seed": 11,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 4,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "mouse_only_extra",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_11_B.html"
+  },
+  {
+   "name": "dev_12_B",
+   "seed": 12,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "mouse_only_extra",
+     "step": 3,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "missing_label_req",
+     "step": 3,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "so_ban",
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_12_B.html"
+  },
+  {
+   "name": "dev_13_B",
+   "seed": 13,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "mouse_only_extra",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "div_button",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_13_B.html"
+  },
+  {
+   "name": "dev_14_A",
+   "seed": 14,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 1,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d1",
+     "type": "img_button_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "img_button_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_14_A.html"
+  },
+  {
+   "name": "dev_15_A",
+   "seed": 15,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "fake_heading",
+     "step": 1,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_15_A.html"
+  },
+  {
+   "name": "dev_16_B",
+   "seed": 16,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 3,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "missing_label_opt",
+     "step": 2,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_16_B.html"
+  },
+  {
+   "name": "dev_17_C",
+   "seed": 17,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 2,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "captcha",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_17_C.html"
+  },
+  {
+   "name": "dev_18_A",
+   "seed": 18,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "mouse_only_extra",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_18_A.html"
+  },
+  {
+   "name": "dev_19_C",
+   "seed": 19,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 3,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_19_C.html"
+  },
+  {
+   "name": "dev_20_C",
+   "seed": 20,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "img_button_noalt",
+     "step": 3,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "mouse_only_extra",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_20_C.html"
+  },
+  {
+   "name": "dev_21_A",
+   "seed": 21,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 2,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d1",
+     "type": "mouse_only_extra",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_21_A.html"
+  },
+  {
+   "name": "dev_22_A",
+   "seed": 22,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "kbd_trap",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "cccd",
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_22_A.html"
+  },
+  {
+   "name": "dev_23_B",
+   "seed": 23,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_req",
+     "step": 3,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "so_ban",
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_23_B.html"
+  },
+  {
+   "name": "dev_24_C",
+   "seed": 24,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "mouse_only_extra",
+     "step": 3,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_24_C.html"
+  },
+  {
+   "name": "dev_25_B",
+   "seed": 25,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 3,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_25_B.html"
+  },
+  {
+   "name": "dev_26_C",
+   "seed": 26,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "mouse_only_extra",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_26_C.html"
+  },
+  {
+   "name": "dev_27_C",
+   "seed": 27,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 2,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d1",
+     "type": "img_button_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_27_C.html"
+  },
+  {
+   "name": "dev_28_A",
+   "seed": 28,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "kbd_trap",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "ma_ho_so",
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_heading",
+     "step": 2,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d2",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_28_A.html"
+  },
+  {
+   "name": "dev_29_C",
+   "seed": 29,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "captcha",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_29_C.html"
+  },
+  {
+   "name": "dev_30_C",
+   "seed": 30,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "table_no_th",
+     "step": 3,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    },
+    {
+     "id": "d1",
+     "type": "div_button",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_30_C.html"
+  },
+  {
+   "name": "dev_31_A",
+   "seed": 31,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "kbd_trap",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "ma_ho_so",
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_label_req",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": true,
+     "fixable": true,
+     "target": "cccd",
+     "detect_key": "2.4.6"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_31_A.html"
+  },
+  {
+   "name": "dev_32_A",
+   "seed": 32,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 1,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_32_A.html"
+  },
+  {
+   "name": "dev_33_C",
+   "seed": 33,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "mouse_only_extra",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_33_C.html"
+  },
+  {
+   "name": "dev_34_C",
+   "seed": 34,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "missing_label_opt",
+     "step": 2,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_34_C.html"
+  },
+  {
+   "name": "dev_35_C",
+   "seed": 35,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "vague_link",
+     "step": 2,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_35_C.html"
+  },
+  {
+   "name": "dev_36_B",
+   "seed": 36,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_req",
+     "step": 3,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "muc_dich",
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_36_B.html"
+  },
+  {
+   "name": "dev_37_C",
+   "seed": 37,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "mouse_only_extra",
+     "step": 3,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "captcha",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    },
+    {
+     "id": "d2",
+     "type": "fake_heading",
+     "step": 1,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_37_C.html"
+  },
+  {
+   "name": "dev_38_C",
+   "seed": 38,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_label_req",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": true,
+     "fixable": true,
+     "target": "ngay_hen",
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "vague_link",
+     "step": 2,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_38_C.html"
+  },
+  {
+   "name": "dev_39_A",
+   "seed": 39,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_opt",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d1",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_39_A.html"
+  },
+  {
+   "name": "dev_3000_C_clean",
+   "seed": 3000,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3000_C_clean.html"
+  },
+  {
+   "name": "dev_3001_B_clean",
+   "seed": 3001,
+   "flow": "B",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3001_B_clean.html"
+  },
+  {
+   "name": "dev_3002_A_clean",
+   "seed": 3002,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3002_A_clean.html"
+  },
+  {
+   "name": "dev_3003_C_clean",
+   "seed": 3003,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3003_C_clean.html"
+  },
+  {
+   "name": "dev_3004_B_clean",
+   "seed": 3004,
+   "flow": "B",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3004_B_clean.html"
+  },
+  {
+   "name": "dev_3005_C_clean",
+   "seed": 3005,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3005_C_clean.html"
+  },
+  {
+   "name": "dev_3006_C_clean",
+   "seed": 3006,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3006_C_clean.html"
+  },
+  {
+   "name": "dev_3007_C_clean",
+   "seed": 3007,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3007_C_clean.html"
+  },
+  {
+   "name": "dev_3008_B_clean",
+   "seed": 3008,
+   "flow": "B",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3008_B_clean.html"
+  },
+  {
+   "name": "dev_3009_B_clean",
+   "seed": 3009,
+   "flow": "B",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\dev\\pages\\dev_3009_B_clean.html"
+  }
+ ]
+}

@@ -1,0 +1,582 @@
+{
+ "0152412d01df828f329c": {
+  "ja": "区画2の農家様：区画F2は出穂期です。3月6日(金)の送水で3番目に取水口を開いてください。HTXから開く時間をお知らせします。"
+ },
+ "01c0e8fb9c52676be990": {
+  "ja": "区画4の農家さんへ。3月6日(金)の送水では区画F4が次の予定です。HTXがまず水位を測定してから、お知らせします。"
+ },
+ "01e16ae852c3267e426b": {
+  "ja": "六つの区画すべてが落水期間にあり、再給水されたので、現在水位は安全な最低水位を上回っている。区画2のHTXの第二観測管読み値がこの計画を支持している。雨量予測がわずか2.7mmのため、送水ポンプは3月6日(金)の次回送水を待つ。",
+  "vi": "Cả sáu thửa đều đang trong giai đoạn phơi ruộng và đã được tưới lại, nên mức nước hiện tại cao hơn điểm thấp an toàn. Số liệu quan sát lần hai của HTX trên thửa 2 ủng hộ kế hoạch. Với dự báo mưa chỉ 2,7mm, trạm bơm chỉ chờ lượt bơm tiếp theo vào T6 06/03."
+ },
+ "0249f24375b9fd71716d": {
+  "ja": "区画1の農家さん、区画1はまだ水があるので、取水口を閉じたままにして、3月10日(火)のポンプ送水をお待ちください。",
+  "en": "Field 1 owner: F1 still has water, so keep the inlet closed and wait for the pump run on Tue 10 Mar."
+ },
+ "029b81206c811b41f07f": {
+  "ja": "区画1の農家さんへ：お客さまの区画は既に湛水しています。取水口を閉じたままにして、3月10日（火）の次の送水をお待ちください。"
+ },
+ "055666bc19336fc3cbcc": {
+  "ja": "区画6の農家様：3月6日(金)の送水で、最初に取水口を開いてください。フンさんが時間をお知らせします。"
+ },
+ "05b3f1512add3857aab4": {
+  "ja": "3月6日(金)の送水はF4のみを開く。3月7日に出穂期で、F4は水不足だから。他の5つの区画は待機。本日の40.7 mmの降雨で補水するため。"
+ },
+ "07bee952eebe0cddb135": {
+  "ja": "区画4を優先するのは、3月7日(土)に出穂期を迎え、かつ土壌の排水が速い（毎日4.4 mm）ため、3月3日(火)までに水が失われるからです。区画6が次なのは、3月8日(日)の追肥期間に湛水が必要だからです。区画1、2、3、5は再度湛水状態にあり、3月10日(火)のポンプ送水まで安全に待つことができます。降雨予報は0.7 mmのみです。",
+  "vi": "Thửa F4 được ưu tiên vì sao? Vì F4 sẽ trổ hoa vào T7 07/03 và đất thửa thoát nước nhanh (4,4 mm/ngày), nên nước sẽ mất hết trước T3 03/03. Thửa F6 xếp thứ hai vì cần nước để bón thúc vào CN 08/03. Các thửa F1, F2, F3 và F5 vừa có nước lại, nên có thể chờ đợt bơm T3 10/03 mà an toàn, với dự báo mưa chỉ 0,7 mm thôi."
+ },
+ "085490dc26f305896029": {
+  "ja": "区画2の水位は3 cm です。",
+  "vi": "Thửa F2 mực nước là 3 cm."
+ },
+ "0882588555ad866bd51e": {
+  "ja": "3月6日(金)の送水運転ではF4を最初に開き、その後F6を開く。F4が3月7日(土)に出穂期に達するのに止め水がなくなるため。F1、F2、F3、F5は3月10日(火)の次の運転を待つ。"
+ },
+ "0a49a388f16e5545ac39": {
+  "ja": "ポンプ場より報告：3月3日(火) の送水が3月6日(金) に変更されました。"
+ },
+ "0b7704290595f68f272d": {
+  "ja": "出穂期の区画は水なしでいられない。F4が最初（最後の測定は6日前のためHTXが開く前に測定）、次にF2。F6は3番目。日曜日（3月8日）の追肥時期に水が必要。F1、F3、F5は再湛水後で、火曜日（3月10日）の送水を安全に待てる。降水予報は0.7 mm のみ。",
+  "vi": "Thửa trổ bông không thể để không nước. F4 bơm trước (lần đo cuối 6 ngày trước, HTX sẽ đo lại), rồi F2. F6 thứ 3 để bón thúc chủ nhật (8/03). F1, F3, F5 đã tái triều nên chờ T3 10/03 được, mưa dự báo 0.7 mm."
+ },
+ "10a6be42586b9b7235cc": {
+  "ja": "フンさん（HTX）へ。サウさんに、区画F3の取水口を閉じてお待ちいただくよう、お伝えください。本日の雨40.7 mmにより、水位が2.7 cmから約6.1 cmに上がります。",
+  "en": "Hung (HTX), could you please tell Mrs Sau to keep Field 3's inlet closed and wait; today's 40.7 mm of rain will raise the water level from 2.7 cm to around 6.1 cm."
+ },
+ "12590a23566c89ec6163": {
+  "ja": "HTXに区画4の水位を先に測定していただき、その後で取水口を開いてください。土曜日(3月7日)に出穂期に入りますが、水位は0.7 cm しかありません。最新の測定は6日前です。"
+ },
+ "14ce55f49dcc6850aa88": {
+  "ja": "申し訳ございません。メッセージをもう一度送っていただけますか。田んぼの水位観測管の水位が必要です。"
+ },
+ "15f00ce595d21fde1cac": {
+  "ja": "区画4の農家さん、田んぼの水位が1.8cmですので、取水口を開く必要はありません。閉じたままにして、3月6日(金)の送水をお待ちください。"
+ },
+ "16afb2be457c72bee88c": {
+  "ja": "申し訳ありません。メッセージが理解できません。もう一度明確に送信してください。"
+ },
+ "21fbcb4271bc2aa48d31": {
+  "ja": "区画4の水位がマイナス5cmまで下がっています。"
+ },
+ "246da0e4877520ff2511": {
+  "ja": "区画6の取水口は開けずに待ってください。本日の40.7 mmの降雨で、水位は明日までに4.5 cmから約7.8 cmまで上がります。"
+ },
+ "259e145eb6125f318f8f": {
+  "ja": "メッセージが空または破損しているようです。"
+ },
+ "28ee116a9aeceaaa288a": {
+  "ja": "区画1の農家さん、今回の送水は取水口を閉じて、次の送水3月10日(火)を待ってください。"
+ },
+ "29f1f7dceb769737a7aa": {
+  "ja": "区画6の農家は水位を伝統的なメコン測定単位で報告した。4.5 phan(4.5 cm)である。",
+  "vi": "Người từ thửa F6 báo cáo mực nước là 4.5 cm, sử dụng đơn vị đo Mekong truyền thống (bốn phân rưỡi = 4.5 phân)。",
+  "en": "Sender from field F6 reports water level as 4.5 cm, using traditional Mekong measurement units (bon phan ruoi = 4.5 phan)."
+ },
+ "2c1c1a7ef0cd570db7ae": {
+  "ja": "かしこまりました。区画4の水位がマイナス5cmになっています。ありがとうございました。"
+ },
+ "2ee9fe1dffd0c31235d5": {
+  "ja": "区画6さんへ。3月6日(金)の送水では、あなたが1番目です。HTXから連絡が来たときに取水口を開いてください。"
+ },
+ "30285a31733d5b2e29e1": {
+  "ja": "F6さんへ：3月6日(金)の送水運転でF4の後から取水口を開いてください。HTXから連絡があります。3月8日(日)の追肥には止め水が必要です。"
+ },
+ "30a55794b387b0d33ada": {
+  "ja": "区画6へ。3月6日(金)の送水で、取水口を2番目に開きます。HTXから開く時刻をお知らせしますので、3月9日(月)の追肥に間に合わせることができます。",
+  "en": "Field 6, your inlet will be opened in order 2 during the pump run on Fri 06 Mar; HTX will call to tell you when, so you'll be ready for top-dressing on Mon 09 Mar."
+ },
+ "31cb7918e71eb421e367": {
+  "ja": "フンさん（HTX）へ。区画F4の水位を先に測定してから、取水口1番を開いていただけますか。この区画は3月7日(土)の出穂期が近づいており、水が必要です。",
+  "en": "Hung (HTX), could you please measure the water level in Field 4 first and then open inlet 1? The field is about to flower on Sat 07 Mar and needs standing water."
+ },
+ "3238ba4b7ffe734349ed": {
+  "ja": "F4 が優先される理由：3月7日(土) に出穂期が始まり、排水速度の速い土壌(4.4 mm/日) で既に落水しているため、最も水が必要。F6 は同日の追肥期間に水を必要とするため 2番目。F1、F2、F3、F5 は再湛水し、3月10日(火) の送水まで安全と予測。予報雨量は 0.7 mm のみで、不足を補えない。",
+  "vi": "F4 được ưu tiên vì sắp trổ bông T7 07/03 và đất thoát nước nhanh (4.4 mm/ngày) nên đã mất nước, cần nước nhất. F6 thứ hai vì cần nước ngập để bón thúc T7 07/03. F1, F2, F3 và F5 đã được ngập lại và dự báo an toàn cho đến lượt bơm T3 10/03. Dự báo mưa chỉ 0.7 mm nên mưa không thể bù được."
+ },
+ "35ac459e26b38b92af03": {
+  "ja": "送信者は標準的なゲージ読み取り単位と分数を使用して、水位 2.5 cm の特定の測定値を報告しました。",
+  "vi": "Người gửi báo cáo đo mực nước cụ thể 2.5 cm sử dụng các đơn vị đo tiêu chuẩn và phân số.",
+  "en": "Sender reports a specific water level measurement of 2.5 cm using standard gauge reading units and fractions."
+ },
+ "36940229fc7e8d86890a": {
+  "ja": "区画1の農家さんへ。水位が4.5 cmですので、今回は取水口を開く必要がありません。開かずにお待ちください。送水は3月6日(金)に来ます。",
+  "en": "Hello Field 1 farmer, the water level is at 4.5 cm so no need to open the inlet. Keep it closed and wait for the pump run on Fri 06 Mar."
+ },
+ "375f1af5f47a23edd6c6": {
+  "ja": "区画6、水位2½cm、10:34:45に確認しました。",
+  "en": "Field 6, water level 2½ cm, checked at 10:34:45"
+ },
+ "3888c9e408ede9fead08": {
+  "ja": "出穂期を迎える区画または追肥が必要な区画が最優先です。水位が絶対に必要であるためです。区画4が最初であるのは、3月7日（土）に出穂期を迎え、また排水が速いため、最後の計測が6日前なので、測定が必要です。区画2は3月7日（土）に水位が消失するため次です。区画6は3月8日（日）の追肥に水が必要です。区画1、3、5は既に湛水しており、3月10日（火）の次回送水まで待てます。",
+  "vi": "Những thửa sắp trổ bông hay cần bón thúc được ưu tiên trước tiên, vì chúng không thể thiếu nước đứng. Thửa 4 được mở cống đầu tiên vì sắp trổ bông T7 07/03 và thoát nước nhanh, nhưng HTX cần đo mực nước trước vì số đo cuối đã 6 ngày rồi. Thửa 2 tiếp theo vì nước đứng sẽ mất T7 07/03, và thửa 6 cần nước cho bón thúc CN 08/03. Thửa 1, 3 và 5 vừa được bơm nước lại, chờ được lượt bơm tiếp theo T3 10/03."
+ },
+ "3ae1e1a99125aa93a57c": {
+  "ja": "区画5の農家さんへ。水位が1.6 cmですので、今回は取水口を開く必要がありません。開かずにお待ちください。送水は3月6日(金)に来ます。",
+  "en": "Hello Field 5 farmer, the water level is at 1.6 cm so no need to open the inlet. Keep it closed and wait for the pump run on Fri 06 Mar."
+ },
+ "3c13d652af35d5e575a2": {
+  "ja": "処理するメッセージがありません。"
+ },
+ "3fda1b7b864821701225": {
+  "ja": "F6を最初に開く。3月6日(金)の追肥期が始まり、水が不足する見込み（−4.9 cm）であるため。F4は次。3月7日(土)の出穂期を迎え、排水性の高い土壌では既に水が不足している可能性があるため、HTXが開く前に測定すべき。他の区画は既に再湛水されており、3月10日(火)の次の送水まで安全に待機できます。",
+  "vi": "F6 mở trước vì bón thúc bắt đầu T6 06/03 và dự báo hết nước đứng (−4.9 cm). F4 mở sau vì trổ bông T7 07/03 và đất thoát nước nhanh có thể đã mất nước đứng, HTX cần đo trước mở cống. Những thửa khác đã tưới lại và có thể chờ lượt sau T3 10/03 một cách an toàn."
+ },
+ "40cdd89f51d6806eb5e6": {
+  "ja": "区画F1のオーナーさんへ、区画F1はまだ水があります。取水口を閉じたままにして、3月10日（火）の送水を待ってください。"
+ },
+ "4270b53c5ddbe64a3bd5": {
+  "ja": "区画4は標準的なメコン方言単位を使用した負の5cm（土壌表面以下）の正確な測定で明示されています。",
+  "vi": "Thửa 4 được ghi rõ ràng với số đo chính xác âm 5 phân (dưới bề mặt đất) sử dụng đơn vị phương ngôn tiêu chuẩn của Mekong."
+ },
+ "434a48d0c1d2fe06c6ad": {
+  "ja": "ご報告ありがとうございます。システムがポンプスケジュール変更を火曜日から金曜日に記録しました。"
+ },
+ "455f4df7f02d679973eb": {
+  "ja": "区画4の農家さん、HTXが最初に水位を計測してから、第1送水の取水口を開けてください。あなたの区画は3月7日(土)に出穂期となるため、水が必要です。"
+ },
+ "4627904f500e32757482": {
+  "ja": "F6が最初の理由：追肥が始まり、圃場は運転日に乾いていると予測される（−4.9 cm）。F4が次の理由：排水が速く、止め水がなければ出穂期に達してしまうが、前回の測定は6日前であるため、HTXは取水口を開く前に測定する必要がある。他の4区画は再灌漑され、3月10日(火)まで待つことができる。",
+  "vi": "F6 đứng đầu vì bón thúc bắt đầu và ruộng được dự báo sẽ khô (−4,9 cm) vào ngày chạy. F4 đứng thứ hai: nó thoát nước nhanh và sẽ trổ bông mà không có nước đứng, nhưng phép đo cuối cùng cách đó 6 ngày, vì vậy HTX phải đo trước khi mở cống. Bốn thửa còn lại được tái lấp nước và có thể chờ đến T3 10/03."
+ },
+ "4a352fce571bdc80d7fb": {
+  "ja": "了解です。区画2の水位2 cm、記録させていただきました。ありがとうございます。",
+  "en": "Understood, I've recorded Field 2 water at 2 cm, thank you."
+ },
+ "4ae18bc78b05e4ee603a": {
+  "ja": "HTX職員さん、サウさんにお伝えください。区画3に水が戻ったので、取水口を閉じたままにして、3月10日(火)のポンプ送水をお待ちください。",
+  "en": "HTX officer: please tell Mrs Sau that Field 3 is re-flooded—keep the inlet closed and wait for the pump run on Tue 10 Mar."
+ },
+ "4b867ef722b7950cccba": {
+  "ja": "区画F2は土壌面上の明示的な水深2 cm が報告されました。",
+  "vi": "Thửa F2 được ghi nhận với mực nước rõ ràng là 2 cm trên ruộng.",
+  "en": "Field F2 is reported with explicit water depth of 2 cm above the soil surface."
+ },
+ "4c382a7cb894ca03db79": {
+  "ja": "区画1へ。水位が4.1 cmであるため、この送水では取水口を開かず、3月10日(火)の次の送水までお待ちください。"
+ },
+ "4d83149398dc4f4d1c1b": {
+  "ja": "おじさん：水位観測管からの水位測定を送ってください。"
+ },
+ "51d0b12c2a07d7e6be3f": {
+  "ja": "区画4の農家さんへ：お客さまの区画は最初（1番目）です。3月7日（土）に出穂期を迎えるためです。HTXが先に水位を測定してから、取水口を開きます。"
+ },
+ "5327a2f9a23e04cd1619": {
+  "ja": "区画6の農家さん、区画 F6 は3月6日(金)の送水で2番目です (2 番)。取水口を開く時に HTX さんが連絡しますので、3月8日(日)の追肥に間に合います。"
+ },
+ "54200a0061ec07ea4f48": {
+  "ja": "HTXの職員がポンプのスケジュール変更を報告しており、どの区画からの水位測定でもありません。",
+  "vi": "Cán bộ HTX đang báo cáo thay đổi lịch trình bơm, không phải đo mực nước từ thửa nào."
+ },
+ "57b1620b13b0f10070a7": {
+  "ja": "区画6の農家さんへ。3月6日(金)の送水では区画F6を最初に開きます。追肥期に入ったので、取水口を開いてください。"
+ },
+ "58270a9126ceb5acf28b": {
+  "ja": "フンさん：サウさんに区画F3にはまだ水があること、取水口を閉じたままにして3月10日(火)の次の送水を待つよう伝えていただきたいです。",
+  "en": "Hung: please tell Mrs Sau that field F3 still has water, keep the inlet closed, and wait for the next run on Tue 10 Mar."
+ },
+ "59dbd8f9448d7ac4b06a": {
+  "ja": "区画2へ。取水口を閉じたままお待ちください。本日の雨40.7 mmにより、水位が3.0 cmから約6.5 cmに上がります。",
+  "en": "Field 2, keep your inlet closed and wait; today's 40.7 mm of rain will raise the water level from 3.0 cm to around 6.5 cm."
+ },
+ "5ed3c43a90d16bcd5760": {
+  "ja": "区画6の農家さんへ：お客さまの区画は2番目です。HTXから連絡するまでお待ちください。3月8日（日）の追肥作業に水が必要です。"
+ },
+ "647619b10f78d7406b99": {
+  "ja": "区画1の農家様：区画F1にはまだ水があります。取水口を閉じたままにして、3月10日(火)の次の送水を待ってください。"
+ },
+ "64ae94da2462f69851e0": {
+  "ja": "区画1の農家さん、田んぼの水位が4.5cmですので、取水口を開く必要はありません。閉じたままにして、3月6日(金)の送水をお待ちください。"
+ },
+ "64c6be1d7a0715b1e272": {
+  "ja": "HTX職員さんへ、サウさんにお伝えください。区画F3はまだ水があるので、取水口を閉じたままにして、3月10日（火）の送水を待ってください。",
+  "en": "HTX officer, please tell Mrs Sau: Field F3 still has water, so keep the inlet closed and wait for the Tue 10 Mar pump run."
+ },
+ "686d54307e6149130b8e": {
+  "ja": "区画5の農家さん、区画 F5 はまだ水があるので、取水口を閉じたままにして3月10日(火)の送水を待ってください。"
+ },
+ "68d183a5173cae59b123": {
+  "ja": "区画5の農家様：区画F5にはまだ水があります。取水口を閉じたままにして、3月10日(火)の次の送水を待ってください。"
+ },
+ "6b94cd87653a04b671e0": {
+  "ja": "区画F4のオーナーさんへ、区画F4は3月6日（金）の送水で1番目です。ただしHTXが先に水位を測定してから、取水口を開くようお電話します。"
+ },
+ "6cb13217e2db0680cb59": {
+  "ja": "HTX職員さん、サウさんへお伝えください。F3はまだ水が残っているので、取水口を閉じたままにして、3月10日(火)の送水を待ってください。",
+  "en": "HTX officer, please inform Mrs Sau that F3 still has standing water, so she should keep the inlet closed and wait for the pump run on Tuesday 10 March."
+ },
+ "6e4e7b4fb17e32b2f25b": {
+  "ja": "区画5の農家さん、区画 F5 は水があります (1.3 cm)。取水口を閉じたままにして3月10日(火)の送水を待ってください。"
+ },
+ "6eccf952ef59956179df": {
+  "ja": "HTX担当者にお願いします。サウさんに取水口を開けずに待つよう伝えてください。本日の40.7 mmの降雨で、水位は明日までに2.7 cmから約6.1 cmまで上がります。",
+  "en": "Please have the HTX officer tell Mrs. Sau to keep the inlet closed and wait. The 40.7 mm of rain will lift the water level from 2.7 cm to about 6.1 cm by tomorrow."
+ },
+ "700e44d8d2b18665a58e": {
+  "ja": "3月6日(金)の送水。F4を最初に開く（その前にHTXが測定）、次にF6を開く。この2区画は近々水が必要であるため。F1、F2、F3、F5は待機。本日の雨40.7 mmで補給されるため。"
+ },
+ "75d0270cd5453e1ee6cb": {
+  "ja": "3月6日(金)の送水。F6を最初に開き、次にF4を開く。F1、F2、F3、F5は3月10日(火)の次の送水まで待機。F6とF4が重要な段階で水不足に向かっているため。"
+ },
+ "788be3bc8ff2273055f6": {
+  "ja": "F5さんへ：取水口を閉じたままで、お待ちください。圃場はすでに再灌漑されています。次の送水は3月10日(火)です。"
+ },
+ "78bf19cea10467ed3b97": {
+  "ja": "F4 が最初になる理由は、3月7日(土)に出穂期を迎え、排水が速い土壌(4.4 mm/日)でもう湛水を失っているため、HTX は取水口を開く前に測定する必要がある。F6 が2番目の理由は、3月8日(日)の追肥期間に湛水が必要なため。F1、F2、F3、F5 は再度湛水され、3月10日(火)の次の送水まで待つことができる。",
+  "vi": "F4 được bơm trước vì nó sắp trổ hoa ngày T7 07/03, đất thoát nước nhanh (4.4 mm/ngày) đã mất nước đứng, nên HTX nên đo mực nước trước khi mở cống. F6 được bơm thứ 2 vì cửa sổ bón thúc ngày CN 08/03 cần nước đứng. F1, F2, F3, F5 đã tái tưới nước và có thể chờ an toàn cho lượt bơm tiếp theo vào T3 10/03."
+ },
+ "7a1fe473e9dd266da6f0": {
+  "ja": "ありがとうございます。区画6 水位2分半 を10:34:45に記録いたしました。",
+  "en": "Thank you. Recorded Field 6 water at 2 and a half cm at 10:34:45."
+ },
+ "7c19b07dfa13f5ed4d27": {
+  "ja": "区画1の農家さん、区画1に水が戻ったので、取水口を閉じたままにして、3月10日(火)のポンプ送水をお待ちください。"
+ },
+ "7c4fb502f3291c008c2f": {
+  "ja": "区画1の取水口は開けずに待ってください。本日の40.7 mmの降雨で、水位は明日までに4.1 cmから約7.5 cmまで上がります。"
+ },
+ "7c4ff3a18c0f4880bda6": {
+  "ja": "HTX職員さん、サウさんにお伝えください。区画3はまだ水があるので、取水口を閉じたままにして、3月10日(火)のポンプ送水をお待ちください。",
+  "en": "HTX officer: please tell Mrs Sau that Field 3 still has water—keep the inlet closed and wait for the pump run on Tue 10 Mar."
+ },
+ "7d235528d7fe3609f58e": {
+  "ja": "区画4の農家さんへ：お客さまの区画は3月6日（金）の送水で最初に取水口を開きます。HTXが取水口を開く前に水位を測定しますので、最後の計測が6日前であるためです。"
+ },
+ "7e816015b16ae4075d6d": {
+  "ja": "区画2の農家さんへ：3月6日（金）の送水で、お客さまの区画の取水口は2番目に開きます。出穂期に水が必要であるため、HTXが連絡します。"
+ },
+ "7e9f45d94dab5c26a484": {
+  "ja": "HTX担当者さん、申し訳ございませんが、サウさんにお伝えいただけますか。区画3の田んぼの水位が3cmですので、取水口を開く必要がありません。閉じたままにして、3月6日(金)の送水をお待ちください。",
+  "en": "HTX officer, could you please let Mrs. Sau know: Field 3 water is at 3 cm, so keep the inlet closed and wait for the next run on Fri 06 Mar."
+ },
+ "7f323b9dcab5fd2bc16c": {
+  "ja": "区画5さんへ。水位が1.3 cmですので、今回は取水口を開けずにお待ちください。次の送水は3月10日(火)です。"
+ },
+ "7f801568fef00a7bf8de": {
+  "ja": "HTX職員さんへ、サウさんにお知らせください。区画F3はまだ水位2.7 cm あります。取水口を閉じたままにして、3月10日（火）の送水を待ってください。",
+  "en": "HTX officer, please inform Mrs Sau: Field F3 still has 2.7 cm of water; keep the inlet closed and wait for the Tue 10 Mar pump run."
+ },
+ "7fa7cee60f0127eec9ea": {
+  "ja": "3月3日(火)の送水を中止する。44 mmの夜間降雨後、3月6日(金)までどの区画も水が必要でなく、落水期間中の区画2を含む。"
+ },
+ "8289c2fc2d9547f0baf6": {
+  "ja": "区画4が最初なのは、3月7日(土)に出穂期を迎え、既に水が失われているため。区画6が次で、3月8日(日)の追肥に水が必要なため。区画1、2、3、5は再び満水状態で、3月10日(火)の次の送水を待つことができる。HTXは区画4を最初に計測する。最後の計測から6日経っているため。",
+  "vi": "Thửa 4 được ưu tiên vì bắt đầu trổ bông ngày T7 07/03 và đất thấm nước nhanh, đã mất nước đứng, cần nước trước tiên. Thửa 6 thứ hai vì cần nước để bón thúc ngày CN 08/03. Thửa 1, 2, 3, 5 đã có nước lại nên có thể chờ đợt bơm tiếp theo T3 10/03. HTX nên đo thửa 4 trước, vì lần đo cuối là 6 ngày trước."
+ },
+ "82949d0a78b87e2101c9": {
+  "ja": "F4のみが3月7日に出穂期で水不足(予測−0.2 cm)だから、1番目に送水する。最新の測定は6日前なので、取水口を開ける前にHTXが測定する必要がある。F1、F2、F3、F5、F6は本日の40.7 mmの降雨で補水されるため、送水は無駄になる。",
+  "vi": "F4 là thửa duy nhất sắp trổ hoa mà chưa có nước (dự báo −0.2 cm vào T7 07/03), nên nó được ưu tiên. Số đo cuối cùng đã 6 ngày, nên HTX cần đo lại trước khi mở cống. F1, F2, F3, F5 và F6 sẽ được bù nước từ mưa 40.7 mm hôm nay, nên bơm chúng là lãng phí nước."
+ },
+ "8421722492fc4ae5d7da": {
+  "ja": "3月3日(火)の送水を一時停止してください。区画2のHTXの再測定後、3月6日(金)前にはどの区画も給水が必要ありません。"
+ },
+ "85f01e9f696a48530d7e": {
+  "ja": "区画6の農家さん、3月3日(火)のポンプ送水で区画6が2番目に開かれます。HTXからあなたの番になったら電話でお知らせします。",
+  "en": "Field 6 owner: F6 will open second in the pump run on Tue 03 Mar. HTX will call to notify you when it's your turn."
+ },
+ "85f9c70472f1b7465b08": {
+  "ja": "区画1の農家さん、区画 F1 は水があります (4.1 cm)。取水口を閉じたままにして3月10日(火)の送水を待ってください。"
+ },
+ "8b58e05903dbce7f9845": {
+  "ja": "区画2の農家さん、F2はこの送水では給水不要です。取水口を閉じたままにして、3月10日(火)の送水を待ってください。",
+  "en": "Field 2 farmer, F2 does not need watering in this pump run, so just keep the inlet closed and wait for the pump run on Tuesday 10 March."
+ },
+ "8c8a3395e7532e9cc93a": {
+  "ja": "区画4の農家さん、HTXがまず区画4の水位を測定してから取水口を開きます。3月3日(火)のポンプ送水で区画4が最初に開かれます。HTXから電話でお知らせします。",
+  "en": "Field 4 owner: HTX will measure the water level at F4 before opening the inlet. F4 will open first in the pump run on Tue 03 Mar, and HTX will call to notify you."
+ },
+ "8e0139c230641a6c7b2e": {
+  "ja": "3月6日(金) の送水は F4 の取水口を最初に開き、次に F6 を開く。両区画とも 3月7日(土) に水が不足するため。その他の区画は 3月10日(火) の送水を待つ。"
+ },
+ "9005562d5d68ad9aeaf1": {
+  "ja": "ありがとうございます。区画2の水位が標準測定管で3 cm であることを確認していただけますか？"
+ },
+ "916736c4b8db05c999be": {
+  "ja": "区画F5のオーナーさんへ、区画F5はまだ水位1.3 cm です。取水口を閉じたままにして、3月10日（火）の送水を待ってください。"
+ },
+ "94f605e5ec3c06552a89": {
+  "ja": "区画2、取水口近くの水位観測管、水位2 cm。",
+  "en": "Field 2, gauge tube near inlet, water at 2 cm."
+ },
+ "9653862a1c8bf4131e57": {
+  "ja": "この数日の降雨の後、区画に水があるはずです。取水口近くの水位観測管で測定していただけますか。それとも、HTXのフンさんに測定に来てもらいますか。",
+  "en": "After the recent rain, the field should have water. Could you measure it at the gauge tube by the inlet, or should I ask Hung from the HTX to come and measure it?"
+ },
+ "9654b079c0155efe0951": {
+  "ja": "3月6日(金)の送水運転ではF6を最初に開き、HTXが測定した後F4を開く。F1、F2、F3、F5は3月10日(火)の次の運転を待つ。"
+ },
+ "96a10aad7c1cb6059525": {
+  "ja": "区画2の農家さんへ。区画F2の水位は3 cm です。取水口は開かないでください。3月10日(火)の送水をお待ちください。"
+ },
+ "98885a3c64fb3bd8824a": {
+  "ja": "区画6の農家さん、第2送水で区画4の後に取水口を開けてください。HTXから連絡があります。3月8日(日)の追肥のため、水が必要です。"
+ },
+ "9901d3b9d054adf2901e": {
+  "ja": "区画5の取水口は開けずに待ってください。本日の40.7 mmの降雨で、水位は明日までに1.3 cmから約4.8 cmまで上がります。"
+ },
+ "9afa8a6eccb3c7843437": {
+  "ja": "HTXさんへ：F4の取水口を開く前に、F4の水位を測定してください。前回の測定は6日前です。F4は3月6日(金)の送水運転で最初に開きます。"
+ },
+ "9ce32be30c811f0952db": {
+  "ja": "区画1の農家さんへ、降雨後も田んぼに水が4.5 cm残っています。取水口を閉じたままにして、3月6日(金)の送水を待ってください。"
+ },
+ "9d43ef3db94f5ebebca9": {
+  "ja": "3月6日（金）の送水は、区画4→区画2→区画6の順で取水口を開きます。区画2は現在出穂期中で、区画4は水がなければ3月7日（土）に出穂期を迎えるためです。"
+ },
+ "9fe785557180ba3a3956": {
+  "ja": "HTX職員さんへ：サウさんにお伝えください。区画3は既に湛水しています。取水口を閉じたままにして、3月10日（火）の次の送水をお待ちください。",
+  "en": "HTX officer: please tell Mrs Sau that Field 3 has been re-flooded, so keep the inlet closed and wait for the next run on Tue 10 Mar."
+ },
+ "9ffa745a690594ccafcf": {
+  "ja": "F2さんへ：取水口を閉じたままで、お待ちください。圃場はすでに再灌漑されています。次の送水は3月10日(火)です。"
+ },
+ "a169bb5bcae10c14b013": {
+  "ja": "ありがとうございます。水位観測管をご確認いただいて、正確な水位が何cmあるか教えていただけますか？"
+ },
+ "a7ba03ca487d542abc59": {
+  "ja": "区画2の農家さん、区画 F2 は水があります (3 cm)。取水口を閉じたままにして3月10日(火)の送水を待ってください。"
+ },
+ "a866ed898aea8bbe0727": {
+  "ja": "区画4の農家さん、区画 F4 が最初です (順番1)。HTX さん、取水口を開く前に区画 F4 の水位を測定してください。最後の測定が6日前だからです。"
+ },
+ "a8bb4dd0ec2167f7831c": {
+  "ja": "区画F6の農家が「4 phân」（4 cm）という精密なメコン伝統単位で直接水位を報告した。水位観測管による明示的な確認なし。",
+  "vi": "Nông dân thửa F6 báo cáo trực tiếp nước '4 phân' (4 cm) sử dụng đơn vị truyền thống Mekong chính xác, không có xác nhận rõ ràng từ ống đo."
+ },
+ "a9000ab570ec919d9cee": {
+  "ja": "区画2の農家さん、今回の送水は取水口を閉じて、次の送水3月10日(火)を待ってください。"
+ },
+ "a91a158d42225e9aa360": {
+  "ja": "HTX職員さんへ：サウさんにF3の取水口を閉じたままで待つよう伝えてください。圃場はすでに再灌漑されています。次の送水は3月10日(火)です。",
+  "en": "HTX officer, please tell Mrs Sau to keep F3's inlet closed and wait; the field has been re-flooded. The next run is Tue 10 Mar."
+ },
+ "a9f9649fe2731b6e59ef": {
+  "ja": "区画4の農家さん、F4の取水口は3月6日(金)の送水で最初に開かれます。取水口を開く前にHTXにF4の水位を測定していただいてください。最新の測定値は6日前のものです。",
+  "en": "Field 4 farmer, the inlet for F4 will be opened first in the pump run on Friday 06 March. Please ask the HTX to measure the water level of F4 before opening the inlet, as the latest reading is 6 days old."
+ },
+ "aadfc0687a91b2809b73": {
+  "ja": "区画F6水位4 cm です。",
+  "en": "Field F6 at 4 cm."
+ },
+ "ac3ba463bcfa8a4ea869": {
+  "ja": "区画6の農家さん、F6の取水口は3月6日(金)の送水で2番目に開かれます。F4の後です。HTXがF6の番になったときお電話しますので、3月7日(土)の追肥に間に合うように取水口を開いてください。",
+  "en": "Field 6 farmer, the inlet for F6 will be opened second in the pump run on Friday 06 March, after F4. The HTX will call when it is F6's turn so you can open the inlet in time for the top-dressing on Saturday 07 March."
+ },
+ "ae4cd885bb2f1d6e98c5": {
+  "ja": "区画1の農家さんへ。区画F1は最近再度浸水し、水位は4.1 cm です。取水口は開かないでください。3月10日(火)の送水をお待ちください。"
+ },
+ "b1e4401e471290cc82ef": {
+  "ja": "金曜日（3月6日）の送水は区画F4、次にF2、次にF6を開く。F4とF2は土曜日（3月7日）に出穂期に達し、水が必要。F1、F3、F5は火曜日（3月10日）の送水を待つ。"
+ },
+ "b3e0d0c67143a5000fa2": {
+  "ja": "F1さんへ：取水口を閉じたままで、お待ちください。圃場にはまだ水があります。次の送水は3月10日(火)です。"
+ },
+ "b490625eab8300e55012": {
+  "ja": "かしこまりました。区画F6水位4 cm を記録いたしました。",
+  "en": "Thank you. Noted: Field F6 at 4 cm."
+ },
+ "b5ec755e486d68cb0761": {
+  "ja": "区画6の農家さんへ、降雨後、田んぼに水が2.0 cm残っています。取水口を開けないでください。3月6日(金)の送水を待ってください。"
+ },
+ "b6efcc670dfbb49743c5": {
+  "ja": "HTX職員さんへ、サウさんにお伝えいただきたいのですが、田んぼに水が3.5 cm残っています。取水口を閉じたままにして、3月6日(金)の送水を待ってください。",
+  "en": "HTX officer, please inform Mrs Sau: the field still has water at 3.5 cm. Keep the inlet closed and wait for the pump run on Fri 06 Mar."
+ },
+ "b72e9e7e8a319bc2432a": {
+  "ja": "区画5の農家さん、区画5に水が戻ったので、取水口を閉じたままにして、3月10日(火)のポンプ送水をお待ちください。"
+ },
+ "b925be5ce886987fe5b5": {
+  "ja": "区画5の農家さん、区画5はまだ水があるので、取水口を閉じたままにして、3月10日(火)のポンプ送水をお待ちください。",
+  "en": "Field 5 owner: F5 still has water, so keep the inlet closed and wait for the pump run on Tue 10 Mar."
+ },
+ "b995b2acca988d647b0e": {
+  "ja": "区画5の農家さん、F5はこの送水では給水不要です。取水口を閉じたままにして、3月10日(火)の送水を待ってください。",
+  "en": "Field 5 farmer, F5 does not need watering in this pump run, so just keep the inlet closed and wait for the pump run on Tuesday 10 March."
+ },
+ "ba2755683a1fde64d234": {
+  "ja": "区画2さんへ。水位が3 cmですので、今回は取水口を開けずにお待ちください。次の送水は3月10日(火)です。"
+ },
+ "bae615364dab0712ca91": {
+  "ja": "HTX の職員さん、サウさんへこれを伝えてください。区画 F3 は水があります (2.7 cm)。取水口を閉じたままにして3月10日(火)の送水を待ってください。",
+  "en": "HTX officer: please tell Mrs Sau her field F3 has water (2.7 cm), keep the inlet closed and wait for the Tue 10 Mar run."
+ },
+ "bbe531581d08bd38abd8": {
+  "ja": "F6を最初に開く理由は、追肥の期間が3月6日(金)から始まり、水がない状態（予測値-4.9 cm）だからです。F4は2番目です。3月7日(土)に出穂期を迎え、土壌の浸透性が高い（4.4 mm/日）ため既に水が干上がっていますが、最後の測定が6日前だったので、取水口を開く前にHTXが測定すべきです。F2は3番目です。出穂期中で、3月7日(土)に水が干上がるからです。F1、F3、F5は再び水が張られており、3月10日(火)の次の送水まで待つことができます。",
+  "vi": "F6 được mở cống đầu tiên vì thời kỳ bón thúc bắt đầu từ T6 06/03 với không có nước đứng (dự tính -4.9 cm). F4 thứ hai: bắt đầu trổ bông vào T7 07/03 và đất thấm nhanh (4.4 mm/ngày) đã mất nước, nhưng số đo gần nhất cách đây 6 ngày, nên HTX nên đo mực nước trước khi mở cống. F2 thứ ba vì đang trổ bông và sẽ cạn nước vào T7 07/03. F1, F3 và F5 còn nước và có thể chờ đợt bơm sau T3 10/03."
+ },
+ "bc09a402000380f07132": {
+  "ja": "区画4の農家さんへ、降雨後、田んぼの水位は1.8 cm残っています。取水口を閉じたままにして、3月6日(金)の送水を待ってください。"
+ },
+ "bcaa4256be7156dfa5fa": {
+  "ja": "区画5の農家さんへ、田んぼに水が1.6 cm残っています。取水口を閉じたままにして、3月6日(金)の送水を待ってください。"
+ },
+ "bd480d52e304d813fc1c": {
+  "ja": "区画2の農家さんへ、44 mmの降雨により田んぼが1.8 cmまで再び湛水しました。取水口を開けないでください。3月6日(金)の送水を待ってください。"
+ },
+ "be991f1dfa6614fdfd5e": {
+  "ja": "メッセージが繰り返し文字のみで、水位、スケジュール、降雨、運用要求についての情報が含まれていません。",
+  "vi": "Tin nhắn chỉ chứa các ký tự lặp lại và không truyền đạt thông tin nào về mực nước, lịch trình, mưa, hoặc yêu cầu vận hành."
+ },
+ "bfd7440a823b5f3d4b77": {
+  "ja": "3月6日(金)の送水では F4 の取水口を最初に開いてから F6 を開く。F4 は3月7日(土)に出穂期に達するため、湛水がないと対応が必要になるため。他の区画は3月10日(火)の送水を待つ。"
+ },
+ "c52683b2d77e01b162f9": {
+  "ja": "F6さんへ：3月6日(金)の送水運転でF6が最初です。取水口を開いてください。HTXから時刻をお知らせします。"
+ },
+ "c96890c188d46427aa64": {
+  "ja": "区画2の取水口は開けずに待ってください。本日の40.7 mmの降雨で、水位は明日までに3.0 cmから約6.5 cmまで上がります。"
+ },
+ "c9939294a8efd47557c3": {
+  "ja": "HTXの責任者さんへ。サウさんに、水位が3.5 cmですので、今回は取水口を開く必要がないと伝えてください。開かずに3月6日(金)の送水をお待ちください。",
+  "en": "HTX officer, please tell Mrs Sau that the field is at 3.5 cm so no need to open the inlet. She should keep it closed and wait for the pump run on Fri 06 Mar."
+ },
+ "ca0e69b639b5aed1bdf8": {
+  "ja": "ありがとうございます。区画6の水位は4.5 cm ですね。"
+ },
+ "cac9fec7ad0b6be18bbc": {
+  "ja": "3月3日(火)のポンプ送水では、区画4をまず開き、次に区画6を開きます。区画4が3月7日(土)に出穂期を迎え、区画6が3月8日(日)に追肥が必要だからです。その他の区画は3月10日(火)のポンプ送水まで待ちます。"
+ },
+ "cbcf6aa6d19c79004c95": {
+  "ja": "3月6日(金)の送水では、F6、その次F4、その次F2の取水口を開きます。これらの区画は3月10日(火)の次の送水前に水が干上がるためです。F2は出穂期です。"
+ },
+ "cd4b7cead7c7b47338da": {
+  "ja": "区画F2のオーナーさんへ、区画F2は現在出穂期で、3月6日（金）の送水で2番目です。HTXから電話がありましたら、取水口を開いてください。"
+ },
+ "cdd4f8e505f2927504fb": {
+  "ja": "区画2の農家さんへ：お客さまの区画は既に湛水しています。取水口を閉じたままにして、3月10日（火）の次の送水をお待ちください。"
+ },
+ "cde6e7790bc3af2e70c9": {
+  "ja": "F4が最初の理由：3月7日(土)に出穂期に達し、排水速度が速い（4.4 mm/日）ため、止め水がすでになくなっている。F6が次の理由：3月8日(日)の追肥には止め水が必要。他の4区画は再灌漑され、3月10日(火)まで安全に待つことができる。HTXはF4の取水口を開く前に測定すること。前回の測定は6日前である。",
+  "vi": "F4 đứng đầu vì nó sắp trổ hoa vào T7 07/03 và đất thoát nước nhanh (4,4 mm/ngày), nên nước đứng đã hết. F6 đứng thứ hai vì cửa sổ bón thúc vào CN 08/03 cần nước đứng. Bốn thửa còn lại được tái lấp nước và có thể chờ an toàn đến T3 10/03. HTX nên đo thửa F4 trước khi mở cống, vì phép đo cuối cùng cách đó 6 ngày."
+ },
+ "cdfc7a5fb80a1baf3acd": {
+  "ja": "メッセージは区画2の水位3 cm を明示的に述べているが、予期せず区画1の農家から報告された。",
+  "vi": "Thông báo ghi rõ mực nước 3 cm ở thửa 2, tuy nhiên bất ngờ được báo từ hộ thửa 1."
+ },
+ "cfa3b92db2bdb93d0441": {
+  "ja": "区画2の水位2 cm",
+  "en": "Field 2 water at 2 cm"
+ },
+ "d161d4f9a9d37080e746": {
+  "ja": "区画5の農家さんへ：お客さまの区画は既に湛水しています。取水口を閉じたままにして、3月10日（火）の次の送水をお待ちください。"
+ },
+ "d166a236343b09c3c274": {
+  "ja": "メッセージが提供されていません。入力に'None'という文字列が含まれています。",
+  "vi": "Không có tin nhắn được cung cấp; đầu vào chứa chuỗi 'None'."
+ },
+ "d39df616f463c0a6876f": {
+  "ja": "区画2の農家さん、HTXが再測定したところ、田んぼの水位が2cmですので、取水口を開く必要はありません。閉じたままにして、3月6日(金)の送水をお待ちください。"
+ },
+ "d4c69a47fa5a6365855c": {
+  "ja": "F4さんへ：3月6日(金)の送水運転でF4が2番目です。HTXが最初に水位を測定し、その後、取水口を開くよう電話でお知らせします。"
+ },
+ "d70477fbab9b614da079": {
+  "ja": "3月6日(金)の送水では区画F6を最初に、次にF4を開く。両区画とも追肥と出穂のために静水が必要であるため。F1、F2、F3、F5は3月10日(火)の送水を待つ。"
+ },
+ "d966cd3f7e786911e6fb": {
+  "ja": "送信者が区画2の水位観測管の値を報告した。土壌表面上2 cm湛水。",
+  "vi": "Người gửi báo cáo mực nước từ ống đo thửa 2: nước ở 2 cm trên mặt ruộng.",
+  "en": "The sender reports a gauge-tube reading from Field 2: 2 cm standing water above soil surface."
+ },
+ "da75c2bd965ffaaebc25": {
+  "ja": "区画4さんへ。HTXに区画4の水位を測定してもらった上で取水口を開いてください。最後の測定が6日前で古いです。3月6日(金)の送水では、あなたが2番目で、区画6の後です。"
+ },
+ "dc1741895c7c8cfeddd4": {
+  "ja": "F4を最初に開く。3月7日(土)の出穂期を迎え、水位が不足する見込み（−0.2 cm）であるため。前回測定は6日前のため、HTXが開く前に測定すべき。F6は次。3月9日(月)の追肥期に水が必要であるため。F1、F2、F3、F5は待機。本日の雨40.7 mmで水位が上がるため、送水は不要。",
+  "vi": "F4 mở trước vì trổ bông T7 07/03 và sắp hết nước đứng (dự báo −0.2 cm). Lần đo trước cách 6 ngày, nên HTX phải đo trước mở cống. F6 mở sau vì bón thúc T2 09/03 cần nước đứng. F1, F2, F3, F5 chờ vì mưa 40.7 mm hôm nay sẽ nâng mực nước nên không cần bơm."
+ },
+ "dce0a538b9f0a8eaf373": {
+  "ja": "私の田んぼはもう乾いてひび割れが入っています。"
+ },
+ "dd2b763d01bb09a2fb7a": {
+  "ja": "区画4に水があるはずなので、取水口の近くの水位観測管で測定していただけますか？またはHTXのフンさんが測定に参ります。"
+ },
+ "dd5691511380ef4f4e2f": {
+  "ja": "区画F6を最初に開く。3月6日(金)から追肥期で、給水がなければ水位は-4.9 cm と予測されるため。区画F4を次に開く。3月7日(土)から出穂期で、水位は-13.5 cm と予測されるが、最後の測定は6日前のため、HTXが開く前に測定すべき。その他の区画は最近再浸水し、3月10日(火)までに有害な乾燥は予測されないため、次の送水を待つ。",
+  "vi": "F6 được mở đầu tiên vì bón thúc bắt đầu T6 06/03 và nước dự báo -4.9 cm (không nước trên ruộng). F4 mở thứ hai vì trổ bông từ T7 07/03 và dự báo -13.5 cm, nhưng lần đo lần trước cách đây 6 ngày nên HTX phải đo lại trước khi mở cống. Các thửa khác vừa tưới lại và không dự báo khô hại trước T3 10/03, nên chờ đợt bơm tiếp."
+ },
+ "de224b9846da9a6c2471": {
+  "ja": "区画6の農家さんへ、田んぼの水が5 cmあるので、取水口を開ける必要がありません。そのまま閉じておいて、3月6日(金)の送水を待ってください。",
+  "en": "Field 6: water is at 5 cm. Keep the inlet closed and wait for the Fri 06 Mar pump run."
+ },
+ "deb1cbc6da6dc829eacb": {
+  "ja": "区画1の農家さん、F1はまだ水があります。取水口を閉じたままにして、3月10日(火)の送水を待ってください。",
+  "en": "Field 1 farmer, F1 still has water, so just keep the inlet closed and wait for the pump run on Tuesday 10 March."
+ },
+ "e1bc45fccd56cd431cf2": {
+  "ja": "区画2の農家さんへ。水位が1.8 cmですので、今回は取水口を開く必要がありません。開かずにお待ちください。送水は3月6日(金)に来ます。",
+  "en": "Hello Field 2 farmer, the water level is at 1.8 cm so no need to open the inlet. Keep it closed and wait for the pump run on Fri 06 Mar."
+ },
+ "e590708347c47a412368": {
+  "ja": "区画5へ。取水口を閉じたままお待ちください。本日の雨40.7 mmにより、水位が1.3 cmから約4.8 cmに上がります。",
+  "en": "Field 5, keep your inlet closed and wait; today's 40.7 mm of rain will raise the water level from 1.3 cm to around 4.8 cm."
+ },
+ "e5c65c88c925fcd164d2": {
+  "ja": "3月3日(火)の送水を延期。44 mmの夜間降雨により、3月6日(金)前にはどの区画も給水が必要ない。"
+ },
+ "e74e8d0dc3ce58b69c77": {
+  "ja": "3月6日(金)の送水は区画4を開き、その次に区画6を開く。区画4は3月7日(土)に出穂期を迎えるが、水がないため。他の4区画は3月10日(火)の次の送水を待つ。"
+ },
+ "e9191d82151d8f04f11a": {
+  "ja": "メッセージはランダムな文字のみで、ベトナム語のコンテンツや灌漑関連情報がありません。",
+  "vi": "Tin nhắn chỉ có những ký tự ngẫu nhiên, không có nội dung tiếng Việt hay thông tin liên quan đến tưới tiêu."
+ },
+ "ea4aded83eaf342ea958": {
+  "ja": "44 mmの豪雨により6つの区画すべてが再び冠水した。区画2の水位観測管の写真から落水期間であることが確認できた。3月6日(金)前の最低予想水位（区画4の−9.7 cmなど）も落水中の区画には許容可能なため、ポンプを止めたままで全区画が次の送水を待つ。",
+  "vi": "Mưa lớn 44 mm đã làm ngập lại cả sáu thửa. Ảnh ống đo thửa 2 xác nhận đã vào giai đoạn phơi ruộng. Dù mực nước thấp nhất dự kiến trước T6 06/03 (như −9.7 cm ở thửa 4) cũng chấp nhận được cho ruộng đang phơi. Vì vậy trạm bơm tắt và tất cả thửa chờ lượt bơm tiếp theo."
+ },
+ "ec96b41a636ccf150e0f": {
+  "ja": "HTX職員さん、サウさんに区画3の取水口を閉じて、3月10日(火)の次の送水を待つよう伝えてください。",
+  "en": "HTX officer: please tell Mrs Sau to keep field 3's inlet closed and wait for the next pump run on Tue 10 Mar."
+ },
+ "eca55ad51a6f50366f85": {
+  "ja": "区画4が最初である理由は、3月7日（土）に出穂期を迎えるため、また土壌の排水が速い（4.4 mm/日）ため、水位は既に3月3日（火）に消失していたのです。HTXは取水口を開く前に測定する必要があります。最後の計測が6日前であるためです。区画6が2番目である理由は、3月8日（日）の追肥作業に水が必要であるためです。区画1、2、3、5は既に湛水しており、3月10日（火）の次回送水まで待つことができます。",
+  "vi": "Thửa 4 được mở cống đầu tiên vì sắp trổ bông T7 07/03 và đất thửa 4 thoát nước nhanh (4.4 mm/ngày), nên nước đứng đã mất từ T3 03/03 rồi; HTX cần đo mực nước trước khi mở cống vì số đo cuối cùng đã 6 ngày rồi. Thửa 6 được mở cống thứ 2 vì đợt bón thúc CN 08/03 cần nước đứng. Thửa 1, 2, 3 và 5 vừa được bơm nước lại, cứ chờ lượt bơm tiếp theo T3 10/03."
+ },
+ "ecc859b4348c76570730": {
+  "ja": "HTXの責任者さんへ。サウさんに、区画3の水位が2.7 cmなので今回は取水口を開けず3月10日(火)の送水までお待ちくださいと伝えてください。",
+  "en": "HTX officer, please tell Mrs Sau: Field 3 water is at 2.7 cm, so keep the inlet closed this run and wait for the next run on Tue 10 Mar."
+ },
+ "ee50eb07688b178ac983": {
+  "ja": "区画F6のオーナーさんへ、区画F6は3月6日（金）の送水で3番目で、日曜日（3月8日）の追肥に水が必要です。HTXから電話がありましたら、取水口を開いてください。"
+ },
+ "ef726117577090bdcc48": {
+  "ja": "44 mmの大雨により全6区画が再び湛水したため、区画2の予定送水は不要になった。全区画が落水期間中で、3月6日(金)の次の送水まで待つことができ、降雨予報は2.7 mmのみ。ポンプを止めておくことで、本当に水が必要な時のためにステーション容量を確保する。",
+  "vi": "Cơn mưa 44 mm đã ngập lại cả 6 thửa, nên lượt bơm dự kiến cho thửa 2 không còn cần thiết. Toàn bộ các thửa đang ở giai đoạn phơi ruộng và có thể chờ lượt bơm tiếp theo vào T6 06/03, với dự báo mưa chỉ 2.7 mm. Giữ bơm tắt để tiết kiệm năng lực trạm bơm cho lúc nào có thửa thật sự cần nước."
+ },
+ "f01936fb29ee370a9af5": {
+  "ja": "区画5の農家さん、今回の送水は取水口を閉じて、次の送水3月10日(火)を待ってください。"
+ },
+ "f2a08beb64155bdaf393": {
+  "ja": "区画2の農家さん、区画2はまだ水があるので、取水口を閉じたままにして、3月10日(火)のポンプ送水をお待ちください。",
+  "en": "Field 2 owner: F2 still has water, so keep the inlet closed and wait for the pump run on Tue 10 Mar."
+ },
+ "f2ca4f14f46278b5d761": {
+  "ja": "3月6日(金)の送水は区画4を開き、その次に区画6を開く。区画4は3月7日(土)に出穂期を迎えるが、水がないため。他の区画は3月10日(火)の次の送水を待つ。"
+ },
+ "f3b2abcbc93ee0fd66a5": {
+  "ja": "asdfgh qwerty"
+ },
+ "f63c63ce1ec9636b58e7": {
+  "ja": "区画4の農家さんへ。水位が1.8 cmですので、今回は取水口を開く必要がありません。開かずにお待ちください。送水は3月6日(金)に来ます。",
+  "en": "Hello Field 4 farmer, the water level is at 1.8 cm so no need to open the inlet. Keep it closed and wait for the pump run on Fri 06 Mar."
+ },
+ "f915ff3e95c021eba945": {
+  "ja": "区画6の農家さんへ：3月6日（金）の送水で、お客さまの区画の取水口は3番目に開きます。3月8日（日）の追肥作業に水が必要であるため、HTXがお知らせします。"
+ },
+ "fad85db72d19af06a0f4": {
+  "ja": "フンさん：区画F4の水位を測定してから取水口を開いてください。最後の測定が6日前だったためです。その後、3月6日(金)の送水で2番目に取水口を開いてください。"
+ },
+ "fbb60a28f88aa3c56852": {
+  "ja": "区画1へ。取水口を閉じたままお待ちください。本日の雨40.7 mmにより、水位が4.1 cmから約7.5 cmに上がります。",
+  "en": "Field 1, keep your inlet closed and wait; today's 40.7 mm of rain will raise the water level from 4.1 cm to around 7.5 cm."
+ },
+ "ff77ddb4986e0683f8c5": {
+  "ja": "農家は土壌が非常に乾燥し、ひび割れが入っていることを説明している。水位は土壌面よりかなり下にある。計測値は提供されなかった。",
+  "vi": "Nông dân mô tả đất rất khô với nứt chân chim, mực nước thấp hơn mặt đất rất nhiều; không có số đo từ ống."
+ },
+ "ffa9deccfd235d17338a": {
+  "ja": "かしこまりました。区画2の水位が土壌表面上2 cmであることを記録しました。ありがとうございます。",
+  "en": "Acknowledged. Recorded Field 2 water level at 2 cm above soil surface. Thank you."
+ }
+}

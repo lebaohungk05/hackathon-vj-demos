@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 6192,
+ "tries": 1,
+ "created": "2026-10-07T09:47:06",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"ambiguous_label\",\n  \"wcag\": \"2.4.6 Headings and Labels\",\n  \"element_id\": \"yubin\",\n  \"screen_reader_heard\": \"fld_yubin_01, 編集\",\n  \"evidence\": \"Screen reader reads a code instead of the label (accessible name “fld_yubin_01” does not contain the visible label “送付先の郵便番号”)\",\n  \"visible_caption\": \"送付先の郵便番号\"\n },\n \"page_language\": \"ja-JP\",\n \"file\": \"step2.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"ja\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>ステップ2/3 – 請求内容</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body class=\\\"jp\\\">\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">みどり市 電子申請 <b>（模擬）</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ</div></header>\\n<main>\\n<h1>住民票の写し交付申請（模擬）</h1>\\n<ol class=\\\"steps\\\"><li>1. 申請者</li><li class=\\\"on\\\">2. 請求内容</li><li>3. 確認</li></ol>\\n<h2>ステップ2/3: 請求内容</h2>\\n<div class=\\\"field\\\"><label for=\\\"tsusu\\\">必要な通数</label><select id=\\\"tsusu\\\"><option>1通</option><option>2通</option></select></div>\\n<div class=\\\"field\\\"><label for=\\\"mokuteki\\\">使用目的</label><select id=\\\"mokuteki\\\"><option>就職手続き</option><option>運転免許</option><option>その他</option></select></div>\\n<div class=\\\"field\\\"><div class=\\\"lbl\\\">送付先の郵便番号</div><input id=\\\"yubin\\\" aria-label=\\\"fld_yubin_01\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"denwa\\\">日中の連絡先電話番号</label><input id=\\\"denwa\\\" type=\\\"tel\\\"></div>\\n<div class=\\\"field check\\\"><input id=\\\"doui\\\" type=\\\"checkbox\\\"><label for=\\\"doui\\\">記載内容に誤りがないことを誓約します</label></div>\\n<div class=\\\"actions\\\"><button type=\\\"button\\\" id=\\\"next2\\\" class=\\\"btn\\\" onclick=\\\"location.href='step3.html'\\\">次へ</button></div>\\n<p class=\\\"foot\\\">お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "<div class=\"lbl\">送付先の郵便番号</div><input id=\"yubin\" aria-label=\"fld_yubin_01\" type=\"text\">",
+    "replace": "<label class=\"lbl\" for=\"yubin\">送付先の郵便番号</label><input id=\"yubin\" type=\"text\">"
+   }
+  ],
+  "explanation": "The postal code box had a hidden technical name (\"fld_yubin_01\") that screen readers read aloud instead of the visible caption. The caption was plain text not linked to the box. The fix turns the caption into a real label linked to the box and removes the technical name. Screen readers now say \"送付先の郵便番号\". Clicking the caption also focuses the box. The look stays the same because the label keeps the \"lbl\" class.",
+  "explanation_local": "郵便番号の入力欄には、画面に見える見出しではなく「fld_yubin_01」という技術的な名前が設定されていたため、スクリーンリーダーがその名前を読み上げていました。見出しを入力欄と正しく結び付けるラベル（label）に変更し、技術的な名前を削除しました。これにより「送付先の郵便番号」と読み上げられ、見出しをクリックしても入力欄が選択されます。見た目は従来のクラス（lbl）を残しているので変わりません。",
+  "technique": "Replace the div caption with a native label for= and remove the misleading aria-label"
+ }
+}

@@ -1,0 +1,11 @@
+{
+  "file": "gauge_26.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.26,
+  "retries": 0,
+  "result": {
+    "reading_cm": -15.0,
+    "confidence": 0.85,
+    "reason": "The blue water surface inside the tube lines up with the -15 tick (y≈634). The 0 mark at the soil line and the -5 and -10 labels give a consistent spacing of about 14 px per cm."
+  }
+}

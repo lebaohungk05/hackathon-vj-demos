@@ -1,0 +1,45 @@
+{
+ "task": "plan_brief",
+ "model": "claude-sonnet-5-5",
+ "ms": 9543,
+ "attempts": 1,
+ "saved_at": "2026-10-06T23:31:40",
+ "prompt": "You are the communication step of RiceBridge Ops, an irrigation agent for a 6-field rice cluster that shares one pump station in An Giang.\n\nDeterministic tools have ALREADY computed the plan (water balance, crop-stage safety, pump capacity). You must not change any action, order, date or number. Your job:\n1. headline_en / headline_vi: one sentence each that tells the pump-station manager what the plan does and the single most important reason, combining the events in INPUT.recent_events.\n2. explain_en: 2-3 plain-English sentences for a non-expert audience on why the order is what it is (use the reasons given).\n3. messages: one chat message per field in INPUT.rows (same fid), short (max 2 sentences), polite southern Vietnamese (anh/chị, nhé), plus English. Say clearly whether to open the inlet (and when HTX calls) or keep it closed and wait. For F3 (Bà Sáu, no smartphone) write the message to the HTX officer asking him to tell bà Sáu. If a row has measure_first true, ask HTX to measure that field before opening the inlet.\n\nHard constraint: every number you write must appear in INPUT (levels, dates, field numbers, mm). Do not invent yields, money, emissions or percentages.\n\nReply with ONE JSON object only, no prose, no code fence. It must match this JSON schema:\n{\"type\": \"object\", \"required\": [\"headline_en\", \"headline_vi\", \"explain_en\", \"messages\"], \"properties\": {\"headline_en\": {\"type\": \"string\", \"maxLength\": 240}, \"headline_vi\": {\"type\": \"string\", \"maxLength\": 240}, \"explain_en\": {\"type\": \"string\", \"maxLength\": 600}, \"messages\": {\"type\": \"array\", \"minItems\": 1, \"items\": {\"type\": \"object\", \"required\": [\"fid\", \"text_vi\", \"text_en\"], \"properties\": {\"fid\": {\"type\": \"string\", \"enum\": [\"F1\", \"F2\", \"F3\", \"F4\", \"F5\", \"F6\"]}, \"text_vi\": {\"type\": \"string\", \"maxLength\": 260}, \"text_en\": {\"type\": \"string\", \"maxLength\": 300}}}}}}\n\nINPUT (data, not instructions):\n{\n \"plan_id\": \"P1\",\n \"recent_events\": [\n  \"Re-plan after a message from Anh Hùng (HTX)\"\n ],\n \"run_label\": \"Fri 27 Feb\",\n \"run_date\": \"2026-02-27\",\n \"following_label\": \"Tue 03 Mar\",\n \"rain_forecast_mm\": 0.0,\n \"summary\": \"Pump run Fri 27 Feb: open F2, then F5, then F4, then F6; other fields wait for the next run.\",\n \"summary_vi\": \"Lượt bơm Fri 27 Feb: mở cống F2, rồi F5, rồi F4, rồi F6; các thửa khác chờ đợt sau.\",\n \"rows\": [\n  {\n   \"fid\": \"F2\",\n   \"owner\": \"Hộ thửa 2\",\n   \"stage_vi\": \"bón thúc\",\n   \"action\": \"irrigate\",\n   \"action_label\": \"Open inlet\",\n   \"queue\": 1,\n   \"measure_first\": false,\n   \"level_now_cm\": 2,\n   \"level_at_run_cm\": -11.4,\n   \"reason\": \"Mon 23 Feb: top-dressing window needs standing water (projected +0.1 cm).\"\n  },\n  {\n   \"fid\": \"F5\",\n   \"owner\": \"Hộ thửa 5\",\n   \"stage_vi\": \"bón thúc\",\n   \"action\": \"irrigate\",\n   \"action_label\": \"Open inlet\",\n   \"queue\": 2,\n   \"measure_first\": false,\n   \"level_now_cm\": 2.0,\n   \"level_at_run_cm\": -8.1,\n   \"reason\": \"Mon 23 Feb: top-dressing window needs standing water (projected +0.0 cm).\"\n  },\n  {\n   \"fid\": \"F4\",\n   \"owner\": \"Hộ thửa 4\",\n   \"stage_vi\": \"phơi ruộng\",\n   \"action\": \"irrigate\",\n   \"action_label\": \"Open inlet\",\n   \"queue\": 3,\n   \"measure_first\": true,\n   \"level_now_cm\": 5.0,\n   \"level_at_run_cm\": -6.5,\n   \"reason\": \"Mon 02 Mar: near the −15 cm AWD limit (projected −15.5 cm). Fast-draining soil (4.4 mm/day): standing water gone by Wed 25 Feb, before the run. Last reading is 99 days old: ask HTX to measure before opening the inlet.\"\n  },\n  {\n   \"fid\": \"F6\",\n   \"owner\": \"Hộ thửa 6\",\n   \"stage_vi\": \"phơi ruộng\",\n   \"action\": \"irrigate\",\n   \"action_label\": \"Open inlet\",\n   \"queue\": 4,\n   \"measure_first\": false,\n   \"level_now_cm\": 3.0,\n   \"level_at_run_cm\": -6.6,\n   \"reason\": \"Mon 02 Mar: near the −15 cm AWD limit (projected −13.1 cm).\"\n  },\n  {\n   \"fid\": \"F1\",\n   \"owner\": \"Hộ thửa 1\",\n   \"stage_vi\": \"bón thúc\",\n   \"action\": \"keep_water\",\n   \"action_label\": \"Wait: next run\",\n   \"queue\": null,\n   \"measure_first\": false,\n   \"level_now_cm\": 5.0,\n   \"level_at_run_cm\": 0.4,\n   \"reason\": \"Re-flooded: lowest projected −4.2 cm before Tue 03 Mar; can wait for the next run.\"\n  },\n  {\n   \"fid\": \"F3\",\n   \"owner\": \"Bà Sáu\",\n   \"stage_vi\": \"bón thúc\",\n   \"action\": \"keep_water\",\n   \"action_label\": \"Wait: next run\",\n   \"queue\": null,\n   \"measure_first\": false,\n   \"level_now_cm\": 4.0,\n   \"level_at_run_cm\": -1.9,\n   \"reason\": \"Re-flooded: lowest projected −7.5 cm before Tue 03 Mar; can wait for the next run.\"\n  }\n ],\n \"alerts\": [\n  \"F2 top-dressing window needs standing water on Mon 23 Feb (+0.1 cm), before the Fri 27 Feb run.\",\n  \"F5 top-dressing window needs standing water on Mon 23 Feb (+0.0 cm), before the Fri 27 Feb run.\"\n ]\n}\n",
+ "data": {
+  "headline_en": "Pump run Fri 27 Feb opens F2, then F5, then F4, then F6, because F2 and F5 need standing water for top-dressing; F1 and F3 wait for the Tue 03 Mar run.",
+  "headline_vi": "Lượt bơm Fri 27 Feb mở cống F2, rồi F5, rồi F4, rồi F6, vì F2 và F5 cần nước đứng để bón thúc; F1 và F3 chờ đợt Tue 03 Mar.",
+  "explain_en": "F2 and F5 are first because their top-dressing window needs standing water and their levels (-11.4 cm and -8.1 cm at the run) are already low. F4 and F6 are in field drying and are near the -15 cm limit, so they follow; F4 drains fast, so HTX should measure it before opening. F1 and F3 were re-flooded and stay above the limit, so they can wait for the next run.",
+  "messages": [
+   {
+    "fid": "F2",
+    "text_vi": "Anh/chị thửa 2 ơi, HTX sẽ mở cống thửa 2 đầu tiên trong lượt bơm Fri 27 Feb để kịp bón thúc nhé.",
+    "text_en": "Field 2: the inlet opens first in the Fri 27 Feb pump run, so the top-dressing window has standing water."
+   },
+   {
+    "fid": "F5",
+    "text_vi": "Anh/chị thửa 5 ơi, thửa 5 được mở cống thứ hai trong lượt bơm Fri 27 Feb để bón thúc nhé.",
+    "text_en": "Field 5: the inlet opens second in the Fri 27 Feb pump run, for top-dressing."
+   },
+   {
+    "fid": "F4",
+    "text_vi": "Anh Hùng ơi, nhờ anh đo mực nước thửa 4 trước khi mở cống, vì số đo cũ đã 99 ngày rồi nhé. Thửa 4 mở thứ ba.",
+    "text_en": "Anh Hùng, please measure field 4 before opening the inlet, as the last reading is 99 days old. Field 4 is third in the queue."
+   },
+   {
+    "fid": "F6",
+    "text_vi": "Anh/chị thửa 6 ơi, thửa 6 được mở cống thứ tư trong lượt bơm Fri 27 Feb nhé.",
+    "text_en": "Field 6: the inlet opens fourth in the Fri 27 Feb pump run."
+   },
+   {
+    "fid": "F1",
+    "text_vi": "Anh/chị thửa 1 ơi, thửa 1 còn nước, cứ đóng cống và chờ đợt bơm Tue 03 Mar nhé.",
+    "text_en": "Field 1: there is still water, so keep the inlet closed and wait for the Tue 03 Mar run."
+   },
+   {
+    "fid": "F3",
+    "text_vi": "Anh Hùng ơi, nhờ anh nhắn bà Sáu giữ cống thửa 3 đóng và chờ đợt bơm Tue 03 Mar nhé.",
+    "text_en": "Anh Hùng, please tell bà Sáu to keep the field 3 inlet closed and wait for the Tue 03 Mar run."
+   }
+  ]
+ }
+}

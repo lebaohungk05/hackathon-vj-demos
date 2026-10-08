@@ -1,0 +1,11 @@
+{
+  "file": "gauge_23.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.33,
+  "retries": 0,
+  "result": {
+    "reading_cm": 3.0,
+    "confidence": 0.85,
+    "reason": "The +5 tick is at y≈350, 0 at y≈420 and -5 at y≈490, which gives about 14 px per cm. The blue water top is at y≈378, about 3 cm above the 0 mark."
+  }
+}

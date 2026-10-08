@@ -1,0 +1,4217 @@
+{
+ "generated": "2026-10-06T21:50:23",
+ "engine": "LLM: claude-haiku-4-5-20251001 (decisions) + claude-sonnet-5-5 (patches), rule fallback",
+ "engine_kind": "llm",
+ "llm_mode": "replay",
+ "approve_mode": "auto",
+ "models": {
+  "decisions": "claude-haiku-4-5-20251001",
+  "patches": "claude-sonnet-5-5"
+ },
+ "procedures": [
+  {
+   "key": "vn",
+   "country": "Vietnam",
+   "title": "Cấp Phiếu lý lịch tư pháp",
+   "title_en": "Criminal-record certificate (Phiếu lý lịch tư pháp)",
+   "lang": "vi-VN",
+   "steps": [
+    "step1.html",
+    "step2.html",
+    "step3.html",
+    "step4.html"
+   ],
+   "step_names": [
+    "Người yêu cầu",
+    "Liên hệ",
+    "Mục đích",
+    "Xác nhận"
+   ],
+   "goal": "Reach the Confirmation step (Xác nhận) and stop before the submit button",
+   "standard": "TT 21/2023 (WCAG 2.x)",
+   "final": "handoff",
+   "rounds": 4,
+   "submitted": "no",
+   "reached_confirmation": true,
+   "events": [
+    {
+     "i": 0,
+     "t": 1791298153.17,
+     "attempt": 1,
+     "step": 1,
+     "kind": "restart",
+     "text": "Attempt 1: start from step 1"
+    },
+    {
+     "i": 1,
+     "t": 1791298153.59,
+     "attempt": 1,
+     "step": 1,
+     "kind": "hear",
+     "text": "Bước 1/4 – Thông tin người yêu cầu. Bước 1/4: Thông tin người yêu cầu"
+    },
+    {
+     "i": 2,
+     "t": 1791298153.61,
+     "attempt": 1,
+     "step": 1,
+     "kind": "tree",
+     "text": "- banner: Cổng Dịch vụ công MÔ PHỎNG Demo portal for MinnaAccess · not a real government site · dữ liệu giả\n- main:\n  - heading \"Cấp Phiếu lý lịch tư pháp\" [level=1]\n  - list:\n    - listitem: 1. Người yêu cầu\n    - listitem: 2. Liên hệ\n    - listitem: 3. Mục đích\n    - listitem: 4. Xác nhận\n  - 'heading \"Bước 1/4: Thông tin người yêu cầu\" [level=2]'\n  - text: Họ và tên *\n  - textbox\n  - text: Ngày sinh (dd/mm/yyyy)\n  - textbox \"Ngày sinh (dd/mm/yyyy)\"\n  - text: Số CCCD\n  - textbox \"Số CCCD\"\n  - button \"Tiếp tục\"\n  - paragraph: \"Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.\""
+    },
+    {
+     "i": 3,
+     "t": 1791298153.94,
+     "attempt": 1,
+     "step": 1,
+     "kind": "hear",
+     "text": "ô nhập",
+     "focus": "hoten"
+    },
+    {
+     "i": 4,
+     "t": 1791298154.37,
+     "attempt": 1,
+     "step": 1,
+     "kind": "barrier",
+     "text": "Screen reader reads the field only as its role, with no name (accessible name is empty): a blind user cannot tell what to type",
+     "shot": "out/frames/vn_frame_001.png",
+     "barrier": {
+      "kind": "unnamed_field",
+      "step": 1,
+      "element_id": "hoten",
+      "sc": "3.3.2",
+      "sc_title": "Labels or Instructions",
+      "heard": "ô nhập",
+      "evidence": "Screen reader reads the field only as its role, with no name (accessible name is empty): a blind user cannot tell what to type",
+      "context_text": "Họ và tên",
+      "level": "A",
+      "check": "accessibility-tree check"
+     },
+     "engine": "deterministic check (LLM explained)",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 39733,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "5800f0ebee1c895a5c91301f",
+      "purpose": "interpret field",
+      "field": "hoten",
+      "heard": "",
+      "caption": "Họ và tên",
+      "output": {
+       "decision": "fill",
+       "value": "Nguyễn Văn An",
+       "field_meaning": "Full name (surname and given name)",
+       "label_clear_for_screen_reader": false,
+       "advisory": "Label 'Họ và tên' (Full name) is visible but not in accessibility tree.",
+       "reasoning": "The field requests full name per visible caption 'Họ và tên'. The profile provides 'Nguyễn Văn An', but the missing accessible name leaves screen reader users unaware of what to enter."
+      }
+     }
+    },
+    {
+     "i": 5,
+     "t": 1791298155.35,
+     "attempt": 1,
+     "step": 1,
+     "kind": "patch",
+     "text": "The \"Họ và tên\" caption was a plain div, so it was not linked to the input and a screen reader announced only \"edit field\". It is now a native label tied to the field with for=\"hoten\". The field is also marked required to match the visible asterisk. Appearance and navigation do not change.",
+     "diff": "--- a/vn/step1.html\n+++ b/vn/step1.html\n@@ -13,3 +13,3 @@\n <h2>Bước 1/4: Thông tin người yêu cầu</h2>\n-<div class=\"field\"><div class=\"lbl\">Họ và tên <span class=\"req\">*</span></div><input id=\"hoten\" type=\"text\"></div>\n+<div class=\"field\"><label for=\"hoten\" class=\"lbl\">Họ và tên <span class=\"req\">*</span></label><input id=\"hoten\" type=\"text\" required></div>\n <div class=\"field\"><label for=\"ngaysinh\">Ngày sinh (dd/mm/yyyy)</label><input id=\"ngaysinh\" type=\"text\"></div>\n",
+     "file": "step1.html",
+     "shot": "out/frames/vn_frame_001.png",
+     "engine": "LLM claude-sonnet-5-5",
+     "llm": {
+      "model": "claude-sonnet-5-5",
+      "source": "cache",
+      "ms": 5787,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "64f768b613b4a4a38e7d8d4e",
+      "purpose": "write patch",
+      "output": {
+       "edits": [
+        {
+         "find": "<div class=\"lbl\">Họ và tên <span class=\"req\">*</span></div><input id=\"hoten\" type=\"text\">",
+         "replace": "<label for=\"hoten\" class=\"lbl\">Họ và tên <span class=\"req\">*</span></label><input id=\"hoten\" type=\"text\" required>"
+        }
+       ],
+       "explanation": "The \"Họ và tên\" caption was a plain div, so it was not linked to the input and a screen reader announced only \"edit field\". It is now a native label tied to the field with for=\"hoten\". The field is also marked required to match the visible asterisk. Appearance and navigation do not change.",
+       "explanation_local": "Dòng chữ \"Họ và tên\" trước đây chỉ là một khối văn bản thường, không gắn với ô nhập nên trình đọc màn hình chỉ đọc \"ô nhập\". Giờ nó là thẻ label gắn với ô nhập (for=\"hoten\"), nên người khiếm thị sẽ nghe được \"Họ và tên\". Ô cũng được đánh dấu bắt buộc, khớp với dấu * hiển thị. Giao diện và cách chuyển bước không thay đổi.",
+       "technique": "Replace the unlinked div caption with a native label element using for/id"
+      }
+     },
+     "explanation_local": "Dòng chữ \"Họ và tên\" trước đây chỉ là một khối văn bản thường, không gắn với ô nhập nên trình đọc màn hình chỉ đọc \"ô nhập\". Giờ nó là thẻ label gắn với ô nhập (for=\"hoten\"), nên người khiếm thị sẽ nghe được \"Họ và tên\". Ô cũng được đánh dấu bắt buộc, khớp với dấu * hiển thị. Giao diện và cách chuyển bước không thay đổi.",
+     "precheck": {
+      "passed": true,
+      "checks": [
+       {
+        "name": "Target element still present",
+        "passed": true,
+        "detail": "#hoten"
+       },
+       {
+        "name": "Accessibility tree: accessible name matches the visible label",
+        "passed": true,
+        "detail": "accessible name “Họ và tên *” contains the visible label"
+       },
+       {
+        "name": "axe-core: no rule fails on this element",
+        "passed": true,
+        "detail": "0 violations on the element"
+       }
+      ]
+     }
+    },
+    {
+     "i": 6,
+     "t": 1791298155.35,
+     "attempt": 1,
+     "step": 1,
+     "kind": "approval",
+     "text": "Approved by developer (auto-approve, recording mode)",
+     "approved": true,
+     "who": "developer (auto-approve, recording mode)"
+    },
+    {
+     "i": 7,
+     "t": 1791298155.35,
+     "attempt": 2,
+     "step": 1,
+     "kind": "restart",
+     "text": "Attempt 2: start from step 1"
+    },
+    {
+     "i": 8,
+     "t": 1791298155.66,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "Bước 1/4 – Thông tin người yêu cầu. Bước 1/4: Thông tin người yêu cầu"
+    },
+    {
+     "i": 9,
+     "t": 1791298155.67,
+     "attempt": 2,
+     "step": 1,
+     "kind": "tree",
+     "text": "- banner: Cổng Dịch vụ công MÔ PHỎNG Demo portal for MinnaAccess · not a real government site · dữ liệu giả\n- main:\n  - heading \"Cấp Phiếu lý lịch tư pháp\" [level=1]\n  - list:\n    - listitem: 1. Người yêu cầu\n    - listitem: 2. Liên hệ\n    - listitem: 3. Mục đích\n    - listitem: 4. Xác nhận\n  - 'heading \"Bước 1/4: Thông tin người yêu cầu\" [level=2]'\n  - text: Họ và tên *\n  - textbox \"Họ và tên *\"\n  - text: Ngày sinh (dd/mm/yyyy)\n  - textbox \"Ngày sinh (dd/mm/yyyy)\"\n  - text: Số CCCD\n  - textbox \"Số CCCD\"\n  - button \"Tiếp tục\"\n  - paragraph: \"Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.\""
+    },
+    {
+     "i": 10,
+     "t": 1791298156.0,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "Họ và tên *, ô nhập",
+     "focus": "hoten"
+    },
+    {
+     "i": 11,
+     "t": 1791298156.73,
+     "attempt": 2,
+     "step": 1,
+     "kind": "action",
+     "text": "type “Nguyễn Văn An” (Full name (Họ và tên) — applicant's complete name as used in official documents.)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 8743,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "d125c70ac7843a755f0f9f3f",
+      "purpose": "interpret field",
+      "field": "hoten",
+      "heard": "Họ và tên *",
+      "caption": "Họ và tên",
+      "output": {
+       "decision": "fill",
+       "value": "Nguyễn Văn An",
+       "field_meaning": "Full name (Họ và tên) — applicant's complete name as used in official documents.",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field label \"Họ và tên\" (Full name) is standard Vietnamese and immediately clear. The applicant profile provides the exact value: Nguyễn Văn An."
+      }
+     },
+     "shot": "out/frames/vn_frame_002.png"
+    },
+    {
+     "i": 12,
+     "t": 1791298157.2,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "Ngày sinh (dd/mm/yyyy), ô nhập",
+     "focus": "ngaysinh"
+    },
+    {
+     "i": 13,
+     "t": 1791298157.88,
+     "attempt": 2,
+     "step": 1,
+     "kind": "action",
+     "text": "type “12/03/1985” (Date of birth in dd/mm/yyyy format)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 8992,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "8ff927d752a66942e513276b",
+      "purpose": "interpret field",
+      "field": "ngaysinh",
+      "heard": "Ngày sinh (dd/mm/yyyy)",
+      "caption": "Ngày sinh (dd/mm/yyyy)",
+      "output": {
+       "decision": "fill",
+       "value": "12/03/1985",
+       "field_meaning": "Date of birth in dd/mm/yyyy format",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "Ngày sinh is the Vietnamese term for date of birth, and the format dd/mm/yyyy is explicit. The applicant's birth date from the profile (12/03/1985) matches this format exactly."
+      }
+     },
+     "shot": "out/frames/vn_frame_003.png"
+    },
+    {
+     "i": 14,
+     "t": 1791298158.33,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "Số CCCD, ô nhập",
+     "focus": "cccd"
+    },
+    {
+     "i": 15,
+     "t": 1791298158.34,
+     "attempt": 2,
+     "step": 1,
+     "kind": "advisory",
+     "text": "CCCD is an abbreviation spoken as \"C-C-C-D\" by screen readers; expand to full form \"Căn Cước Công Dân\" or English equivalent for clarity.",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 11549,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "e9dfa30f63c56ac7a7e0d71c",
+      "purpose": "interpret field",
+      "field": "cccd",
+      "heard": "Số CCCD",
+      "caption": "Số CCCD",
+      "output": {
+       "decision": "fill",
+       "value": "001085012345",
+       "field_meaning": "Citizen Identity Card number (Căn Cước Công Dân)",
+       "label_clear_for_screen_reader": false,
+       "advisory": "CCCD is an abbreviation spoken as \"C-C-C-D\" by screen readers; expand to full form \"Căn Cước Công Dân\" or English equivalent for clarity.",
+       "reasoning": "The field requests the Vietnamese Citizen Identity Card number, which is directly available in the applicant profile. The acronym CCCD, when spelled letter-by-letter by a screen reader, is not immediately clear to many users even if familiar with Vietnamese."
+      }
+     }
+    },
+    {
+     "i": 16,
+     "t": 1791298159.05,
+     "attempt": 2,
+     "step": 1,
+     "kind": "action",
+     "text": "type “001085012345” (Citizen Identity Card number (Căn Cước Công Dân))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 11549,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "e9dfa30f63c56ac7a7e0d71c",
+      "purpose": "interpret field",
+      "field": "cccd",
+      "heard": "Số CCCD",
+      "caption": "Số CCCD",
+      "output": {
+       "decision": "fill",
+       "value": "001085012345",
+       "field_meaning": "Citizen Identity Card number (Căn Cước Công Dân)",
+       "label_clear_for_screen_reader": false,
+       "advisory": "CCCD is an abbreviation spoken as \"C-C-C-D\" by screen readers; expand to full form \"Căn Cước Công Dân\" or English equivalent for clarity.",
+       "reasoning": "The field requests the Vietnamese Citizen Identity Card number, which is directly available in the applicant profile. The acronym CCCD, when spelled letter-by-letter by a screen reader, is not immediately clear to many users even if familiar with Vietnamese."
+      }
+     },
+     "shot": "out/frames/vn_frame_004.png"
+    },
+    {
+     "i": 17,
+     "t": 1791298159.5,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "Tiếp tục, nút",
+     "focus": "next1"
+    },
+    {
+     "i": 18,
+     "t": 1791298159.5,
+     "attempt": 2,
+     "step": 1,
+     "kind": "action",
+     "text": "press Enter (continue to next step)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 19,
+     "t": 1791298159.91,
+     "attempt": 2,
+     "step": 1,
+     "kind": "pass",
+     "text": "Step 1 passed by keyboard only",
+     "shot": "out/frames/vn_frame_005.png"
+    },
+    {
+     "i": 20,
+     "t": 1791298159.91,
+     "attempt": 2,
+     "step": 1,
+     "kind": "verified",
+     "text": "Verified by keyboard replay: step 1 now passes; #hoten (unnamed field, WCAG 3.3.2) no longer blocks",
+     "barrier": {
+      "kind": "unnamed_field",
+      "step": 1,
+      "element_id": "hoten",
+      "sc": "3.3.2",
+      "sc_title": "Labels or Instructions",
+      "heard": "ô nhập",
+      "evidence": "Screen reader reads the field only as its role, with no name (accessible name is empty): a blind user cannot tell what to type",
+      "context_text": "Họ và tên",
+      "level": "A",
+      "check": "accessibility-tree check",
+      "attempt": 1,
+      "status": "fixed",
+      "patch": "The \"Họ và tên\" caption was a plain div, so it was not linked to the input and a screen reader announced only \"edit field\". It is now a native label tied to the field with for=\"hoten\". The field is also marked required to match the visible asterisk. Appearance and navigation do not change.",
+      "patch_local": "Dòng chữ \"Họ và tên\" trước đây chỉ là một khối văn bản thường, không gắn với ô nhập nên trình đọc màn hình chỉ đọc \"ô nhập\". Giờ nó là thẻ label gắn với ô nhập (for=\"hoten\"), nên người khiếm thị sẽ nghe được \"Họ và tên\". Ô cũng được đánh dấu bắt buộc, khớp với dấu * hiển thị. Giao diện và cách chuyển bước không thay đổi.",
+      "patch_engine": "LLM claude-sonnet-5-5",
+      "diff": "--- a/vn/step1.html\n+++ b/vn/step1.html\n@@ -13,3 +13,3 @@\n <h2>Bước 1/4: Thông tin người yêu cầu</h2>\n-<div class=\"field\"><div class=\"lbl\">Họ và tên <span class=\"req\">*</span></div><input id=\"hoten\" type=\"text\"></div>\n+<div class=\"field\"><label for=\"hoten\" class=\"lbl\">Họ và tên <span class=\"req\">*</span></label><input id=\"hoten\" type=\"text\" required></div>\n <div class=\"field\"><label for=\"ngaysinh\">Ngày sinh (dd/mm/yyyy)</label><input id=\"ngaysinh\" type=\"text\"></div>\n",
+      "precheck": {
+       "passed": true,
+       "checks": [
+        {
+         "name": "Target element still present",
+         "passed": true,
+         "detail": "#hoten"
+        },
+        {
+         "name": "Accessibility tree: accessible name matches the visible label",
+         "passed": true,
+         "detail": "accessible name “Họ và tên *” contains the visible label"
+        },
+        {
+         "name": "axe-core: no rule fails on this element",
+         "passed": true,
+         "detail": "0 violations on the element"
+        }
+       ]
+      },
+      "verified_attempt": 2
+     },
+     "shot": "out/frames/vn_frame_005.png"
+    },
+    {
+     "i": 21,
+     "t": 1791298159.93,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "Bước 2/4 – Thông tin liên hệ. Bước 2/4: Thông tin liên hệ"
+    },
+    {
+     "i": 22,
+     "t": 1791298159.94,
+     "attempt": 2,
+     "step": 2,
+     "kind": "tree",
+     "text": "- banner: Cổng Dịch vụ công MÔ PHỎNG Demo portal for MinnaAccess · not a real government site · dữ liệu giả\n- main:\n  - heading \"Cấp Phiếu lý lịch tư pháp\" [level=1]\n  - list:\n    - listitem: 1. Người yêu cầu\n    - listitem: 2. Liên hệ\n    - listitem: 3. Mục đích\n    - listitem: 4. Xác nhận\n  - 'heading \"Bước 2/4: Thông tin liên hệ\" [level=2]'\n  - text: Email\n  - textbox \"Email\"\n  - text: Số điện thoại\n  - textbox \"Số điện thoại\"\n  - text: Nơi ĐKTT\n  - textbox \"Nơi ĐKTT\"\n  - button \"Tiếp tục\"\n  - paragraph: \"Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.\""
+    },
+    {
+     "i": 23,
+     "t": 1791298160.26,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "Email, ô nhập",
+     "focus": "email"
+    },
+    {
+     "i": 24,
+     "t": 1791298161.12,
+     "attempt": 2,
+     "step": 2,
+     "kind": "action",
+     "text": "type “an.nguyen@example.com” (Email address for contact purposes on the criminal record certificate application)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 6561,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "a052d500075574deebb7d665",
+      "purpose": "interpret field",
+      "field": "email",
+      "heard": "Email",
+      "caption": "Email",
+      "output": {
+       "decision": "fill",
+       "value": "an.nguyen@example.com",
+       "field_meaning": "Email address for contact purposes on the criminal record certificate application",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The label \"Email\" is universally recognized and unambiguous. The applicant profile provides the email value directly."
+      }
+     },
+     "shot": "out/frames/vn_frame_006.png"
+    },
+    {
+     "i": 25,
+     "t": 1791298161.56,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "Số điện thoại, ô nhập",
+     "focus": "sdt"
+    },
+    {
+     "i": 26,
+     "t": 1791298162.24,
+     "attempt": 2,
+     "step": 2,
+     "kind": "action",
+     "text": "type “0912345678” (Phone number (contact telephone))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 8059,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "7a344749d6e38e11abb782e0",
+      "purpose": "interpret field",
+      "field": "sdt",
+      "heard": "Số điện thoại",
+      "caption": "Số điện thoại",
+      "output": {
+       "decision": "fill",
+       "value": "0912345678",
+       "field_meaning": "Phone number (contact telephone)",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field asks for a phone number and is labeled clearly in Vietnamese as \"Số điện thoại.\" The applicant profile provides a Vietnamese phone number (0912345678) which matches the page language and the domestic context of the Vietnamese criminal record procedure."
+      }
+     },
+     "shot": "out/frames/vn_frame_007.png"
+    },
+    {
+     "i": 27,
+     "t": 1791298162.69,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "Số điện thoại, ô nhập, 0912345678",
+     "focus": "sdt"
+    },
+    {
+     "i": 28,
+     "t": 1791298163.03,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "Số điện thoại, ô nhập, 0912345678",
+     "focus": "sdt"
+    },
+    {
+     "i": 29,
+     "t": 1791298163.14,
+     "attempt": 2,
+     "step": 2,
+     "kind": "barrier",
+     "text": "Tab pressed 3 times, focus never left this field",
+     "shot": "out/frames/vn_frame_008.png",
+     "barrier": {
+      "kind": "keyboard_trap",
+      "step": 2,
+      "element_id": "sdt",
+      "sc": "2.1.1",
+      "sc_title": "Keyboard",
+      "heard": "Số điện thoại, ô nhập, 0912345678",
+      "evidence": "Tab pressed 3 times, focus never left this field",
+      "context_text": "Số điện thoại",
+      "level": "A",
+      "check": "Tab replay"
+     },
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 30,
+     "t": 1791298164.87,
+     "attempt": 2,
+     "step": 2,
+     "kind": "patch",
+     "text": "The phone field had a script that blocked the Tab key, so keyboard users could never leave the field. I changed it to clean up the number (digits only, at most 10) when the field loses focus, so Tab works normally and the formatting is kept.",
+     "diff": "--- a/vn/step2.html\n+++ b/vn/step2.html\n@@ -18,4 +18,4 @@\n <script id=\"phone-mask\">\n-document.getElementById('sdt').addEventListener('keydown', function (e) {\n-  if (e.key === 'Tab') { e.preventDefault(); this.value = this.value.replace(/\\D/g, '').slice(0, 10); }\n+document.getElementById('sdt').addEventListener('blur', function () {\n+  this.value = this.value.replace(/\\D/g, '').slice(0, 10);\n });\n",
+     "file": "step2.html",
+     "shot": "out/frames/vn_frame_008.png",
+     "engine": "LLM claude-sonnet-5-5",
+     "llm": {
+      "model": "claude-sonnet-5-5",
+      "source": "cache",
+      "ms": 8455,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "42ffa96f2daf6f59d3e72037",
+      "purpose": "write patch",
+      "output": {
+       "edits": [
+        {
+         "find": "addEventListener('keydown', function (e) {",
+         "replace": "addEventListener('blur', function () {"
+        },
+        {
+         "find": "if (e.key === 'Tab') { e.preventDefault(); this.value = this.value.replace(/\\D/g, '').slice(0, 10); }",
+         "replace": "this.value = this.value.replace(/\\D/g, '').slice(0, 10);"
+        }
+       ],
+       "explanation": "The phone field had a script that blocked the Tab key, so keyboard users could never leave the field. I changed it to clean up the number (digits only, at most 10) when the field loses focus, so Tab works normally and the formatting is kept.",
+       "explanation_local": "Ô \"Số điện thoại\" có đoạn mã chặn phím Tab nên người dùng bàn phím không thể rời khỏi ô. Tôi đã sửa để số được làm sạch (chỉ giữ chữ số, tối đa 10 số) khi rời khỏi ô, nên phím Tab hoạt động bình thường mà định dạng vẫn được giữ nguyên.",
+       "technique": "Remove the preventDefault on Tab; run the same digit-only masking on the blur event instead."
+      }
+     },
+     "explanation_local": "Ô \"Số điện thoại\" có đoạn mã chặn phím Tab nên người dùng bàn phím không thể rời khỏi ô. Tôi đã sửa để số được làm sạch (chỉ giữ chữ số, tối đa 10 số) khi rời khỏi ô, nên phím Tab hoạt động bình thường mà định dạng vẫn được giữ nguyên.",
+     "precheck": {
+      "passed": true,
+      "checks": [
+       {
+        "name": "Target element still present",
+        "passed": true,
+        "detail": "#sdt"
+       },
+       {
+        "name": "Keyboard replay: Tab leaves the field",
+        "passed": true,
+        "detail": "focus moved to #diachi"
+       },
+       {
+        "name": "axe-core: no rule fails on this element",
+        "passed": true,
+        "detail": "0 violations on the element"
+       }
+      ]
+     }
+    },
+    {
+     "i": 31,
+     "t": 1791298164.87,
+     "attempt": 2,
+     "step": 2,
+     "kind": "approval",
+     "text": "Approved by developer (auto-approve, recording mode)",
+     "approved": true,
+     "who": "developer (auto-approve, recording mode)"
+    },
+    {
+     "i": 32,
+     "t": 1791298164.88,
+     "attempt": 3,
+     "step": 1,
+     "kind": "restart",
+     "text": "Attempt 3: start from step 1"
+    },
+    {
+     "i": 33,
+     "t": 1791298165.19,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "Bước 1/4 – Thông tin người yêu cầu. Bước 1/4: Thông tin người yêu cầu"
+    },
+    {
+     "i": 34,
+     "t": 1791298165.19,
+     "attempt": 3,
+     "step": 1,
+     "kind": "tree",
+     "text": "- banner: Cổng Dịch vụ công MÔ PHỎNG Demo portal for MinnaAccess · not a real government site · dữ liệu giả\n- main:\n  - heading \"Cấp Phiếu lý lịch tư pháp\" [level=1]\n  - list:\n    - listitem: 1. Người yêu cầu\n    - listitem: 2. Liên hệ\n    - listitem: 3. Mục đích\n    - listitem: 4. Xác nhận\n  - 'heading \"Bước 1/4: Thông tin người yêu cầu\" [level=2]'\n  - text: Họ và tên *\n  - textbox \"Họ và tên *\"\n  - text: Ngày sinh (dd/mm/yyyy)\n  - textbox \"Ngày sinh (dd/mm/yyyy)\"\n  - text: Số CCCD\n  - textbox \"Số CCCD\"\n  - button \"Tiếp tục\"\n  - paragraph: \"Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.\""
+    },
+    {
+     "i": 35,
+     "t": 1791298165.54,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "Họ và tên *, ô nhập",
+     "focus": "hoten"
+    },
+    {
+     "i": 36,
+     "t": 1791298166.28,
+     "attempt": 3,
+     "step": 1,
+     "kind": "action",
+     "text": "type “Nguyễn Văn An” (Full name (Họ và tên) — applicant's complete name as used in official documents.)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 8743,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "d125c70ac7843a755f0f9f3f",
+      "purpose": "interpret field",
+      "field": "hoten",
+      "heard": "Họ và tên *",
+      "caption": "Họ và tên",
+      "output": {
+       "decision": "fill",
+       "value": "Nguyễn Văn An",
+       "field_meaning": "Full name (Họ và tên) — applicant's complete name as used in official documents.",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field label \"Họ và tên\" (Full name) is standard Vietnamese and immediately clear. The applicant profile provides the exact value: Nguyễn Văn An."
+      }
+     },
+     "shot": "out/frames/vn_frame_009.png"
+    },
+    {
+     "i": 37,
+     "t": 1791298166.74,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "Ngày sinh (dd/mm/yyyy), ô nhập",
+     "focus": "ngaysinh"
+    },
+    {
+     "i": 38,
+     "t": 1791298167.43,
+     "attempt": 3,
+     "step": 1,
+     "kind": "action",
+     "text": "type “12/03/1985” (Date of birth in dd/mm/yyyy format)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 8992,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "8ff927d752a66942e513276b",
+      "purpose": "interpret field",
+      "field": "ngaysinh",
+      "heard": "Ngày sinh (dd/mm/yyyy)",
+      "caption": "Ngày sinh (dd/mm/yyyy)",
+      "output": {
+       "decision": "fill",
+       "value": "12/03/1985",
+       "field_meaning": "Date of birth in dd/mm/yyyy format",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "Ngày sinh is the Vietnamese term for date of birth, and the format dd/mm/yyyy is explicit. The applicant's birth date from the profile (12/03/1985) matches this format exactly."
+      }
+     },
+     "shot": "out/frames/vn_frame_010.png"
+    },
+    {
+     "i": 39,
+     "t": 1791298167.87,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "Số CCCD, ô nhập",
+     "focus": "cccd"
+    },
+    {
+     "i": 40,
+     "t": 1791298168.58,
+     "attempt": 3,
+     "step": 1,
+     "kind": "action",
+     "text": "type “001085012345” (Citizen Identity Card number (Căn Cước Công Dân))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 11549,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "e9dfa30f63c56ac7a7e0d71c",
+      "purpose": "interpret field",
+      "field": "cccd",
+      "heard": "Số CCCD",
+      "caption": "Số CCCD",
+      "output": {
+       "decision": "fill",
+       "value": "001085012345",
+       "field_meaning": "Citizen Identity Card number (Căn Cước Công Dân)",
+       "label_clear_for_screen_reader": false,
+       "advisory": "CCCD is an abbreviation spoken as \"C-C-C-D\" by screen readers; expand to full form \"Căn Cước Công Dân\" or English equivalent for clarity.",
+       "reasoning": "The field requests the Vietnamese Citizen Identity Card number, which is directly available in the applicant profile. The acronym CCCD, when spelled letter-by-letter by a screen reader, is not immediately clear to many users even if familiar with Vietnamese."
+      }
+     },
+     "shot": "out/frames/vn_frame_011.png"
+    },
+    {
+     "i": 41,
+     "t": 1791298169.04,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "Tiếp tục, nút",
+     "focus": "next1"
+    },
+    {
+     "i": 42,
+     "t": 1791298169.04,
+     "attempt": 3,
+     "step": 1,
+     "kind": "action",
+     "text": "press Enter (continue to next step)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 43,
+     "t": 1791298169.43,
+     "attempt": 3,
+     "step": 1,
+     "kind": "pass",
+     "text": "Step 1 passed by keyboard only",
+     "shot": "out/frames/vn_frame_012.png"
+    },
+    {
+     "i": 44,
+     "t": 1791298169.47,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "Bước 2/4 – Thông tin liên hệ. Bước 2/4: Thông tin liên hệ"
+    },
+    {
+     "i": 45,
+     "t": 1791298169.48,
+     "attempt": 3,
+     "step": 2,
+     "kind": "tree",
+     "text": "- banner: Cổng Dịch vụ công MÔ PHỎNG Demo portal for MinnaAccess · not a real government site · dữ liệu giả\n- main:\n  - heading \"Cấp Phiếu lý lịch tư pháp\" [level=1]\n  - list:\n    - listitem: 1. Người yêu cầu\n    - listitem: 2. Liên hệ\n    - listitem: 3. Mục đích\n    - listitem: 4. Xác nhận\n  - 'heading \"Bước 2/4: Thông tin liên hệ\" [level=2]'\n  - text: Email\n  - textbox \"Email\"\n  - text: Số điện thoại\n  - textbox \"Số điện thoại\"\n  - text: Nơi ĐKTT\n  - textbox \"Nơi ĐKTT\"\n  - button \"Tiếp tục\"\n  - paragraph: \"Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.\""
+    },
+    {
+     "i": 46,
+     "t": 1791298169.81,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "Email, ô nhập",
+     "focus": "email"
+    },
+    {
+     "i": 47,
+     "t": 1791298170.64,
+     "attempt": 3,
+     "step": 2,
+     "kind": "action",
+     "text": "type “an.nguyen@example.com” (Email address for contact purposes on the criminal record certificate application)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 6561,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "a052d500075574deebb7d665",
+      "purpose": "interpret field",
+      "field": "email",
+      "heard": "Email",
+      "caption": "Email",
+      "output": {
+       "decision": "fill",
+       "value": "an.nguyen@example.com",
+       "field_meaning": "Email address for contact purposes on the criminal record certificate application",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The label \"Email\" is universally recognized and unambiguous. The applicant profile provides the email value directly."
+      }
+     },
+     "shot": "out/frames/vn_frame_013.png"
+    },
+    {
+     "i": 48,
+     "t": 1791298171.08,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "Số điện thoại, ô nhập",
+     "focus": "sdt"
+    },
+    {
+     "i": 49,
+     "t": 1791298171.77,
+     "attempt": 3,
+     "step": 2,
+     "kind": "action",
+     "text": "type “0912345678” (Phone number (contact telephone))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 8059,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "7a344749d6e38e11abb782e0",
+      "purpose": "interpret field",
+      "field": "sdt",
+      "heard": "Số điện thoại",
+      "caption": "Số điện thoại",
+      "output": {
+       "decision": "fill",
+       "value": "0912345678",
+       "field_meaning": "Phone number (contact telephone)",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field asks for a phone number and is labeled clearly in Vietnamese as \"Số điện thoại.\" The applicant profile provides a Vietnamese phone number (0912345678) which matches the page language and the domestic context of the Vietnamese criminal record procedure."
+      }
+     },
+     "shot": "out/frames/vn_frame_014.png"
+    },
+    {
+     "i": 50,
+     "t": 1791298172.22,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "Nơi ĐKTT, ô nhập",
+     "focus": "diachi"
+    },
+    {
+     "i": 51,
+     "t": 1791298172.22,
+     "attempt": 3,
+     "step": 2,
+     "kind": "advisory",
+     "text": "ĐKTT is an abbreviation for \"đăng ký thường trú\" (permanent registered residence); screen readers spell it out letter-by-letter and many users may not recognize it.",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 13394,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "7cabcb2d7dab83b45ef150f2",
+      "purpose": "interpret field",
+      "field": "diachi",
+      "heard": "Nơi ĐKTT",
+      "caption": "Nơi ĐKTT",
+      "output": {
+       "decision": "fill",
+       "value": "12 Phố Huế, Hà Nội",
+       "field_meaning": "Place of permanent registered residence (nơi đăng ký thường trú)",
+       "label_clear_for_screen_reader": false,
+       "advisory": "ĐKTT is an abbreviation for \"đăng ký thường trú\" (permanent registered residence); screen readers spell it out letter-by-letter and many users may not recognize it.",
+       "reasoning": "The field asks for the place of permanent registered residence (ĐKTT); this corresponds directly to the applicant's permanent_registered_address_vn. The abbreviation ĐKTT is not transparent to blind screen-reader users when spelled out letter-by-letter."
+      }
+     }
+    },
+    {
+     "i": 52,
+     "t": 1791298173.03,
+     "attempt": 3,
+     "step": 2,
+     "kind": "action",
+     "text": "type “12 Phố Huế, Hà Nội” (Place of permanent registered residence (nơi đăng ký thường trú))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 13394,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "7cabcb2d7dab83b45ef150f2",
+      "purpose": "interpret field",
+      "field": "diachi",
+      "heard": "Nơi ĐKTT",
+      "caption": "Nơi ĐKTT",
+      "output": {
+       "decision": "fill",
+       "value": "12 Phố Huế, Hà Nội",
+       "field_meaning": "Place of permanent registered residence (nơi đăng ký thường trú)",
+       "label_clear_for_screen_reader": false,
+       "advisory": "ĐKTT is an abbreviation for \"đăng ký thường trú\" (permanent registered residence); screen readers spell it out letter-by-letter and many users may not recognize it.",
+       "reasoning": "The field asks for the place of permanent registered residence (ĐKTT); this corresponds directly to the applicant's permanent_registered_address_vn. The abbreviation ĐKTT is not transparent to blind screen-reader users when spelled out letter-by-letter."
+      }
+     },
+     "shot": "out/frames/vn_frame_015.png"
+    },
+    {
+     "i": 53,
+     "t": 1791298173.49,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "Tiếp tục, nút",
+     "focus": "next2"
+    },
+    {
+     "i": 54,
+     "t": 1791298173.5,
+     "attempt": 3,
+     "step": 2,
+     "kind": "action",
+     "text": "press Enter (continue to next step)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 55,
+     "t": 1791298173.88,
+     "attempt": 3,
+     "step": 2,
+     "kind": "pass",
+     "text": "Step 2 passed by keyboard only",
+     "shot": "out/frames/vn_frame_016.png"
+    },
+    {
+     "i": 56,
+     "t": 1791298173.88,
+     "attempt": 3,
+     "step": 2,
+     "kind": "verified",
+     "text": "Verified by keyboard replay: step 2 now passes; #sdt (keyboard trap, WCAG 2.1.1) no longer blocks",
+     "barrier": {
+      "kind": "keyboard_trap",
+      "step": 2,
+      "element_id": "sdt",
+      "sc": "2.1.1",
+      "sc_title": "Keyboard",
+      "heard": "Số điện thoại, ô nhập, 0912345678",
+      "evidence": "Tab pressed 3 times, focus never left this field",
+      "context_text": "Số điện thoại",
+      "level": "A",
+      "check": "Tab replay",
+      "attempt": 2,
+      "status": "fixed",
+      "patch": "The phone field had a script that blocked the Tab key, so keyboard users could never leave the field. I changed it to clean up the number (digits only, at most 10) when the field loses focus, so Tab works normally and the formatting is kept.",
+      "patch_local": "Ô \"Số điện thoại\" có đoạn mã chặn phím Tab nên người dùng bàn phím không thể rời khỏi ô. Tôi đã sửa để số được làm sạch (chỉ giữ chữ số, tối đa 10 số) khi rời khỏi ô, nên phím Tab hoạt động bình thường mà định dạng vẫn được giữ nguyên.",
+      "patch_engine": "LLM claude-sonnet-5-5",
+      "diff": "--- a/vn/step2.html\n+++ b/vn/step2.html\n@@ -18,4 +18,4 @@\n <script id=\"phone-mask\">\n-document.getElementById('sdt').addEventListener('keydown', function (e) {\n-  if (e.key === 'Tab') { e.preventDefault(); this.value = this.value.replace(/\\D/g, '').slice(0, 10); }\n+document.getElementById('sdt').addEventListener('blur', function () {\n+  this.value = this.value.replace(/\\D/g, '').slice(0, 10);\n });\n",
+      "precheck": {
+       "passed": true,
+       "checks": [
+        {
+         "name": "Target element still present",
+         "passed": true,
+         "detail": "#sdt"
+        },
+        {
+         "name": "Keyboard replay: Tab leaves the field",
+         "passed": true,
+         "detail": "focus moved to #diachi"
+        },
+        {
+         "name": "axe-core: no rule fails on this element",
+         "passed": true,
+         "detail": "0 violations on the element"
+        }
+       ]
+      },
+      "verified_attempt": 3
+     },
+     "shot": "out/frames/vn_frame_016.png"
+    },
+    {
+     "i": 57,
+     "t": 1791298173.91,
+     "attempt": 3,
+     "step": 3,
+     "kind": "hear",
+     "text": "Bước 3/4 – Mục đích yêu cầu. Bước 3/4: Mục đích yêu cầu"
+    },
+    {
+     "i": 58,
+     "t": 1791298173.92,
+     "attempt": 3,
+     "step": 3,
+     "kind": "tree",
+     "text": "- banner: Cổng Dịch vụ công MÔ PHỎNG Demo portal for MinnaAccess · not a real government site · dữ liệu giả\n- main:\n  - heading \"Cấp Phiếu lý lịch tư pháp\" [level=1]\n  - list:\n    - listitem: 1. Người yêu cầu\n    - listitem: 2. Liên hệ\n    - listitem: 3. Mục đích\n    - listitem: 4. Xác nhận\n  - 'heading \"Bước 3/4: Mục đích yêu cầu\" [level=2]'\n  - text: Loại phiếu\n  - combobox \"Loại phiếu\":\n    - option \"Phiếu số 1\" [selected]\n    - option \"Phiếu số 2\"\n  - text: Số lượng bản\n  - combobox \"Số lượng bản\":\n    - option \"1\" [selected]\n    - option \"2\"\n  - checkbox \"Tôi cam đoan thông tin đã khai là đúng sự thật\"\n  - text: Tôi cam đoan thông tin đã khai là đúng sự thật Tiếp tục\n  - paragraph: \"Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.\""
+    },
+    {
+     "i": 59,
+     "t": 1791298174.26,
+     "attempt": 3,
+     "step": 3,
+     "kind": "hear",
+     "text": "Loại phiếu, hộp xổ xuống, Phiếu số 1",
+     "focus": "loai"
+    },
+    {
+     "i": 60,
+     "t": 1791298174.61,
+     "attempt": 3,
+     "step": 3,
+     "kind": "hear",
+     "text": "Số lượng bản, hộp xổ xuống, 1",
+     "focus": "soluong"
+    },
+    {
+     "i": 61,
+     "t": 1791298174.94,
+     "attempt": 3,
+     "step": 3,
+     "kind": "hear",
+     "text": "Tôi cam đoan thông tin đã khai là đúng sự thật, hộp kiểm, chưa chọn",
+     "focus": "camdoan"
+    },
+    {
+     "i": 62,
+     "t": 1791298174.95,
+     "attempt": 3,
+     "step": 3,
+     "kind": "action",
+     "text": "press Space (declaration checkbox)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 63,
+     "t": 1791298175.53,
+     "attempt": 3,
+     "step": 3,
+     "kind": "hear",
+     "text": "(focus left the page)",
+     "focus": null
+    },
+    {
+     "i": 64,
+     "t": 1791298175.97,
+     "attempt": 3,
+     "step": 3,
+     "kind": "barrier",
+     "text": "Full Tab cycle (3 stops) never reached “Tiếp tục”: it is a <div> with onclick, not focusable, so Enter and Space cannot activate it",
+     "shot": "out/frames/vn_frame_017.png",
+     "barrier": {
+      "kind": "mouse_only",
+      "step": 3,
+      "element_id": "next3",
+      "sc": "2.1.1",
+      "sc_title": "Keyboard",
+      "heard": "(never announced: not in Tab order)",
+      "evidence": "Full Tab cycle (3 stops) never reached “Tiếp tục”: it is a <div> with onclick, not focusable, so Enter and Space cannot activate it",
+      "context_text": "Tiếp tục",
+      "level": "A",
+      "check": "Tab-order scan"
+     },
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 65,
+     "t": 1791298177.59,
+     "attempt": 3,
+     "step": 3,
+     "kind": "patch",
+     "text": "The \"Tiếp tục\" (Continue) control was a plain div with a click handler, so the keyboard could not reach or activate it. Replacing it with a native button makes it focusable and lets Enter and Space work. The same class, id and navigation to step4.html are kept, and the button does not submit anything.",
+     "diff": "--- a/vn/step3.html\n+++ b/vn/step3.html\n@@ -16,3 +16,3 @@\n <div class=\"field check\"><input id=\"camdoan\" type=\"checkbox\"><label for=\"camdoan\">Tôi cam đoan thông tin đã khai là đúng sự thật</label></div>\n-<div class=\"actions\"><div class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</div></div>\n+<div class=\"actions\"><button type=\"button\" class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</button></div>\n <p class=\"foot\">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>\n",
+     "file": "step3.html",
+     "shot": "out/frames/vn_frame_017.png",
+     "engine": "LLM claude-sonnet-5-5",
+     "llm": {
+      "model": "claude-sonnet-5-5",
+      "source": "cache",
+      "ms": 5432,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "026271a2467e4869da864415",
+      "purpose": "write patch",
+      "output": {
+       "edits": [
+        {
+         "find": "<div class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</div>",
+         "replace": "<button type=\"button\" class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</button>"
+        }
+       ],
+       "explanation": "The \"Tiếp tục\" (Continue) control was a plain div with a click handler, so the keyboard could not reach or activate it. Replacing it with a native button makes it focusable and lets Enter and Space work. The same class, id and navigation to step4.html are kept, and the button does not submit anything.",
+       "explanation_local": "Nút \"Tiếp tục\" trước đây chỉ là một thẻ div có sự kiện nhấp chuột nên bàn phím không thể chọn hay kích hoạt. Đã đổi thành thẻ button chuẩn của HTML để có thể dùng phím Tab, Enter và Space. Giữ nguyên kiểu dáng, id và việc chuyển sang step4.html, và nút không gửi dữ liệu đi đâu.",
+       "technique": "Replace div[onclick] with native <button type=\"button\">"
+      }
+     },
+     "explanation_local": "Nút \"Tiếp tục\" trước đây chỉ là một thẻ div có sự kiện nhấp chuột nên bàn phím không thể chọn hay kích hoạt. Đã đổi thành thẻ button chuẩn của HTML để có thể dùng phím Tab, Enter và Space. Giữ nguyên kiểu dáng, id và việc chuyển sang step4.html, và nút không gửi dữ liệu đi đâu.",
+     "precheck": {
+      "passed": true,
+      "checks": [
+       {
+        "name": "Target element still present",
+        "passed": true,
+        "detail": "#next3"
+       },
+       {
+        "name": "Keyboard replay: element takes focus with role button",
+        "passed": true,
+        "detail": "focusable=True, role=button"
+       },
+       {
+        "name": "Keyboard replay: Enter activates it",
+        "passed": true,
+        "detail": "navigated to step4.html"
+       },
+       {
+        "name": "axe-core: no rule fails on this element",
+        "passed": true,
+        "detail": "0 violations on the element"
+       }
+      ]
+     }
+    },
+    {
+     "i": 66,
+     "t": 1791298177.59,
+     "attempt": 3,
+     "step": 3,
+     "kind": "approval",
+     "text": "Approved by developer (auto-approve, recording mode)",
+     "approved": true,
+     "who": "developer (auto-approve, recording mode)"
+    },
+    {
+     "i": 67,
+     "t": 1791298177.59,
+     "attempt": 4,
+     "step": 1,
+     "kind": "restart",
+     "text": "Attempt 4: start from step 1"
+    },
+    {
+     "i": 68,
+     "t": 1791298177.91,
+     "attempt": 4,
+     "step": 1,
+     "kind": "hear",
+     "text": "Bước 1/4 – Thông tin người yêu cầu. Bước 1/4: Thông tin người yêu cầu"
+    },
+    {
+     "i": 69,
+     "t": 1791298177.92,
+     "attempt": 4,
+     "step": 1,
+     "kind": "tree",
+     "text": "- banner: Cổng Dịch vụ công MÔ PHỎNG Demo portal for MinnaAccess · not a real government site · dữ liệu giả\n- main:\n  - heading \"Cấp Phiếu lý lịch tư pháp\" [level=1]\n  - list:\n    - listitem: 1. Người yêu cầu\n    - listitem: 2. Liên hệ\n    - listitem: 3. Mục đích\n    - listitem: 4. Xác nhận\n  - 'heading \"Bước 1/4: Thông tin người yêu cầu\" [level=2]'\n  - text: Họ và tên *\n  - textbox \"Họ và tên *\"\n  - text: Ngày sinh (dd/mm/yyyy)\n  - textbox \"Ngày sinh (dd/mm/yyyy)\"\n  - text: Số CCCD\n  - textbox \"Số CCCD\"\n  - button \"Tiếp tục\"\n  - paragraph: \"Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.\""
+    },
+    {
+     "i": 70,
+     "t": 1791298178.26,
+     "attempt": 4,
+     "step": 1,
+     "kind": "hear",
+     "text": "Họ và tên *, ô nhập",
+     "focus": "hoten"
+    },
+    {
+     "i": 71,
+     "t": 1791298178.99,
+     "attempt": 4,
+     "step": 1,
+     "kind": "action",
+     "text": "type “Nguyễn Văn An” (Full name (Họ và tên) — applicant's complete name as used in official documents.)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 8743,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "d125c70ac7843a755f0f9f3f",
+      "purpose": "interpret field",
+      "field": "hoten",
+      "heard": "Họ và tên *",
+      "caption": "Họ và tên",
+      "output": {
+       "decision": "fill",
+       "value": "Nguyễn Văn An",
+       "field_meaning": "Full name (Họ và tên) — applicant's complete name as used in official documents.",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field label \"Họ và tên\" (Full name) is standard Vietnamese and immediately clear. The applicant profile provides the exact value: Nguyễn Văn An."
+      }
+     },
+     "shot": "out/frames/vn_frame_018.png"
+    },
+    {
+     "i": 72,
+     "t": 1791298179.44,
+     "attempt": 4,
+     "step": 1,
+     "kind": "hear",
+     "text": "Ngày sinh (dd/mm/yyyy), ô nhập",
+     "focus": "ngaysinh"
+    },
+    {
+     "i": 73,
+     "t": 1791298180.11,
+     "attempt": 4,
+     "step": 1,
+     "kind": "action",
+     "text": "type “12/03/1985” (Date of birth in dd/mm/yyyy format)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 8992,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "8ff927d752a66942e513276b",
+      "purpose": "interpret field",
+      "field": "ngaysinh",
+      "heard": "Ngày sinh (dd/mm/yyyy)",
+      "caption": "Ngày sinh (dd/mm/yyyy)",
+      "output": {
+       "decision": "fill",
+       "value": "12/03/1985",
+       "field_meaning": "Date of birth in dd/mm/yyyy format",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "Ngày sinh is the Vietnamese term for date of birth, and the format dd/mm/yyyy is explicit. The applicant's birth date from the profile (12/03/1985) matches this format exactly."
+      }
+     },
+     "shot": "out/frames/vn_frame_019.png"
+    },
+    {
+     "i": 74,
+     "t": 1791298180.56,
+     "attempt": 4,
+     "step": 1,
+     "kind": "hear",
+     "text": "Số CCCD, ô nhập",
+     "focus": "cccd"
+    },
+    {
+     "i": 75,
+     "t": 1791298181.28,
+     "attempt": 4,
+     "step": 1,
+     "kind": "action",
+     "text": "type “001085012345” (Citizen Identity Card number (Căn Cước Công Dân))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 11549,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "e9dfa30f63c56ac7a7e0d71c",
+      "purpose": "interpret field",
+      "field": "cccd",
+      "heard": "Số CCCD",
+      "caption": "Số CCCD",
+      "output": {
+       "decision": "fill",
+       "value": "001085012345",
+       "field_meaning": "Citizen Identity Card number (Căn Cước Công Dân)",
+       "label_clear_for_screen_reader": false,
+       "advisory": "CCCD is an abbreviation spoken as \"C-C-C-D\" by screen readers; expand to full form \"Căn Cước Công Dân\" or English equivalent for clarity.",
+       "reasoning": "The field requests the Vietnamese Citizen Identity Card number, which is directly available in the applicant profile. The acronym CCCD, when spelled letter-by-letter by a screen reader, is not immediately clear to many users even if familiar with Vietnamese."
+      }
+     },
+     "shot": "out/frames/vn_frame_020.png"
+    },
+    {
+     "i": 76,
+     "t": 1791298181.72,
+     "attempt": 4,
+     "step": 1,
+     "kind": "hear",
+     "text": "Tiếp tục, nút",
+     "focus": "next1"
+    },
+    {
+     "i": 77,
+     "t": 1791298181.72,
+     "attempt": 4,
+     "step": 1,
+     "kind": "action",
+     "text": "press Enter (continue to next step)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 78,
+     "t": 1791298182.11,
+     "attempt": 4,
+     "step": 1,
+     "kind": "pass",
+     "text": "Step 1 passed by keyboard only",
+     "shot": "out/frames/vn_frame_021.png"
+    },
+    {
+     "i": 79,
+     "t": 1791298182.13,
+     "attempt": 4,
+     "step": 2,
+     "kind": "hear",
+     "text": "Bước 2/4 – Thông tin liên hệ. Bước 2/4: Thông tin liên hệ"
+    },
+    {
+     "i": 80,
+     "t": 1791298182.14,
+     "attempt": 4,
+     "step": 2,
+     "kind": "tree",
+     "text": "- banner: Cổng Dịch vụ công MÔ PHỎNG Demo portal for MinnaAccess · not a real government site · dữ liệu giả\n- main:\n  - heading \"Cấp Phiếu lý lịch tư pháp\" [level=1]\n  - list:\n    - listitem: 1. Người yêu cầu\n    - listitem: 2. Liên hệ\n    - listitem: 3. Mục đích\n    - listitem: 4. Xác nhận\n  - 'heading \"Bước 2/4: Thông tin liên hệ\" [level=2]'\n  - text: Email\n  - textbox \"Email\"\n  - text: Số điện thoại\n  - textbox \"Số điện thoại\"\n  - text: Nơi ĐKTT\n  - textbox \"Nơi ĐKTT\"\n  - button \"Tiếp tục\"\n  - paragraph: \"Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.\""
+    },
+    {
+     "i": 81,
+     "t": 1791298182.45,
+     "attempt": 4,
+     "step": 2,
+     "kind": "hear",
+     "text": "Email, ô nhập",
+     "focus": "email"
+    },
+    {
+     "i": 82,
+     "t": 1791298183.29,
+     "attempt": 4,
+     "step": 2,
+     "kind": "action",
+     "text": "type “an.nguyen@example.com” (Email address for contact purposes on the criminal record certificate application)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 6561,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "a052d500075574deebb7d665",
+      "purpose": "interpret field",
+      "field": "email",
+      "heard": "Email",
+      "caption": "Email",
+      "output": {
+       "decision": "fill",
+       "value": "an.nguyen@example.com",
+       "field_meaning": "Email address for contact purposes on the criminal record certificate application",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The label \"Email\" is universally recognized and unambiguous. The applicant profile provides the email value directly."
+      }
+     },
+     "shot": "out/frames/vn_frame_022.png"
+    },
+    {
+     "i": 83,
+     "t": 1791298183.76,
+     "attempt": 4,
+     "step": 2,
+     "kind": "hear",
+     "text": "Số điện thoại, ô nhập",
+     "focus": "sdt"
+    },
+    {
+     "i": 84,
+     "t": 1791298184.45,
+     "attempt": 4,
+     "step": 2,
+     "kind": "action",
+     "text": "type “0912345678” (Phone number (contact telephone))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 8059,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "7a344749d6e38e11abb782e0",
+      "purpose": "interpret field",
+      "field": "sdt",
+      "heard": "Số điện thoại",
+      "caption": "Số điện thoại",
+      "output": {
+       "decision": "fill",
+       "value": "0912345678",
+       "field_meaning": "Phone number (contact telephone)",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field asks for a phone number and is labeled clearly in Vietnamese as \"Số điện thoại.\" The applicant profile provides a Vietnamese phone number (0912345678) which matches the page language and the domestic context of the Vietnamese criminal record procedure."
+      }
+     },
+     "shot": "out/frames/vn_frame_023.png"
+    },
+    {
+     "i": 85,
+     "t": 1791298184.88,
+     "attempt": 4,
+     "step": 2,
+     "kind": "hear",
+     "text": "Nơi ĐKTT, ô nhập",
+     "focus": "diachi"
+    },
+    {
+     "i": 86,
+     "t": 1791298185.68,
+     "attempt": 4,
+     "step": 2,
+     "kind": "action",
+     "text": "type “12 Phố Huế, Hà Nội” (Place of permanent registered residence (nơi đăng ký thường trú))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 13394,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "7cabcb2d7dab83b45ef150f2",
+      "purpose": "interpret field",
+      "field": "diachi",
+      "heard": "Nơi ĐKTT",
+      "caption": "Nơi ĐKTT",
+      "output": {
+       "decision": "fill",
+       "value": "12 Phố Huế, Hà Nội",
+       "field_meaning": "Place of permanent registered residence (nơi đăng ký thường trú)",
+       "label_clear_for_screen_reader": false,
+       "advisory": "ĐKTT is an abbreviation for \"đăng ký thường trú\" (permanent registered residence); screen readers spell it out letter-by-letter and many users may not recognize it.",
+       "reasoning": "The field asks for the place of permanent registered residence (ĐKTT); this corresponds directly to the applicant's permanent_registered_address_vn. The abbreviation ĐKTT is not transparent to blind screen-reader users when spelled out letter-by-letter."
+      }
+     },
+     "shot": "out/frames/vn_frame_024.png"
+    },
+    {
+     "i": 87,
+     "t": 1791298186.13,
+     "attempt": 4,
+     "step": 2,
+     "kind": "hear",
+     "text": "Tiếp tục, nút",
+     "focus": "next2"
+    },
+    {
+     "i": 88,
+     "t": 1791298186.13,
+     "attempt": 4,
+     "step": 2,
+     "kind": "action",
+     "text": "press Enter (continue to next step)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 89,
+     "t": 1791298186.52,
+     "attempt": 4,
+     "step": 2,
+     "kind": "pass",
+     "text": "Step 2 passed by keyboard only",
+     "shot": "out/frames/vn_frame_025.png"
+    },
+    {
+     "i": 90,
+     "t": 1791298186.56,
+     "attempt": 4,
+     "step": 3,
+     "kind": "hear",
+     "text": "Bước 3/4 – Mục đích yêu cầu. Bước 3/4: Mục đích yêu cầu"
+    },
+    {
+     "i": 91,
+     "t": 1791298186.57,
+     "attempt": 4,
+     "step": 3,
+     "kind": "tree",
+     "text": "- banner: Cổng Dịch vụ công MÔ PHỎNG Demo portal for MinnaAccess · not a real government site · dữ liệu giả\n- main:\n  - heading \"Cấp Phiếu lý lịch tư pháp\" [level=1]\n  - list:\n    - listitem: 1. Người yêu cầu\n    - listitem: 2. Liên hệ\n    - listitem: 3. Mục đích\n    - listitem: 4. Xác nhận\n  - 'heading \"Bước 3/4: Mục đích yêu cầu\" [level=2]'\n  - text: Loại phiếu\n  - combobox \"Loại phiếu\":\n    - option \"Phiếu số 1\" [selected]\n    - option \"Phiếu số 2\"\n  - text: Số lượng bản\n  - combobox \"Số lượng bản\":\n    - option \"1\" [selected]\n    - option \"2\"\n  - checkbox \"Tôi cam đoan thông tin đã khai là đúng sự thật\"\n  - text: Tôi cam đoan thông tin đã khai là đúng sự thật\n  - button \"Tiếp tục\"\n  - paragraph: \"Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.\""
+    },
+    {
+     "i": 92,
+     "t": 1791298186.89,
+     "attempt": 4,
+     "step": 3,
+     "kind": "hear",
+     "text": "Loại phiếu, hộp xổ xuống, Phiếu số 1",
+     "focus": "loai"
+    },
+    {
+     "i": 93,
+     "t": 1791298187.22,
+     "attempt": 4,
+     "step": 3,
+     "kind": "hear",
+     "text": "Số lượng bản, hộp xổ xuống, 1",
+     "focus": "soluong"
+    },
+    {
+     "i": 94,
+     "t": 1791298187.55,
+     "attempt": 4,
+     "step": 3,
+     "kind": "hear",
+     "text": "Tôi cam đoan thông tin đã khai là đúng sự thật, hộp kiểm, chưa chọn",
+     "focus": "camdoan"
+    },
+    {
+     "i": 95,
+     "t": 1791298187.55,
+     "attempt": 4,
+     "step": 3,
+     "kind": "action",
+     "text": "press Space (declaration checkbox)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 96,
+     "t": 1791298188.14,
+     "attempt": 4,
+     "step": 3,
+     "kind": "hear",
+     "text": "Tiếp tục, nút",
+     "focus": "next3"
+    },
+    {
+     "i": 97,
+     "t": 1791298188.14,
+     "attempt": 4,
+     "step": 3,
+     "kind": "action",
+     "text": "press Enter (continue to next step)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 98,
+     "t": 1791298188.53,
+     "attempt": 4,
+     "step": 3,
+     "kind": "pass",
+     "text": "Step 3 passed by keyboard only",
+     "shot": "out/frames/vn_frame_026.png"
+    },
+    {
+     "i": 99,
+     "t": 1791298188.53,
+     "attempt": 4,
+     "step": 3,
+     "kind": "verified",
+     "text": "Verified by keyboard replay: step 3 now passes; #next3 (mouse only, WCAG 2.1.1) no longer blocks",
+     "barrier": {
+      "kind": "mouse_only",
+      "step": 3,
+      "element_id": "next3",
+      "sc": "2.1.1",
+      "sc_title": "Keyboard",
+      "heard": "(never announced: not in Tab order)",
+      "evidence": "Full Tab cycle (3 stops) never reached “Tiếp tục”: it is a <div> with onclick, not focusable, so Enter and Space cannot activate it",
+      "context_text": "Tiếp tục",
+      "level": "A",
+      "check": "Tab-order scan",
+      "attempt": 3,
+      "status": "fixed",
+      "patch": "The \"Tiếp tục\" (Continue) control was a plain div with a click handler, so the keyboard could not reach or activate it. Replacing it with a native button makes it focusable and lets Enter and Space work. The same class, id and navigation to step4.html are kept, and the button does not submit anything.",
+      "patch_local": "Nút \"Tiếp tục\" trước đây chỉ là một thẻ div có sự kiện nhấp chuột nên bàn phím không thể chọn hay kích hoạt. Đã đổi thành thẻ button chuẩn của HTML để có thể dùng phím Tab, Enter và Space. Giữ nguyên kiểu dáng, id và việc chuyển sang step4.html, và nút không gửi dữ liệu đi đâu.",
+      "patch_engine": "LLM claude-sonnet-5-5",
+      "diff": "--- a/vn/step3.html\n+++ b/vn/step3.html\n@@ -16,3 +16,3 @@\n <div class=\"field check\"><input id=\"camdoan\" type=\"checkbox\"><label for=\"camdoan\">Tôi cam đoan thông tin đã khai là đúng sự thật</label></div>\n-<div class=\"actions\"><div class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</div></div>\n+<div class=\"actions\"><button type=\"button\" class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</button></div>\n <p class=\"foot\">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>\n",
+      "precheck": {
+       "passed": true,
+       "checks": [
+        {
+         "name": "Target element still present",
+         "passed": true,
+         "detail": "#next3"
+        },
+        {
+         "name": "Keyboard replay: element takes focus with role button",
+         "passed": true,
+         "detail": "focusable=True, role=button"
+        },
+        {
+         "name": "Keyboard replay: Enter activates it",
+         "passed": true,
+         "detail": "navigated to step4.html"
+        },
+        {
+         "name": "axe-core: no rule fails on this element",
+         "passed": true,
+         "detail": "0 violations on the element"
+        }
+       ]
+      },
+      "verified_attempt": 4
+     },
+     "shot": "out/frames/vn_frame_026.png"
+    },
+    {
+     "i": 100,
+     "t": 1791298188.56,
+     "attempt": 4,
+     "step": 4,
+     "kind": "hear",
+     "text": "Bước 4/4 – Xác nhận và nộp hồ sơ. Bước 4/4: Xác nhận và nộp hồ sơ"
+    },
+    {
+     "i": 101,
+     "t": 1791298188.57,
+     "attempt": 4,
+     "step": 4,
+     "kind": "tree",
+     "text": "- banner: Cổng Dịch vụ công MÔ PHỎNG Demo portal for MinnaAccess · not a real government site · dữ liệu giả\n- main:\n  - heading \"Cấp Phiếu lý lịch tư pháp\" [level=1]\n  - list:\n    - listitem: 1. Người yêu cầu\n    - listitem: 2. Liên hệ\n    - listitem: 3. Mục đích\n    - listitem: 4. Xác nhận\n  - 'heading \"Bước 4/4: Xác nhận và nộp hồ sơ\" [level=2]'\n  - table:\n    - rowgroup:\n      - row \"Họ và tên Nguyễn Văn An\":\n        - rowheader \"Họ và tên\"\n        - cell \"Nguyễn Văn An\"\n      - row \"Loại phiếu Phiếu số 1\":\n        - rowheader \"Loại phiếu\"\n        - cell \"Phiếu số 1\"\n      - row \"Số lượng bản 1\":\n        - rowheader \"Số lượng bản\"\n        - cell \"1\"\n  - img \"CAPTCHA\"\n  - text: Nhập mã xác nhận\n  - textbox \"Nhập mã xác nhận\"\n  - button \"Nộp hồ sơ\"\n  - paragraph: \"Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.\""
+    },
+    {
+     "i": 102,
+     "t": 1791298188.67,
+     "attempt": 4,
+     "step": 4,
+     "kind": "reached",
+     "text": "Reached the final confirmation step (Xác nhận)",
+     "shot": "out/frames/vn_frame_027.png"
+    },
+    {
+     "i": 103,
+     "t": 1791298188.67,
+     "attempt": 4,
+     "step": 4,
+     "kind": "hear",
+     "text": "hình ảnh, CAPTCHA"
+    },
+    {
+     "i": 104,
+     "t": 1791298188.79,
+     "attempt": 4,
+     "step": 4,
+     "kind": "handoff",
+     "text": "CAPTCHA detected: stop and hand off to a human officer. The submit button is never pressed.",
+     "shot": "out/frames/vn_frame_028.png",
+     "barrier": {
+      "kind": "captcha",
+      "step": 4,
+      "element_id": "captcha-img",
+      "sc": "1.1.1",
+      "sc_title": "Non-text Content",
+      "heard": "hình ảnh, CAPTCHA",
+      "evidence": "Image CAPTCHA with no audio or text alternative. The agent does not attempt it.",
+      "context_text": "",
+      "level": "A",
+      "check": ""
+     },
+     "engine": "rule (guard)"
+    }
+   ],
+   "barriers": [
+    {
+     "kind": "unnamed_field",
+     "step": 1,
+     "element_id": "hoten",
+     "sc": "3.3.2",
+     "sc_title": "Labels or Instructions",
+     "heard": "ô nhập",
+     "evidence": "Screen reader reads the field only as its role, with no name (accessible name is empty): a blind user cannot tell what to type",
+     "context_text": "Họ và tên",
+     "level": "A",
+     "check": "accessibility-tree check",
+     "attempt": 1,
+     "status": "fixed",
+     "patch": "The \"Họ và tên\" caption was a plain div, so it was not linked to the input and a screen reader announced only \"edit field\". It is now a native label tied to the field with for=\"hoten\". The field is also marked required to match the visible asterisk. Appearance and navigation do not change.",
+     "patch_local": "Dòng chữ \"Họ và tên\" trước đây chỉ là một khối văn bản thường, không gắn với ô nhập nên trình đọc màn hình chỉ đọc \"ô nhập\". Giờ nó là thẻ label gắn với ô nhập (for=\"hoten\"), nên người khiếm thị sẽ nghe được \"Họ và tên\". Ô cũng được đánh dấu bắt buộc, khớp với dấu * hiển thị. Giao diện và cách chuyển bước không thay đổi.",
+     "patch_engine": "LLM claude-sonnet-5-5",
+     "diff": "--- a/vn/step1.html\n+++ b/vn/step1.html\n@@ -13,3 +13,3 @@\n <h2>Bước 1/4: Thông tin người yêu cầu</h2>\n-<div class=\"field\"><div class=\"lbl\">Họ và tên <span class=\"req\">*</span></div><input id=\"hoten\" type=\"text\"></div>\n+<div class=\"field\"><label for=\"hoten\" class=\"lbl\">Họ và tên <span class=\"req\">*</span></label><input id=\"hoten\" type=\"text\" required></div>\n <div class=\"field\"><label for=\"ngaysinh\">Ngày sinh (dd/mm/yyyy)</label><input id=\"ngaysinh\" type=\"text\"></div>\n",
+     "precheck": {
+      "passed": true,
+      "checks": [
+       {
+        "name": "Target element still present",
+        "passed": true,
+        "detail": "#hoten"
+       },
+       {
+        "name": "Accessibility tree: accessible name matches the visible label",
+        "passed": true,
+        "detail": "accessible name “Họ và tên *” contains the visible label"
+       },
+       {
+        "name": "axe-core: no rule fails on this element",
+        "passed": true,
+        "detail": "0 violations on the element"
+       }
+      ]
+     },
+     "verified_attempt": 2
+    },
+    {
+     "kind": "keyboard_trap",
+     "step": 2,
+     "element_id": "sdt",
+     "sc": "2.1.1",
+     "sc_title": "Keyboard",
+     "heard": "Số điện thoại, ô nhập, 0912345678",
+     "evidence": "Tab pressed 3 times, focus never left this field",
+     "context_text": "Số điện thoại",
+     "level": "A",
+     "check": "Tab replay",
+     "attempt": 2,
+     "status": "fixed",
+     "patch": "The phone field had a script that blocked the Tab key, so keyboard users could never leave the field. I changed it to clean up the number (digits only, at most 10) when the field loses focus, so Tab works normally and the formatting is kept.",
+     "patch_local": "Ô \"Số điện thoại\" có đoạn mã chặn phím Tab nên người dùng bàn phím không thể rời khỏi ô. Tôi đã sửa để số được làm sạch (chỉ giữ chữ số, tối đa 10 số) khi rời khỏi ô, nên phím Tab hoạt động bình thường mà định dạng vẫn được giữ nguyên.",
+     "patch_engine": "LLM claude-sonnet-5-5",
+     "diff": "--- a/vn/step2.html\n+++ b/vn/step2.html\n@@ -18,4 +18,4 @@\n <script id=\"phone-mask\">\n-document.getElementById('sdt').addEventListener('keydown', function (e) {\n-  if (e.key === 'Tab') { e.preventDefault(); this.value = this.value.replace(/\\D/g, '').slice(0, 10); }\n+document.getElementById('sdt').addEventListener('blur', function () {\n+  this.value = this.value.replace(/\\D/g, '').slice(0, 10);\n });\n",
+     "precheck": {
+      "passed": true,
+      "checks": [
+       {
+        "name": "Target element still present",
+        "passed": true,
+        "detail": "#sdt"
+       },
+       {
+        "name": "Keyboard replay: Tab leaves the field",
+        "passed": true,
+        "detail": "focus moved to #diachi"
+       },
+       {
+        "name": "axe-core: no rule fails on this element",
+        "passed": true,
+        "detail": "0 violations on the element"
+       }
+      ]
+     },
+     "verified_attempt": 3
+    },
+    {
+     "kind": "mouse_only",
+     "step": 3,
+     "element_id": "next3",
+     "sc": "2.1.1",
+     "sc_title": "Keyboard",
+     "heard": "(never announced: not in Tab order)",
+     "evidence": "Full Tab cycle (3 stops) never reached “Tiếp tục”: it is a <div> with onclick, not focusable, so Enter and Space cannot activate it",
+     "context_text": "Tiếp tục",
+     "level": "A",
+     "check": "Tab-order scan",
+     "attempt": 3,
+     "status": "fixed",
+     "patch": "The \"Tiếp tục\" (Continue) control was a plain div with a click handler, so the keyboard could not reach or activate it. Replacing it with a native button makes it focusable and lets Enter and Space work. The same class, id and navigation to step4.html are kept, and the button does not submit anything.",
+     "patch_local": "Nút \"Tiếp tục\" trước đây chỉ là một thẻ div có sự kiện nhấp chuột nên bàn phím không thể chọn hay kích hoạt. Đã đổi thành thẻ button chuẩn của HTML để có thể dùng phím Tab, Enter và Space. Giữ nguyên kiểu dáng, id và việc chuyển sang step4.html, và nút không gửi dữ liệu đi đâu.",
+     "patch_engine": "LLM claude-sonnet-5-5",
+     "diff": "--- a/vn/step3.html\n+++ b/vn/step3.html\n@@ -16,3 +16,3 @@\n <div class=\"field check\"><input id=\"camdoan\" type=\"checkbox\"><label for=\"camdoan\">Tôi cam đoan thông tin đã khai là đúng sự thật</label></div>\n-<div class=\"actions\"><div class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</div></div>\n+<div class=\"actions\"><button type=\"button\" class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</button></div>\n <p class=\"foot\">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>\n",
+     "precheck": {
+      "passed": true,
+      "checks": [
+       {
+        "name": "Target element still present",
+        "passed": true,
+        "detail": "#next3"
+       },
+       {
+        "name": "Keyboard replay: element takes focus with role button",
+        "passed": true,
+        "detail": "focusable=True, role=button"
+       },
+       {
+        "name": "Keyboard replay: Enter activates it",
+        "passed": true,
+        "detail": "navigated to step4.html"
+       },
+       {
+        "name": "axe-core: no rule fails on this element",
+        "passed": true,
+        "detail": "0 violations on the element"
+       }
+      ]
+     },
+     "verified_attempt": 4
+    },
+    {
+     "kind": "captcha",
+     "step": 4,
+     "element_id": "captcha-img",
+     "sc": "1.1.1",
+     "sc_title": "Non-text Content",
+     "heard": "hình ảnh, CAPTCHA",
+     "evidence": "Image CAPTCHA with no audio or text alternative. The agent does not attempt it.",
+     "context_text": "",
+     "level": "A",
+     "check": "",
+     "attempt": 4,
+     "status": "handoff"
+    }
+   ],
+   "patches": [
+    {
+     "file": "step1.html",
+     "summary": "The \"Họ và tên\" caption was a plain div, so it was not linked to the input and a screen reader announced only \"edit field\". It is now a native label tied to the field with for=\"hoten\". The field is also marked required to match the visible asterisk. Appearance and navigation do not change.",
+     "diff": "--- a/vn/step1.html\n+++ b/vn/step1.html\n@@ -13,3 +13,3 @@\n <h2>Bước 1/4: Thông tin người yêu cầu</h2>\n-<div class=\"field\"><div class=\"lbl\">Họ và tên <span class=\"req\">*</span></div><input id=\"hoten\" type=\"text\"></div>\n+<div class=\"field\"><label for=\"hoten\" class=\"lbl\">Họ và tên <span class=\"req\">*</span></label><input id=\"hoten\" type=\"text\" required></div>\n <div class=\"field\"><label for=\"ngaysinh\">Ngày sinh (dd/mm/yyyy)</label><input id=\"ngaysinh\" type=\"text\"></div>\n",
+     "engine": "LLM claude-sonnet-5-5"
+    },
+    {
+     "file": "step2.html",
+     "summary": "The phone field had a script that blocked the Tab key, so keyboard users could never leave the field. I changed it to clean up the number (digits only, at most 10) when the field loses focus, so Tab works normally and the formatting is kept.",
+     "diff": "--- a/vn/step2.html\n+++ b/vn/step2.html\n@@ -18,4 +18,4 @@\n <script id=\"phone-mask\">\n-document.getElementById('sdt').addEventListener('keydown', function (e) {\n-  if (e.key === 'Tab') { e.preventDefault(); this.value = this.value.replace(/\\D/g, '').slice(0, 10); }\n+document.getElementById('sdt').addEventListener('blur', function () {\n+  this.value = this.value.replace(/\\D/g, '').slice(0, 10);\n });\n",
+     "engine": "LLM claude-sonnet-5-5"
+    },
+    {
+     "file": "step3.html",
+     "summary": "The \"Tiếp tục\" (Continue) control was a plain div with a click handler, so the keyboard could not reach or activate it. Replacing it with a native button makes it focusable and lets Enter and Space work. The same class, id and navigation to step4.html are kept, and the button does not submit anything.",
+     "diff": "--- a/vn/step3.html\n+++ b/vn/step3.html\n@@ -16,3 +16,3 @@\n <div class=\"field check\"><input id=\"camdoan\" type=\"checkbox\"><label for=\"camdoan\">Tôi cam đoan thông tin đã khai là đúng sự thật</label></div>\n-<div class=\"actions\"><div class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</div></div>\n+<div class=\"actions\"><button type=\"button\" class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</button></div>\n <p class=\"foot\">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>\n",
+     "engine": "LLM claude-sonnet-5-5"
+    }
+   ],
+   "advisories": [
+    {
+     "step": 1,
+     "element": "cccd",
+     "heard": "Số CCCD",
+     "advisory": "CCCD is an abbreviation spoken as \"C-C-C-D\" by screen readers; expand to full form \"Căn Cước Công Dân\" or English equivalent for clarity.",
+     "model": "claude-haiku-4-5-20251001",
+     "attempt": 2
+    },
+    {
+     "step": 2,
+     "element": "diachi",
+     "heard": "Nơi ĐKTT",
+     "advisory": "ĐKTT is an abbreviation for \"đăng ký thường trú\" (permanent registered residence); screen readers spell it out letter-by-letter and many users may not recognize it.",
+     "model": "claude-haiku-4-5-20251001",
+     "attempt": 3
+    }
+   ],
+   "audit": [
+    {
+     "step": 1,
+     "element": "hoten",
+     "sc": "3.3.2",
+     "sc_title": "Labels or Instructions",
+     "jis_title": "ラベル又は説明",
+     "level": "A",
+     "attempt": 1,
+     "vn_result": "Không đạt → đã sửa, kiểm lại đạt",
+     "jis_result": "不適合 → 修正後の再試験で適合",
+     "heard": "ô nhập",
+     "evidence": "Screen reader reads the field only as its role, with no name (accessible name is empty): a blind user cannot tell what to type",
+     "action": "The \"Họ và tên\" caption was a plain div, so it was not linked to the input and a screen reader announced only \"edit field\". It is now a native label tied to the field with for=\"hoten\". The field is also marked required to match the visible asterisk. Appearance and navigation do not change.",
+     "action_local": "Dòng chữ \"Họ và tên\" trước đây chỉ là một khối văn bản thường, không gắn với ô nhập nên trình đọc màn hình chỉ đọc \"ô nhập\". Giờ nó là thẻ label gắn với ô nhập (for=\"hoten\"), nên người khiếm thị sẽ nghe được \"Họ và tên\". Ô cũng được đánh dấu bắt buộc, khớp với dấu * hiển thị. Giao diện và cách chuyển bước không thay đổi.",
+     "patch_engine": "LLM claude-sonnet-5-5",
+     "verified_attempt": 2
+    },
+    {
+     "step": 2,
+     "element": "sdt",
+     "sc": "2.1.1",
+     "sc_title": "Keyboard",
+     "jis_title": "キーボード",
+     "level": "A",
+     "attempt": 2,
+     "vn_result": "Không đạt → đã sửa, kiểm lại đạt",
+     "jis_result": "不適合 → 修正後の再試験で適合",
+     "heard": "Số điện thoại, ô nhập, 0912345678",
+     "evidence": "Tab pressed 3 times, focus never left this field",
+     "action": "The phone field had a script that blocked the Tab key, so keyboard users could never leave the field. I changed it to clean up the number (digits only, at most 10) when the field loses focus, so Tab works normally and the formatting is kept.",
+     "action_local": "Ô \"Số điện thoại\" có đoạn mã chặn phím Tab nên người dùng bàn phím không thể rời khỏi ô. Tôi đã sửa để số được làm sạch (chỉ giữ chữ số, tối đa 10 số) khi rời khỏi ô, nên phím Tab hoạt động bình thường mà định dạng vẫn được giữ nguyên.",
+     "patch_engine": "LLM claude-sonnet-5-5",
+     "verified_attempt": 3
+    },
+    {
+     "step": 3,
+     "element": "next3",
+     "sc": "2.1.1",
+     "sc_title": "Keyboard",
+     "jis_title": "キーボード",
+     "level": "A",
+     "attempt": 3,
+     "vn_result": "Không đạt → đã sửa, kiểm lại đạt",
+     "jis_result": "不適合 → 修正後の再試験で適合",
+     "heard": "(never announced: not in Tab order)",
+     "evidence": "Full Tab cycle (3 stops) never reached “Tiếp tục”: it is a <div> with onclick, not focusable, so Enter and Space cannot activate it",
+     "action": "The \"Tiếp tục\" (Continue) control was a plain div with a click handler, so the keyboard could not reach or activate it. Replacing it with a native button makes it focusable and lets Enter and Space work. The same class, id and navigation to step4.html are kept, and the button does not submit anything.",
+     "action_local": "Nút \"Tiếp tục\" trước đây chỉ là một thẻ div có sự kiện nhấp chuột nên bàn phím không thể chọn hay kích hoạt. Đã đổi thành thẻ button chuẩn của HTML để có thể dùng phím Tab, Enter và Space. Giữ nguyên kiểu dáng, id và việc chuyển sang step4.html, và nút không gửi dữ liệu đi đâu.",
+     "patch_engine": "LLM claude-sonnet-5-5",
+     "verified_attempt": 4
+    },
+    {
+     "step": 4,
+     "element": "captcha-img",
+     "sc": "1.1.1",
+     "sc_title": "Non-text Content",
+     "jis_title": "非テキストコンテンツ",
+     "level": "A",
+     "attempt": 4,
+     "vn_result": "Không đạt – chuyển chuyên viên",
+     "jis_result": "不適合（人による確認へ）",
+     "heard": "hình ảnh, CAPTCHA",
+     "evidence": "Image CAPTCHA with no audio or text alternative. The agent does not attempt it.",
+     "action": "Hand off to human (never bypassed)",
+     "action_local": "人による確認へ（回避しない）",
+     "patch_engine": "",
+     "verified_attempt": null
+    }
+   ],
+   "axe": {
+    "original": {
+     "step1.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      },
+      {
+       "rule": "label",
+       "impact": "critical",
+       "help": "Form elements must have labels",
+       "tags": [
+        "cat.forms",
+        "wcag2a",
+        "wcag412",
+        "section508",
+        "section508.22.n",
+        "TTv5",
+        "TT5.c",
+        "EN-301-549",
+        "EN-9.4.1.2",
+        "ACT"
+       ],
+       "targets": [
+        "#hoten"
+       ]
+      }
+     ],
+     "step2.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ],
+     "step3.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ],
+     "step4.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ]
+    },
+    "fixed": {
+     "step1.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ],
+     "step2.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ],
+     "step3.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ],
+     "step4.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ]
+    },
+    "comparison": [
+     {
+      "step": 1,
+      "kind": "unnamed_field",
+      "sc": "3.3.2",
+      "element": "hoten",
+      "agent": true,
+      "axe": true,
+      "axe_rules": [
+       "label"
+      ]
+     },
+     {
+      "step": 2,
+      "kind": "keyboard_trap",
+      "sc": "2.1.1",
+      "element": "sdt",
+      "agent": true,
+      "axe": false,
+      "axe_rules": []
+     },
+     {
+      "step": 3,
+      "kind": "mouse_only",
+      "sc": "2.1.1",
+      "element": "next3",
+      "agent": true,
+      "axe": false,
+      "axe_rules": []
+     },
+     {
+      "step": 4,
+      "kind": "captcha",
+      "sc": "1.1.1",
+      "element": "captcha-img",
+      "agent": true,
+      "axe": false,
+      "axe_rules": []
+     }
+    ],
+    "axe_only": [
+     {
+      "step": 1,
+      "rule": "color-contrast",
+      "impact": "serious",
+      "sc": [
+       "1.4.3"
+      ],
+      "target": "p",
+      "help": "Elements must meet minimum color contrast ratio thresholds"
+     },
+     {
+      "step": 2,
+      "rule": "color-contrast",
+      "impact": "serious",
+      "sc": [
+       "1.4.3"
+      ],
+      "target": "p",
+      "help": "Elements must meet minimum color contrast ratio thresholds"
+     },
+     {
+      "step": 3,
+      "rule": "color-contrast",
+      "impact": "serious",
+      "sc": [
+       "1.4.3"
+      ],
+      "target": "p",
+      "help": "Elements must meet minimum color contrast ratio thresholds"
+     },
+     {
+      "step": 4,
+      "rule": "color-contrast",
+      "impact": "serious",
+      "sc": [
+       "1.4.3"
+      ],
+      "target": "p",
+      "help": "Elements must meet minimum color contrast ratio thresholds"
+     }
+    ],
+    "fixed_violations": 4
+   }
+  },
+  {
+   "key": "jp",
+   "country": "Japan",
+   "title": "住民票の写し交付申請（模擬）",
+   "title_en": "Certificate of residence copy request (住民票の写し交付申請), mock municipality",
+   "lang": "ja-JP",
+   "steps": [
+    "step1.html",
+    "step2.html",
+    "step3.html"
+   ],
+   "step_names": [
+    "申請者",
+    "請求内容",
+    "確認"
+   ],
+   "goal": "Reach the confirmation step (確認) and stop before the 申請する button",
+   "standard": "JIS X 8341-3:2016",
+   "final": "done",
+   "rounds": 3,
+   "submitted": "no",
+   "reached_confirmation": true,
+   "events": [
+    {
+     "i": 0,
+     "t": 1791298193.18,
+     "attempt": 1,
+     "step": 1,
+     "kind": "restart",
+     "text": "Attempt 1: start from step 1"
+    },
+    {
+     "i": 1,
+     "t": 1791298193.5,
+     "attempt": 1,
+     "step": 1,
+     "kind": "hear",
+     "text": "ステップ1/3 – 申請者の情報. ステップ1/3: 申請者の情報"
+    },
+    {
+     "i": 2,
+     "t": 1791298193.51,
+     "attempt": 1,
+     "step": 1,
+     "kind": "tree",
+     "text": "- banner: みどり市 電子申請 （模擬） Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ\n- main:\n  - heading \"住民票の写し交付申請（模擬）\" [level=1]\n  - list:\n    - listitem: 1. 申請者\n    - listitem: 2. 請求内容\n    - listitem: 3. 確認\n  - 'heading \"ステップ1/3: 申請者の情報\" [level=2]'\n  - text: 氏名\n  - textbox \"氏名\"\n  - text: 生年月日\n  - textbox \"生年月日\"\n  - text: 住所\n  - textbox \"住所\"\n  - text: 本籍地 （外国籍の方は国籍・地域）\n  - textbox \"fld_hnsk_01\"\n  - button \"次へ\"\n  - paragraph: \"お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。\""
+    },
+    {
+     "i": 3,
+     "t": 1791298193.86,
+     "attempt": 1,
+     "step": 1,
+     "kind": "hear",
+     "text": "氏名, 編集",
+     "focus": "shimei"
+    },
+    {
+     "i": 4,
+     "t": 1791298194.55,
+     "attempt": 1,
+     "step": 1,
+     "kind": "action",
+     "text": "type “グエン・ヴァン・アン” (Personal name)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 49458,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "017678b90df47b61d781d96f",
+      "purpose": "interpret field",
+      "field": "shimei",
+      "heard": "氏名",
+      "caption": "氏名",
+      "output": {
+       "decision": "fill",
+       "value": "グエン・ヴァン・アン",
+       "field_meaning": "Personal name",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field asks for personal name (氏名), which should match the registered form. For a Vietnamese resident in Japan's residence system, this is the official katakana name: グエン・ヴァン・アン."
+      }
+     },
+     "shot": "out/frames/jp_frame_001.png"
+    },
+    {
+     "i": 5,
+     "t": 1791298195.04,
+     "attempt": 1,
+     "step": 1,
+     "kind": "hear",
+     "text": "生年月日, 編集",
+     "focus": "seinengappi"
+    },
+    {
+     "i": 6,
+     "t": 1791298195.74,
+     "attempt": 1,
+     "step": 1,
+     "kind": "action",
+     "text": "type “1985/03/12” (Date of birth (year-month-day))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 45779,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "6bf16b3b9f4c558997c5f7ae",
+      "purpose": "interpret field",
+      "field": "seinengappi",
+      "heard": "生年月日",
+      "caption": "生年月日",
+      "output": {
+       "decision": "fill",
+       "value": "1985/03/12",
+       "field_meaning": "Date of birth (year-month-day)",
+       "label_clear_for_screen_reader": true,
+       "advisory": "Standard Japanese administrative form term; no clarity issues.",
+       "reasoning": "生年月日 is a well-established Japanese administrative term that screen readers read clearly; the applicant's date of birth is March 12, 1985 from the profile."
+      }
+     },
+     "shot": "out/frames/jp_frame_002.png"
+    },
+    {
+     "i": 7,
+     "t": 1791298196.21,
+     "attempt": 1,
+     "step": 1,
+     "kind": "hear",
+     "text": "住所, 編集",
+     "focus": "jusho"
+    },
+    {
+     "i": 8,
+     "t": 1791298196.98,
+     "attempt": 1,
+     "step": 1,
+     "kind": "action",
+     "text": "type “みどり市中央1-2-3（架空）” (Current residential address in Japan)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 10252,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "d11630cca71d4181b53babdd",
+      "purpose": "interpret field",
+      "field": "jusho",
+      "heard": "住所",
+      "caption": "住所",
+      "output": {
+       "decision": "fill",
+       "value": "みどり市中央1-2-3（架空）",
+       "field_meaning": "Current residential address in Japan",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "In a Japanese municipal certificate of residence application, \"住所\" (address) requests the applicant's current residential address where they are registered with the municipality. The profile provides the Japanese current address, which is the appropriate value for this field."
+      }
+     },
+     "shot": "out/frames/jp_frame_003.png"
+    },
+    {
+     "i": 9,
+     "t": 1791298197.43,
+     "attempt": 1,
+     "step": 1,
+     "kind": "hear",
+     "text": "fld_hnsk_01, 編集",
+     "focus": "honseki"
+    },
+    {
+     "i": 10,
+     "t": 1791298197.57,
+     "attempt": 1,
+     "step": 1,
+     "kind": "barrier",
+     "text": "Screen reader reads a code instead of the label (accessible name “fld_hnsk_01” does not contain the visible label “本籍地”)",
+     "shot": "out/frames/jp_frame_004.png",
+     "barrier": {
+      "kind": "ambiguous_label",
+      "step": 1,
+      "element_id": "honseki",
+      "sc": "2.4.6",
+      "sc_title": "Headings and Labels",
+      "heard": "fld_hnsk_01, 編集",
+      "evidence": "Screen reader reads a code instead of the label (accessible name “fld_hnsk_01” does not contain the visible label “本籍地”)",
+      "context_text": "本籍地 （外国籍の方は国籍・地域）",
+      "level": "AA",
+      "check": "accessibility-tree check"
+     },
+     "engine": "deterministic check (LLM explained)",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 19641,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "75a78b5e86c4e8d7b4cae9ca",
+      "purpose": "interpret field",
+      "field": "honseki",
+      "heard": "fld_hnsk_01",
+      "caption": "本籍地 （外国籍の方は国籍・地域）",
+      "output": {
+       "decision": "fill",
+       "value": "ベトナム",
+       "field_meaning": "Registered domicile in the family register (本籍地); for foreign nationals, nationality (国籍)",
+       "label_clear_for_screen_reader": false,
+       "advisory": "本籍地 (honsekichi) means 'registered domicile'; this form asks foreign nationals for their nationality (ベトナム) instead",
+       "reasoning": "The applicant is a Vietnamese national and has no Japanese family register domicile, so they must enter their nationality in Japanese as specified by the visible caption. The accessible name \"fld_hnsk_01\" is an internal code that a screen reader would spell out letter by letter, leaving the user without guidance; the visible caption is clear but not read as the primary label."
+      }
+     }
+    },
+    {
+     "i": 11,
+     "t": 1791298198.54,
+     "attempt": 1,
+     "step": 1,
+     "kind": "patch",
+     "text": "The 本籍地 field had a hidden code (\"fld_hnsk_01\") as its accessible name, so screen readers read the code instead of the caption. The visible caption is now a real label tied to the input, and the hidden code is removed. Screen readers now read \"本籍地 （外国籍の方は国籍・地域）\", and clicking the caption focuses the field. The look and behaviour of the page are otherwise unchanged.",
+     "diff": "--- a/jp/step1.html\n+++ b/jp/step1.html\n@@ -16,3 +16,3 @@\n <div class=\"field\"><label for=\"jusho\">住所</label><input id=\"jusho\" type=\"text\"></div>\n-<div class=\"field\"><div class=\"lbl\">本籍地 <span class=\"hint\">（外国籍の方は国籍・地域）</span></div><input id=\"honseki\" type=\"text\" aria-label=\"fld_hnsk_01\"></div>\n+<div class=\"field\"><label for=\"honseki\" class=\"lbl\">本籍地 <span class=\"hint\">（外国籍の方は国籍・地域）</span></label><input id=\"honseki\" type=\"text\"></div>\n <div class=\"actions\"><button type=\"button\" id=\"next1\" class=\"btn\" onclick=\"location.href='step2.html'\">次へ</button></div>\n",
+     "file": "step1.html",
+     "shot": "out/frames/jp_frame_004.png",
+     "engine": "LLM claude-sonnet-5-5",
+     "llm": {
+      "model": "claude-sonnet-5-5",
+      "source": "cache",
+      "ms": 6283,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "8e02d4b8adddd3e59f68068b",
+      "purpose": "write patch",
+      "output": {
+       "edits": [
+        {
+         "find": "<div class=\"lbl\">本籍地 <span class=\"hint\">（外国籍の方は国籍・地域）</span></div><input id=\"honseki\" type=\"text\" aria-label=\"fld_hnsk_01\">",
+         "replace": "<label for=\"honseki\" class=\"lbl\">本籍地 <span class=\"hint\">（外国籍の方は国籍・地域）</span></label><input id=\"honseki\" type=\"text\">"
+        }
+       ],
+       "explanation": "The 本籍地 field had a hidden code (\"fld_hnsk_01\") as its accessible name, so screen readers read the code instead of the caption. The visible caption is now a real label tied to the input, and the hidden code is removed. Screen readers now read \"本籍地 （外国籍の方は国籍・地域）\", and clicking the caption focuses the field. The look and behaviour of the page are otherwise unchanged.",
+       "explanation_local": "「本籍地」の入力欄には、画面に見える見出しではなく「fld_hnsk_01」という内部コードが読み上げ用の名前として設定されていました。見出しを正式なラベル（label）として入力欄に関連付け、内部コードを削除しました。これにより、スクリーンリーダーは「本籍地 （外国籍の方は国籍・地域）」と読み上げ、見出しをクリックしても入力欄に移動します。ページの見た目や動作は変わりません。",
+       "technique": "Replace the misleading aria-label with a native label element linked via for/id, so the accessible name matches the visible caption (WCAG 2.4.6, label in name)"
+      }
+     },
+     "explanation_local": "「本籍地」の入力欄には、画面に見える見出しではなく「fld_hnsk_01」という内部コードが読み上げ用の名前として設定されていました。見出しを正式なラベル（label）として入力欄に関連付け、内部コードを削除しました。これにより、スクリーンリーダーは「本籍地 （外国籍の方は国籍・地域）」と読み上げ、見出しをクリックしても入力欄に移動します。ページの見た目や動作は変わりません。",
+     "precheck": {
+      "passed": true,
+      "checks": [
+       {
+        "name": "Target element still present",
+        "passed": true,
+        "detail": "#honseki"
+       },
+       {
+        "name": "Accessibility tree: accessible name matches the visible label",
+        "passed": true,
+        "detail": "accessible name “本籍地 （外国籍の方は国籍・地域）” contains the visible label"
+       },
+       {
+        "name": "axe-core: no rule fails on this element",
+        "passed": true,
+        "detail": "0 violations on the element"
+       }
+      ]
+     }
+    },
+    {
+     "i": 12,
+     "t": 1791298198.54,
+     "attempt": 1,
+     "step": 1,
+     "kind": "approval",
+     "text": "Approved by developer (auto-approve, recording mode)",
+     "approved": true,
+     "who": "developer (auto-approve, recording mode)"
+    },
+    {
+     "i": 13,
+     "t": 1791298198.54,
+     "attempt": 2,
+     "step": 1,
+     "kind": "restart",
+     "text": "Attempt 2: start from step 1"
+    },
+    {
+     "i": 14,
+     "t": 1791298198.86,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "ステップ1/3 – 申請者の情報. ステップ1/3: 申請者の情報"
+    },
+    {
+     "i": 15,
+     "t": 1791298198.87,
+     "attempt": 2,
+     "step": 1,
+     "kind": "tree",
+     "text": "- banner: みどり市 電子申請 （模擬） Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ\n- main:\n  - heading \"住民票の写し交付申請（模擬）\" [level=1]\n  - list:\n    - listitem: 1. 申請者\n    - listitem: 2. 請求内容\n    - listitem: 3. 確認\n  - 'heading \"ステップ1/3: 申請者の情報\" [level=2]'\n  - text: 氏名\n  - textbox \"氏名\"\n  - text: 生年月日\n  - textbox \"生年月日\"\n  - text: 住所\n  - textbox \"住所\"\n  - text: 本籍地 （外国籍の方は国籍・地域）\n  - textbox \"本籍地 （外国籍の方は国籍・地域）\"\n  - button \"次へ\"\n  - paragraph: \"お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。\""
+    },
+    {
+     "i": 16,
+     "t": 1791298199.2,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "氏名, 編集",
+     "focus": "shimei"
+    },
+    {
+     "i": 17,
+     "t": 1791298199.89,
+     "attempt": 2,
+     "step": 1,
+     "kind": "action",
+     "text": "type “グエン・ヴァン・アン” (Personal name)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 49458,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "017678b90df47b61d781d96f",
+      "purpose": "interpret field",
+      "field": "shimei",
+      "heard": "氏名",
+      "caption": "氏名",
+      "output": {
+       "decision": "fill",
+       "value": "グエン・ヴァン・アン",
+       "field_meaning": "Personal name",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field asks for personal name (氏名), which should match the registered form. For a Vietnamese resident in Japan's residence system, this is the official katakana name: グエン・ヴァン・アン."
+      }
+     },
+     "shot": "out/frames/jp_frame_005.png"
+    },
+    {
+     "i": 18,
+     "t": 1791298200.31,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "生年月日, 編集",
+     "focus": "seinengappi"
+    },
+    {
+     "i": 19,
+     "t": 1791298200.99,
+     "attempt": 2,
+     "step": 1,
+     "kind": "action",
+     "text": "type “1985/03/12” (Date of birth (year-month-day))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 45779,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "6bf16b3b9f4c558997c5f7ae",
+      "purpose": "interpret field",
+      "field": "seinengappi",
+      "heard": "生年月日",
+      "caption": "生年月日",
+      "output": {
+       "decision": "fill",
+       "value": "1985/03/12",
+       "field_meaning": "Date of birth (year-month-day)",
+       "label_clear_for_screen_reader": true,
+       "advisory": "Standard Japanese administrative form term; no clarity issues.",
+       "reasoning": "生年月日 is a well-established Japanese administrative term that screen readers read clearly; the applicant's date of birth is March 12, 1985 from the profile."
+      }
+     },
+     "shot": "out/frames/jp_frame_006.png"
+    },
+    {
+     "i": 20,
+     "t": 1791298201.43,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "住所, 編集",
+     "focus": "jusho"
+    },
+    {
+     "i": 21,
+     "t": 1791298202.2,
+     "attempt": 2,
+     "step": 1,
+     "kind": "action",
+     "text": "type “みどり市中央1-2-3（架空）” (Current residential address in Japan)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 10252,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "d11630cca71d4181b53babdd",
+      "purpose": "interpret field",
+      "field": "jusho",
+      "heard": "住所",
+      "caption": "住所",
+      "output": {
+       "decision": "fill",
+       "value": "みどり市中央1-2-3（架空）",
+       "field_meaning": "Current residential address in Japan",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "In a Japanese municipal certificate of residence application, \"住所\" (address) requests the applicant's current residential address where they are registered with the municipality. The profile provides the Japanese current address, which is the appropriate value for this field."
+      }
+     },
+     "shot": "out/frames/jp_frame_007.png"
+    },
+    {
+     "i": 22,
+     "t": 1791298202.67,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "本籍地 （外国籍の方は国籍・地域）, 編集",
+     "focus": "honseki"
+    },
+    {
+     "i": 23,
+     "t": 1791298203.27,
+     "attempt": 2,
+     "step": 1,
+     "kind": "action",
+     "text": "type “ベトナム” (For foreign nationals, enter your nationality (Vietnam). Japanese citizens would enter their 本籍地 (registered domicile in the family register), but the form explicitly directs non-Japanese residents to provide nationality instead.)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 47696,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "34348edc90e9405760d4b54c",
+      "purpose": "interpret field",
+      "field": "honseki",
+      "heard": "本籍地 （外国籍の方は国籍・地域）",
+      "caption": "本籍地 （外国籍の方は国籍・地域）",
+      "output": {
+       "decision": "fill",
+       "value": "ベトナム",
+       "field_meaning": "For foreign nationals, enter your nationality (Vietnam). Japanese citizens would enter their 本籍地 (registered domicile in the family register), but the form explicitly directs non-Japanese residents to provide nationality instead.",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The form's parenthetical instruction explicitly tells foreign nationals to enter nationality instead of a family register entry. The applicant is Vietnamese, so the value is ベトナム (Vietnam in Japanese from the profile)."
+      }
+     },
+     "shot": "out/frames/jp_frame_008.png"
+    },
+    {
+     "i": 24,
+     "t": 1791298203.72,
+     "attempt": 2,
+     "step": 1,
+     "kind": "hear",
+     "text": "次へ, ボタン",
+     "focus": "next1"
+    },
+    {
+     "i": 25,
+     "t": 1791298203.72,
+     "attempt": 2,
+     "step": 1,
+     "kind": "action",
+     "text": "press Enter (continue to next step)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 26,
+     "t": 1791298204.09,
+     "attempt": 2,
+     "step": 1,
+     "kind": "pass",
+     "text": "Step 1 passed by keyboard only",
+     "shot": "out/frames/jp_frame_009.png"
+    },
+    {
+     "i": 27,
+     "t": 1791298204.09,
+     "attempt": 2,
+     "step": 1,
+     "kind": "verified",
+     "text": "Verified by keyboard replay: step 1 now passes; #honseki (ambiguous label, WCAG 2.4.6) no longer blocks",
+     "barrier": {
+      "kind": "ambiguous_label",
+      "step": 1,
+      "element_id": "honseki",
+      "sc": "2.4.6",
+      "sc_title": "Headings and Labels",
+      "heard": "fld_hnsk_01, 編集",
+      "evidence": "Screen reader reads a code instead of the label (accessible name “fld_hnsk_01” does not contain the visible label “本籍地”)",
+      "context_text": "本籍地 （外国籍の方は国籍・地域）",
+      "level": "AA",
+      "check": "accessibility-tree check",
+      "attempt": 1,
+      "status": "fixed",
+      "patch": "The 本籍地 field had a hidden code (\"fld_hnsk_01\") as its accessible name, so screen readers read the code instead of the caption. The visible caption is now a real label tied to the input, and the hidden code is removed. Screen readers now read \"本籍地 （外国籍の方は国籍・地域）\", and clicking the caption focuses the field. The look and behaviour of the page are otherwise unchanged.",
+      "patch_local": "「本籍地」の入力欄には、画面に見える見出しではなく「fld_hnsk_01」という内部コードが読み上げ用の名前として設定されていました。見出しを正式なラベル（label）として入力欄に関連付け、内部コードを削除しました。これにより、スクリーンリーダーは「本籍地 （外国籍の方は国籍・地域）」と読み上げ、見出しをクリックしても入力欄に移動します。ページの見た目や動作は変わりません。",
+      "patch_engine": "LLM claude-sonnet-5-5",
+      "diff": "--- a/jp/step1.html\n+++ b/jp/step1.html\n@@ -16,3 +16,3 @@\n <div class=\"field\"><label for=\"jusho\">住所</label><input id=\"jusho\" type=\"text\"></div>\n-<div class=\"field\"><div class=\"lbl\">本籍地 <span class=\"hint\">（外国籍の方は国籍・地域）</span></div><input id=\"honseki\" type=\"text\" aria-label=\"fld_hnsk_01\"></div>\n+<div class=\"field\"><label for=\"honseki\" class=\"lbl\">本籍地 <span class=\"hint\">（外国籍の方は国籍・地域）</span></label><input id=\"honseki\" type=\"text\"></div>\n <div class=\"actions\"><button type=\"button\" id=\"next1\" class=\"btn\" onclick=\"location.href='step2.html'\">次へ</button></div>\n",
+      "precheck": {
+       "passed": true,
+       "checks": [
+        {
+         "name": "Target element still present",
+         "passed": true,
+         "detail": "#honseki"
+        },
+        {
+         "name": "Accessibility tree: accessible name matches the visible label",
+         "passed": true,
+         "detail": "accessible name “本籍地 （外国籍の方は国籍・地域）” contains the visible label"
+        },
+        {
+         "name": "axe-core: no rule fails on this element",
+         "passed": true,
+         "detail": "0 violations on the element"
+        }
+       ]
+      },
+      "verified_attempt": 2
+     },
+     "shot": "out/frames/jp_frame_009.png"
+    },
+    {
+     "i": 28,
+     "t": 1791298204.1,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "ステップ2/3 – 請求内容. ステップ2/3: 請求内容"
+    },
+    {
+     "i": 29,
+     "t": 1791298204.11,
+     "attempt": 2,
+     "step": 2,
+     "kind": "tree",
+     "text": "- banner: みどり市 電子申請 （模擬） Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ\n- main:\n  - heading \"住民票の写し交付申請（模擬）\" [level=1]\n  - list:\n    - listitem: 1. 申請者\n    - listitem: 2. 請求内容\n    - listitem: 3. 確認\n  - 'heading \"ステップ2/3: 請求内容\" [level=2]'\n  - text: 必要な通数\n  - combobox \"必要な通数\":\n    - option \"1通\" [selected]\n    - option \"2通\"\n  - text: 使用目的\n  - combobox \"使用目的\":\n    - option \"就職手続き\" [selected]\n    - option \"運転免許\"\n    - option \"その他\"\n  - text: 送付先の郵便番号\n  - textbox \"送付先の郵便番号\"\n  - text: 日中の連絡先電話番号\n  - textbox \"日中の連絡先電話番号\"\n  - checkbox \"記載内容に誤りがないことを誓約します\"\n  - text: 記載内容に誤りがないことを誓約します\n  - button \"次へ\"\n  - paragraph: \"お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。\""
+    },
+    {
+     "i": 30,
+     "t": 1791298204.45,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "必要な通数, コンボボックス, 1通",
+     "focus": "tsusu"
+    },
+    {
+     "i": 31,
+     "t": 1791298204.77,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "使用目的, コンボボックス, 就職手続き",
+     "focus": "mokuteki"
+    },
+    {
+     "i": 32,
+     "t": 1791298205.09,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "送付先の郵便番号, 編集",
+     "focus": "yubin"
+    },
+    {
+     "i": 33,
+     "t": 1791298205.75,
+     "attempt": 2,
+     "step": 2,
+     "kind": "action",
+     "text": "type “123-4567” (Postal code for the delivery destination of the certificate)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 14580,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "f3b85cc64a287791db0ed193",
+      "purpose": "interpret field",
+      "field": "yubin",
+      "heard": "送付先の郵便番号",
+      "caption": "送付先の郵便番号",
+      "output": {
+       "decision": "fill",
+       "value": "123-4567",
+       "field_meaning": "Postal code for the delivery destination of the certificate",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field asks for the postal code where the certificate of residence should be mailed. The applicant's postal code in the profile is 123-4567, matching the current address in Japan."
+      }
+     },
+     "shot": "out/frames/jp_frame_010.png"
+    },
+    {
+     "i": 34,
+     "t": 1791298206.24,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "送付先の郵便番号, 編集, 123-4567",
+     "focus": "yubin"
+    },
+    {
+     "i": 35,
+     "t": 1791298206.58,
+     "attempt": 2,
+     "step": 2,
+     "kind": "hear",
+     "text": "送付先の郵便番号, 編集, 123-4567",
+     "focus": "yubin"
+    },
+    {
+     "i": 36,
+     "t": 1791298206.71,
+     "attempt": 2,
+     "step": 2,
+     "kind": "barrier",
+     "text": "Tab pressed 3 times, focus never left this field",
+     "shot": "out/frames/jp_frame_011.png",
+     "barrier": {
+      "kind": "keyboard_trap",
+      "step": 2,
+      "element_id": "yubin",
+      "sc": "2.1.1",
+      "sc_title": "Keyboard",
+      "heard": "送付先の郵便番号, 編集, 123-4567",
+      "evidence": "Tab pressed 3 times, focus never left this field",
+      "context_text": "送付先の郵便番号",
+      "level": "A",
+      "check": "Tab replay"
+     },
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 37,
+     "t": 1791298208.46,
+     "attempt": 2,
+     "step": 2,
+     "kind": "patch",
+     "text": "The postal code field had a script that pushed focus back into the field every time the user left it, so Tab and Shift+Tab could never move on. I removed that script. The field is still a normal labelled text box, and the page's navigation and formatting are unchanged.",
+     "diff": "--- a/jp/step2.html\n+++ b/jp/step2.html\n@@ -19,7 +19,2 @@\n <div class=\"actions\"><button type=\"button\" id=\"next2\" class=\"btn\" onclick=\"location.href='step3.html'\">次へ</button></div>\n-<script id=\"postal-lookup\">\n-document.getElementById('yubin').addEventListener('blur', function () {\n-  var box = this; setTimeout(function () { box.focus(); }, 0);\n-});\n-</script>\n <p class=\"foot\">お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。</p>\n",
+     "file": "step2.html",
+     "shot": "out/frames/jp_frame_011.png",
+     "engine": "LLM claude-sonnet-5-5",
+     "llm": {
+      "model": "claude-sonnet-5-5",
+      "source": "cache",
+      "ms": 5177,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "a2c076e478622e0e91e6396e",
+      "purpose": "write patch",
+      "output": {
+       "edits": [
+        {
+         "find": "<script id=\"postal-lookup\">\ndocument.getElementById('yubin').addEventListener('blur', function () {\n  var box = this; setTimeout(function () { box.focus(); }, 0);\n});\n</script>\n",
+         "replace": ""
+        }
+       ],
+       "explanation": "The postal code field had a script that pushed focus back into the field every time the user left it, so Tab and Shift+Tab could never move on. I removed that script. The field is still a normal labelled text box, and the page's navigation and formatting are unchanged.",
+       "explanation_local": "郵便番号の入力欄には、欄から離れるたびにカーソルを欄へ戻すスクリプトがあり、Tabキーで次の項目へ進めませんでした。このスクリプトを削除しました。入力欄とラベルはそのままで、ページの移動や見た目は変わりません。",
+       "technique": "Remove the script that re-focuses the field on blur, so the keyboard can leave the field normally."
+      }
+     },
+     "explanation_local": "郵便番号の入力欄には、欄から離れるたびにカーソルを欄へ戻すスクリプトがあり、Tabキーで次の項目へ進めませんでした。このスクリプトを削除しました。入力欄とラベルはそのままで、ページの移動や見た目は変わりません。",
+     "precheck": {
+      "passed": true,
+      "checks": [
+       {
+        "name": "Target element still present",
+        "passed": true,
+        "detail": "#yubin"
+       },
+       {
+        "name": "Keyboard replay: Tab leaves the field",
+        "passed": true,
+        "detail": "focus moved to #denwa"
+       },
+       {
+        "name": "axe-core: no rule fails on this element",
+        "passed": true,
+        "detail": "0 violations on the element"
+       }
+      ]
+     }
+    },
+    {
+     "i": 38,
+     "t": 1791298208.47,
+     "attempt": 2,
+     "step": 2,
+     "kind": "approval",
+     "text": "Approved by developer (auto-approve, recording mode)",
+     "approved": true,
+     "who": "developer (auto-approve, recording mode)"
+    },
+    {
+     "i": 39,
+     "t": 1791298208.47,
+     "attempt": 3,
+     "step": 1,
+     "kind": "restart",
+     "text": "Attempt 3: start from step 1"
+    },
+    {
+     "i": 40,
+     "t": 1791298208.79,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "ステップ1/3 – 申請者の情報. ステップ1/3: 申請者の情報"
+    },
+    {
+     "i": 41,
+     "t": 1791298208.8,
+     "attempt": 3,
+     "step": 1,
+     "kind": "tree",
+     "text": "- banner: みどり市 電子申請 （模擬） Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ\n- main:\n  - heading \"住民票の写し交付申請（模擬）\" [level=1]\n  - list:\n    - listitem: 1. 申請者\n    - listitem: 2. 請求内容\n    - listitem: 3. 確認\n  - 'heading \"ステップ1/3: 申請者の情報\" [level=2]'\n  - text: 氏名\n  - textbox \"氏名\"\n  - text: 生年月日\n  - textbox \"生年月日\"\n  - text: 住所\n  - textbox \"住所\"\n  - text: 本籍地 （外国籍の方は国籍・地域）\n  - textbox \"本籍地 （外国籍の方は国籍・地域）\"\n  - button \"次へ\"\n  - paragraph: \"お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。\""
+    },
+    {
+     "i": 42,
+     "t": 1791298209.12,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "氏名, 編集",
+     "focus": "shimei"
+    },
+    {
+     "i": 43,
+     "t": 1791298209.79,
+     "attempt": 3,
+     "step": 1,
+     "kind": "action",
+     "text": "type “グエン・ヴァン・アン” (Personal name)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 49458,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "017678b90df47b61d781d96f",
+      "purpose": "interpret field",
+      "field": "shimei",
+      "heard": "氏名",
+      "caption": "氏名",
+      "output": {
+       "decision": "fill",
+       "value": "グエン・ヴァン・アン",
+       "field_meaning": "Personal name",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field asks for personal name (氏名), which should match the registered form. For a Vietnamese resident in Japan's residence system, this is the official katakana name: グエン・ヴァン・アン."
+      }
+     },
+     "shot": "out/frames/jp_frame_012.png"
+    },
+    {
+     "i": 44,
+     "t": 1791298210.23,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "生年月日, 編集",
+     "focus": "seinengappi"
+    },
+    {
+     "i": 45,
+     "t": 1791298210.92,
+     "attempt": 3,
+     "step": 1,
+     "kind": "action",
+     "text": "type “1985/03/12” (Date of birth (year-month-day))",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 45779,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "6bf16b3b9f4c558997c5f7ae",
+      "purpose": "interpret field",
+      "field": "seinengappi",
+      "heard": "生年月日",
+      "caption": "生年月日",
+      "output": {
+       "decision": "fill",
+       "value": "1985/03/12",
+       "field_meaning": "Date of birth (year-month-day)",
+       "label_clear_for_screen_reader": true,
+       "advisory": "Standard Japanese administrative form term; no clarity issues.",
+       "reasoning": "生年月日 is a well-established Japanese administrative term that screen readers read clearly; the applicant's date of birth is March 12, 1985 from the profile."
+      }
+     },
+     "shot": "out/frames/jp_frame_013.png"
+    },
+    {
+     "i": 46,
+     "t": 1791298211.39,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "住所, 編集",
+     "focus": "jusho"
+    },
+    {
+     "i": 47,
+     "t": 1791298212.17,
+     "attempt": 3,
+     "step": 1,
+     "kind": "action",
+     "text": "type “みどり市中央1-2-3（架空）” (Current residential address in Japan)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 10252,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "d11630cca71d4181b53babdd",
+      "purpose": "interpret field",
+      "field": "jusho",
+      "heard": "住所",
+      "caption": "住所",
+      "output": {
+       "decision": "fill",
+       "value": "みどり市中央1-2-3（架空）",
+       "field_meaning": "Current residential address in Japan",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "In a Japanese municipal certificate of residence application, \"住所\" (address) requests the applicant's current residential address where they are registered with the municipality. The profile provides the Japanese current address, which is the appropriate value for this field."
+      }
+     },
+     "shot": "out/frames/jp_frame_014.png"
+    },
+    {
+     "i": 48,
+     "t": 1791298212.65,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "本籍地 （外国籍の方は国籍・地域）, 編集",
+     "focus": "honseki"
+    },
+    {
+     "i": 49,
+     "t": 1791298213.25,
+     "attempt": 3,
+     "step": 1,
+     "kind": "action",
+     "text": "type “ベトナム” (For foreign nationals, enter your nationality (Vietnam). Japanese citizens would enter their 本籍地 (registered domicile in the family register), but the form explicitly directs non-Japanese residents to provide nationality instead.)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 47696,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "34348edc90e9405760d4b54c",
+      "purpose": "interpret field",
+      "field": "honseki",
+      "heard": "本籍地 （外国籍の方は国籍・地域）",
+      "caption": "本籍地 （外国籍の方は国籍・地域）",
+      "output": {
+       "decision": "fill",
+       "value": "ベトナム",
+       "field_meaning": "For foreign nationals, enter your nationality (Vietnam). Japanese citizens would enter their 本籍地 (registered domicile in the family register), but the form explicitly directs non-Japanese residents to provide nationality instead.",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The form's parenthetical instruction explicitly tells foreign nationals to enter nationality instead of a family register entry. The applicant is Vietnamese, so the value is ベトナム (Vietnam in Japanese from the profile)."
+      }
+     },
+     "shot": "out/frames/jp_frame_015.png"
+    },
+    {
+     "i": 50,
+     "t": 1791298213.68,
+     "attempt": 3,
+     "step": 1,
+     "kind": "hear",
+     "text": "次へ, ボタン",
+     "focus": "next1"
+    },
+    {
+     "i": 51,
+     "t": 1791298213.69,
+     "attempt": 3,
+     "step": 1,
+     "kind": "action",
+     "text": "press Enter (continue to next step)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 52,
+     "t": 1791298214.09,
+     "attempt": 3,
+     "step": 1,
+     "kind": "pass",
+     "text": "Step 1 passed by keyboard only",
+     "shot": "out/frames/jp_frame_016.png"
+    },
+    {
+     "i": 53,
+     "t": 1791298214.11,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "ステップ2/3 – 請求内容. ステップ2/3: 請求内容"
+    },
+    {
+     "i": 54,
+     "t": 1791298214.12,
+     "attempt": 3,
+     "step": 2,
+     "kind": "tree",
+     "text": "- banner: みどり市 電子申請 （模擬） Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ\n- main:\n  - heading \"住民票の写し交付申請（模擬）\" [level=1]\n  - list:\n    - listitem: 1. 申請者\n    - listitem: 2. 請求内容\n    - listitem: 3. 確認\n  - 'heading \"ステップ2/3: 請求内容\" [level=2]'\n  - text: 必要な通数\n  - combobox \"必要な通数\":\n    - option \"1通\" [selected]\n    - option \"2通\"\n  - text: 使用目的\n  - combobox \"使用目的\":\n    - option \"就職手続き\" [selected]\n    - option \"運転免許\"\n    - option \"その他\"\n  - text: 送付先の郵便番号\n  - textbox \"送付先の郵便番号\"\n  - text: 日中の連絡先電話番号\n  - textbox \"日中の連絡先電話番号\"\n  - checkbox \"記載内容に誤りがないことを誓約します\"\n  - text: 記載内容に誤りがないことを誓約します\n  - button \"次へ\"\n  - paragraph: \"お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。\""
+    },
+    {
+     "i": 55,
+     "t": 1791298214.47,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "必要な通数, コンボボックス, 1通",
+     "focus": "tsusu"
+    },
+    {
+     "i": 56,
+     "t": 1791298214.81,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "使用目的, コンボボックス, 就職手続き",
+     "focus": "mokuteki"
+    },
+    {
+     "i": 57,
+     "t": 1791298215.15,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "送付先の郵便番号, 編集",
+     "focus": "yubin"
+    },
+    {
+     "i": 58,
+     "t": 1791298215.8,
+     "attempt": 3,
+     "step": 2,
+     "kind": "action",
+     "text": "type “123-4567” (Postal code for the delivery destination of the certificate)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 14580,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "f3b85cc64a287791db0ed193",
+      "purpose": "interpret field",
+      "field": "yubin",
+      "heard": "送付先の郵便番号",
+      "caption": "送付先の郵便番号",
+      "output": {
+       "decision": "fill",
+       "value": "123-4567",
+       "field_meaning": "Postal code for the delivery destination of the certificate",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field asks for the postal code where the certificate of residence should be mailed. The applicant's postal code in the profile is 123-4567, matching the current address in Japan."
+      }
+     },
+     "shot": "out/frames/jp_frame_017.png"
+    },
+    {
+     "i": 59,
+     "t": 1791298216.23,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "日中の連絡先電話番号, 編集",
+     "focus": "denwa"
+    },
+    {
+     "i": 60,
+     "t": 1791298216.97,
+     "attempt": 3,
+     "step": 2,
+     "kind": "action",
+     "text": "type “090-0000-0000” (Daytime contact phone number)",
+     "engine": "LLM claude-haiku-4-5-20251001",
+     "llm": {
+      "model": "claude-haiku-4-5-20251001",
+      "source": "cache",
+      "ms": 10526,
+      "tries": 1,
+      "ok": true,
+      "error": "",
+      "key": "412851a80bd0696e6f84016d",
+      "purpose": "interpret field",
+      "field": "denwa",
+      "heard": "日中の連絡先電話番号",
+      "caption": "日中の連絡先電話番号",
+      "output": {
+       "decision": "fill",
+       "value": "090-0000-0000",
+       "field_meaning": "Daytime contact phone number",
+       "label_clear_for_screen_reader": true,
+       "advisory": "",
+       "reasoning": "The field asks for a daytime contact phone number (日中 = during business hours). The applicant's Japanese phone number is the appropriate value for a Japanese municipal form."
+      }
+     },
+     "shot": "out/frames/jp_frame_018.png"
+    },
+    {
+     "i": 61,
+     "t": 1791298217.43,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "記載内容に誤りがないことを誓約します, チェックボックス, チェックなし",
+     "focus": "doui"
+    },
+    {
+     "i": 62,
+     "t": 1791298217.43,
+     "attempt": 3,
+     "step": 2,
+     "kind": "action",
+     "text": "press Space (declaration checkbox)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 63,
+     "t": 1791298218.02,
+     "attempt": 3,
+     "step": 2,
+     "kind": "hear",
+     "text": "次へ, ボタン",
+     "focus": "next2"
+    },
+    {
+     "i": 64,
+     "t": 1791298218.02,
+     "attempt": 3,
+     "step": 2,
+     "kind": "action",
+     "text": "press Enter (continue to next step)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 65,
+     "t": 1791298218.42,
+     "attempt": 3,
+     "step": 2,
+     "kind": "pass",
+     "text": "Step 2 passed by keyboard only",
+     "shot": "out/frames/jp_frame_019.png"
+    },
+    {
+     "i": 66,
+     "t": 1791298218.42,
+     "attempt": 3,
+     "step": 2,
+     "kind": "verified",
+     "text": "Verified by keyboard replay: step 2 now passes; #yubin (keyboard trap, WCAG 2.1.1) no longer blocks",
+     "barrier": {
+      "kind": "keyboard_trap",
+      "step": 2,
+      "element_id": "yubin",
+      "sc": "2.1.1",
+      "sc_title": "Keyboard",
+      "heard": "送付先の郵便番号, 編集, 123-4567",
+      "evidence": "Tab pressed 3 times, focus never left this field",
+      "context_text": "送付先の郵便番号",
+      "level": "A",
+      "check": "Tab replay",
+      "attempt": 2,
+      "status": "fixed",
+      "patch": "The postal code field had a script that pushed focus back into the field every time the user left it, so Tab and Shift+Tab could never move on. I removed that script. The field is still a normal labelled text box, and the page's navigation and formatting are unchanged.",
+      "patch_local": "郵便番号の入力欄には、欄から離れるたびにカーソルを欄へ戻すスクリプトがあり、Tabキーで次の項目へ進めませんでした。このスクリプトを削除しました。入力欄とラベルはそのままで、ページの移動や見た目は変わりません。",
+      "patch_engine": "LLM claude-sonnet-5-5",
+      "diff": "--- a/jp/step2.html\n+++ b/jp/step2.html\n@@ -19,7 +19,2 @@\n <div class=\"actions\"><button type=\"button\" id=\"next2\" class=\"btn\" onclick=\"location.href='step3.html'\">次へ</button></div>\n-<script id=\"postal-lookup\">\n-document.getElementById('yubin').addEventListener('blur', function () {\n-  var box = this; setTimeout(function () { box.focus(); }, 0);\n-});\n-</script>\n <p class=\"foot\">お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。</p>\n",
+      "precheck": {
+       "passed": true,
+       "checks": [
+        {
+         "name": "Target element still present",
+         "passed": true,
+         "detail": "#yubin"
+        },
+        {
+         "name": "Keyboard replay: Tab leaves the field",
+         "passed": true,
+         "detail": "focus moved to #denwa"
+        },
+        {
+         "name": "axe-core: no rule fails on this element",
+         "passed": true,
+         "detail": "0 violations on the element"
+        }
+       ]
+      },
+      "verified_attempt": 3
+     },
+     "shot": "out/frames/jp_frame_019.png"
+    },
+    {
+     "i": 67,
+     "t": 1791298218.46,
+     "attempt": 3,
+     "step": 3,
+     "kind": "hear",
+     "text": "ステップ3/3 – 申請内容の確認. ステップ3/3: 申請内容の確認"
+    },
+    {
+     "i": 68,
+     "t": 1791298218.47,
+     "attempt": 3,
+     "step": 3,
+     "kind": "tree",
+     "text": "- banner: みどり市 電子申請 （模擬） Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ\n- main:\n  - heading \"住民票の写し交付申請（模擬）\" [level=1]\n  - list:\n    - listitem: 1. 申請者\n    - listitem: 2. 請求内容\n    - listitem: 3. 確認\n  - 'heading \"ステップ3/3: 申請内容の確認\" [level=2]'\n  - table:\n    - rowgroup:\n      - row \"氏名 グエン・ヴァン・アン（架空）\":\n        - rowheader \"氏名\"\n        - cell \"グエン・ヴァン・アン（架空）\"\n      - row \"必要な通数 1通\":\n        - rowheader \"必要な通数\"\n        - cell \"1通\"\n      - row \"使用目的 就職手続き\":\n        - rowheader \"使用目的\"\n        - cell \"就職手続き\"\n  - button \"申請する\"\n  - paragraph: \"お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。\""
+    },
+    {
+     "i": 69,
+     "t": 1791298218.6,
+     "attempt": 3,
+     "step": 3,
+     "kind": "reached",
+     "text": "Reached the final confirmation step (確認)",
+     "shot": "out/frames/jp_frame_020.png"
+    },
+    {
+     "i": 70,
+     "t": 1791298218.94,
+     "attempt": 3,
+     "step": 3,
+     "kind": "hear",
+     "text": "申請する, ボタン",
+     "focus": "submit"
+    },
+    {
+     "i": 71,
+     "t": 1791298218.94,
+     "attempt": 3,
+     "step": 3,
+     "kind": "action",
+     "text": "skip “申請する” (guard: never submit, never log in)",
+     "engine": "rule (guard)",
+     "llm": null
+    },
+    {
+     "i": 72,
+     "t": 1791298219.25,
+     "attempt": 3,
+     "step": 3,
+     "kind": "hear",
+     "text": "(focus left the page)",
+     "focus": null
+    }
+   ],
+   "barriers": [
+    {
+     "kind": "ambiguous_label",
+     "step": 1,
+     "element_id": "honseki",
+     "sc": "2.4.6",
+     "sc_title": "Headings and Labels",
+     "heard": "fld_hnsk_01, 編集",
+     "evidence": "Screen reader reads a code instead of the label (accessible name “fld_hnsk_01” does not contain the visible label “本籍地”)",
+     "context_text": "本籍地 （外国籍の方は国籍・地域）",
+     "level": "AA",
+     "check": "accessibility-tree check",
+     "attempt": 1,
+     "status": "fixed",
+     "patch": "The 本籍地 field had a hidden code (\"fld_hnsk_01\") as its accessible name, so screen readers read the code instead of the caption. The visible caption is now a real label tied to the input, and the hidden code is removed. Screen readers now read \"本籍地 （外国籍の方は国籍・地域）\", and clicking the caption focuses the field. The look and behaviour of the page are otherwise unchanged.",
+     "patch_local": "「本籍地」の入力欄には、画面に見える見出しではなく「fld_hnsk_01」という内部コードが読み上げ用の名前として設定されていました。見出しを正式なラベル（label）として入力欄に関連付け、内部コードを削除しました。これにより、スクリーンリーダーは「本籍地 （外国籍の方は国籍・地域）」と読み上げ、見出しをクリックしても入力欄に移動します。ページの見た目や動作は変わりません。",
+     "patch_engine": "LLM claude-sonnet-5-5",
+     "diff": "--- a/jp/step1.html\n+++ b/jp/step1.html\n@@ -16,3 +16,3 @@\n <div class=\"field\"><label for=\"jusho\">住所</label><input id=\"jusho\" type=\"text\"></div>\n-<div class=\"field\"><div class=\"lbl\">本籍地 <span class=\"hint\">（外国籍の方は国籍・地域）</span></div><input id=\"honseki\" type=\"text\" aria-label=\"fld_hnsk_01\"></div>\n+<div class=\"field\"><label for=\"honseki\" class=\"lbl\">本籍地 <span class=\"hint\">（外国籍の方は国籍・地域）</span></label><input id=\"honseki\" type=\"text\"></div>\n <div class=\"actions\"><button type=\"button\" id=\"next1\" class=\"btn\" onclick=\"location.href='step2.html'\">次へ</button></div>\n",
+     "precheck": {
+      "passed": true,
+      "checks": [
+       {
+        "name": "Target element still present",
+        "passed": true,
+        "detail": "#honseki"
+       },
+       {
+        "name": "Accessibility tree: accessible name matches the visible label",
+        "passed": true,
+        "detail": "accessible name “本籍地 （外国籍の方は国籍・地域）” contains the visible label"
+       },
+       {
+        "name": "axe-core: no rule fails on this element",
+        "passed": true,
+        "detail": "0 violations on the element"
+       }
+      ]
+     },
+     "verified_attempt": 2
+    },
+    {
+     "kind": "keyboard_trap",
+     "step": 2,
+     "element_id": "yubin",
+     "sc": "2.1.1",
+     "sc_title": "Keyboard",
+     "heard": "送付先の郵便番号, 編集, 123-4567",
+     "evidence": "Tab pressed 3 times, focus never left this field",
+     "context_text": "送付先の郵便番号",
+     "level": "A",
+     "check": "Tab replay",
+     "attempt": 2,
+     "status": "fixed",
+     "patch": "The postal code field had a script that pushed focus back into the field every time the user left it, so Tab and Shift+Tab could never move on. I removed that script. The field is still a normal labelled text box, and the page's navigation and formatting are unchanged.",
+     "patch_local": "郵便番号の入力欄には、欄から離れるたびにカーソルを欄へ戻すスクリプトがあり、Tabキーで次の項目へ進めませんでした。このスクリプトを削除しました。入力欄とラベルはそのままで、ページの移動や見た目は変わりません。",
+     "patch_engine": "LLM claude-sonnet-5-5",
+     "diff": "--- a/jp/step2.html\n+++ b/jp/step2.html\n@@ -19,7 +19,2 @@\n <div class=\"actions\"><button type=\"button\" id=\"next2\" class=\"btn\" onclick=\"location.href='step3.html'\">次へ</button></div>\n-<script id=\"postal-lookup\">\n-document.getElementById('yubin').addEventListener('blur', function () {\n-  var box = this; setTimeout(function () { box.focus(); }, 0);\n-});\n-</script>\n <p class=\"foot\">お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。</p>\n",
+     "precheck": {
+      "passed": true,
+      "checks": [
+       {
+        "name": "Target element still present",
+        "passed": true,
+        "detail": "#yubin"
+       },
+       {
+        "name": "Keyboard replay: Tab leaves the field",
+        "passed": true,
+        "detail": "focus moved to #denwa"
+       },
+       {
+        "name": "axe-core: no rule fails on this element",
+        "passed": true,
+        "detail": "0 violations on the element"
+       }
+      ]
+     },
+     "verified_attempt": 3
+    }
+   ],
+   "patches": [
+    {
+     "file": "step1.html",
+     "summary": "The 本籍地 field had a hidden code (\"fld_hnsk_01\") as its accessible name, so screen readers read the code instead of the caption. The visible caption is now a real label tied to the input, and the hidden code is removed. Screen readers now read \"本籍地 （外国籍の方は国籍・地域）\", and clicking the caption focuses the field. The look and behaviour of the page are otherwise unchanged.",
+     "diff": "--- a/jp/step1.html\n+++ b/jp/step1.html\n@@ -16,3 +16,3 @@\n <div class=\"field\"><label for=\"jusho\">住所</label><input id=\"jusho\" type=\"text\"></div>\n-<div class=\"field\"><div class=\"lbl\">本籍地 <span class=\"hint\">（外国籍の方は国籍・地域）</span></div><input id=\"honseki\" type=\"text\" aria-label=\"fld_hnsk_01\"></div>\n+<div class=\"field\"><label for=\"honseki\" class=\"lbl\">本籍地 <span class=\"hint\">（外国籍の方は国籍・地域）</span></label><input id=\"honseki\" type=\"text\"></div>\n <div class=\"actions\"><button type=\"button\" id=\"next1\" class=\"btn\" onclick=\"location.href='step2.html'\">次へ</button></div>\n",
+     "engine": "LLM claude-sonnet-5-5"
+    },
+    {
+     "file": "step2.html",
+     "summary": "The postal code field had a script that pushed focus back into the field every time the user left it, so Tab and Shift+Tab could never move on. I removed that script. The field is still a normal labelled text box, and the page's navigation and formatting are unchanged.",
+     "diff": "--- a/jp/step2.html\n+++ b/jp/step2.html\n@@ -19,7 +19,2 @@\n <div class=\"actions\"><button type=\"button\" id=\"next2\" class=\"btn\" onclick=\"location.href='step3.html'\">次へ</button></div>\n-<script id=\"postal-lookup\">\n-document.getElementById('yubin').addEventListener('blur', function () {\n-  var box = this; setTimeout(function () { box.focus(); }, 0);\n-});\n-</script>\n <p class=\"foot\">お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。</p>\n",
+     "engine": "LLM claude-sonnet-5-5"
+    }
+   ],
+   "advisories": [],
+   "audit": [
+    {
+     "step": 1,
+     "element": "honseki",
+     "sc": "2.4.6",
+     "sc_title": "Headings and Labels",
+     "jis_title": "見出し及びラベル",
+     "level": "AA",
+     "attempt": 1,
+     "vn_result": "Không đạt → đã sửa, kiểm lại đạt",
+     "jis_result": "不適合 → 修正後の再試験で適合",
+     "heard": "fld_hnsk_01, 編集",
+     "evidence": "Screen reader reads a code instead of the label (accessible name “fld_hnsk_01” does not contain the visible label “本籍地”)",
+     "action": "The 本籍地 field had a hidden code (\"fld_hnsk_01\") as its accessible name, so screen readers read the code instead of the caption. The visible caption is now a real label tied to the input, and the hidden code is removed. Screen readers now read \"本籍地 （外国籍の方は国籍・地域）\", and clicking the caption focuses the field. The look and behaviour of the page are otherwise unchanged.",
+     "action_local": "「本籍地」の入力欄には、画面に見える見出しではなく「fld_hnsk_01」という内部コードが読み上げ用の名前として設定されていました。見出しを正式なラベル（label）として入力欄に関連付け、内部コードを削除しました。これにより、スクリーンリーダーは「本籍地 （外国籍の方は国籍・地域）」と読み上げ、見出しをクリックしても入力欄に移動します。ページの見た目や動作は変わりません。",
+     "patch_engine": "LLM claude-sonnet-5-5",
+     "verified_attempt": 2
+    },
+    {
+     "step": 2,
+     "element": "yubin",
+     "sc": "2.1.1",
+     "sc_title": "Keyboard",
+     "jis_title": "キーボード",
+     "level": "A",
+     "attempt": 2,
+     "vn_result": "Không đạt → đã sửa, kiểm lại đạt",
+     "jis_result": "不適合 → 修正後の再試験で適合",
+     "heard": "送付先の郵便番号, 編集, 123-4567",
+     "evidence": "Tab pressed 3 times, focus never left this field",
+     "action": "The postal code field had a script that pushed focus back into the field every time the user left it, so Tab and Shift+Tab could never move on. I removed that script. The field is still a normal labelled text box, and the page's navigation and formatting are unchanged.",
+     "action_local": "郵便番号の入力欄には、欄から離れるたびにカーソルを欄へ戻すスクリプトがあり、Tabキーで次の項目へ進めませんでした。このスクリプトを削除しました。入力欄とラベルはそのままで、ページの移動や見た目は変わりません。",
+     "patch_engine": "LLM claude-sonnet-5-5",
+     "verified_attempt": 3
+    }
+   ],
+   "axe": {
+    "original": {
+     "step1.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ],
+     "step2.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ],
+     "step3.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ]
+    },
+    "fixed": {
+     "step1.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ],
+     "step2.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ],
+     "step3.html": [
+      {
+       "rule": "color-contrast",
+       "impact": "serious",
+       "help": "Elements must meet minimum color contrast ratio thresholds",
+       "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+       ],
+       "targets": [
+        "p"
+       ]
+      }
+     ]
+    },
+    "comparison": [
+     {
+      "step": 1,
+      "kind": "ambiguous_label",
+      "sc": "2.4.6",
+      "element": "honseki",
+      "agent": true,
+      "axe": false,
+      "axe_rules": []
+     },
+     {
+      "step": 2,
+      "kind": "keyboard_trap",
+      "sc": "2.1.1",
+      "element": "yubin",
+      "agent": true,
+      "axe": false,
+      "axe_rules": []
+     }
+    ],
+    "axe_only": [
+     {
+      "step": 1,
+      "rule": "color-contrast",
+      "impact": "serious",
+      "sc": [
+       "1.4.3"
+      ],
+      "target": "p",
+      "help": "Elements must meet minimum color contrast ratio thresholds"
+     },
+     {
+      "step": 2,
+      "rule": "color-contrast",
+      "impact": "serious",
+      "sc": [
+       "1.4.3"
+      ],
+      "target": "p",
+      "help": "Elements must meet minimum color contrast ratio thresholds"
+     },
+     {
+      "step": 3,
+      "rule": "color-contrast",
+      "impact": "serious",
+      "sc": [
+       "1.4.3"
+      ],
+      "target": "p",
+      "help": "Elements must meet minimum color contrast ratio thresholds"
+     }
+    ],
+    "fixed_violations": 3
+   }
+  }
+ ],
+ "llm_calls": [
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 39733,
+   "tries": 1,
+   "key": "5800f0ebee1c895a5c91301f",
+   "error": "",
+   "at": "2026-10-06T21:17:08"
+  },
+  {
+   "purpose": "write patch",
+   "model": "claude-sonnet-5-5",
+   "source": "cache",
+   "ok": true,
+   "ms": 5787,
+   "tries": 1,
+   "key": "64f768b613b4a4a38e7d8d4e",
+   "error": "",
+   "at": "2026-10-06T21:11:45"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 8743,
+   "tries": 1,
+   "key": "d125c70ac7843a755f0f9f3f",
+   "error": "",
+   "at": "2026-10-06T21:17:18"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 8992,
+   "tries": 1,
+   "key": "8ff927d752a66942e513276b",
+   "error": "",
+   "at": "2026-10-06T21:17:27"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 11549,
+   "tries": 1,
+   "key": "e9dfa30f63c56ac7a7e0d71c",
+   "error": "",
+   "at": "2026-10-06T21:17:39"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 6561,
+   "tries": 1,
+   "key": "a052d500075574deebb7d665",
+   "error": "",
+   "at": "2026-10-06T21:17:46"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 8059,
+   "tries": 1,
+   "key": "7a344749d6e38e11abb782e0",
+   "error": "",
+   "at": "2026-10-06T21:17:55"
+  },
+  {
+   "purpose": "write patch",
+   "model": "claude-sonnet-5-5",
+   "source": "cache",
+   "ok": true,
+   "ms": 8455,
+   "tries": 1,
+   "key": "42ffa96f2daf6f59d3e72037",
+   "error": "",
+   "at": "2026-10-06T21:12:38"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 8743,
+   "tries": 1,
+   "key": "d125c70ac7843a755f0f9f3f",
+   "error": "",
+   "at": "2026-10-06T21:17:18"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 8992,
+   "tries": 1,
+   "key": "8ff927d752a66942e513276b",
+   "error": "",
+   "at": "2026-10-06T21:17:27"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 11549,
+   "tries": 1,
+   "key": "e9dfa30f63c56ac7a7e0d71c",
+   "error": "",
+   "at": "2026-10-06T21:17:39"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 6561,
+   "tries": 1,
+   "key": "a052d500075574deebb7d665",
+   "error": "",
+   "at": "2026-10-06T21:17:46"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 8059,
+   "tries": 1,
+   "key": "7a344749d6e38e11abb782e0",
+   "error": "",
+   "at": "2026-10-06T21:17:55"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 13394,
+   "tries": 1,
+   "key": "7cabcb2d7dab83b45ef150f2",
+   "error": "",
+   "at": "2026-10-06T21:18:11"
+  },
+  {
+   "purpose": "write patch",
+   "model": "claude-sonnet-5-5",
+   "source": "cache",
+   "ok": true,
+   "ms": 5432,
+   "tries": 1,
+   "key": "026271a2467e4869da864415",
+   "error": "",
+   "at": "2026-10-06T21:13:06"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 8743,
+   "tries": 1,
+   "key": "d125c70ac7843a755f0f9f3f",
+   "error": "",
+   "at": "2026-10-06T21:17:18"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 8992,
+   "tries": 1,
+   "key": "8ff927d752a66942e513276b",
+   "error": "",
+   "at": "2026-10-06T21:17:27"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 11549,
+   "tries": 1,
+   "key": "e9dfa30f63c56ac7a7e0d71c",
+   "error": "",
+   "at": "2026-10-06T21:17:39"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 6561,
+   "tries": 1,
+   "key": "a052d500075574deebb7d665",
+   "error": "",
+   "at": "2026-10-06T21:17:46"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 8059,
+   "tries": 1,
+   "key": "7a344749d6e38e11abb782e0",
+   "error": "",
+   "at": "2026-10-06T21:17:55"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 13394,
+   "tries": 1,
+   "key": "7cabcb2d7dab83b45ef150f2",
+   "error": "",
+   "at": "2026-10-06T21:18:11"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 49458,
+   "tries": 1,
+   "key": "017678b90df47b61d781d96f",
+   "error": "",
+   "at": "2026-10-06T21:37:37"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 45779,
+   "tries": 1,
+   "key": "6bf16b3b9f4c558997c5f7ae",
+   "error": "",
+   "at": "2026-10-06T21:38:23"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 10252,
+   "tries": 1,
+   "key": "d11630cca71d4181b53babdd",
+   "error": "",
+   "at": "2026-10-06T21:38:33"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 19641,
+   "tries": 1,
+   "key": "75a78b5e86c4e8d7b4cae9ca",
+   "error": "",
+   "at": "2026-10-06T21:34:34"
+  },
+  {
+   "purpose": "write patch",
+   "model": "claude-sonnet-5-5",
+   "source": "cache",
+   "ok": true,
+   "ms": 6283,
+   "tries": 1,
+   "key": "8e02d4b8adddd3e59f68068b",
+   "error": "",
+   "at": "2026-10-06T21:34:41"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 49458,
+   "tries": 1,
+   "key": "017678b90df47b61d781d96f",
+   "error": "",
+   "at": "2026-10-06T21:37:37"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 45779,
+   "tries": 1,
+   "key": "6bf16b3b9f4c558997c5f7ae",
+   "error": "",
+   "at": "2026-10-06T21:38:23"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 10252,
+   "tries": 1,
+   "key": "d11630cca71d4181b53babdd",
+   "error": "",
+   "at": "2026-10-06T21:38:33"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 47696,
+   "tries": 1,
+   "key": "34348edc90e9405760d4b54c",
+   "error": "",
+   "at": "2026-10-06T21:39:21"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 14580,
+   "tries": 1,
+   "key": "f3b85cc64a287791db0ed193",
+   "error": "",
+   "at": "2026-10-06T21:39:37"
+  },
+  {
+   "purpose": "write patch",
+   "model": "claude-sonnet-5-5",
+   "source": "cache",
+   "ok": true,
+   "ms": 5177,
+   "tries": 1,
+   "key": "a2c076e478622e0e91e6396e",
+   "error": "",
+   "at": "2026-10-06T21:36:46"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 49458,
+   "tries": 1,
+   "key": "017678b90df47b61d781d96f",
+   "error": "",
+   "at": "2026-10-06T21:37:37"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 45779,
+   "tries": 1,
+   "key": "6bf16b3b9f4c558997c5f7ae",
+   "error": "",
+   "at": "2026-10-06T21:38:23"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 10252,
+   "tries": 1,
+   "key": "d11630cca71d4181b53babdd",
+   "error": "",
+   "at": "2026-10-06T21:38:33"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 47696,
+   "tries": 1,
+   "key": "34348edc90e9405760d4b54c",
+   "error": "",
+   "at": "2026-10-06T21:39:21"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 14580,
+   "tries": 1,
+   "key": "f3b85cc64a287791db0ed193",
+   "error": "",
+   "at": "2026-10-06T21:39:37"
+  },
+  {
+   "purpose": "interpret field",
+   "model": "claude-haiku-4-5-20251001",
+   "source": "cache",
+   "ok": true,
+   "ms": 10526,
+   "tries": 1,
+   "key": "412851a80bd0696e6f84016d",
+   "error": "",
+   "at": "2026-10-06T21:39:47"
+  }
+ ],
+ "sim_metrics": {
+  "n_defect_variants": 60,
+  "n_clean_variants": 20,
+  "n_blocking_defects": 50,
+  "n_nonblocking_defects": 76,
+  "blocking_detection": {
+   "agent": {
+    "tp": 48,
+    "fp": 6,
+    "fn": 2,
+    "tp_first_pass": 38,
+    "precision": 0.8888888888888888,
+    "recall": 0.96,
+    "recall_first_pass_only": 0.76
+   },
+   "axe": {
+    "tp": 23,
+    "fp": 25,
+    "fn": 27,
+    "nonblocking_flagged": 25,
+    "precision": 0.4791666666666667,
+    "recall": 0.46
+   }
+  },
+  "breakpoint_step_localization": {
+   "n_variants_with_blocking": 38,
+   "agent_accuracy": 1.0,
+   "axe_first_violating_step_accuracy": 0.5526315789473685
+  },
+  "journey_completion_defect_variants": {
+   "before_repair": 0.36666666666666664,
+   "after_repair": 0.8333333333333334,
+   "handoff_to_human": 10,
+   "unresolved": 0
+  },
+  "clean_false_alarm": {
+   "n": 20,
+   "agent_breakpoints": 0,
+   "agent_completed": 20,
+   "axe_violation_nodes": 0,
+   "axe_pages_flagged": 0
+  },
+  "runtime_seconds": 105.4
+ },
+ "runtime_seconds": 71.9,
+ "complete": true
+}

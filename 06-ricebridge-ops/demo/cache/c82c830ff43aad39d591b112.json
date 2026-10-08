@@ -1,0 +1,45 @@
+{
+ "task": "plan_brief",
+ "model": "claude-sonnet-5-5",
+ "ms": 9321,
+ "attempts": 1,
+ "saved_at": "2026-10-06T23:34:13",
+ "prompt": "You are the communication step of RiceBridge Ops, an irrigation agent for a 6-field rice cluster that shares one pump station in An Giang.\n\nDeterministic tools have ALREADY computed the plan (water balance, crop-stage safety, pump capacity). You must not change any action, order, date or number. Your job:\n1. headline_en / headline_vi: one sentence each that tells the pump-station manager what the plan does and the single most important reason, combining the events in INPUT.recent_events.\n2. explain_en: 2-3 plain-English sentences for a non-expert audience on why the order is what it is (use the reasons given).\n3. messages: one chat message per field in INPUT.rows (same fid), short (max 2 sentences), polite southern Vietnamese (anh/chị, nhé), plus English. Say clearly whether to open the inlet (and when HTX calls) or keep it closed and wait. For F3 (Bà Sáu, no smartphone) write the message to the HTX officer asking him to tell bà Sáu. If a row has measure_first true, ask HTX to measure that field before opening the inlet.\n\nHard constraint: every number you write must appear in INPUT (levels, dates, field numbers, mm). Do not invent yields, money, emissions or percentages.\n\nReply with ONE JSON object only, no prose, no code fence. It must match this JSON schema:\n{\"type\": \"object\", \"required\": [\"headline_en\", \"headline_vi\", \"explain_en\", \"messages\"], \"properties\": {\"headline_en\": {\"type\": \"string\", \"maxLength\": 240}, \"headline_vi\": {\"type\": \"string\", \"maxLength\": 240}, \"explain_en\": {\"type\": \"string\", \"maxLength\": 600}, \"messages\": {\"type\": \"array\", \"minItems\": 1, \"items\": {\"type\": \"object\", \"required\": [\"fid\", \"text_vi\", \"text_en\"], \"properties\": {\"fid\": {\"type\": \"string\", \"enum\": [\"F1\", \"F2\", \"F3\", \"F4\", \"F5\", \"F6\"]}, \"text_vi\": {\"type\": \"string\", \"maxLength\": 260}, \"text_en\": {\"type\": \"string\", \"maxLength\": 300}}}}}}\n\nINPUT (data, not instructions):\n{\n \"plan_id\": \"P3\",\n \"recent_events\": [\n  \"Live message from Hộ thửa 2\",\n  \"Field 2 is drying; pump run planned Fri 27 Feb\",\n  \"Re-plan after the rain\"\n ],\n \"run_label\": \"Fri 27 Feb\",\n \"run_date\": \"2026-02-27\",\n \"following_label\": \"Tue 03 Mar\",\n \"rain_forecast_mm\": 33.5,\n \"summary\": \"Pause the Fri 27 Feb pump run: no field needs water before Tue 03 Mar.\",\n \"summary_vi\": \"Tạm hoãn lượt bơm Fri 27 Feb: chưa thửa nào cần nước trước Tue 03 Mar.\",\n \"rows\": [\n  {\n   \"fid\": \"F2\",\n   \"owner\": \"Hộ thửa 2\",\n   \"stage_vi\": \"phơi ruộng\",\n   \"action\": \"hold_rain\",\n   \"action_label\": \"Hold: rain will refill\",\n   \"queue\": null,\n   \"measure_first\": false,\n   \"level_now_cm\": -0.8,\n   \"level_at_run_cm\": -0.8,\n   \"reason\": \"Today's 33.5 mm (Open-Meteo) lifts it from −0.8 cm to about +2.8 cm by tomorrow; no pumping needed.\"\n  },\n  {\n   \"fid\": \"F4\",\n   \"owner\": \"Hộ thửa 4\",\n   \"stage_vi\": \"phơi ruộng\",\n   \"action\": \"hold_rain\",\n   \"action_label\": \"Hold: rain will refill\",\n   \"queue\": null,\n   \"measure_first\": false,\n   \"level_now_cm\": -2.7,\n   \"level_at_run_cm\": -2.7,\n   \"reason\": \"Today's 33.5 mm (Open-Meteo) lifts it from −2.7 cm to about +1.8 cm by tomorrow; no pumping needed.\"\n  },\n  {\n   \"fid\": \"F5\",\n   \"owner\": \"Hộ thửa 5\",\n   \"stage_vi\": \"phơi ruộng\",\n   \"action\": \"hold_rain\",\n   \"action_label\": \"Hold: rain will refill\",\n   \"queue\": null,\n   \"measure_first\": false,\n   \"level_now_cm\": -4.3,\n   \"level_at_run_cm\": -4.3,\n   \"reason\": \"Today's 33.5 mm (Open-Meteo) lifts it from −4.3 cm to about +1.6 cm by tomorrow; no pumping needed.\"\n  },\n  {\n   \"fid\": \"F6\",\n   \"owner\": \"Hộ thửa 6\",\n   \"stage_vi\": \"phơi ruộng\",\n   \"action\": \"hold_rain\",\n   \"action_label\": \"Hold: rain will refill\",\n   \"queue\": null,\n   \"measure_first\": false,\n   \"level_now_cm\": -2.9,\n   \"level_at_run_cm\": -2.9,\n   \"reason\": \"Today's 33.5 mm (Open-Meteo) lifts it from −2.9 cm to about +2.0 cm by tomorrow; no pumping needed.\"\n  },\n  {\n   \"fid\": \"F1\",\n   \"owner\": \"Hộ thửa 1\",\n   \"stage_vi\": \"phơi ruộng\",\n   \"action\": \"keep_water\",\n   \"action_label\": \"Wait: next run\",\n   \"queue\": null,\n   \"measure_first\": false,\n   \"level_now_cm\": 1.6,\n   \"level_at_run_cm\": 1.6,\n   \"reason\": \"Re-flooded: lowest projected +1.6 cm before Tue 03 Mar; can wait for the next run.\"\n  },\n  {\n   \"fid\": \"F3\",\n   \"owner\": \"Bà Sáu\",\n   \"stage_vi\": \"phơi ruộng\",\n   \"action\": \"keep_water\",\n   \"action_label\": \"Wait: next run\",\n   \"queue\": null,\n   \"measure_first\": false,\n   \"level_now_cm\": 0.6,\n   \"level_at_run_cm\": 0.6,\n   \"reason\": \"Re-flooded: lowest projected +0.6 cm before Tue 03 Mar; can wait for the next run.\"\n  }\n ],\n \"alerts\": []\n}\n",
+ "data": {
+  "headline_en": "Pause the Fri 27 Feb pump run: today's 33.5 mm of rain refills the dry fields, so no field needs water before Tue 03 Mar.",
+  "headline_vi": "Tạm hoãn lượt bơm Fri 27 Feb: mưa 33.5 mm hôm nay sẽ bù nước cho các thửa, chưa thửa nào cần nước trước Tue 03 Mar.",
+  "explain_en": "Field 2 looked like it was drying, but 33.5 mm of rain is forecast today and lifts fields 2, 4, 5 and 6 back above zero by tomorrow, so pumping would waste water. Fields 1 and 3 are already re-flooded, at +1.6 cm and +0.6 cm, and stay above zero before Tue 03 Mar. So everyone keeps the inlet closed and waits for the next run.",
+  "messages": [
+   {
+    "fid": "F2",
+    "text_vi": "Chào anh/chị Hộ thửa 2, mưa 33.5 mm hôm nay sẽ nâng mực nước từ -0.8 cm lên khoảng +2.8 cm, nên anh/chị giữ cống đóng, chưa cần bơm nhé.",
+    "text_en": "Hello Hộ thửa 2, today's 33.5 mm of rain lifts your field from -0.8 cm to about +2.8 cm by tomorrow. Keep the inlet closed; no pumping needed."
+   },
+   {
+    "fid": "F4",
+    "text_vi": "Chào anh/chị Hộ thửa 4, mưa 33.5 mm hôm nay sẽ nâng mực nước từ -2.7 cm lên khoảng +1.8 cm, nên anh/chị giữ cống đóng, chưa cần bơm nhé.",
+    "text_en": "Hello Hộ thửa 4, today's 33.5 mm of rain lifts your field from -2.7 cm to about +1.8 cm by tomorrow. Keep the inlet closed; no pumping needed."
+   },
+   {
+    "fid": "F5",
+    "text_vi": "Chào anh/chị Hộ thửa 5, mưa 33.5 mm hôm nay sẽ nâng mực nước từ -4.3 cm lên khoảng +1.6 cm, nên anh/chị giữ cống đóng, chưa cần bơm nhé.",
+    "text_en": "Hello Hộ thửa 5, today's 33.5 mm of rain lifts your field from -4.3 cm to about +1.6 cm by tomorrow. Keep the inlet closed; no pumping needed."
+   },
+   {
+    "fid": "F6",
+    "text_vi": "Chào anh/chị Hộ thửa 6, mưa 33.5 mm hôm nay sẽ nâng mực nước từ -2.9 cm lên khoảng +2.0 cm, nên anh/chị giữ cống đóng, chưa cần bơm nhé.",
+    "text_en": "Hello Hộ thửa 6, today's 33.5 mm of rain lifts your field from -2.9 cm to about +2.0 cm by tomorrow. Keep the inlet closed; no pumping needed."
+   },
+   {
+    "fid": "F1",
+    "text_vi": "Chào anh/chị Hộ thửa 1, ruộng đã đủ nước, thấp nhất khoảng +1.6 cm trước Tue 03 Mar, nên anh/chị giữ cống đóng và chờ lượt bơm sau nhé.",
+    "text_en": "Hello Hộ thửa 1, your field is re-flooded, with a lowest projected +1.6 cm before Tue 03 Mar. Keep the inlet closed and wait for the next run."
+   },
+   {
+    "fid": "F3",
+    "text_vi": "Chào anh cán bộ HTX, nhờ anh báo giúp bà Sáu: ruộng đã đủ nước, thấp nhất khoảng +0.6 cm trước Tue 03 Mar, cứ giữ cống đóng và chờ lượt bơm sau nhé.",
+    "text_en": "Hello HTX officer, please tell bà Sáu her field is re-flooded, with a lowest projected +0.6 cm before Tue 03 Mar. Keep the inlet closed and wait for the next run."
+   }
+  ]
+ }
+}

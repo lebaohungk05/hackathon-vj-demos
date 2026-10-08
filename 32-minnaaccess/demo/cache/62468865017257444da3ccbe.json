@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 5967,
+ "tries": 1,
+ "created": "2026-10-06T23:51:37",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"mouse_only\",\n  \"wcag\": \"2.1.1 Keyboard\",\n  \"element_id\": \"next2\",\n  \"screen_reader_heard\": \"(never announced: not in Tab order)\",\n  \"evidence\": \"Full Tab cycle (3 stops) never reached “Tiếp tục”: it is a <div> with onclick, not focusable, so Enter and Space cannot activate it\",\n  \"visible_caption\": \"Tiếp tục\"\n },\n \"page_language\": \"vi-VN\",\n \"file\": \"step2.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"vi\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>Bước 2/4 – Thông tin liên hệ</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body>\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">Cổng Dịch vụ công <b>MÔ PHỎNG</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · not a real government site · dữ liệu giả</div></header>\\n<main>\\n<h1>Cấp Phiếu lý lịch tư pháp</h1>\\n<ol class=\\\"steps\\\"><li>1. Người yêu cầu</li><li class=\\\"on\\\">2. Liên hệ</li><li>3. Mục đích</li><li>4. Xác nhận</li></ol>\\n<h2>Bước 2/4: Thông tin liên hệ</h2>\\n<div class=\\\"field\\\"><label for=\\\"email\\\">Email</label><input id=\\\"email\\\" type=\\\"email\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"sdt\\\">Số điện thoại</label><input id=\\\"sdt\\\" type=\\\"tel\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"diachi\\\">Nơi ĐKTT</label><input id=\\\"diachi\\\" type=\\\"text\\\"></div>\\n<div class=\\\"actions\\\"><div class=\\\"btn\\\" id=\\\"next2\\\" onclick=\\\"location.href='step3.html'\\\">Tiếp tục</div></div>\\n<script id=\\\"phone-mask\\\">\\ndocument.getElementById('sdt').addEventListener('blur', function () {\\n  this.value = this.value.replace(/\\\\D/g, '').slice(0, 10);\\n});\\n</script>\\n<p class=\\\"foot\\\">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "<div class=\"btn\" id=\"next2\" onclick=\"location.href='step3.html'\">Tiếp tục</div>",
+    "replace": "<button type=\"button\" class=\"btn\" id=\"next2\" onclick=\"location.href='step3.html'\">Tiếp tục</button>"
+   }
+  ],
+  "explanation": "The \"Tiếp tục\" (Continue) control was a plain div with a click handler, so the keyboard could not reach or activate it. It is now a native button. A button is in the Tab order, is announced as a button, and works with Enter and Space. It still goes to step3.html and keeps the same look through the existing \"btn\" class. It does not submit anything.",
+  "explanation_local": "Nút \"Tiếp tục\" trước đây chỉ là một thẻ div có sự kiện nhấp chuột, nên bàn phím không thể chọn hay kích hoạt được. Giờ nút này là thẻ button chuẩn: có thể chuyển tới bằng phím Tab, trình đọc màn hình đọc là \"nút\", và bấm được bằng Enter hoặc Space. Nút vẫn chuyển sang step3.html và giữ nguyên giao diện nhờ lớp \"btn\". Nút không gửi dữ liệu đi đâu.",
+  "technique": "Replace the clickable div with a native button element, keeping the id, class and navigation handler."
+ }
+}

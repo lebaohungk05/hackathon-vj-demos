@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>RiceBridge Ops · Live demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/fonts/fonts.css">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="vjline"></div>
+<div class="app" id="app">
+  <header>
+    <div class="brand">
+      <div class="logo">RB</div>
+      <div><h1>RiceBridge Ops</h1><small data-t="AWD irrigation agent · 6 fields, 1 shared pump · An Giang">AWD irrigation agent · 6 fields, 1 shared pump · An Giang</small></div>
+    </div>
+    <div class="tabs">
+      <button class="tab on" data-view="htx" data-t="Farmer / HTX">Farmer / HTX</button>
+      <button class="tab" data-view="carbon" data-t="Carbon project">Carbon project</button>
+    </div>
+    <div class="hdr-right">
+      <div id="chips" class="chips"></div>
+      <div id="langseg" class="seg" role="group" aria-label="Language" data-tt="Language (J)">
+        <button type="button" data-lang="en" aria-pressed="true" class="on">EN</button><button type="button" data-lang="ja" aria-pressed="false">JA</button><button type="button" data-lang="vi" aria-pressed="false">VI</button>
+      </div>
+      <div class="clockbox"><small data-t="Scenario clock">Scenario clock</small><b id="clock">–</b></div>
+      <div class="controls">
+        <button id="reset" class="hbtn ghost" data-tt="Reset (R)" data-t="Reset">Reset</button>
+        <button id="prev" class="hbtn ghost" data-tt="Previous event (←)">◀</button>
+        <button id="next" class="hbtn primary" data-tt="Next event (→)">Next ▶</button>
+      </div>
+    </div>
+  </header>
+  <nav id="rail" class="rail"></nav>
+  <main id="main">
+    <section id="view-htx" class="view htx">
+      <aside class="chatcol">
+        <div class="chat">
+          <div class="chathead">
+            <div class="avatar">A</div>
+            <div class="chatname"><b data-t="Cluster A group chat · HTX">Cluster A group chat · HTX</b><small data-t="Zalo-style · farmers write in Vietnamese">Zalo-style · farmers write in Vietnamese</small></div>
+          </div>
+          <div id="messages" class="messages"></div>
+          <div id="typing" class="typing" hidden></div>
+          <form id="compose" class="live" autocomplete="off">
+            <div class="livehead"><span class="livetag"><i></i><span data-t="Live input">Gửi tin</span></span><span data-t="Type a farmer message: LLM reads it, tools decide">Type a farmer message: LLM reads it, tools decide</span><span id="queue" class="queue" hidden></span></div>
+            <div id="samples" class="samples"></div>
+            <div class="composerow">
+              <select id="sender" aria-label="sender"></select>
+              <input id="text" maxlength="300" data-tp="Type in Vietnamese, like a farmer… (M)" placeholder="Type in Vietnamese, like a farmer… (M)" aria-label="message">
+              <button id="send" class="sendbtn" type="submit" data-t="Send">Send</button>
+            </div>
+            <div id="progress" class="progress" hidden></div>
+          </form>
+        </div>
+      </aside>
+      <section class="stage">
+        <div id="shead" class="shead"></div>
+        <div id="focal" class="focal"></div>
+        <div id="plan" class="card plan"></div>
+      </section>
+      <aside class="side">
+        <div id="trace" class="card tracecard"></div>
+        <div id="fields" class="card fieldscard"></div>
+        <div id="wicard" class="card wicard"></div>
+      </aside>
+    </section>
+    <section id="view-carbon" class="view carbon" hidden></section>
+  </main>
+  <footer id="foot"></footer>
+</div>
+<div id="whatif" class="modal" hidden>
+  <div class="sheet" role="dialog" aria-label="What-if lab">
+    <div class="sheethead">
+      <div><span class="kicker" style="--tone:var(--info)"><i></i><span data-t="What-if lab · sandbox">What-if lab · sandbox</span></span>
+        <h3 data-t="Change one input, the deterministic planner re-plans, the LLM explains">Change one input, the deterministic planner re-plans, the LLM explains</h3></div>
+      <button id="wi-close" class="closebtn" data-tt="Close (Esc)">✕</button>
+    </div>
+    <div class="sheetbody">
+      <div class="wictl" id="wi-controls"></div>
+      <div class="wires" id="wi-result"></div>
+    </div>
+  </div>
+</div>
+<div id="toast" class="toast" hidden></div>
+<script src="/i18n.js"></script>
+<script src="/app.js"></script>
+<script src="presentation.js"></script>
+</body>
+</html>

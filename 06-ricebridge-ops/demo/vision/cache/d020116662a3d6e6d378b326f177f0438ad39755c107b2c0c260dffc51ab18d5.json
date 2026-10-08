@@ -1,0 +1,11 @@
+{
+  "file": "gauge_19.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.1,
+  "retries": 0,
+  "result": {
+    "reading_cm": -0.9,
+    "confidence": 0.8,
+    "reason": "The 0 mark is at y≈421 and +5 at y≈351, so one cm is about 14 px. The blue water surface starts at y≈434, about 13 px below 0."
+  }
+}

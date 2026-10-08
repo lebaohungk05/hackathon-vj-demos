@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><title>Tra cứu tình trạng hồ sơ - Cổng dịch vụ công (mô phỏng)</title>
+<style>body{font-family:sans-serif;max-width:640px;margin:auto} .f{margin:8px 0} .btn{display:inline-block;background:#b00;color:#fff;padding:6px 12px;cursor:pointer} .h2{font-size:1.4em;font-weight:bold}</style>
+</head><body>
+<header><h1>Tra cứu tình trạng hồ sơ</h1></header>
+<main>
+<section id="step1" data-step="1" tabindex="-1"><h2>Bước 1: Nhập thông tin tra cứu</h2>
+<div class="f"><label for="s1f1">Số CCCD</label><input id="s1f1" data-req="1"></div>
+<div class="f"><label for="s1f2">Số biên nhận hồ sơ</label><input id="s1f2" data-req="1"></div>
+<p><a href="#huong-dan">Xem hướng dẫn thực hiện thủ tục</a></p>
+<div role="alert" id="err1"></div>
+<button type="button" onclick="next(1)">Tra cứu</button></section>
+<section id="step2" data-step="2" tabindex="-1" hidden><h2>Bước 2: Kết quả tra cứu</h2>
+<table><caption>Tóm tắt hồ sơ</caption><tr><th scope="col">Thông tin</th><th scope="col">Giá trị</th></tr><tr><td>Trạng thái</td><td>Đang xử lý</td></tr></table>
+<p><a href="#huong-dan">Xem hướng dẫn thực hiện thủ tục</a></p>
+<div class="btn" data-defect="d0" onclick="void 0">Chọn trên bản đồ</div>
+<div role="alert" id="err2"></div>
+<button type="button" onclick="next(2)">Kết thúc</button></section>
+<section id="done" tabindex="-1" hidden><h2>Hoàn tất: hồ sơ đã được ghi nhận thành công</h2></section>
+</main>
+<script>
+function next(k){
+  const s=document.getElementById('step'+k);
+  const miss=[...s.querySelectorAll('[data-req]')].filter(e=>e.type==='checkbox'?!e.checked:(e.dataset.code?e.value.trim()!==e.dataset.code:!e.value.trim()));
+  if(miss.length){document.getElementById('err'+k).textContent='Vui lòng điền đầy đủ thông tin bắt buộc ('+miss.length+' trường)';return;}
+  s.hidden=true;
+  const n=document.getElementById('step'+(k+1))||document.getElementById('done');
+  n.hidden=false; n.focus();
+}
+const m=location.hash.match(/audit=(\d+)/);
+if(m){document.querySelectorAll('section').forEach(s=>s.hidden=(s.id!=='step'+m[1]));}
+</script>
+</body></html>

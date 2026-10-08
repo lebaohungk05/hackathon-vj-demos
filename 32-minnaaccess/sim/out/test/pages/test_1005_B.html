@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><title>Đăng ký cấp Phiếu lý lịch tư pháp - Cổng dịch vụ công (mô phỏng)</title>
+<style>body{font-family:sans-serif;max-width:640px;margin:auto} .f{margin:8px 0} .btn{display:inline-block;background:#b00;color:#fff;padding:6px 12px;cursor:pointer} .h2{font-size:1.4em;font-weight:bold}</style>
+</head><body>
+<header><h1>Đăng ký cấp Phiếu lý lịch tư pháp</h1></header>
+<main>
+<section id="step1" data-step="1" tabindex="-1"><h2>Bước 1: Thông tin người yêu cầu</h2>
+<div class="f"><label for="s1f1">Họ tên đầy đủ</label><input id="s1f1" data-req="1"></div>
+<div class="f"><label for="s1f2">Số định danh cá nhân</label><input id="s1f2" data-req="1"></div>
+<div class="f"><label for="s1f3">Ngày, tháng, năm sinh</label><input id="s1f3" data-req="1"></div>
+<p><a href="#huong-dan">Xem hướng dẫn thực hiện thủ tục</a></p>
+<div role="alert" id="err1"></div>
+<button type="button" onclick="next(1)">Tiếp tục</button></section>
+<section id="step2" data-step="2" tabindex="-1" hidden><h2>Bước 2: Thông tin liên hệ</h2>
+<div class="f"><label for="s2f1">Thư điện tử</label><input id="s2f1" data-req="1"></div>
+<div class="f"><label for="s2f2">Số điện thoại</label><input id="s2f2" data-req="1"></div>
+<div class="f"><label for="s2f3">Nơi cư trú hiện tại</label><input id="s2f3" data-req="1"></div>
+<div class="f" data-defect="d1"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='32'><rect width='120' height='32' fill='%23b00'/><text x='10' y='21' fill='white'>5309</text></svg>"><label for="s2cap">Nhập mã xác nhận trong ảnh</label><input id="s2cap" data-req="1" data-code="5309"></div>
+<p><a href="#huong-dan">Xem hướng dẫn thực hiện thủ tục</a></p>
+<div role="alert" id="err2"></div>
+<button type="button" onclick="next(2)">Tiếp tục</button></section>
+<section id="step3" data-step="3" tabindex="-1" hidden><h2>Bước 3: Mục đích yêu cầu</h2>
+<div class="f"><label for="s3f1">Số bản cần cấp</label><input id="s3f1" data-req="1"></div>
+<div class="f"><label for="s3f2">Mục đích sử dụng phiếu</label><input id="s3f2" data-req="1"></div>
+<p><a href="#huong-dan">Xem hướng dẫn thực hiện thủ tục</a></p>
+<div role="alert" id="err3"></div>
+<button type="button" onclick="next(3)">Tiếp tục</button></section>
+<section id="step4" data-step="4" tabindex="-1" hidden><div class="h2" data-defect="d0">Bước 4: Xác nhận trước khi nộp</div>
+<div class="f" ><input type="checkbox" id="s4f1" data-req="1"><label for="s4f1">Tôi cam đoan thông tin trên là đúng sự thật</label></div>
+<table><caption>Tóm tắt hồ sơ</caption><tr><th scope="col">Thông tin</th><th scope="col">Giá trị</th></tr><tr><td>Trạng thái</td><td>Đang xử lý</td></tr></table>
+<p><a href="#huong-dan">Xem hướng dẫn thực hiện thủ tục</a></p>
+<div role="alert" id="err4"></div>
+<button type="button" onclick="next(4)">Nộp hồ sơ</button></section>
+<section id="done" tabindex="-1" hidden><h2>Hoàn tất: hồ sơ đã được ghi nhận thành công</h2></section>
+</main>
+<script>
+function next(k){
+  const s=document.getElementById('step'+k);
+  const miss=[...s.querySelectorAll('[data-req]')].filter(e=>e.type==='checkbox'?!e.checked:(e.dataset.code?e.value.trim()!==e.dataset.code:!e.value.trim()));
+  if(miss.length){document.getElementById('err'+k).textContent='Vui lòng điền đầy đủ thông tin bắt buộc ('+miss.length+' trường)';return;}
+  s.hidden=true;
+  const n=document.getElementById('step'+(k+1))||document.getElementById('done');
+  n.hidden=false; n.focus();
+}
+const m=location.hash.match(/audit=(\d+)/);
+if(m){document.querySelectorAll('section').forEach(s=>s.hidden=(s.id!=='step'+m[1]));}
+</script>
+</body></html>

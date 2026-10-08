@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 5608,
+ "tries": 1,
+ "created": "2026-10-06T23:50:27",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"ambiguous_label\",\n  \"wcag\": \"2.4.6 Headings and Labels\",\n  \"element_id\": \"sdt\",\n  \"screen_reader_heard\": \"fld_sdt_01, ô nhập\",\n  \"evidence\": \"Screen reader reads a code instead of the label (accessible name “fld_sdt_01” does not contain the visible label “Số điện thoại”)\",\n  \"visible_caption\": \"Số điện thoại\"\n },\n \"page_language\": \"vi-VN\",\n \"file\": \"step2.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"vi\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>Bước 2/4 – Thông tin liên hệ</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body>\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">Cổng Dịch vụ công <b>MÔ PHỎNG</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · not a real government site · dữ liệu giả</div></header>\\n<main>\\n<h1>Cấp Phiếu lý lịch tư pháp</h1>\\n<ol class=\\\"steps\\\"><li>1. Người yêu cầu</li><li class=\\\"on\\\">2. Liên hệ</li><li>3. Mục đích</li><li>4. Xác nhận</li></ol>\\n<h2>Bước 2/4: Thông tin liên hệ</h2>\\n<div class=\\\"field\\\"><label for=\\\"email\\\">Email</label><input id=\\\"email\\\" type=\\\"email\\\"></div>\\n<div class=\\\"field\\\"><div class=\\\"lbl\\\">Số điện thoại</div><input id=\\\"sdt\\\" aria-label=\\\"fld_sdt_01\\\" type=\\\"tel\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"diachi\\\">Nơi ĐKTT</label><input id=\\\"diachi\\\" type=\\\"text\\\"></div>\\n<div class=\\\"actions\\\"><button type=\\\"button\\\" id=\\\"next2\\\" class=\\\"btn\\\" onclick=\\\"location.href='step3.html'\\\">Tiếp tục</button></div>\\n<script id=\\\"phone-mask\\\">\\ndocument.getElementById('sdt').addEventListener('blur', function () {\\n  this.value = this.value.replace(/\\\\D/g, '').slice(0, 10);\\n});\\n</script>\\n<p class=\\\"foot\\\">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "<div class=\"lbl\">Số điện thoại</div><input id=\"sdt\" aria-label=\"fld_sdt_01\" type=\"tel\">",
+    "replace": "<label class=\"lbl\" for=\"sdt\">Số điện thoại</label><input id=\"sdt\" type=\"tel\">"
+   }
+  ],
+  "explanation": "The phone field had a hidden technical name (\"fld_sdt_01\") that overrode what was shown on screen, so screen readers read out a code. We turned the visible caption \"Số điện thoại\" into a real label linked to the field and removed the code. Appearance, the phone-number formatting script and navigation are unchanged.",
+  "explanation_local": "Ô nhập số điện thoại có một tên ẩn mang tính kỹ thuật (\"fld_sdt_01\") nên trình đọc màn hình đọc ra mã này thay vì nhãn hiển thị. Chúng tôi chuyển dòng chữ \"Số điện thoại\" thành nhãn (label) gắn trực tiếp với ô nhập và xóa mã ẩn đó. Giao diện, định dạng số điện thoại và việc chuyển trang vẫn giữ nguyên.",
+  "technique": "Replace the non-semantic div caption with a native label bound via for/id, and remove the misleading aria-label."
+ }
+}

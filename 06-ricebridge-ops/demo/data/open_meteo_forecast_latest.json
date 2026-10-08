@@ -1,0 +1,59 @@
+{
+ "fetched_at": "2026-10-07T04:55:03+00:00",
+ "request_url": "https://api.open-meteo.com/v1/forecast?latitude=10.37&longitude=105.43&timezone=Asia%2FBangkok&forecast_days=3&daily=precipitation_sum%2Cprecipitation_probability_max%2Cet0_fao_evapotranspiration%2Ctemperature_2m_max&current=temperature_2m%2Cprecipitation",
+ "response": {
+  "latitude": 10.369068,
+  "longitude": 105.43536,
+  "generationtime_ms": 0.15723705291748047,
+  "utc_offset_seconds": 25200,
+  "timezone": "Asia/Bangkok",
+  "timezone_abbreviation": "GMT+7",
+  "elevation": 5.0,
+  "current_units": {
+   "time": "iso8601",
+   "interval": "seconds",
+   "temperature_2m": "°C",
+   "precipitation": "mm"
+  },
+  "current": {
+   "time": "2026-10-07T11:45",
+   "interval": 900,
+   "temperature_2m": 30.5,
+   "precipitation": 0.0
+  },
+  "daily_units": {
+   "time": "iso8601",
+   "precipitation_sum": "mm",
+   "precipitation_probability_max": "%",
+   "et0_fao_evapotranspiration": "mm",
+   "temperature_2m_max": "°C"
+  },
+  "daily": {
+   "time": [
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09"
+   ],
+   "precipitation_sum": [
+    9.4,
+    27.5,
+    12.0
+   ],
+   "precipitation_probability_max": [
+    84,
+    100,
+    98
+   ],
+   "et0_fao_evapotranspiration": [
+    3.33,
+    3.82,
+    3.71
+   ],
+   "temperature_2m_max": [
+    30.8,
+    31.4,
+    31.1
+   ]
+  }
+ }
+}

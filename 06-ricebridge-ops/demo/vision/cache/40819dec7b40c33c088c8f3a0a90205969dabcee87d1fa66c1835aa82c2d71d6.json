@@ -1,0 +1,11 @@
+{
+  "file": "gauge_21.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 7.24,
+  "retries": 0,
+  "result": {
+    "reading_cm": 1.1,
+    "confidence": 0.6,
+    "reason": "The water surface (top of the blue column) is at about y=402. The 0 mark is at about y=417 and +5 at y=347, which gives roughly 14 px per cm, so the water sits about 1 cm above 0."
+  }
+}

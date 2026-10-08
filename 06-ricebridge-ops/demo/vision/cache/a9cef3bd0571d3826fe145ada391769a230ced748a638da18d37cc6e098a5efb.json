@@ -1,0 +1,11 @@
+{
+  "file": "gauge_07.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 7.45,
+  "retries": 0,
+  "result": {
+    "reading_cm": -14.0,
+    "confidence": 0.8,
+    "reason": "The water surface is at about y=610 px, just above the -15 mark (y≈625). The scale runs about 14 px/cm between the 0, -5, -10 and -15 marks, so the water sits about 1 cm above -15."
+  }
+}

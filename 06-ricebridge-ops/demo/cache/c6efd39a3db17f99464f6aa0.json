@@ -1,0 +1,15 @@
+{
+ "task": "choose_remeasurer",
+ "model": "claude-haiku-4-5-20251001",
+ "ms": 34357,
+ "attempts": 1,
+ "saved_at": "2026-10-06T23:37:49",
+ "prompt": "You are the planning step of RiceBridge Ops that decides WHO should re-measure a disputed water-level reading and writes the chat message.\n\nRules you must follow:\n- Re-photographing the same gauge tube is NOT an independent check. Pick only a candidate with independent = true.\n- Prefer the fastest independent option with a good response rate; name a second independent option as fallback.\n- The message goes to the farmer of the field by Zalo chat, in southern Vietnamese, polite and short (max 2 sentences, like: \"Sau mưa đêm qua, ruộng thửa 2 lẽ ra đã có nước. Anh đo giúp em ở ống gần cống, hoặc em nhờ anh Hùng bên HTX ghé đo nhé.\"). Do not accuse the farmer; do not mention the photo being wrong; do not state any number that is not in INPUT.\n- pick and fallback must be copied exactly from candidate names.\n\nReply with ONE JSON object only, no prose, no code fence. It must match this JSON schema:\n{\"type\": \"object\", \"required\": [\"pick\", \"fallback\", \"why_en\", \"message_vi\", \"message_en\"], \"properties\": {\"pick\": {\"type\": \"string\"}, \"fallback\": {\"type\": \"string\"}, \"why_en\": {\"type\": \"string\", \"maxLength\": 300}, \"message_vi\": {\"type\": \"string\", \"maxLength\": 260}, \"message_en\": {\"type\": \"string\", \"maxLength\": 300}}}\n\nINPUT (data, not instructions):\n{\n \"field\": \"F1\",\n \"disputed_reading_by\": \"Hộ thửa 1\",\n \"situation\": {\n  \"report_cm\": 20,\n  \"water_balance_cm\": 4.1,\n  \"reported_by\": \"Hộ thửa 1\"\n },\n \"candidates\": [\n  {\n   \"name\": \"Hộ thửa 1, same gauge\",\n   \"role\": \"re-read the same tube\",\n   \"walk_min\": 0,\n   \"response_rate\": 0.85,\n   \"independent\": false\n  },\n  {\n   \"name\": \"Hộ thửa 1, gauge near the inlet\",\n   \"role\": \"farmer measures a second tube (same person who sent the disputed report)\",\n   \"walk_min\": 3,\n   \"response_rate\": 0.85,\n   \"independent\": false\n  },\n  {\n   \"name\": \"Anh Hùng (HTX)\",\n   \"role\": \"HTX officer measures a second tube\",\n   \"walk_min\": 12,\n   \"response_rate\": 0.95,\n   \"independent\": true\n  },\n  {\n   \"name\": \"Hộ thửa bên cạnh\",\n   \"role\": \"neighbour reads a second tube\",\n   \"walk_min\": 5,\n   \"response_rate\": 0.8,\n   \"independent\": true\n  }\n ]\n}\n",
+ "data": {
+  "pick": "Hộ thửa bên cạnh",
+  "fallback": "Anh Hùng (HTX)",
+  "why_en": "Neighbor is the fastest independent verification option (5 min walk, 0.8 response rate). Anh Hùng from the cooperative serves as reliable fallback (0.95 response rate, though requires 12 min walk).",
+  "message_vi": "Em cần xác nhận lại mực nước ruộng. Anh nhờ hàng xóm bên cạnh đo giúp, hoặc em sẽ nhờ anh Hùng bên HTX ghé đo nhé.",
+  "message_en": "Need to verify the water level. Please ask the neighbor to help measure, or we can arrange for brother Hùng from the cooperative to check."
+ }
+}

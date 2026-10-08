@@ -1,0 +1,11 @@
+{
+  "file": "gauge_27.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.41,
+  "retries": 0,
+  "result": {
+    "reading_cm": -2.4,
+    "confidence": 0.85,
+    "reason": "The 0 mark is at the soil line (y≈420) and the ticks are 5 cm apart at about 70 px, so 14 px/cm. The water surface is at y≈453, about 33 px below 0, which is about -2.4 cm."
+  }
+}

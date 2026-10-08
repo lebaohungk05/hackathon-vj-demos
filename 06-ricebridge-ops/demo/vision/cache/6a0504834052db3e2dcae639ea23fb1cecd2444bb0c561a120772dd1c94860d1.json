@@ -1,0 +1,11 @@
+{
+  "file": "gauge_02.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 7.9,
+  "retries": 0,
+  "result": {
+    "reading_cm": -18.7,
+    "confidence": 0.6,
+    "reason": "Marks -15 (y≈631) and -20 (y≈699, partly cut off) are about 68 px apart. The blue water surface starts at y≈682, a little above the -20 mark, which puts it near -18.7 cm."
+  }
+}

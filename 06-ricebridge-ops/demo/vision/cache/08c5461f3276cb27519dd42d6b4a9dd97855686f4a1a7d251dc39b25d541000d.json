@@ -1,0 +1,11 @@
+{
+  "file": "gauge_03.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.55,
+  "retries": 0,
+  "result": {
+    "reading_cm": -17.4,
+    "confidence": 0.75,
+    "reason": "The 0 mark is at the soil line (y≈422) and the -15 tick is at y≈631, which gives about 14 px per cm. The water surface in the tube is at y≈665, about 2.4 cm below the -15 mark. The tilt of the photo adds some uncertainty."
+  }
+}

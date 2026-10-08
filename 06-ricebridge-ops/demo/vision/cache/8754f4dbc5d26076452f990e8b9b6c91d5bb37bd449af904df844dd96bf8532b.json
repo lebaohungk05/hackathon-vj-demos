@@ -1,0 +1,11 @@
+{
+  "file": "gauge_12.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.28,
+  "retries": 0,
+  "result": {
+    "reading_cm": -9.3,
+    "confidence": 0.85,
+    "reason": "The 0 mark is at y≈419 and -10 at y≈559, which gives about 14 px per cm. The water surface is at y≈549, just above the -10 mark."
+  }
+}

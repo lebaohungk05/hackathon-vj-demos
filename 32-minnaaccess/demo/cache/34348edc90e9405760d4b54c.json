@@ -1,0 +1,16 @@
+{
+ "purpose": "interpret field",
+ "model": "claude-haiku-4-5-20251001",
+ "ms": 47696,
+ "tries": 1,
+ "created": "2026-10-06T21:39:21",
+ "prompt": "{\n \"procedure\": \"Certificate of residence copy request (住民票の写し交付申請), mock municipality\",\n \"page_language\": \"ja-JP\",\n \"page_heading\": \"ステップ1/3: 申請者の情報\",\n \"focused_field\": {\n  \"role\": \"textbox\",\n  \"accessible_name_read_by_screen_reader\": \"本籍地 （外国籍の方は国籍・地域）\",\n  \"visible_caption_next_to_field\": \"本籍地 （外国籍の方は国籍・地域）\"\n },\n \"applicant_profile\": {\n  \"description\": \"Mock applicant used in both procedures. All data is fake.\",\n  \"full_name\": \"Nguyễn Văn An\",\n  \"full_name_katakana\": \"グエン・ヴァン・アン\",\n  \"date_of_birth_vn\": \"12/03/1985\",\n  \"date_of_birth_jp\": \"1985年3月12日\",\n  \"citizen_id_cccd\": \"001085012345\",\n  \"email\": \"an.nguyen@example.com\",\n  \"phone_vn\": \"0912345678\",\n  \"phone_jp\": \"090-0000-0000\",\n  \"permanent_registered_address_vn\": \"12 Phố Huế, Hà Nội\",\n  \"current_address_jp\": \"みどり市中央1-2-3（架空）\",\n  \"postal_code_jp\": \"123-4567\",\n  \"nationality\": \"Vietnam\",\n  \"nationality_ja\": \"ベトナム\"\n },\n \"task\": \"Decide what this field asks for and the exact value to type. Say whether the accessible name alone is clear to a blind user; if not, give a one-line advisory.\"\n}",
+ "output": {
+  "decision": "fill",
+  "value": "ベトナム",
+  "field_meaning": "For foreign nationals, enter your nationality (Vietnam). Japanese citizens would enter their 本籍地 (registered domicile in the family register), but the form explicitly directs non-Japanese residents to provide nationality instead.",
+  "label_clear_for_screen_reader": true,
+  "advisory": "",
+  "reasoning": "The form's parenthetical instruction explicitly tells foreign nationals to enter nationality instead of a family register entry. The applicant is Vietnamese, so the value is ベトナム (Vietnam in Japanese from the profile)."
+ }
+}

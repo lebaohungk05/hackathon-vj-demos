@@ -1,0 +1,1965 @@
+{
+ "blocking_rule": "Lỗi là BLOCKING khi người chỉ dùng bàn phím + trình đọc màn hình không thể hoàn thành bước chứa lỗi: trường BẮT BUỘC không có tên truy cập được hoặc tên không mô tả; nút tiếp tục không có tên hoặc không thao tác được bằng bàn phím; bẫy bàn phím; CAPTCHA ảnh không có phương án thay thế. Mọi lỗi còn lại (trường tuỳ chọn, ảnh trang trí, heading/bảng sai cấu trúc, link mơ hồ, chức năng phụ chỉ dùng chuột) là NON-BLOCKING.",
+ "variants": [
+  {
+   "name": "test_1000_B",
+   "seed": 1000,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "missing_label_opt",
+     "step": 3,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d2",
+     "type": "kbd_trap",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "dia_chi",
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1000_B.html"
+  },
+  {
+   "name": "test_1001_A",
+   "seed": 1001,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1001_A.html"
+  },
+  {
+   "name": "test_1002_C",
+   "seed": 1002,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_opt",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d1",
+     "type": "kbd_trap",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "ngay_hen",
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "logo_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1002_C.html"
+  },
+  {
+   "name": "test_1003_B",
+   "seed": 1003,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "captcha",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    },
+    {
+     "id": "d1",
+     "type": "vague_link",
+     "step": 4,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d2",
+     "type": "logo_noalt",
+     "step": 4,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1003_B.html"
+  },
+  {
+   "name": "test_1004_B",
+   "seed": 1004,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 2,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1004_B.html"
+  },
+  {
+   "name": "test_1005_B",
+   "seed": 1005,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "fake_heading",
+     "step": 4,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    },
+    {
+     "id": "d1",
+     "type": "captcha",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1005_B.html"
+  },
+  {
+   "name": "test_1006_B",
+   "seed": 1006,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 4,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1006_B.html"
+  },
+  {
+   "name": "test_1007_A",
+   "seed": 1007,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 1,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d1",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "mouse_only_extra",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1007_A.html"
+  },
+  {
+   "name": "test_1008_C",
+   "seed": 1008,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "captcha",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    },
+    {
+     "id": "d1",
+     "type": "vague_link",
+     "step": 1,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1008_C.html"
+  },
+  {
+   "name": "test_1009_A",
+   "seed": 1009,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1009_A.html"
+  },
+  {
+   "name": "test_1010_C",
+   "seed": 1010,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 3,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_label_req",
+     "step": 2,
+     "sc": "2.4.6",
+     "blocking": true,
+     "fixable": true,
+     "target": "dien_thoai",
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d2",
+     "type": "missing_label_opt",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1010_C.html"
+  },
+  {
+   "name": "test_1011_B",
+   "seed": 1011,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_opt",
+     "step": 4,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d1",
+     "type": "fake_heading",
+     "step": 3,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1011_B.html"
+  },
+  {
+   "name": "test_1012_B",
+   "seed": 1012,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1012_B.html"
+  },
+  {
+   "name": "test_1013_B",
+   "seed": 1013,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 2,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d1",
+     "type": "missing_label_opt",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1013_B.html"
+  },
+  {
+   "name": "test_1014_C",
+   "seed": 1014,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1014_C.html"
+  },
+  {
+   "name": "test_1015_A",
+   "seed": 1015,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "img_button_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1015_A.html"
+  },
+  {
+   "name": "test_1016_B",
+   "seed": 1016,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_opt",
+     "step": 3,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d1",
+     "type": "vague_link",
+     "step": 2,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d2",
+     "type": "mouse_only_extra",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1016_B.html"
+  },
+  {
+   "name": "test_1017_B",
+   "seed": 1017,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_opt",
+     "step": 2,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d2",
+     "type": "captcha",
+     "step": 3,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1017_B.html"
+  },
+  {
+   "name": "test_1018_B",
+   "seed": 1018,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 4,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "vague_link",
+     "step": 1,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d2",
+     "type": "mouse_only_extra",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1018_B.html"
+  },
+  {
+   "name": "test_1019_A",
+   "seed": 1019,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1019_A.html"
+  },
+  {
+   "name": "test_1020_A",
+   "seed": 1020,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1020_A.html"
+  },
+  {
+   "name": "test_1021_C",
+   "seed": 1021,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "fake_heading",
+     "step": 2,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    },
+    {
+     "id": "d2",
+     "type": "mouse_only_extra",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1021_C.html"
+  },
+  {
+   "name": "test_1022_A",
+   "seed": 1022,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "table_no_th",
+     "step": 2,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    },
+    {
+     "id": "d1",
+     "type": "fake_heading",
+     "step": 1,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1022_A.html"
+  },
+  {
+   "name": "test_1023_B",
+   "seed": 1023,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 4,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "img_button_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "mouse_only_extra",
+     "step": 4,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1023_B.html"
+  },
+  {
+   "name": "test_1024_A",
+   "seed": 1024,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1024_A.html"
+  },
+  {
+   "name": "test_1025_A",
+   "seed": 1025,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_req",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "cccd",
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1025_A.html"
+  },
+  {
+   "name": "test_1026_A",
+   "seed": 1026,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "img_button_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "vague_link",
+     "step": 2,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1026_A.html"
+  },
+  {
+   "name": "test_1027_A",
+   "seed": 1027,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1027_A.html"
+  },
+  {
+   "name": "test_1028_B",
+   "seed": 1028,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_opt",
+     "step": 3,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_heading",
+     "step": 2,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d2",
+     "type": "logo_noalt",
+     "step": 3,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1028_B.html"
+  },
+  {
+   "name": "test_1029_C",
+   "seed": 1029,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 3,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d1",
+     "type": "fake_heading",
+     "step": 1,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1029_C.html"
+  },
+  {
+   "name": "test_1030_A",
+   "seed": 1030,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "mouse_only_extra",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1030_A.html"
+  },
+  {
+   "name": "test_1031_C",
+   "seed": 1031,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "fake_heading",
+     "step": 1,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    },
+    {
+     "id": "d1",
+     "type": "missing_label_req",
+     "step": 2,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "dien_thoai",
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d2",
+     "type": "mouse_only_extra",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1031_C.html"
+  },
+  {
+   "name": "test_1032_B",
+   "seed": 1032,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "fake_heading",
+     "step": 4,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_heading",
+     "step": 2,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d2",
+     "type": "captcha",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1032_B.html"
+  },
+  {
+   "name": "test_1033_C",
+   "seed": 1033,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 2,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1033_C.html"
+  },
+  {
+   "name": "test_1034_A",
+   "seed": 1034,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_label_req",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": true,
+     "fixable": true,
+     "target": "ma_ho_so",
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "missing_label_opt",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d2",
+     "type": "div_button",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1034_A.html"
+  },
+  {
+   "name": "test_1035_C",
+   "seed": 1035,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "kbd_trap",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "ho_ten",
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_label_req",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": true,
+     "fixable": true,
+     "target": "ngay_hen",
+     "detect_key": "2.4.6"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1035_C.html"
+  },
+  {
+   "name": "test_1036_B",
+   "seed": 1036,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 1,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    },
+    {
+     "id": "d1",
+     "type": "missing_label_req",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "ngay_sinh",
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d2",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1036_B.html"
+  },
+  {
+   "name": "test_1037_A",
+   "seed": 1037,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "mouse_only_extra",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "mouse_only_extra",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1037_A.html"
+  },
+  {
+   "name": "test_1038_A",
+   "seed": 1038,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "img_button_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1038_A.html"
+  },
+  {
+   "name": "test_1039_C",
+   "seed": 1039,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "kbd_trap",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "khung_gio",
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_label_req",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": true,
+     "fixable": true,
+     "target": "co_quan",
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d2",
+     "type": "nondesc_heading",
+     "step": 2,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1039_C.html"
+  },
+  {
+   "name": "test_1040_B",
+   "seed": 1040,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "mouse_only_extra",
+     "step": 3,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1040_B.html"
+  },
+  {
+   "name": "test_1041_B",
+   "seed": 1041,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 4,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1041_B.html"
+  },
+  {
+   "name": "test_1042_A",
+   "seed": 1042,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "captcha",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1042_A.html"
+  },
+  {
+   "name": "test_1043_C",
+   "seed": 1043,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "captcha",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    },
+    {
+     "id": "d1",
+     "type": "div_button",
+     "step": 3,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1043_C.html"
+  },
+  {
+   "name": "test_1044_A",
+   "seed": 1044,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1044_A.html"
+  },
+  {
+   "name": "test_1045_C",
+   "seed": 1045,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "vague_link",
+     "step": 3,
+     "sc": "2.4.4",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.4"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1045_C.html"
+  },
+  {
+   "name": "test_1046_B",
+   "seed": 1046,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 4,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_label_req",
+     "step": 3,
+     "sc": "2.4.6",
+     "blocking": true,
+     "fixable": true,
+     "target": "so_ban",
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d2",
+     "type": "div_button",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1046_B.html"
+  },
+  {
+   "name": "test_1047_A",
+   "seed": 1047,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "logo_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1047_A.html"
+  },
+  {
+   "name": "test_1048_B",
+   "seed": 1048,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "kbd_trap",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "dien_thoai",
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "mouse_only_extra",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1048_B.html"
+  },
+  {
+   "name": "test_1049_C",
+   "seed": 1049,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "div_button",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "img_button_noalt",
+     "step": 3,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1049_C.html"
+  },
+  {
+   "name": "test_1050_B",
+   "seed": 1050,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_opt",
+     "step": 4,
+     "sc": "3.3.2",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d1",
+     "type": "captcha",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    },
+    {
+     "id": "d2",
+     "type": "missing_label_req",
+     "step": 2,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "email",
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1050_B.html"
+  },
+  {
+   "name": "test_1051_A",
+   "seed": 1051,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "logo_noalt",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "img_button_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    },
+    {
+     "id": "d2",
+     "type": "missing_label_req",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "cccd",
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1051_A.html"
+  },
+  {
+   "name": "test_1052_A",
+   "seed": 1052,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d1",
+     "type": "captcha",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    },
+    {
+     "id": "d2",
+     "type": "logo_noalt",
+     "step": 2,
+     "sc": "1.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1052_A.html"
+  },
+  {
+   "name": "test_1053_B",
+   "seed": 1053,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "mouse_only_extra",
+     "step": 3,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "mouse_only_extra",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1053_B.html"
+  },
+  {
+   "name": "test_1054_A",
+   "seed": 1054,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "missing_label_req",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "ma_ho_so",
+     "detect_key": "3.3.2"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_heading",
+     "step": 2,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d2",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1054_A.html"
+  },
+  {
+   "name": "test_1055_A",
+   "seed": 1055,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "captcha",
+     "step": 1,
+     "sc": "1.1.1",
+     "blocking": true,
+     "fixable": false,
+     "target": null,
+     "detect_key": "captcha"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1055_A.html"
+  },
+  {
+   "name": "test_1056_A",
+   "seed": 1056,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "nondesc_heading",
+     "step": 2,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1056_A.html"
+  },
+  {
+   "name": "test_1057_C",
+   "seed": 1057,
+   "flow": "C",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "kbd_trap",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "dien_thoai",
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "nondesc_heading",
+     "step": 1,
+     "sc": "2.4.6",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.4.6"
+    },
+    {
+     "id": "d2",
+     "type": "div_button",
+     "step": 3,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1057_C.html"
+  },
+  {
+   "name": "test_1058_B",
+   "seed": 1058,
+   "flow": "B",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "kbd_trap",
+     "step": 2,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": "dien_thoai",
+     "detect_key": "2.1.1"
+    },
+    {
+     "id": "d1",
+     "type": "fake_heading",
+     "step": 4,
+     "sc": "1.3.1",
+     "blocking": false,
+     "fixable": true,
+     "target": null,
+     "detect_key": "1.3.1"
+    },
+    {
+     "id": "d2",
+     "type": "missing_label_req",
+     "step": 1,
+     "sc": "3.3.2",
+     "blocking": true,
+     "fixable": true,
+     "target": "ho_ten",
+     "detect_key": "3.3.2"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1058_B.html"
+  },
+  {
+   "name": "test_1059_A",
+   "seed": 1059,
+   "flow": "A",
+   "clean": false,
+   "defects": [
+    {
+     "id": "d0",
+     "type": "div_button",
+     "step": 1,
+     "sc": "2.1.1",
+     "blocking": true,
+     "fixable": true,
+     "target": null,
+     "detect_key": "2.1.1"
+    }
+   ],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_1059_A.html"
+  },
+  {
+   "name": "test_5000_A_clean",
+   "seed": 5000,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5000_A_clean.html"
+  },
+  {
+   "name": "test_5001_C_clean",
+   "seed": 5001,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5001_C_clean.html"
+  },
+  {
+   "name": "test_5002_C_clean",
+   "seed": 5002,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5002_C_clean.html"
+  },
+  {
+   "name": "test_5003_A_clean",
+   "seed": 5003,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5003_A_clean.html"
+  },
+  {
+   "name": "test_5004_B_clean",
+   "seed": 5004,
+   "flow": "B",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5004_B_clean.html"
+  },
+  {
+   "name": "test_5005_A_clean",
+   "seed": 5005,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5005_A_clean.html"
+  },
+  {
+   "name": "test_5006_A_clean",
+   "seed": 5006,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5006_A_clean.html"
+  },
+  {
+   "name": "test_5007_A_clean",
+   "seed": 5007,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5007_A_clean.html"
+  },
+  {
+   "name": "test_5008_A_clean",
+   "seed": 5008,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5008_A_clean.html"
+  },
+  {
+   "name": "test_5009_C_clean",
+   "seed": 5009,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5009_C_clean.html"
+  },
+  {
+   "name": "test_5010_B_clean",
+   "seed": 5010,
+   "flow": "B",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5010_B_clean.html"
+  },
+  {
+   "name": "test_5011_C_clean",
+   "seed": 5011,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5011_C_clean.html"
+  },
+  {
+   "name": "test_5012_A_clean",
+   "seed": 5012,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5012_A_clean.html"
+  },
+  {
+   "name": "test_5013_B_clean",
+   "seed": 5013,
+   "flow": "B",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5013_B_clean.html"
+  },
+  {
+   "name": "test_5014_A_clean",
+   "seed": 5014,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5014_A_clean.html"
+  },
+  {
+   "name": "test_5015_B_clean",
+   "seed": 5015,
+   "flow": "B",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5015_B_clean.html"
+  },
+  {
+   "name": "test_5016_C_clean",
+   "seed": 5016,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5016_C_clean.html"
+  },
+  {
+   "name": "test_5017_C_clean",
+   "seed": 5017,
+   "flow": "C",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5017_C_clean.html"
+  },
+  {
+   "name": "test_5018_A_clean",
+   "seed": 5018,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5018_A_clean.html"
+  },
+  {
+   "name": "test_5019_A_clean",
+   "seed": 5019,
+   "flow": "A",
+   "clean": true,
+   "defects": [],
+   "path": "D:\\Hackathon VJ\\32-minnaaccess\\sim\\out\\test\\pages\\test_5019_A_clean.html"
+  }
+ ]
+}

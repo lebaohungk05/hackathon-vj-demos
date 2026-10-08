@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 5059,
+ "tries": 1,
+ "created": "2026-10-06T23:48:02",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"unnamed_field\",\n  \"wcag\": \"3.3.2 Labels or Instructions\",\n  \"element_id\": \"hoten\",\n  \"screen_reader_heard\": \"ô nhập\",\n  \"evidence\": \"Screen reader reads the field only as its role, with no name (accessible name is empty): a blind user cannot tell what to type\",\n  \"visible_caption\": \"Họ và tên\"\n },\n \"page_language\": \"vi-VN\",\n \"file\": \"step1.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"vi\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>Bước 1/4 – Thông tin người yêu cầu</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body>\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">Cổng Dịch vụ công <b>MÔ PHỎNG</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · not a real government site · dữ liệu giả</div></header>\\n<main>\\n<h1>Cấp Phiếu lý lịch tư pháp</h1>\\n<ol class=\\\"steps\\\"><li class=\\\"on\\\">1. Người yêu cầu</li><li>2. Liên hệ</li><li>3. Mục đích</li><li>4. Xác nhận</li></ol>\\n<h2>Bước 1/4: Thông tin người yêu cầu</h2>\\n<div class=\\\"field\\\"><div class=\\\"lbl\\\">Họ và tên <span class=\\\"req\\\">*</span></div><input id=\\\"hoten\\\" type=\\\"text\\\" required></div>\\n<div class=\\\"field\\\"><label for=\\\"ngaysinh\\\">Ngày sinh (dd/mm/yyyy)</label><input id=\\\"ngaysinh\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"cccd\\\">Số CCCD</label><input id=\\\"cccd\\\" type=\\\"text\\\"></div>\\n<div class=\\\"actions\\\"><button type=\\\"button\\\" id=\\\"next1\\\" class=\\\"btn\\\" onclick=\\\"location.href='step2.html'\\\">Tiếp tục</button></div>\\n<p class=\\\"foot\\\">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "<div class=\"lbl\">Họ và tên <span class=\"req\">*</span></div>",
+    "replace": "<label class=\"lbl\" for=\"hoten\">Họ và tên <span class=\"req\">*</span></label>"
+   }
+  ],
+  "explanation": "The \"Họ và tên\" caption was a plain div, so it was not linked to the input and a screen reader announced only \"edit field\". Changing the div to a native label tied to the input (for=\"hoten\") gives the field its name. The class is kept, so the look stays the same, and nothing else changes.",
+  "explanation_local": "Dòng chữ \"Họ và tên\" trước đây chỉ là một khối div, không gắn với ô nhập nên trình đọc màn hình chỉ đọc \"ô nhập\". Chuyển div thành thẻ label gắn với ô nhập (for=\"hoten\") để ô có tên. Giữ nguyên class nên giao diện không đổi, các phần khác không thay đổi.",
+  "technique": "Replace the non-semantic div caption with a native label associated via for/id"
+ }
+}

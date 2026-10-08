@@ -1,0 +1,242 @@
+{
+  "3": {
+    "agent": {
+      "awd_violation_plot_days": {
+        "mean": 3.5,
+        "min": 0.0,
+        "max": 11.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 85.45,
+        "min": 56.0,
+        "max": 123.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 438.3,
+        "min": 414.0,
+        "max": 473.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 117.7,
+        "min": 114.0,
+        "max": 122.0,
+        "n": 20
+      }
+    },
+    "baseline": {
+      "awd_violation_plot_days": {
+        "mean": 98.75,
+        "min": 72.0,
+        "max": 142.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 111.1,
+        "min": 80.0,
+        "max": 138.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 637.0,
+        "min": 603.0,
+        "max": 674.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 110.25,
+        "min": 105.0,
+        "max": 115.0,
+        "n": 20
+      }
+    },
+    "oracle": {
+      "awd_violation_plot_days": {
+        "mean": 4.0,
+        "min": 0.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 80.8,
+        "min": 51.0,
+        "max": 120.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 444.85,
+        "min": 417.0,
+        "max": 477.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 114.1,
+        "min": 109.0,
+        "max": 120.0,
+        "n": 20
+      }
+    }
+  },
+  "4": {
+    "agent": {
+      "awd_violation_plot_days": {
+        "mean": 1.8,
+        "min": 0.0,
+        "max": 8.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 47.25,
+        "min": 29.0,
+        "max": 78.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 404.65,
+        "min": 383.0,
+        "max": 429.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 116.45,
+        "min": 111.0,
+        "max": 122.0,
+        "n": 20
+      }
+    },
+    "baseline": {
+      "awd_violation_plot_days": {
+        "mean": 86.05,
+        "min": 61.0,
+        "max": 119.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 87.75,
+        "min": 63.0,
+        "max": 118.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 616.45,
+        "min": 579.0,
+        "max": 655.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 109.9,
+        "min": 107.0,
+        "max": 115.0,
+        "n": 20
+      }
+    },
+    "oracle": {
+      "awd_violation_plot_days": {
+        "mean": 1.85,
+        "min": 0.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 44.4,
+        "min": 25.0,
+        "max": 75.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 422.95,
+        "min": 404.0,
+        "max": 449.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 112.15,
+        "min": 106.0,
+        "max": 119.0,
+        "n": 20
+      }
+    }
+  },
+  "6": {
+    "agent": {
+      "awd_violation_plot_days": {
+        "mean": 1.55,
+        "min": 0.0,
+        "max": 6.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 9.5,
+        "min": 0.0,
+        "max": 35.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 403.0,
+        "min": 369.0,
+        "max": 441.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 107.45,
+        "min": 102.0,
+        "max": 111.0,
+        "n": 20
+      }
+    },
+    "baseline": {
+      "awd_violation_plot_days": {
+        "mean": 62.5,
+        "min": 40.0,
+        "max": 81.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 39.35,
+        "min": 25.0,
+        "max": 55.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 575.35,
+        "min": 540.0,
+        "max": 619.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 101.7,
+        "min": 98.0,
+        "max": 106.0,
+        "n": 20
+      }
+    },
+    "oracle": {
+      "awd_violation_plot_days": {
+        "mean": 1.35,
+        "min": 0.0,
+        "max": 5.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 8.6,
+        "min": 0.0,
+        "max": 28.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 427.5,
+        "min": 372.0,
+        "max": 470.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 99.9,
+        "min": 93.0,
+        "max": 106.0,
+        "n": 20
+      }
+    }
+  }
+}

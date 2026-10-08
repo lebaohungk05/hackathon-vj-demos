@@ -1,0 +1,11 @@
+{
+  "file": "gauge_10.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.93,
+  "retries": 0,
+  "result": {
+    "reading_cm": -10.3,
+    "confidence": 0.8,
+    "reason": "The blue water surface sits just below the -10 tick (y≈562), about 4px lower, with a scale of about 14px per cm between the -5, -10 and -15 marks. The 0 mark is at the soil line."
+  }
+}

@@ -1,0 +1,44 @@
+{
+ "n_defect_variants": 40,
+ "n_clean_variants": 10,
+ "n_blocking_defects": 30,
+ "n_nonblocking_defects": 43,
+ "blocking_detection": {
+  "agent": {
+   "tp": 30,
+   "fp": 6,
+   "fn": 0,
+   "tp_first_pass": 26,
+   "precision": 0.8333333333333334,
+   "recall": 1.0,
+   "recall_first_pass_only": 0.8666666666666667
+  },
+  "axe": {
+   "tp": 15,
+   "fp": 13,
+   "fn": 15,
+   "nonblocking_flagged": 13,
+   "precision": 0.5357142857142857,
+   "recall": 0.5
+  }
+ },
+ "breakpoint_step_localization": {
+  "n_variants_with_blocking": 25,
+  "agent_accuracy": 1.0,
+  "axe_first_violating_step_accuracy": 0.6
+ },
+ "journey_completion_defect_variants": {
+  "before_repair": 0.375,
+  "after_repair": 0.9,
+  "handoff_to_human": 4,
+  "unresolved": 0
+ },
+ "clean_false_alarm": {
+  "n": 10,
+  "agent_breakpoints": 0,
+  "agent_completed": 10,
+  "axe_violation_nodes": 0,
+  "axe_pages_flagged": 0
+ },
+ "runtime_seconds": 69.3
+}

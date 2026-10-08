@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 5177,
+ "tries": 1,
+ "created": "2026-10-06T21:36:46",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"keyboard_trap\",\n  \"wcag\": \"2.1.1 Keyboard\",\n  \"element_id\": \"yubin\",\n  \"screen_reader_heard\": \"送付先の郵便番号, 編集, 123-4567\",\n  \"evidence\": \"Tab pressed 3 times, focus never left this field\",\n  \"visible_caption\": \"送付先の郵便番号\"\n },\n \"page_language\": \"ja-JP\",\n \"file\": \"step2.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"ja\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>ステップ2/3 – 請求内容</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body class=\\\"jp\\\">\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">みどり市 電子申請 <b>（模擬）</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ</div></header>\\n<main>\\n<h1>住民票の写し交付申請（模擬）</h1>\\n<ol class=\\\"steps\\\"><li>1. 申請者</li><li class=\\\"on\\\">2. 請求内容</li><li>3. 確認</li></ol>\\n<h2>ステップ2/3: 請求内容</h2>\\n<div class=\\\"field\\\"><label for=\\\"tsusu\\\">必要な通数</label><select id=\\\"tsusu\\\"><option>1通</option><option>2通</option></select></div>\\n<div class=\\\"field\\\"><label for=\\\"mokuteki\\\">使用目的</label><select id=\\\"mokuteki\\\"><option>就職手続き</option><option>運転免許</option><option>その他</option></select></div>\\n<div class=\\\"field\\\"><label for=\\\"yubin\\\">送付先の郵便番号</label><input id=\\\"yubin\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"denwa\\\">日中の連絡先電話番号</label><input id=\\\"denwa\\\" type=\\\"tel\\\"></div>\\n<div class=\\\"field check\\\"><input id=\\\"doui\\\" type=\\\"checkbox\\\"><label for=\\\"doui\\\">記載内容に誤りがないことを誓約します</label></div>\\n<div class=\\\"actions\\\"><button type=\\\"button\\\" id=\\\"next2\\\" class=\\\"btn\\\" onclick=\\\"location.href='step3.html'\\\">次へ</button></div>\\n<script id=\\\"postal-lookup\\\">\\ndocument.getElementById('yubin').addEventListener('blur', function () {\\n  var box = this; setTimeout(function () { box.focus(); }, 0);\\n});\\n</script>\\n<p class=\\\"foot\\\">お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "<script id=\"postal-lookup\">\ndocument.getElementById('yubin').addEventListener('blur', function () {\n  var box = this; setTimeout(function () { box.focus(); }, 0);\n});\n</script>\n",
+    "replace": ""
+   }
+  ],
+  "explanation": "The postal code field had a script that pushed focus back into the field every time the user left it, so Tab and Shift+Tab could never move on. I removed that script. The field is still a normal labelled text box, and the page's navigation and formatting are unchanged.",
+  "explanation_local": "郵便番号の入力欄には、欄から離れるたびにカーソルを欄へ戻すスクリプトがあり、Tabキーで次の項目へ進めませんでした。このスクリプトを削除しました。入力欄とラベルはそのままで、ページの移動や見た目は変わりません。",
+  "technique": "Remove the script that re-focuses the field on blur, so the keyboard can leave the field normally."
+ }
+}

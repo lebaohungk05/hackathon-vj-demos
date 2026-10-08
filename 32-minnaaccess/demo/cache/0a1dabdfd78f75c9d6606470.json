@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 5678,
+ "tries": 1,
+ "created": "2026-10-06T23:49:10",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"ambiguous_label\",\n  \"wcag\": \"2.4.6 Headings and Labels\",\n  \"element_id\": \"ngaysinh\",\n  \"screen_reader_heard\": \"fld_ngaysinh_01, ô nhập\",\n  \"evidence\": \"Screen reader reads a code instead of the label (accessible name “fld_ngaysinh_01” does not contain the visible label “Ngày sinh”)\",\n  \"visible_caption\": \"Ngày sinh (dd/mm/yyyy)\"\n },\n \"page_language\": \"vi-VN\",\n \"file\": \"step1.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"vi\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>Bước 1/4 – Thông tin người yêu cầu</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body>\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">Cổng Dịch vụ công <b>MÔ PHỎNG</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · not a real government site · dữ liệu giả</div></header>\\n<main>\\n<h1>Cấp Phiếu lý lịch tư pháp</h1>\\n<ol class=\\\"steps\\\"><li class=\\\"on\\\">1. Người yêu cầu</li><li>2. Liên hệ</li><li>3. Mục đích</li><li>4. Xác nhận</li></ol>\\n<h2>Bước 1/4: Thông tin người yêu cầu</h2>\\n<div class=\\\"field\\\"><label for=\\\"hoten\\\" class=\\\"lbl\\\">Họ và tên <span class=\\\"req\\\">*</span></label><input id=\\\"hoten\\\" type=\\\"text\\\" required></div>\\n<div class=\\\"field\\\"><div class=\\\"lbl\\\">Ngày sinh (dd/mm/yyyy)</div><input id=\\\"ngaysinh\\\" aria-label=\\\"fld_ngaysinh_01\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"cccd\\\">Số CCCD</label><input id=\\\"cccd\\\" type=\\\"text\\\"></div>\\n<div class=\\\"actions\\\"><button type=\\\"button\\\" id=\\\"next1\\\" class=\\\"btn\\\" onclick=\\\"location.href='step2.html'\\\">Tiếp tục</button></div>\\n<p class=\\\"foot\\\">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "<div class=\"lbl\">Ngày sinh (dd/mm/yyyy)</div><input id=\"ngaysinh\" aria-label=\"fld_ngaysinh_01\" type=\"text\">",
+    "replace": "<label for=\"ngaysinh\" class=\"lbl\">Ngày sinh (dd/mm/yyyy)</label><input id=\"ngaysinh\" type=\"text\">"
+   }
+  ],
+  "explanation": "The Date of birth field had a hidden technical code (fld_ngaysinh_01) as its name, so screen readers read that code instead of the visible text. The visible caption was a plain div not linked to the field. I turned the caption into a real label linked to the field and removed the code. The look is unchanged because the same CSS class is kept.",
+  "explanation_local": "Ô \"Ngày sinh\" bị gán một mã kỹ thuật ẩn (fld_ngaysinh_01) làm tên, nên trình đọc màn hình đọc mã này thay vì chữ hiển thị. Chữ hiển thị chỉ là một khối div, không gắn với ô nhập. Tôi đổi nó thành nhãn (label) gắn với ô nhập và xóa mã ẩn. Giao diện không đổi vì vẫn giữ nguyên class CSS.",
+  "technique": "Replace aria-label code with a native label element associated via for/id"
+ }
+}

@@ -1,0 +1,11 @@
+{
+  "file": "gauge_08.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.85,
+  "retries": 0,
+  "result": {
+    "reading_cm": -12.5,
+    "confidence": 0.8,
+    "reason": "The water surface is at about y=598 px. That is midway between the -10 tick (y≈563) and the -15 tick (y≈632), so I read -12.5 cm."
+  }
+}

@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 5334,
+ "tries": 1,
+ "created": "2026-10-06T23:50:41",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"keyboard_trap\",\n  \"wcag\": \"2.1.1 Keyboard\",\n  \"element_id\": \"cccd\",\n  \"screen_reader_heard\": \"Số CCCD, ô nhập, 001085012345\",\n  \"evidence\": \"Tab pressed 3 times, focus never left this field\",\n  \"visible_caption\": \"Số CCCD\"\n },\n \"page_language\": \"vi-VN\",\n \"file\": \"step1.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"vi\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>Bước 1/4 – Thông tin người yêu cầu</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body>\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">Cổng Dịch vụ công <b>MÔ PHỎNG</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · not a real government site · dữ liệu giả</div></header>\\n<main>\\n<h1>Cấp Phiếu lý lịch tư pháp</h1>\\n<ol class=\\\"steps\\\"><li class=\\\"on\\\">1. Người yêu cầu</li><li>2. Liên hệ</li><li>3. Mục đích</li><li>4. Xác nhận</li></ol>\\n<h2>Bước 1/4: Thông tin người yêu cầu</h2>\\n<div class=\\\"field\\\"><label for=\\\"hoten\\\" class=\\\"lbl\\\">Họ và tên <span class=\\\"req\\\">*</span></label><input id=\\\"hoten\\\" type=\\\"text\\\" required></div>\\n<div class=\\\"field\\\"><label for=\\\"ngaysinh\\\">Ngày sinh (dd/mm/yyyy)</label><input id=\\\"ngaysinh\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"cccd\\\">Số CCCD</label><input id=\\\"cccd\\\" type=\\\"text\\\"></div>\\n<div class=\\\"actions\\\"><button type=\\\"button\\\" id=\\\"next1\\\" class=\\\"btn\\\" onclick=\\\"location.href='step2.html'\\\">Tiếp tục</button></div>\\n<script id=\\\"input-format\\\">\\ndocument.getElementById('cccd').addEventListener('keydown', function (e) {\\n  if (e.key === 'Tab') { e.preventDefault(); this.value = this.value.trim(); }\\n});\\n</script>\\n<p class=\\\"foot\\\">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "  if (e.key === 'Tab') { e.preventDefault(); this.value = this.value.trim(); }\n",
+    "replace": "  if (e.key === 'Tab') { this.value = this.value.trim(); }\n"
+   }
+  ],
+  "explanation": "The script on the ID number (CCCD) field blocked the Tab key, so keyboard users could not leave the field. I removed the line that cancels Tab. The field still trims spaces from the value when Tab is pressed, and focus now moves to the next control as normal.",
+  "explanation_local": "Đoạn mã ở ô Số CCCD đã chặn phím Tab nên người dùng bàn phím không thể rời khỏi ô này. Tôi đã bỏ lệnh chặn phím Tab. Ô vẫn tự cắt khoảng trắng thừa khi nhấn Tab, và con trỏ giờ chuyển sang phần tử tiếp theo bình thường.",
+  "technique": "Remove preventDefault() on the Tab key in the keydown handler, keeping the trim formatting."
+ }
+}

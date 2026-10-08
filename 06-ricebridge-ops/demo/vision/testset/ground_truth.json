@@ -1,0 +1,230 @@
+{
+  "note": "SYNTHETIC images rendered by make_testset.py; not real field photos",
+  "px_per_cm": 14,
+  "images": [
+    {
+      "file": "gauge_01.jpg",
+      "truth_cm": -19.9,
+      "captured_at": "2026-02-16T15:23:00",
+      "rotation_deg": 0.8,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_02.jpg",
+      "truth_cm": -19.0,
+      "captured_at": "2026-02-17T14:56:00",
+      "rotation_deg": 5.61,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_03.jpg",
+      "truth_cm": -17.8,
+      "captured_at": "2026-02-18T11:17:00",
+      "rotation_deg": 3.73,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_04.jpg",
+      "truth_cm": -17.1,
+      "captured_at": "2026-02-19T14:15:00",
+      "rotation_deg": 2.66,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_05.jpg",
+      "truth_cm": -15.7,
+      "captured_at": "2026-02-20T13:05:00",
+      "rotation_deg": -4.7,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_06.jpg",
+      "truth_cm": -15.0,
+      "captured_at": "2026-02-21T09:57:00",
+      "rotation_deg": -3.95,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_07.jpg",
+      "truth_cm": -13.7,
+      "captured_at": "2026-02-22T10:26:00",
+      "rotation_deg": -5.48,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_08.jpg",
+      "truth_cm": -13.2,
+      "captured_at": "2026-02-23T09:25:00",
+      "rotation_deg": 5.8,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_09.jpg",
+      "truth_cm": -11.7,
+      "captured_at": "2026-02-24T14:27:00",
+      "rotation_deg": -4.02,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_10.jpg",
+      "truth_cm": -10.7,
+      "captured_at": "2026-02-25T12:07:00",
+      "rotation_deg": 3.92,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_11.jpg",
+      "truth_cm": -10.2,
+      "captured_at": "2026-02-16T13:13:00",
+      "rotation_deg": 0.68,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_12.jpg",
+      "truth_cm": -9.3,
+      "captured_at": "2026-02-17T06:42:00",
+      "rotation_deg": -1.19,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_13.jpg",
+      "truth_cm": -7.2,
+      "captured_at": "2026-02-18T10:17:00",
+      "rotation_deg": -5.9,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_14.jpg",
+      "truth_cm": -6.1,
+      "captured_at": "2026-02-19T07:50:00",
+      "rotation_deg": 3.77,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_15.jpg",
+      "truth_cm": -5.1,
+      "captured_at": "2026-02-20T11:25:00",
+      "rotation_deg": -5.04,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_16.jpg",
+      "truth_cm": -4.2,
+      "captured_at": "2026-02-21T09:28:00",
+      "rotation_deg": -5.3,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_17.jpg",
+      "truth_cm": -3.2,
+      "captured_at": "2026-02-22T10:18:00",
+      "rotation_deg": 4.86,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_18.jpg",
+      "truth_cm": -2.3,
+      "captured_at": "2026-02-23T13:41:00",
+      "rotation_deg": -3.2,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_19.jpg",
+      "truth_cm": -1.1,
+      "captured_at": "2026-02-24T11:07:00",
+      "rotation_deg": 0.33,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_20.jpg",
+      "truth_cm": -0.1,
+      "captured_at": "2026-02-25T15:11:00",
+      "rotation_deg": 1.21,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_21.jpg",
+      "truth_cm": 1.1,
+      "captured_at": "2026-02-16T13:03:00",
+      "rotation_deg": -3.12,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_22.jpg",
+      "truth_cm": 1.7,
+      "captured_at": "2026-02-17T09:30:00",
+      "rotation_deg": -3.73,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_23.jpg",
+      "truth_cm": 2.9,
+      "captured_at": "2026-02-18T12:24:00",
+      "rotation_deg": -0.58,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_24.jpg",
+      "truth_cm": 3.8,
+      "captured_at": "2026-02-19T06:59:00",
+      "rotation_deg": 5.24,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_25.jpg",
+      "truth_cm": 4.8,
+      "captured_at": "2026-02-20T08:31:00",
+      "rotation_deg": -3.27,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_26.jpg",
+      "truth_cm": -15.5,
+      "captured_at": "2026-02-21T15:26:00",
+      "rotation_deg": 3.35,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "gauge_27.jpg",
+      "truth_cm": -2.5,
+      "captured_at": "2026-02-22T12:44:00",
+      "rotation_deg": 0.74,
+      "hero": false,
+      "synthetic": true
+    },
+    {
+      "file": "hero_thua2_minus8.jpg",
+      "truth_cm": -8.0,
+      "captured_at": "2026-02-22T16:42:00",
+      "rotation_deg": -4.51,
+      "hero": true,
+      "synthetic": true
+    }
+  ]
+}

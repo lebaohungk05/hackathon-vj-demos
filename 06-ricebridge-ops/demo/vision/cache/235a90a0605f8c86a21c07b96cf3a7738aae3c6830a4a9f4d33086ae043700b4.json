@@ -1,0 +1,11 @@
+{
+  "file": "gauge_14.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.72,
+  "retries": 0,
+  "result": {
+    "reading_cm": -5.6,
+    "confidence": 0.8,
+    "reason": "The water surface is at about y=502 px, just below the -5 tick (y≈493). The ticks are about 14 px per cm, from +5 at y≈353 to -10 at y≈563, so the water is about 0.6 cm below -5."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "file": "hero_thua2_minus8.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 7.2,
+  "retries": 0,
+  "result": {
+    "reading_cm": -8.3,
+    "confidence": 0.8,
+    "reason": "The water surface is at about y=533 px, between the -5 mark (y≈487) and the -10 mark (y≈556), roughly two-thirds of the way down. The scale runs about 69 px per 5 cm."
+  }
+}

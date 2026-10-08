@@ -1,0 +1,11 @@
+{
+  "file": "gauge_09.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.35,
+  "retries": 0,
+  "result": {
+    "reading_cm": -11.8,
+    "confidence": 0.8,
+    "reason": "The water surface is at y≈582 px, between the -10 tick (y≈557) and the -15 tick (y≈626). The scale is about 14 px per cm, which puts the water about 1.8 cm below -10."
+  }
+}

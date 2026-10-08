@@ -1,0 +1,11 @@
+{
+  "file": "gauge_15.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 5.74,
+  "retries": 0,
+  "result": {
+    "reading_cm": -5.2,
+    "confidence": 0.8,
+    "reason": "The blue water surface sits just below the -5 tick, at about y=490 against the tick at y=487. The 0 mark is at the soil line and -10 is further down, so this is about 5 cm below the soil."
+  }
+}

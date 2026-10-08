@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 5961,
+ "tries": 1,
+ "created": "2026-10-07T09:48:11",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"mouse_only\",\n  \"wcag\": \"2.1.1 Keyboard\",\n  \"element_id\": \"next2\",\n  \"screen_reader_heard\": \"(never announced: not in Tab order)\",\n  \"evidence\": \"Full Tab cycle (5 stops) never reached “次へ”: it is a <div> with onclick, not focusable, so Enter and Space cannot activate it\",\n  \"visible_caption\": \"次へ\"\n },\n \"page_language\": \"ja-JP\",\n \"file\": \"step2.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"ja\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>ステップ2/3 – 請求内容</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body class=\\\"jp\\\">\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">みどり市 電子申請 <b>（模擬）</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ</div></header>\\n<main>\\n<h1>住民票の写し交付申請（模擬）</h1>\\n<ol class=\\\"steps\\\"><li>1. 申請者</li><li class=\\\"on\\\">2. 請求内容</li><li>3. 確認</li></ol>\\n<h2>ステップ2/3: 請求内容</h2>\\n<div class=\\\"field\\\"><label for=\\\"tsusu\\\">必要な通数</label><select id=\\\"tsusu\\\"><option>1通</option><option>2通</option></select></div>\\n<div class=\\\"field\\\"><label for=\\\"mokuteki\\\">使用目的</label><select id=\\\"mokuteki\\\"><option>就職手続き</option><option>運転免許</option><option>その他</option></select></div>\\n<div class=\\\"field\\\"><label for=\\\"yubin\\\">送付先の郵便番号</label><input id=\\\"yubin\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"denwa\\\">日中の連絡先電話番号</label><input id=\\\"denwa\\\" type=\\\"tel\\\"></div>\\n<div class=\\\"field check\\\"><input id=\\\"doui\\\" type=\\\"checkbox\\\"><label for=\\\"doui\\\">記載内容に誤りがないことを誓約します</label></div>\\n<div class=\\\"actions\\\"><div class=\\\"btn\\\" id=\\\"next2\\\" onclick=\\\"location.href='step3.html'\\\">次へ</div></div>\\n<p class=\\\"foot\\\">お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "<div class=\"btn\" id=\"next2\" onclick=\"location.href='step3.html'\">次へ</div>",
+    "replace": "<button type=\"button\" class=\"btn\" id=\"next2\" onclick=\"location.href='step3.html'\">次へ</button>"
+   }
+  ],
+  "explanation": "The \"次へ\" (Next) control was a plain div with a mouse click handler, so it could not be reached with Tab or activated with Enter/Space. Replacing it with a native button keeps the same look (same class), the same id and the same navigation to step3.html. It also makes the control keyboard-focusable and announced as a button. type=\"button\" ensures nothing is submitted.",
+  "explanation_local": "「次へ」は通常のdiv要素にクリック処理を付けただけだったため、Tabキーで移動できず、EnterキーやSpaceキーでも操作できませんでした。標準のbutton要素に置き換えることで、見た目（class）、id、step3.htmlへの移動はそのままに、キーボードで操作でき、スクリーンリーダーにもボタンとして読み上げられるようになります。type=\"button\"のため、フォームが送信されることはありません。",
+  "technique": "Replace non-focusable div[onclick] with a native button element"
+ }
+}

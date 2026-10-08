@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Bước 2/4 – Thông tin liên hệ</title>
+<link rel="stylesheet" href="portal.css">
+</head>
+<body>
+<header class="top"><div class="brand">Cổng Dịch vụ công <b>MÔ PHỎNG</b></div><div class="note">MinnaAccess · Cổng mô phỏng, không phải trang chính phủ · Dữ liệu giả</div></header>
+<main>
+<h1>Cấp Phiếu lý lịch tư pháp</h1>
+<ol class="steps"><li>1. Người yêu cầu</li><li class="on">2. Liên hệ</li><li>3. Mục đích</li><li>4. Xác nhận</li></ol>
+<h2>Bước 2/4: Thông tin liên hệ</h2>
+<div class="field"><label for="email">Email</label><input id="email" type="email"></div>
+<div class="field"><label for="sdt">Số điện thoại</label><input id="sdt" type="tel"></div>
+<div class="field"><label for="diachi">Nơi ĐKTT</label><input id="diachi" type="text"></div>
+<div class="actions"><button type="button" id="next2" class="btn" onclick="location.href='step3.html'">Tiếp tục</button></div>
+<script id="phone-mask">
+document.getElementById('sdt').addEventListener('blur', function () {
+  this.value = this.value.replace(/\D/g, '').slice(0, 10);
+});
+</script>
+<p class="foot">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>
+</main>
+</body>
+</html>

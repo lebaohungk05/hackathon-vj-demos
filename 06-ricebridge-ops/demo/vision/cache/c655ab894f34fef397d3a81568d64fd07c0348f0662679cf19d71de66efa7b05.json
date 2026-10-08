@@ -1,0 +1,11 @@
+{
+  "file": "gauge_18.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 7.12,
+  "retries": 0,
+  "result": {
+    "reading_cm": -2.5,
+    "confidence": 0.8,
+    "reason": "The 0 mark sits at the soil line (about y=417), with +5 at y=347 and -5 at y=488, so about 14 px per cm. The top of the blue water is at about y=452, which is roughly 2.5 cm below 0."
+  }
+}

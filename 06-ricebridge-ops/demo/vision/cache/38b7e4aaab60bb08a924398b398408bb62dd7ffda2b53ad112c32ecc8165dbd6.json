@@ -1,0 +1,11 @@
+{
+  "file": "gauge_22.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 9.21,
+  "retries": 0,
+  "result": {
+    "reading_cm": 1.7,
+    "confidence": 0.7,
+    "reason": "The 0 mark (red line at the soil surface) sits at about y=419 and the +5 mark at about y=347, which gives about 14.4 px per cm. The water surface is about 25 px above the 0 mark, so it reads about +1.7 cm."
+  }
+}

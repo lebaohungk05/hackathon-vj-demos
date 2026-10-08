@@ -1,0 +1,11 @@
+{
+  "file": "gauge_04.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.48,
+  "retries": 0,
+  "result": {
+    "reading_cm": -16.9,
+    "confidence": 0.8,
+    "reason": "The 0 mark is at y≈420 and -15 is at y≈631, so the scale runs about 14 px per cm. The blue water surface in the tube starts at y≈657, which is about 1.9 cm below the -15 mark."
+  }
+}

@@ -1,0 +1,958 @@
+{
+ "1通": {
+  "en": "1 copy",
+  "vi": "1 bản"
+ },
+ "2通": {
+  "en": "2 copies",
+  "vi": "2 bản"
+ },
+ "A script on the Email field blocked the Tab key (it cancelled the key press to trim spaces), so keyboard users could not leave the field. The fix keeps the trimming but runs it when the field loses focus, and no longer cancels Tab. The Tab key now moves to the next field normally.": {
+  "ja": "メールフィールド上のスクリプトが Tab キーをブロック（スペーストリムのためにキー入力をキャンセル）していたため、キーボードユーザーはそのフィールドを抜け出すことができませんでした。修正ではトリミング処理を保持しながら、フィールドがフォーカスを失ったときに実行し、Tab キーをキャンセルしなくなりました。Tab キーは通常どおり次のフィールドに移動します。",
+  "vi": "Một đoạn mã ở ô Email đã chặn phím Tab (huỷ thao tác phím để cắt khoảng trắng), nên người dùng bàn phím không thể rời khỏi ô này. Bản sửa vẫn cắt khoảng trắng nhưng thực hiện khi con trỏ rời khỏi ô, không huỷ phím Tab nữa. Phím Tab giờ chuyển sang ô tiếp theo bình thường."
+ },
+ "A script on the phone field blocked the Tab key (preventDefault), so keyboard users could not leave the field. I removed only the blocking call. The script still trims spaces when Tab is pressed, and the digit-only formatting on blur is unchanged.": {
+  "ja": "電話フィールド上のスクリプトが Tab キーをブロック（preventDefault）していたため、キーボードユーザーはそのフィールドを抜け出すことができませんでした。ブロッキング呼び出しのみを削除しました。スクリプトは Tab キー押下時にスペーストリムを行い、blur 時の数字のみのフォーマットはそのままです。",
+  "vi": "Một đoạn mã ở ô \"Số điện thoại\" chặn phím Tab nên người dùng bàn phím không thể rời khỏi ô này. Tôi chỉ bỏ lệnh chặn đó. Trang vẫn tự cắt khoảng trắng thừa khi bấm Tab, và việc chỉ giữ lại chữ số khi rời ô vẫn như cũ."
+ },
+ "Abbreviation ĐKTT (Đăng Ký Thường Trú) is standard in Vietnamese administrative forms; expanding it would enhance clarity.": {
+  "ja": "略語 ĐKTT（Đăng Ký Thường Trú）はベトナム行政書式で標準的ですが、展開することで明確性が向上します。",
+  "vi": "Viết tắt ĐKTT (Đăng Ký Thường Trú) là tiêu chuẩn trong các biểu mẫu hành chính Việt Nam; khai triển nó sẽ giúp tăng tính rõ ràng."
+ },
+ "Accessible name 'fld_ngaysinh_01' is a code; visible label 'Date of birth (dd/mm/yyyy)' is clear but screen reader users may not hear it.": {
+  "ja": "アクセシブル名 'fld_ngaysinh_01' はコードです。表示ラベル 'Date of birth (dd/mm/yyyy)' は明確ですが、スクリーンリーダーユーザーはそれを聞き取れない可能性があります。",
+  "vi": "Tên có thể truy cập 'fld_ngaysinh_01' là một mã; nhãn hiển thị 'Date of birth (dd/mm/yyyy)' rõ ràng nhưng người dùng trình đọc màn hình có thể không nghe được nó."
+ },
+ "Accessible name is internal code \"fld_denwa_01\"; visible caption \"日中の連絡先電話番号\" means daytime contact phone number.": {
+  "ja": "アクセシブル名は内部コード \"fld_denwa_01\" です。表示キャプション \"日中の連絡先電話番号\" は昼間の連絡先電話番号のことです。",
+  "vi": "Tên có thể truy cập là mã nội bộ \"fld_denwa_01\"; nhãn hiển thị \"日中の連絡先電話番号\" có nghĩa là số điện thoại liên lạc trong ngày."
+ },
+ "Applicant is foreign (Vietnamese), so must enter nationality per the label's instruction. Label explicitly addresses foreign nationals, making the requirement clear.": {
+  "ja": "申請者は外国籍（ベトナム国籍）であるため、ラベルの指示に従って国籍を入力する必要があります。ラベルは外国籍者を明示的に対象としているため、要件が明確です。",
+  "vi": "Người nộp đơn là người nước ngoài (Việt Nam), vì vậy phải nhập quốc tịch theo hướng dẫn của nhãn. Nhãn rõ ràng đề cập đến công dân nước ngoài, làm cho yêu cầu trở nên rõ ràng."
+ },
+ "Bước 1/4 – Thông tin người yêu cầu": {
+  "en": "Step 1/4 – Requestor information",
+  "ja": "ステップ 1/4 – 申請者情報"
+ },
+ "Bước 1/4 – Thông tin người yêu cầu. Bước 1/4: Thông tin người yêu cầu": {
+  "en": "Step 1/4 – Requestor information. Step 1/4: Requestor information",
+  "ja": "ステップ 1/4 – 申請者情報。ステップ 1/4: 申請者情報"
+ },
+ "Bước 1/4: Thông tin người yêu cầu": {
+  "en": "Step 1/4: Requestor information",
+  "ja": "ステップ 1/4: 申請者情報"
+ },
+ "Bước 2/4 – Thông tin liên hệ": {
+  "en": "Step 2/4 – Contact information",
+  "ja": "ステップ 2/4 – 連絡先情報"
+ },
+ "Bước 2/4 – Thông tin liên hệ. Bước 2/4: Thông tin liên hệ": {
+  "en": "Step 2/4 – Contact information. Step 2/4: Contact information",
+  "ja": "ステップ 2/4 – 連絡先情報。ステップ 2/4: 連絡先情報"
+ },
+ "Bước 2/4: Thông tin liên hệ": {
+  "en": "Step 2/4: Contact information",
+  "ja": "ステップ 2/4: 連絡先情報"
+ },
+ "Bước 3/4 – Mục đích yêu cầu": {
+  "en": "Step 3/4 – Purpose of request",
+  "ja": "ステップ 3/4 – 申請目的"
+ },
+ "Bước 3/4 – Mục đích yêu cầu. Bước 3/4: Mục đích yêu cầu": {
+  "en": "Step 3/4 – Purpose of request. Step 3/4: Purpose of request",
+  "ja": "ステップ 3/4 – 申請目的。ステップ 3/4: 申請目的"
+ },
+ "Bước 3/4: Mục đích yêu cầu": {
+  "en": "Step 3/4: Purpose of request",
+  "ja": "ステップ 3/4: 申請目的"
+ },
+ "Bước 4/4 – Xác nhận và nộp hồ sơ": {
+  "en": "Step 4/4 – Confirmation and submission",
+  "ja": "ステップ 4/4 – 確認と提出"
+ },
+ "Bước 4/4 – Xác nhận và nộp hồ sơ. Bước 4/4: Xác nhận và nộp hồ sơ": {
+  "en": "Step 4/4 – Confirmation and submission. Step 4/4: Confirmation and submission",
+  "ja": "ステップ 4/4 – 確認と提出。ステップ 4/4: 確認と提出"
+ },
+ "Bước 4/4: Xác nhận và nộp hồ sơ": {
+  "en": "Step 4/4: Confirmation and submission",
+  "ja": "ステップ 4/4: 確認と提出"
+ },
+ "CCCD (Căn Cước Công Dân) is spelled out as four letters by screen readers; expand label to \"Số Căn Cước Công Dân\" or \"Citizen Identity Card Number\" for clarity.": {
+  "ja": "CCCD（Căn Cước Công Dân）はスクリーンリーダーで 4 文字として読み上げられます。明確性のためにラベルを \"Số Căn Cước Công Dân\" または \"Citizen Identity Card Number\" に展開してください。",
+  "vi": "CCCD (Căn Cước Công Dân) được trình đọc màn hình đánh vần thành bốn chữ cái; mở rộng nhãn thành \"Số Căn Cước Công Dân\" hoặc \"Citizen Identity Card Number\" để rõ ràng hơn."
+ },
+ "CCCD is Căn Cước Công Dân, Vietnam's standard photo ID replacing the old national identity card. Any Vietnamese applicant will recognize this term.": {
+  "ja": "CCCD は Căn Cước Công Dân で、ベトナムの標準的な写真付き身分証であり、旧国民身分証に代わるものです。すべてのベトナム人申請者はこの用語を認識しています。",
+  "vi": "CCCD là Căn Cước Công Dân, giấy chứng minh nhân dân tiêu chuẩn của Việt Nam, thay thế cho giấy chứng minh nhân dân cũ. Bất kỳ người nộp đơn Việt Nam nào cũng sẽ nhận ra thuật ngữ này."
+ },
+ "CCCD is a standard Vietnamese abbreviation for the national identity card, but letter-by-letter spelling obscures its meaning to unfamiliar users. The applicant's citizen ID is directly available in the profile.": {
+  "ja": "CCCD はベトナムの国民身分証の標準的な略語ですが、文字ごとの読み上げはなじみのないユーザーにとってその意味を曖昧にします。申請者の国民身分証番号はプロフィールで直接利用できます。",
+  "vi": "CCCD là viết tắt tiêu chuẩn Việt Nam cho giấy chứng minh nhân dân, nhưng việc đánh vần từng chữ cái sẽ che khuất ý nghĩa của nó với những người không quen thuộc. Giấy chứng minh công dân của người nộp đơn có sẵn trực tiếp trong hồ sơ của họ."
+ },
+ "CCCD is an abbreviation spoken as \"C-C-C-D\" by screen readers; expand to full form \"Căn Cước Công Dân\" or English equivalent for clarity.": {
+  "ja": "CCCD はスクリーンリーダーで \"C-C-C-D\" と読み上げられる略語です。明確性のため、\"Căn Cước Công Dân\" または英語相当表記に展開してください。",
+  "vi": "CCCD là viết tắt được trình đọc màn hình phát âm là \"C-C-C-D\"; mở rộng thành dạng đầy đủ \"Căn Cước Công Dân\" hoặc tương đương tiếng Anh để rõ ràng hơn."
+ },
+ "Citizen Identity Card Number (Căn Cước Công Dân)": {
+  "ja": "国民身分証番号（Căn Cước Công Dân）",
+  "vi": "Số Căn Cước Công Dân"
+ },
+ "Citizen Identity Card number (Căn Cước Công Dân)": {
+  "ja": "国民身分証番号（Căn Cước Công Dân）",
+  "vi": "Số Căn Cước Công Dân"
+ },
+ "Current registered residential address (住所) in Japan — where the applicant is registered to reside": {
+  "ja": "日本での現在の登録住所（住所）— 申請者が登録されている居住地",
+  "vi": "Địa chỉ thường trú đã đăng ký hiện tại (住所) ở Nhật Bản — nơi người nộp đơn được đăng ký cư trú."
+ },
+ "Current residential address in Japan": {
+  "ja": "日本での現在の居住地",
+  "vi": "Địa chỉ thường trú hiện tại ở Nhật Bản"
+ },
+ "Cấp Phiếu lý lịch tư pháp": {
+  "en": "Criminal record certificate",
+  "ja": "身分調査票の発行"
+ },
+ "Date of birth": {
+  "ja": "生年月日",
+  "vi": "Ngày sinh"
+ },
+ "Date of birth (applicant's birth date in Japanese calendar notation)": {
+  "ja": "生年月日（申請者の誕生日、日本カレンダー表記）",
+  "vi": "Ngày sinh (ngày sinh của người nộp đơn theo ký hiệu lịch Nhật Bản)"
+ },
+ "Date of birth (year-month-day)": {
+  "ja": "生年月日（年-月-日）",
+  "vi": "Ngày sinh (năm-tháng-ngày)"
+ },
+ "Date of birth (生年月日)": {
+  "ja": "生年月日（生年月日）",
+  "vi": "Ngày sinh (生年月日)"
+ },
+ "Date of birth in dd/mm/yyyy format": {
+  "ja": "生年月日（dd/mm/yyyy形式）",
+  "vi": "Ngày sinh theo định dạng dd/mm/yyyy"
+ },
+ "Date of birth of the applicant, required in dd/mm/yyyy format for the criminal record certificate application.": {
+  "ja": "犯罪経歴証明書の申請に必要な申請者の生年月日をdd/mm/yyyy形式で入力してください。",
+  "vi": "Ngày sinh của người nộp đơn, bắt buộc phải nhập theo định dạng dd/mm/yyyy cho đơn xin cấp giấy chứng thực không có tiền sử tội phạm."
+ },
+ "Daytime contact phone number": {
+  "ja": "日中連絡先電話番号",
+  "vi": "Số điện thoại liên hệ ban ngày"
+ },
+ "Daytime contact phone number (日中の連絡先電話番号)": {
+  "ja": "日中連絡先電話番号（日中の連絡先電話番号）",
+  "vi": "Số điện thoại liên hệ ban ngày (日中の連絡先電話番号)"
+ },
+ "Daytime contact telephone number": {
+  "ja": "日中連絡先電話番号",
+  "vi": "Số điện thoại liên hệ ban ngày"
+ },
+ "Email address": {
+  "ja": "メールアドレス",
+  "vi": "Địa chỉ thư điện tử"
+ },
+ "Email address for contact purposes during the criminal-record certificate application process.": {
+  "ja": "犯罪経歴証明書申請手続中の連絡用メールアドレス",
+  "vi": "Địa chỉ thư điện tử để liên hệ trong quá trình nộp đơn xin giấy chứng nhận lý lịch"
+ },
+ "Email address for contact purposes on the criminal record certificate application": {
+  "ja": "犯罪経歴証明書申請での連絡用メールアドレス",
+  "vi": "Địa chỉ thư điện tử để liên hệ về đơn xin giấy chứng nhận lý lịch"
+ },
+ "Email, ô nhập": {
+  "en": "Email, input field",
+  "ja": "メール、入力欄"
+ },
+ "Email, ô nhập, an.nguyen@example.com": {
+  "en": "Email, input field, an.nguyen@example.com",
+  "ja": "メール、入力欄、an.nguyen@example.com"
+ },
+ "Field asks for full name (氏名 – surname and given name)": {
+  "ja": "このフィールドは氏名（氏名 – 姓と名）の入力を求めています。",
+  "vi": "Ô nhập yêu cầu họ tên đầy đủ (氏名 – họ và tên)"
+ },
+ "Field has no programmatic label; visible 'Email' caption not announced to screen readers.": {
+  "ja": "このフィールドにはプログラム的ラベルがありません。表示されている「Email」というキャプションはスクリーンリーダーに読み上げられません。",
+  "vi": "Ô nhập không có nhãn lập trình; chữ 'Email' hiển thị nhưng trình đọc màn hình không phát biểu."
+ },
+ "Field requests the applicant's full name (氏名). The katakana version is standard for foreign residents' names in Japanese administrative systems.": {
+  "ja": "このフィールドは申請者の氏名（氏名）を求めています。日本の行政システムでは、外国人居住者の名前のカタカナ版が標準です。",
+  "vi": "Ô nhập yêu cầu họ tên đầy đủ của người nộp đơn (氏名). Phiên bản viết bằng chữ katakana là chuẩn cho tên của người nước ngoài trong các hệ thống hành chính Nhật Bản."
+ },
+ "For foreign nationals, enter your nationality (Vietnam). Japanese citizens would enter their 本籍地 (registered domicile in the family register), but the form explicitly directs non-Japanese residents to provide nationality instead.": {
+  "ja": "外国人の場合は、国籍（Vietnam）を入力してください。日本国民は本籍地（戸籍に登録された住所）を入力しますが、このフォームは非日本人居住者に対して代わりに国籍を入力するよう明確に指示しています。",
+  "vi": "Đối với người nước ngoài, hãy nhập quốc tịch của bạn (Việt Nam). Công dân Nhật Bản sẽ nhập 本籍地 (hộ khẩu thường trú trong sổ hộ gia đình), nhưng mẫu đơn rõ ràng yêu cầu người nước ngoài cung cấp quốc tịch thay thế."
+ },
+ "Foreign nationals in Japan are registered in the residence system under their Katakana name.": {
+  "ja": "日本に滞在する外国人は、住民システムにカタカナ名で登録されています。",
+  "vi": "Người nước ngoài ở Nhật Bản được đăng ký trong hệ thống cư trú dưới tên viết bằng chữ katakana."
+ },
+ "Full name (Họ và tên) — applicant's complete name as used in official documents.": {
+  "ja": "氏名（Họ và tên）— 公式文書に使用されている申請者の完全な名前。",
+  "vi": "Họ và tên (Họ và tên) — tên đầy đủ của người nộp đơn như được sử dụng trong các tài liệu chính thức."
+ },
+ "Full name (family name and given name)": {
+  "ja": "氏名（姓と名）",
+  "vi": "Họ và tên (họ và tên riêng)"
+ },
+ "Full name (surname and given name)": {
+  "ja": "氏名（姓と名）",
+  "vi": "Họ và tên (họ và tên riêng)"
+ },
+ "Full name (氏名)": {
+  "ja": "氏名（氏名）",
+  "vi": "Họ và tên (氏名)"
+ },
+ "Full name / applicant's name": {
+  "ja": "氏名／申請者の氏名",
+  "vi": "Họ và tên / tên người nộp đơn"
+ },
+ "Full name of the applicant (Họ và tên)": {
+  "ja": "申請者の氏名(Họ và tên)",
+  "vi": "Họ và tên của người nộp đơn (Họ và tên)"
+ },
+ "Full name — the applicant's name as registered in Japan's residence system (住民票)": {
+  "ja": "氏名—住民票に登録されている申請者の氏名",
+  "vi": "Họ và tên — tên của người nộp đơn đã đăng ký trong hệ thống cư trú của Nhật Bản (住民票)"
+ },
+ "Họ và tên": {
+  "en": "Full name",
+  "ja": "氏名"
+ },
+ "Họ và tên *": {
+  "en": "Full name *",
+  "ja": "氏名 *"
+ },
+ "Họ và tên *, ô nhập": {
+  "en": "Full name *, input field",
+  "ja": "氏名 *、入力欄"
+ },
+ "In a Japanese municipal certificate of residence application, \"住所\" (address) requests the applicant's current residential address where they are registered with the municipality. The profile provides the Japanese current address, which is the appropriate value for this field.": {
+  "ja": "日本の市町村住居証明書申請において、「住所」(address)は、申請者が市町村に登録されている現在の住所を要求します。プロフィールが提供する日本の現在の住所は、このフィールドの適切な値です。",
+  "vi": "Trong đơn xin cấp giấy chứng nhận nơi ở tại một thành phố Nhật Bản, \"住所\" (địa chỉ) yêu cầu địa chỉ cư trú hiện tại của người nộp đơn nơi được đăng ký với chính quyền địa phương. Hồ sơ cung cấp địa chỉ hiện tại ở Nhật Bản, đây là giá trị thích hợp cho trường này."
+ },
+ "Label 'Họ và tên' (Full name) is visible but not in accessibility tree.": {
+  "ja": "ラベル 'Họ và tên' (氏名) は表示されていますが、アクセシビリティツリーに含まれていません。",
+  "vi": "Nhãn 'Họ và tên' (Họ và tên) hiển thị nhưng không nằm trong cây khả năng tiếp cận."
+ },
+ "Liên hệ": {
+  "en": "Contact",
+  "ja": "連絡先"
+ },
+ "Loại phiếu": {
+  "en": "Form type",
+  "ja": "票種"
+ },
+ "Loại phiếu, hộp xổ xuống, Phiếu số 1": {
+  "en": "Form type, dropdown, Form 1",
+  "ja": "票種、ドロップダウンボックス、票番号1"
+ },
+ "Mục đích": {
+  "en": "Purpose",
+  "ja": "目的"
+ },
+ "Nationality or region of origin (the standard field for registered domicile does not apply to foreign residents)": {
+  "ja": "国籍または出身地域(登録住所の標準フィールドは外国人住民には適用されません)",
+  "vi": "Quốc tịch hoặc vùng nguyên quán (trường tiêu chuẩn cho nơi đăng ký thường trú không áp dụng cho cư dân nước ngoài)"
+ },
+ "Ngày sinh (dd/mm/yyyy)": {
+  "en": "Date of birth (dd/mm/yyyy)",
+  "ja": "生年月日（dd/mm/yyyy）"
+ },
+ "Ngày sinh (dd/mm/yyyy), ô nhập": {
+  "en": "Date of birth (dd/mm/yyyy), input field",
+  "ja": "生年月日（dd/mm/yyyy）、入力欄"
+ },
+ "Ngày sinh is the Vietnamese term for date of birth, and the format dd/mm/yyyy is explicit. The applicant's birth date from the profile (12/03/1985) matches this format exactly.": {
+  "ja": "Ngày sinh はベトナム語で生年月日の意味であり、形式は dd/mm/yyyy と明示されています。プロフィールの申請者の生年月日(12/03/1985)はこの形式と正確に一致しています。",
+  "vi": "Ngày sinh là thuật ngữ tiếng Việt cho ngày sinh, và định dạng dd/mm/yyyy rõ ràng. Ngày sinh của người nộp đơn từ hồ sơ (12/03/1985) khớp chính xác với định dạng này."
+ },
+ "Người yêu cầu": {
+  "en": "Requester",
+  "ja": "申請者"
+ },
+ "Nhập mã xác nhận": {
+  "en": "Enter verification code",
+  "ja": "確認コードを入力"
+ },
+ "No additional advisory needed. The label \"Số điện thoại\" (telephone number) is clear and standard Vietnamese administrative terminology.": {
+  "ja": "追加のアドバイスは不要です。ラベル「Số điện thoại」(電話番号)は明確で標準的なベトナム行政用語です。",
+  "vi": "Không cần tư vấn bổ sung. Nhãn \"Số điện thoại\" (Số điện thoại) rõ ràng và là thuật ngữ hành chính tiêu chuẩn của Việt Nam."
+ },
+ "Nơi ĐKTT": {
+  "en": "Place of permanent residence registration",
+  "ja": "本籍地"
+ },
+ "Nơi ĐKTT, ô nhập": {
+  "en": "Place of permanent residence registration, input field",
+  "ja": "本籍地、入力欄"
+ },
+ "Nộp hồ sơ": {
+  "en": "Submit application",
+  "ja": "提出"
+ },
+ "Nộp hồ sơ, nút": {
+  "en": "Submit application, button",
+  "ja": "提出、ボタン"
+ },
+ "Permanent registered residence address (Nơi đăng ký thường trú)": {
+  "ja": "常設登録住所(Nơi đăng ký thường trú)",
+  "vi": "Địa chỉ nơi đăng ký thường trú (Nơi đăng ký thường trú)"
+ },
+ "Personal name": {
+  "ja": "個人名",
+  "vi": "Họ và tên"
+ },
+ "Phiếu số 1": {
+  "en": "Form 1",
+  "ja": "票番号1"
+ },
+ "Phiếu số 2": {
+  "en": "Form 2",
+  "ja": "票番号2"
+ },
+ "Phone number (Số điện thoại)": {
+  "ja": "電話番号(Số điện thoại)",
+  "vi": "Số điện thoại (Số điện thoại)"
+ },
+ "Phone number (contact telephone)": {
+  "ja": "電話番号(連絡先電話)",
+  "vi": "Số điện thoại (số điện thoại liên hệ)"
+ },
+ "Phone number for contact during the criminal record certificate application process.": {
+  "ja": "犯罪経歴証明書申請プロセス中の連絡用電話番号",
+  "vi": "Số điện thoại để liên hệ trong quá trình xin cấp giấy chứng nhận sạch trạng."
+ },
+ "Place of Permanent Registered Residence (Nơi Đăng Ký Thường Trú)": {
+  "ja": "常設登録住所の場所(Nơi Đăng Ký Thường Trú)",
+  "vi": "Nơi đăng ký thường trú (Nơi Đăng Ký Thường Trú)"
+ },
+ "Place of permanent registered residence (nơi đăng ký thường trú)": {
+  "ja": "常設登録住所の場所(nơi đăng ký thường trú)",
+  "vi": "Nơi đăng ký thường trú (nơi đăng ký thường trú)"
+ },
+ "Postal code for delivery destination (where the certificate copy should be sent)": {
+  "ja": "配送先の郵便番号(証明書の写しを送付する場所)",
+  "vi": "Mã bưu chính cho địa chỉ giao hàng (nơi bản sao giấy chứng nhận nên được gửi)"
+ },
+ "Postal code for the delivery destination of the certificate": {
+  "ja": "証明書の配送先の郵便番号",
+  "vi": "Mã bưu chính cho địa chỉ giao hàng của giấy chứng nhận"
+ },
+ "Postal code for the mailing destination (where the certificate of residence copy should be delivered)": {
+  "ja": "郵送先の郵便番号(居住証明書の写しを配送する場所)",
+  "vi": "Mã bưu chính cho địa chỉ gửi thư (nơi bản sao giấy chứng nhận nơi ở nên được giao)"
+ },
+ "Registered domicile in the family register (本籍地); for foreign nationals, nationality (国籍)": {
+  "ja": "戸籍簿に登録されている住所(本籍地);外国人の場合は国籍(国籍)",
+  "vi": "Nơi đăng ký thường trú trong sổ gia đình (本籍地); đối với công dân nước ngoài, quốc tịch (国籍)"
+ },
+ "Registered domicile in the family register, or nationality/region for foreign nationals": {
+  "ja": "戸籍に登録されている本籍地、または外国人の場合は国籍・地域",
+  "vi": "Nơi đăng ký thường trú trong sổ gia đình, hoặc quốc tịch/vùng đối với công dân nước ngoài"
+ },
+ "Residential address (住所) – the Japanese street/municipal address where the applicant currently resides.": {
+  "ja": "申請者が現在居住している日本の市町村住所（住所）",
+  "vi": "Địa chỉ cư trú (住所) – địa chỉ đường phố/chính quyền địa phương Nhật Bản nơi người nộp đơn hiện đang cư trú."
+ },
+ "Standard Japanese administrative form term; no clarity issues.": {
+  "ja": "標準的な日本の行政フォーム用語です。明確性に関する問題はありません。",
+  "vi": "Thuật ngữ biểu mẫu hành chính tiêu chuẩn của Nhật Bản, không có vấn đề về độ rõ ràng."
+ },
+ "Số CCCD": {
+  "en": "ID number",
+  "ja": "身分証番号"
+ },
+ "Số CCCD, ô nhập": {
+  "en": "ID number, input field",
+  "ja": "身分証番号、入力欄"
+ },
+ "Số CCCD, ô nhập, 001085012345": {
+  "en": "ID card number, input field, 001085012345",
+  "ja": "身分証番号、入力欄、001085012345"
+ },
+ "Số lượng bản": {
+  "en": "Number of copies",
+  "ja": "部数"
+ },
+ "Số lượng bản, hộp xổ xuống, 1": {
+  "en": "Number of copies, dropdown, 1",
+  "ja": "部数、ドロップダウン、1"
+ },
+ "Số điện thoại": {
+  "en": "Phone number",
+  "ja": "電話番号"
+ },
+ "Số điện thoại (phone number)": {
+  "ja": "Số điện thoại（電話番号）",
+  "vi": "Số điện thoại (phone number)"
+ },
+ "Số điện thoại, ô nhập": {
+  "en": "Phone number, input field",
+  "ja": "電話番号、入力欄"
+ },
+ "Số điện thoại, ô nhập, 0912345678": {
+  "en": "Phone number, input field, 0912345678",
+  "ja": "電話番号、入力欄、0912345678"
+ },
+ "The \"Email\" caption was a plain div, so it was not linked to the input and screen readers announced only \"edit field\". It is now a native label tied to the field by for=\"email\", so the field is announced as \"Email\". The look is unchanged because the same class is kept, and nothing else on the page changes.": {
+  "ja": "「Email」キャプションは通常のdivであり、入力フィールドにリンクされていなかったため、スクリーンリーダーは「編集フィールド」とのみ読み上げていました。for=\"email\"でフィールドに紐付けられたネイティブなラベルになったため、フィールドが「Email」として読み上げられるようになります。同じクラスが保持されているため見た目は変わらず、ページの他の部分にも変化はありません。",
+  "vi": "Chữ \"Email\" trước đây chỉ là một khối div nên không gắn với ô nhập, trình đọc màn hình chỉ đọc \"ô nhập\". Giờ nó là thẻ label gắn với ô nhập qua for=\"email\", nên người dùng sẽ nghe thấy \"Email\". Giao diện giữ nguyên vì vẫn dùng cùng class, các phần khác của trang không đổi."
+ },
+ "The \"Họ và tên\" caption was a plain div, so it was not linked to the input and a screen reader announced only \"edit field\". Changing the div to a native label tied to the input (for=\"hoten\") gives the field its name. The class is kept, so the look stays the same, and nothing else changes.": {
+  "ja": "「Họ và tên」キャプションは通常のdivであり、入力フィールドにリンクされていなかったため、スクリーンリーダーは「編集フィールド」とのみ読み上げていました。divをネイティブなラベルに変更し、入力に紐付ける（for=\"hoten\"）ことで、フィールドに名前が付きました。クラスは保持されているため見た目は変わらず、他の部分にも変化はありません。",
+  "vi": "Dòng chữ \"Họ và tên\" trước đây chỉ là một khối div, không gắn với ô nhập nên trình đọc màn hình chỉ đọc \"ô nhập\". Chuyển div thành thẻ label gắn với ô nhập (for=\"hoten\") để ô có tên. Giữ nguyên class nên giao diện không đổi, các phần khác không thay đổi."
+ },
+ "The \"Họ và tên\" caption was a plain div, so it was not linked to the input and a screen reader announced only \"edit field\". It is now a native label tied to the field with for=\"hoten\". The field is also marked required to match the visible asterisk. Appearance and navigation do not change.": {
+  "ja": "「Họ và tên」キャプションは通常のdivであり、入力フィールドにリンクされていなかったため、スクリーンリーダーは「編集フィールド」とのみ読み上げていました。for=\"hoten\"で紐付けられたネイティブなラベルになりました。フィールドは表示されたアスタリスクに対応するため、必須としてマークされました。外観とナビゲーションは変わりません。",
+  "vi": "Dòng chữ \"Họ và tên\" trước đây chỉ là một khối văn bản thường, không gắn với ô nhập nên trình đọc màn hình chỉ đọc \"ô nhập\". Giờ nó là thẻ label gắn với ô nhập (for=\"hoten\"), nên người khiếm thị sẽ nghe được \"Họ và tên\". Ô cũng được đánh dấu bắt buộc, khớp với dấu * hiển thị. Giao diện và cách chuyển bước không thay đổi."
+ },
+ "The \"Số CCCD\" caption was a plain div, so it was not linked to the input and screen readers announced only \"edit field\". Changing it to a label tied to the input (for=\"cccd\") gives the field its name. The look is unchanged because the same \"lbl\" class is kept.": {
+  "ja": "「Số CCCD」キャプションは通常のdivであり、入力フィールドにリンクされていなかったため、スクリーンリーダーは「編集フィールド」とのみ読み上げていました。入力に紐付けられたラベルに変更する（for=\"cccd\"）ことで、フィールドに名前が付きました。同じ「lbl」クラスが保持されているため見た目は変わりません。",
+  "vi": "Chú thích \"Số CCCD\" trước đây chỉ là một khối div, không gắn với ô nhập nên trình đọc màn hình chỉ đọc \"ô nhập\". Đổi thành thẻ label gắn với ô nhập (for=\"cccd\") để ô có tên. Giao diện giữ nguyên vì vẫn dùng class \"lbl\"."
+ },
+ "The \"Tiếp tục\" (Continue) control was a plain div with a click handler, so the keyboard could not reach or activate it. It is now a native button. A button is in the Tab order, is announced as a button, and works with Enter and Space. It still goes to step3.html and keeps the same look through the existing \"btn\" class. It does not submit anything.": {
+  "ja": "「Tiếp tục」（続行）コントロールはクリックハンドラ付きの通常のdivであり、キーボードでアクセスしたり起動したりできませんでした。ネイティブなボタンになりました。ボタンはTab順序に含まれ、ボタンとして読み上げられ、EnterキーとSpaceキーで動作します。既存の「btn」クラスで同じ見た目を保ち、step3.htmlに移動します。何も送信しません。",
+  "vi": "Nút \"Tiếp tục\" trước đây chỉ là một thẻ div có sự kiện nhấp chuột, nên bàn phím không thể chọn hay kích hoạt được. Giờ nút này là thẻ button chuẩn: có thể chuyển tới bằng phím Tab, trình đọc màn hình đọc là \"nút\", và bấm được bằng Enter hoặc Space. Nút vẫn chuyển sang step3.html và giữ nguyên giao diện nhờ lớp \"btn\". Nút không gửi dữ liệu đi đâu."
+ },
+ "The \"Tiếp tục\" (Continue) control was a plain div with a click handler, so the keyboard could not reach or activate it. Replacing it with a native button makes it focusable and lets Enter and Space work. The same class, id and navigation to step4.html are kept, and the button does not submit anything.": {
+  "ja": "「Tiếp tục」（続行）コントロールはクリックハンドラ付きの通常のdivであり、キーボードでアクセスしたり起動したりできませんでした。ネイティブなボタンに置き換えることで、フォーカス可能になり、EnterキーとSpaceキーが機能するようになりました。同じクラス、idおよびstep4.htmlへのナビゲーションが保持され、ボタンは何も送信しません。",
+  "vi": "Nút \"Tiếp tục\" trước đây chỉ là một thẻ div có sự kiện nhấp chuột nên bàn phím không thể chọn hay kích hoạt. Đã đổi thành thẻ button chuẩn của HTML để có thể dùng phím Tab, Enter và Space. Giữ nguyên kiểu dáng, id và việc chuyển sang step4.html, và nút không gửi dữ liệu đi đâu."
+ },
+ "The \"Tiếp tục\" (Continue) control was a plain div with a mouse click handler, so keyboard users could not reach or activate it. Replacing it with a native button makes it focusable and lets Enter and Space work. The same styling class and the same navigation to step2.html are kept. type=\"button\" ensures it does not submit anything.": {
+  "ja": "「Tiếp tục」（続行）コントロールはマウスクリックハンドラ付きの通常のdivであり、キーボードユーザーはアクセスしたり起動したりできませんでした。ネイティブなボタンに置き換えることで、フォーカス可能になり、EnterキーとSpaceキーが機能するようになりました。同じスタイリングクラスおよびstep2.htmlへのナビゲーションが保持されます。type=\"button\"は何も送信されないことを保証します。",
+  "vi": "Nút \"Tiếp tục\" trước đây chỉ là một thẻ div phản ứng với chuột, nên người dùng bàn phím không thể chọn hay bấm được. Thay bằng thẻ button chuẩn của HTML giúp nút nhận được phím Tab, và bấm được bằng phím Enter hoặc Space. Giao diện (class btn) và việc chuyển sang step2.html vẫn giữ nguyên; type=\"button\" bảo đảm nút không gửi dữ liệu đi."
+ },
+ "The \"次へ\" (Next) control was a plain div with a mouse click handler, so it could not be reached with Tab or activated with Enter or Space. It is now a native button. Keyboard users can focus it and press Enter or Space, and screen readers announce it as a button. It still goes to step2.html and keeps the same \"btn\" styling class. It stays type=\"button\", so nothing is submitted.": {
+  "ja": "「次へ」は、マウス用のクリック処理が付いただけの div だったため、Tab キーで移動できず、Enter や Space でも押せませんでした。これを標準の button 要素に変更しました。キーボードでフォーカスして Enter または Space で押せるようになり、スクリーンリーダーでも「ボタン」として読み上げられます。移動先(step2.html)と見た目用のクラスはそのままで、データは送信されません。",
+  "vi": "Điều khiển \"次へ\" (Tiếp theo) là một div thông thường với xử lý sự kiện nhấp chuột, do đó không thể tiếp cận bằng phím Tab hoặc kích hoạt bằng phím Enter hoặc Space. Hiện nay nó là một nút gốc. Người dùng bàn phím có thể tập trung vào nó và nhấn Enter hoặc Space, và trình đọc màn hình công bố nó là một nút. Nó vẫn chuyển hướng đến step2.html và giữ lớp kiểu \"btn\" tương tự. Vẫn là type=\"button\", do đó không có gì được gửi."
+ },
+ "The \"次へ\" (Next) control was a plain div with a mouse click handler, so it could not be reached with Tab or activated with Enter/Space. Replacing it with a native button keeps the same look (same class), the same id and the same navigation to step3.html. It also makes the control keyboard-focusable and announced as a button. type=\"button\" ensures nothing is submitted.": {
+  "ja": "「次へ」は通常のdiv要素にクリック処理を付けただけだったため、Tabキーで移動できず、EnterキーやSpaceキーでも操作できませんでした。標準のbutton要素に置き換えることで、見た目（class）、id、step3.htmlへの移動はそのままに、キーボードで操作でき、スクリーンリーダーにもボタンとして読み上げられるようになります。type=\"button\"のため、フォームが送信されることはありません。",
+  "vi": "Điều khiển \"次へ\" (Tiếp theo) là một div thông thường với xử lý sự kiện nhấp chuột, do đó không thể tiếp cận bằng phím Tab hoặc kích hoạt bằng phím Enter/Space. Thay thế nó bằng một nút gốc giữ nguyên giao diện (cùng lớp), cùng id và cùng điều hướng đến step3.html. Điều này cũng làm cho điều khiển có thể tập trung bằng bàn phím và được công bố là một nút. type=\"button\" đảm bảo không có gì được gửi."
+ },
+ "The \"氏名\" (full name) caption was a plain div, so it was not connected to the input and screen readers announced only \"edit\". It is now a native label tied to the field by its id, using the same class so the look stays the same. The other fields already worked this way.": {
+  "ja": "「氏名」の見出しが単なる div で入力欄と結び付いておらず、スクリーンリーダーは「編集」としか読み上げませんでした。これを標準の label 要素に変更し、入力欄の id と関連付けました。クラスは同じなので見た目は変わりません。他の入力欄は既にこの形式です。",
+  "vi": "Chú thích \"氏名\" (họ và tên) là một div thông thường, do đó nó không được kết nối với ô nhập và trình đọc màn hình chỉ công bố \"edit\". Hiện nay nó là một nhãn gốc được liên kết với trường bằng id của nó, sử dụng cùng lớp để giao diện vẫn giữ nguyên. Các trường khác đã hoạt động theo cách này."
+ },
+ "The Address caption was a plain div, so it was not linked to the input and screen readers announced only \"edit\". Changing the div to a native label tied to the field by for=\"jusho\" gives the field the name \"住所\". The class is kept, so the look is unchanged.": {
+  "ja": "「住所」の見出しが単なる div だったため、入力欄と関連付けられず、スクリーンリーダーでは「編集」としか読み上げられませんでした。見出しを label に変え、for=\"jusho\" で入力欄と結び付けたので、「住所」と読み上げられます。クラスはそのままなので見た目は変わりません。",
+  "vi": "Chú thích Địa chỉ là một div thông thường, do đó nó không được liên kết với ô nhập và trình đọc màn hình chỉ công bố \"edit\". Thay đổi div thành một nhãn gốc được liên kết với trường bằng for=\"jusho\" cung cấp cho trường tên \"住所\". Lớp được giữ nguyên, do đó giao diện không thay đổi."
+ },
+ "The Date of birth field had a hidden technical code (fld_ngaysinh_01) as its name, so screen readers read that code instead of the visible text. The visible caption was a plain div not linked to the field. I turned the caption into a real label linked to the field and removed the code. The look is unchanged because the same CSS class is kept.": {
+  "ja": "日付フィールドは隠された技術コード（fld_ngaysinh_01）を名前として持っていたため、スクリーンリーダーはそのコードを読み上げていました。表示されたキャプションはフィールドにリンクされていない通常のdivでした。キャプションを実際のラベルに変更してフィールドにリンクし、コードを削除しました。同じCSSクラスが保持されているため見た目は変わりません。",
+  "vi": "Ô \"Ngày sinh\" bị gán một mã kỹ thuật ẩn (fld_ngaysinh_01) làm tên, nên trình đọc màn hình đọc mã này thay vì chữ hiển thị. Chữ hiển thị chỉ là một khối div, không gắn với ô nhập. Tôi đổi nó thành nhãn (label) gắn với ô nhập và xóa mã ẩn. Giao diện không đổi vì vẫn giữ nguyên class CSS."
+ },
+ "The accessible name \"Họ và tên\" is the standard Vietnamese term for full name and is explicit and unambiguous. The applicant profile provides a complete full name that directly fills this required field.": {
+  "ja": "アクセシブル名「Họ và tên」は標準的なベトナム語の用語で、完全な氏名を表す明示的で曖昧性のない用語です。申請者プロフィールは、この必須フィールドに直接入力される完全な氏名を提供します。",
+  "vi": "Tên có thể tiếp cận được \"Họ và tên\" là thuật ngữ tiêu chuẩn của Việt Nam cho họ và tên, rõ ràng và không mơ hồ. Hồ sơ ứng viên cung cấp một họ và tên đầy đủ mà trực tiếp điền vào trường bắt buộc này."
+ },
+ "The accessible name \"fld_yubin_01\" is an internal code that a screen reader spells letter-by-letter (not meaningful to blind users); the visible caption clearly indicates this is the postal code for where to send the certificate. The applicant's postal code in Japan is 123-4567.": {
+  "ja": "アクセシブル名「fld_yubin_01」は内部コードで、スクリーンリーダーは文字ごとにつづります（目の不自由なユーザーにとって意味がありません）。表示されたキャプションはこれが証明書を送付する場所の郵便番号であることを明確に示します。申請者の日本の郵便番号は123-4567です。",
+  "vi": "Tên có thể tiếp cận được \"fld_yubin_01\" là một mã nội bộ mà trình đọc màn hình đánh vần từng chữ cái (không có ý nghĩa với người dùng mù); chú thích hiển thị rõ ràng đây là mã bưu chính để gửi giấy chứng chỉ. Mã bưu chính của ứng viên ở Nhật Bản là 123-4567."
+ },
+ "The accessible name is empty despite a visible caption. \"住所\" (address) is a clear Japanese term, but empty programmatic labeling suggests an accessibility gap. The applicant's current address in Japan is directly available in the profile.": {
+  "ja": "アクセシブル名は空です。表示されたキャプションにもかかわらず、「住所」は明確な日本語用語ですが、プログラム的なラベル付けが空の場合はアクセシビリティのギャップを示します。申請者の現在の日本国内の住所はプロフィールから直接入手できます。",
+  "vi": "Tên có thể tiếp cận được trống rỗi mặc dù có chú thích hiển thị. \"住所\" (địa chỉ) là một thuật ngữ tiếng Nhật rõ ràng, nhưng gán nhãn lập trình trống rỗi gợi ý một khoảng trống về khả năng tiếp cận. Địa chỉ hiện tại của ứng viên ở Nhật Bản có sẵn trực tiếp trong hồ sơ."
+ },
+ "The accessible name is empty, so screen reader announces nothing. The visible caption clearly requests a daytime phone number; the Japanese number (090-0000-0000) is appropriate for this municipality context.": {
+  "ja": "アクセシブル名が空のため、スクリーンリーダーは何も読み上げません。表示されたキャプションは明確に昼間の電話番号をリクエストしています。日本の電話番号（090-0000-0000）はこの市町村の文脈に適切です。",
+  "vi": "Tên có thể tiếp cận được trống rỗi, do đó trình đọc màn hình không công bố gì cả. Chú thích hiển thị rõ ràng yêu cầu một số điện thoại ban ngày; số Nhật Bản (090-0000-0000) phù hợp cho bối cảnh thành phố này."
+ },
+ "The address field had a hidden technical name (fld_diachi_01) that overrode the visible caption, so screen readers read a code. The caption is now a real label linked to the field and the code name is removed. Screen readers now say \"Nơi ĐKTT\", matching what sighted users see. The look is unchanged because the same CSS class is kept.": {
+  "ja": "アドレスフィールドは、表示されたキャプションを上書きする隠された技術名（fld_diachi_01）を持っていたため、スクリーンリーダーはコードを読み上げていました。キャプションはこれでフィールドにリンクされた実際のラベルになり、コード名は削除されました。スクリーンリーダーは「Nơi ĐKTT」と読み上げます。これは目の見える人が見ている内容と一致します。同じCSSクラスが保持されているため見た目は変わりません。",
+  "vi": "Ô nhập địa chỉ có tên ẩn mang tính kỹ thuật (fld_diachi_01) che mất nhãn hiển thị, nên trình đọc màn hình đọc ra một mã. Nay nhãn \"Nơi ĐKTT\" được gắn trực tiếp vào ô nhập bằng thẻ label và mã kỹ thuật đã bị xoá. Trình đọc màn hình sẽ đọc đúng \"Nơi ĐKTT\" như người nhìn thấy. Giao diện không đổi vì vẫn giữ nguyên lớp CSS."
+ },
+ "The applicant is a Vietnamese national and has no Japanese family register domicile, so they must enter their nationality in Japanese as specified by the visible caption. The accessible name \"fld_hnsk_01\" is an internal code that a screen reader would spell out letter by letter, leaving the user without guidance; the visible caption is clear but not read as the primary label.": {
+  "ja": "申請者はベトナム国籍で、日本の戸籍上の住所がないため、表示されたキャプションで指定されているように、日本語で国籍を入力する必要があります。アクセシブル名「fld_hnsk_01」は内部コードで、スクリーンリーダーが文字ごとにつづるため、ユーザーに指導がありません。表示されたキャプションは明確ですが、主要なラベルとして読み上げられません。",
+  "vi": "Ứng viên là công dân Việt Nam và không có địa chỉ đăng ký hộ tại Nhật Bản, do đó họ phải nhập quốc tịch của mình bằng tiếng Nhật như được chỉ định bởi chú thích hiển thị. Tên có thể tiếp cận được \"fld_hnsk_01\" là một mã nội bộ mà trình đọc màn hình sẽ đánh vần từng chữ cái, để người dùng không có hướng dẫn; chú thích hiển thị rõ ràng nhưng không được đọc như nhãn chính."
+ },
+ "The applicant is a foreign national, so the visible caption directs entry of nationality here. Vietnam is derived from the applicant profile.": {
+  "ja": "申請者が外国人であるため、表示されたキャプションはここに国籍の入力を指示しています。ベトナムは申請者プロフィールから導出されます。",
+  "vi": "Ứng viên là công dân nước ngoài, do đó chú thích hiển thị hướng dẫn nhập quốc tịch tại đây. Việt Nam được lấy từ hồ sơ ứng viên."
+ },
+ "The birth date field had a hidden technical name (fld_seinengappi_01) that overrode the visible caption, so screen readers read that code. The caption was changed from a plain div to a real label linked to the input, and the hidden code name was removed. Screen readers now read 生年月日, and clicking the caption focuses the field. The look is unchanged because the same lbl class is kept.": {
+  "ja": "生年月日の入力欄には、画面に見える見出しとは別に「fld_seinengappi_01」という内部名が設定されており、スクリーンリーダーがその記号を読み上げていました。見出しを通常のdivから入力欄に関連付けたlabel要素に変え、内部名を削除しました。これにより「生年月日」と読み上げられ、見出しをクリックしても入力欄に移動できます。lblクラスはそのままなので見た目は変わりません。",
+  "vi": "Trường ngày sinh đã có một tên kỹ thuật ẩn (fld_seinengappi_01) đã ghi đè chú thích hiển thị, do đó trình đọc màn hình đọc mã đó. Chú thích được thay đổi từ div thông thường thành nhãn thực được liên kết với ô nhập, và tên mã ẩn đã bị xoá. Trình đọc màn hình hiện đọc 生年月日, và nhấp vào chú thích tập trung vào trường. Giao diện không thay đổi vì lớp lbl tương tự được giữ lại."
+ },
+ "The birth date field had a script that cancelled the Tab key every time it was pressed, so keyboard and screen reader users could never move on to the next field. The script was meant to remove stray spaces from the entered value. I changed it so the spaces are removed when the user leaves the field (blur event) instead of when Tab is pressed. The Tab key now works normally and the formatting is kept.": {
+  "ja": "生年月日の入力欄には、Tabキーを押すたびに動作を打ち消すスクリプトがあり、キーボードや読み上げソフトの利用者が次の項目へ進めませんでした。このスクリプトは入力値の余分な空白を取り除くためのものでした。そこで、Tabキーを押したときではなく、入力欄から離れたとき（blurイベント）に空白を取り除くよう変更しました。これでTabキーは通常どおり使え、空白の整形も維持されます。",
+  "vi": "Trường ngày sinh đã có một tập lệnh hủy bỏ phím Tab mỗi khi nhấn, do đó người dùng bàn phím và trình đọc màn hình không bao giờ có thể chuyển sang trường tiếp theo. Tập lệnh có mục đích xoá các khoảng trắng lạc lõng khỏi giá trị được nhập. Tôi đã thay đổi nó để khoảng trắng được xoá khi người dùng rời khỏi trường (sự kiện blur) thay vì khi phím Tab được nhấn. Phím Tab bây giờ hoạt động bình thường và định dạng được giữ lại."
+ },
+ "The field asks for \"Ngày sinh\" (date of birth) with explicit format dd/mm/yyyy. The applicant's Vietnamese date of birth from the profile (12/03/1985) matches this format exactly.": {
+  "ja": "このフィールドは「Ngày sinh」(生年月日)を形式dd/mm/yyyyで入力するよう要求しています。プロフィールからの申請者のベトナム生年月日(12/03/1985)はこの形式と正確に一致しています。",
+  "vi": "Trường yêu cầu \"Ngày sinh\" (ngày sinh) với định dạng rõ ràng dd/mm/yyyy. Ngày sinh Việt Nam của ứng viên từ hồ sơ (12/03/1985) hoàn toàn phù hợp với định dạng này."
+ },
+ "The field asks for a daytime contact phone number (日中 = during business hours). The applicant's Japanese phone number is the appropriate value for a Japanese municipal form.": {
+  "ja": "このフィールドは日中(営業時間中)の連絡先電話番号を要求しています。申請者の日本の電話番号は日本の市役所様式に適切な値です。",
+  "vi": "Trường yêu cầu một số điện thoại liên hệ ban ngày (日中 = trong giờ làm việc). Số điện thoại Nhật Bản của ứng viên là giá trị thích hợp cho một biểu mẫu thành phố Nhật Bản."
+ },
+ "The field asks for a phone number (\"Số điện thoại\") on a Vietnamese contact information step. The applicant profile contains a Vietnamese phone number (0912345678) which is the appropriate value for a Vietnamese government procedure.": {
+  "ja": "このフィールドはベトナムの連絡先情報ステップで電話番号(「Số điện thoại」)を要求しています。申請者プロフィールには、ベトナムの政府手続きに適切な値であるベトナムの電話番号(0912345678)が含まれています。",
+  "vi": "Trường yêu cầu số điện thoại (Số điện thoại) trên bước thông tin liên hệ Việt Nam. Hồ sơ ứng viên chứa một số điện thoại Việt Nam (0912345678) là giá trị thích hợp cho một thủ tục chính phủ Việt Nam."
+ },
+ "The field asks for a phone number and is labeled clearly in Vietnamese as \"Số điện thoại.\" The applicant profile provides a Vietnamese phone number (0912345678) which matches the page language and the domestic context of the Vietnamese criminal record procedure.": {
+  "ja": "このフィールドは電話番号を要求し、ベトナム語で「Số điện thoại」と明確にラベル付けされています。申請者プロフィールは、ページの言語とベトナムの犯罪記録手続きの国内コンテキストに一致するベトナムの電話番号(0912345678)を提供しています。",
+  "vi": "Trường yêu cầu số điện thoại và được dán nhãn rõ ràng bằng tiếng Việt là \"Số điện thoại.\" Hồ sơ ứng viên cung cấp một số điện thoại Việt Nam (0912345678) phù hợp với ngôn ngữ trang và bối cảnh nội địa của thủ tục hồ sơ hình sự Việt Nam."
+ },
+ "The field asks for a phone number on a Vietnamese government form. The applicant's Vietnamese phone number is 0912345678.": {
+  "ja": "このフィールドはベトナムの政府様式で電話番号を要求しています。申請者のベトナム電話番号は0912345678です。",
+  "vi": "Ô nhập yêu cầu số điện thoại trên mẫu đơn của cơ quan chính phủ Việt Nam. Số điện thoại Việt Nam của người xin cấp là 0912345678."
+ },
+ "The field asks for personal name (氏名), which should match the registered form. For a Vietnamese resident in Japan's residence system, this is the official katakana name: グエン・ヴァン・アン.": {
+  "ja": "このフィールドは個人の氏名を要求し、登録様式と一致する必要があります。日本の住民制度に登録されたベトナム人居住者の場合、これは公式なカタカナ名です：グエン・ヴァン・アン。",
+  "vi": "Ô nhập yêu cầu họ tên (氏名), phải khớp với mẫu đơn đã đăng ký. Đối với cư dân Việt Nam trong hệ thống cư trú của Nhật Bản, đây là tên katakana chính thức: グエン・ヴァン・アン."
+ },
+ "The field asks for registered domicile (本籍地). For foreign nationals, it requests nationality/region instead.": {
+  "ja": "このフィールドは本籍地を要求しています。外国人の場合、代わりに国籍/地域を要求しています。",
+  "vi": "Ô nhập yêu cầu nơi ĐKTT (本籍地). Đối với công dân nước ngoài, ô nhập yêu cầu quốc tịch hoặc khu vực thay thế."
+ },
+ "The field asks for the applicant's full name (氏名), a standard administrative term. Use the katakana-registered form グエン・ヴァン・アン, which is the format Vietnamese names appear in Japan's foreign resident registration system (外国人住民票).": {
+  "ja": "このフィールドは申請者の氏名を要求する標準的な行政用語です。日本の外国人住民票システムにおいてベトナム人の名前が表示されるカタカナ登録形式「グエン・ヴァン・アン」を使用します。",
+  "vi": "Ô nhập yêu cầu họ tên đầy đủ của người xin cấp (氏名), một thuật ngữ hành chính tiêu chuẩn. Phải sử dụng dạng katakana đã đăng ký: グエン・ヴァン・アン, định dạng tên Việt Nam xuất hiện trong hệ thống đăng ký cư dân nước ngoài của Nhật Bản (外国人住民票)."
+ },
+ "The field asks for the applicant's full name on a Japanese government residence form. Foreign nationals' names are recorded in Katakana in Japan's administrative registry, and the profile provides this version.": {
+  "ja": "このフィールドは日本政府の住民登録様式で申請者の氏名を要求しています。外国人の名前は日本の行政登録簿にカタカナで記録され、プロフィールはこのバージョンを提供します。",
+  "vi": "Ô nhập yêu cầu họ tên đầy đủ của người xin cấp trên mẫu đơn cư trú của cơ quan chính phủ Nhật Bản. Tên công dân nước ngoài được ghi bằng Katakana trong sổ đăng ký hành chính Nhật Bản, hồ sơ cung cấp phiên bản này."
+ },
+ "The field asks for the place of permanent registered residence (ĐKTT); this corresponds directly to the applicant's permanent_registered_address_vn. The abbreviation ĐKTT is not transparent to blind screen-reader users when spelled out letter-by-letter.": {
+  "ja": "このフィールドは常住登録地(ĐKTT)を要求しており、これは申請者のpermanent_registered_address_vnに直接対応しています。省略語DKTTは、スクリーンリーダーユーザーが文字ごとに読むときに不明確です。",
+  "vi": "Ô nhập yêu cầu nơi ĐKTT; điều này tương ứng trực tiếp với permanent_registered_address_vn của người xin cấp. Chữ viết tắt ĐKTT không rõ ràng đối với người dùng trình đọc màn hình khi phát âm từng chữ cái."
+ },
+ "The field asks for the postal code where the certificate of residence should be mailed. The applicant's postal code in the profile is 123-4567, matching the current address in Japan.": {
+  "ja": "このフィールドは住民票が送付される郵便番号を要求しています。プロフィール内の申請者の郵便番号は123-4567で、日本の現在の住所と一致しています。",
+  "vi": "Ô nhập yêu cầu mã bưu điện nơi chứng chỉ cư trú sẽ được gửi. Mã bưu điện của người xin cấp trong hồ sơ là 123-4567, trùng khớp với địa chỉ hiện tại ở Nhật Bản."
+ },
+ "The field asks for 住所 (residential address), standard Japanese vocabulary for \"address\" on municipal forms. The applicant's current residential address in Japan is provided in the profile; the fictional marker \"(架空)\" is metadata and should be excluded from the entered value.": {
+  "ja": "このフィールドは住所を要求しています。これは市役所様式での標準的な日本語語彙です。申請者の日本での現在の住所はプロフィールで提供されており、虚構マーカー「(架空)」はメタデータで、入力値から除外する必要があります。",
+  "vi": "Ô nhập yêu cầu 住所 (địa chỉ cư trú), từ vựng tiêu chuẩn Nhật Bản trên các mẫu đơn chính quyền địa phương. Hồ sơ cung cấp địa chỉ cư trú hiện tại ở Nhật Bản của người xin cấp; ký hiệu \"(架空)\" là siêu dữ liệu và không nên nhập vào."
+ },
+ "The field explicitly asks for registered domicile but clarifies that foreign nationals should enter their nationality/region instead. The applicant is Vietnamese, so enter ベトナム.": {
+  "ja": "このフィールドは本籍地を明示的に要求していますが、外国人は代わりに国籍/地域を入力すべきであることを明確にしています。申請者はベトナム人であるため、ベトナムを入力します。",
+  "vi": "Ô nhập rõ ràng yêu cầu nơi ĐKTT nhưng làm rõ rằng công dân nước ngoài nên nhập quốc tịch hoặc khu vực thay thế. Người xin cấp là người Việt Nam, vì vậy nhập ベトナム."
+ },
+ "The field explicitly requests the postal code (郵便番号) for the mailing destination (送付先), which is a standard Japanese administrative term. The applicant's postal code in Japan is 123-4567, matching the current address on file.": {
+  "ja": "このフィールドは標準的な日本の行政用語である送付先の郵便番号を明示的に要求しています。日本での申請者の郵便番号は123-4567で、ファイル上の現在の住所と一致しています。",
+  "vi": "Ô nhập rõ ràng yêu cầu mã bưu điện (郵便番号) cho địa chỉ gửi (送付先), là thuật ngữ hành chính tiêu chuẩn Nhật Bản. Mã bưu điện của người xin cấp ở Nhật Bản là 123-4567, trùng khớp với địa chỉ trong hồ sơ."
+ },
+ "The field label \"Họ và tên\" (Full name) is standard Vietnamese and immediately clear. The applicant profile provides the exact value: Nguyễn Văn An.": {
+  "ja": "フィールドラベル「Họ và tên」(氏名)は標準的なベトナム語で即座に明確です。申請者プロフィールは正確な値を提供しています：Nguyễn Văn An。",
+  "vi": "Nhãn \"Họ và tên\" (Họ tên) là tiêu chuẩn Việt Nam và rõ ràng ngay lập tức. Hồ sơ người xin cấp cung cấp giá trị chính xác: Nguyễn Văn An."
+ },
+ "The field name 日中の連絡先電話番号 (nichū no renrakusaki denwa bangō) clearly asks for a daytime contact phone number in standard Japanese administrative terminology. The applicant profile includes a Japanese phone number (090-0000-0000) which is the appropriate format to enter in this Japanese municipality form.": {
+  "ja": "「日中の連絡先電話番号」というフィールドは、標準的な日本の行政用語で日中の連絡先電話番号の入力を明確に要求しています。申請者プロフィールには、この日本の市役所様式で入力するのに適切な形式の日本の電話番号(090-0000-0000)が含まれています。",
+  "vi": "Tên ô nhập 日中の連絡先電話番号 (nichū no renrakusaki denwa bangō) rõ ràng yêu cầu số điện thoại liên hệ trong ngày bằng thuật ngữ hành chính tiêu chuẩn Nhật Bản. Hồ sơ người xin cấp bao gồm số điện thoại Nhật Bản (090-0000-0000) theo định dạng thích hợp để nhập trên mẫu đơn chính quyền địa phương Nhật Bản."
+ },
+ "The field requests full name per visible caption 'Họ và tên'. The profile provides 'Nguyễn Văn An', but the missing accessible name leaves screen reader users unaware of what to enter.": {
+  "ja": "このフィールドは表示されたキャプション「Họ và tên」に従って氏名を要求しています。プロフィールは「Nguyễn Văn An」を提供していますが、アクセシブル名がないため、スクリーンリーダーユーザーは何を入力すべきか気付きません。",
+  "vi": "Ô nhập yêu cầu họ tên đầy đủ theo nhãn hiển thị 'Họ và tên'. Hồ sơ cung cấp 'Nguyễn Văn An', nhưng do thiếu nhãn dễ tiếp cận, người dùng trình đọc màn hình không biết phải nhập gì."
+ },
+ "The field requests the Vietnamese Citizen Identity Card number, which is directly available in the applicant profile. The acronym CCCD, when spelled letter-by-letter by a screen reader, is not immediately clear to many users even if familiar with Vietnamese.": {
+  "ja": "当該フィールドはベトナム市民身分証番号を要求しており、申請者プロフィールから直接入手可能です。スクリーンリーダーが文字ごとに読み上げるCCCDアクロニムは、ベトナムに詳しいユーザーであっても、多くのユーザーには即座には明確ではありません。",
+  "vi": "Ô nhập yêu cầu số Căn cước công dân, có sẵn trực tiếp trong hồ sơ người xin cấp. Chữ viết tắt CCCD, khi trình đọc màn hình phát âm từng chữ cái, không rõ ràng ngay lập tức đối với nhiều người dùng ngay cả khi quen thuộc với tiếng Việt."
+ },
+ "The form's parenthetical instruction explicitly tells foreign nationals to enter nationality instead of a family register entry. The applicant is Vietnamese, so the value is ベトナム (Vietnam in Japanese from the profile).": {
+  "ja": "申請フォームの括弧内の指示は、外国人に対して家族登録エントリの代わりに国籍を入力するよう明確に指示しています。申請者がベトナム人であるため、値はベトナム（プロフィールから取得した日本語表記）です。",
+  "vi": "Hướng dẫn trong dấu ngoặc của mẫu đơn rõ ràng nói với công dân nước ngoài nhập quốc tịch thay vì mục nhập sổ hộ gia đình. Người xin cấp là người Việt Nam, vì vậy giá trị là ベトナム (Việt Nam trong tiếng Nhật từ hồ sơ)."
+ },
+ "The label \"Email\" is unambiguous; the page heading \"Contact information\" (Thông tin liên hệ) reinforces the purpose. The applicant profile provides a valid email address.": {
+  "ja": "ラベル「Email」は明確です。ページの見出し「Contact information」（Thông tin liên hệ）は目的を強化しています。申請者プロフィールは有効なメールアドレスを提供しています。",
+  "vi": "Nhãn \"Email\" rõ ràng; tiêu đề trang \"Contact information\" (Thông tin liên hệ) làm rõ mục đích. Hồ sơ người xin cấp cung cấp một địa chỉ email hợp lệ."
+ },
+ "The label \"Email\" is universally recognized and unambiguous. The applicant profile provides the email value directly.": {
+  "ja": "ラベル「Email」は万国共通で認識されており、明確です。申請者プロフィールはメール値を直接提供しています。",
+  "vi": "Nhãn \"Email\" được công nhận rộng rãi và rõ ràng. Hồ sơ người xin cấp cung cấp giá trị email trực tiếp."
+ },
+ "The label \"Số CCCD\" uses standard Vietnamese administrative terminology that screen-reader users in Vietnam immediately understand. The applicant profile directly provides citizen_id_cccd: \"001085012345\" which is the value for this field.": {
+  "ja": "ラベル「Số CCCD」はベトナムの標準的な行政用語を使用しており、ベトナムのスクリーンリーダーユーザーが即座に理解します。申請者プロフィールは citizen_id_cccd: 「001085012345」を直接提供しており、これがこのフィールドの値です。",
+  "vi": "Nhãn \"Số CCCD\" sử dụng thuật ngữ hành chính tiêu chuẩn Việt Nam mà người dùng trình đọc màn hình ở Việt Nam hiểu ngay. Hồ sơ người xin cấp trực tiếp cung cấp citizen_id_cccd: \"001085012345\" là giá trị cho ô nhập này."
+ },
+ "The name field had a script that blocked the Tab key (preventDefault), so keyboard users could never leave the field. The fix keeps the trimming of extra spaces but no longer cancels the Tab key, so focus moves to the next field normally.": {
+  "ja": "氏名欄のスクリプトがTabキーの動作を止めていたため、キーボード操作ではこの欄から次へ移動できませんでした。修正では、余分な空白を取り除く処理はそのまま残し、Tabキーの動作を止めないようにしました。これでTabキーで次の入力欄へ移動できます。",
+  "vi": "Ô nhập tên có một script chặn phím Tab (preventDefault), do đó người dùng bàn phím không bao giờ có thể rời khỏi ô. Sửa lỗi giữ lại việc loại bỏ các khoảng trắng thừa nhưng không còn hủy phím Tab nữa, vì vậy con trỏ nhập liệu di chuyển đến ô tiếp theo một cách bình thường."
+ },
+ "The phone field had a hidden technical name (\"fld_sdt_01\") that overrode what was shown on screen, so screen readers read out a code. We turned the visible caption \"Số điện thoại\" into a real label linked to the field and removed the code. Appearance, the phone-number formatting script and navigation are unchanged.": {
+  "ja": "電話フィールドには、画面に表示されたものをオーバーライドする隠れた技術名（「fld_sdt_01」）がありました。そのため、スクリーンリーダーはコードを読み上げていました。表示されるキャプション「Số điện thoại」をフィールドにリンクされた実際のラベルに変更し、コードを削除しました。外観、電話番号フォーマットスクリプト、ナビゲーションは変わりません。",
+  "vi": "Ô nhập số điện thoại có một tên ẩn mang tính kỹ thuật (\"fld_sdt_01\") nên trình đọc màn hình đọc ra mã này thay vì nhãn hiển thị. Chúng tôi chuyển dòng chữ \"Số điện thoại\" thành nhãn (label) gắn trực tiếp với ô nhập và xóa mã ẩn đó. Giao diện, định dạng số điện thoại và việc chuyển trang vẫn giữ nguyên."
+ },
+ "The phone field had a script that blocked the Tab key, so keyboard users could never leave the field. I changed it to clean up the number (digits only, at most 10) when the field loses focus, so Tab works normally and the formatting is kept.": {
+  "ja": "電話フィールドにはTabキーをブロックするスクリプトがあったため、キーボードユーザーはフィールドを離れることができませんでした。フィールドがフォーカスを失ったときに番号をクリーンアップ（数字のみ、最大10文字）するように変更したため、Tabは正常に機能し、フォーマットは保持されます。",
+  "vi": "Ô \"Số điện thoại\" có đoạn mã chặn phím Tab nên người dùng bàn phím không thể rời khỏi ô. Tôi đã sửa để số được làm sạch (chỉ giữ chữ số, tối đa 10 số) khi rời khỏi ô, nên phím Tab hoạt động bình thường mà định dạng vẫn được giữ nguyên."
+ },
+ "The phone number field had a hidden technical name (fld_denwa_01) that screen readers read aloud instead of the visible caption. The caption was a plain div not linked to the field. I turned the caption into a real label linked to the field and removed the hidden name, so screen readers now announce \"日中の連絡先電話番号\". The look is unchanged because the same CSS class is kept.": {
+  "ja": "電話番号の入力欄には「fld_denwa_01」という内部用の名前が設定されていて、画面読み上げソフトが見出しの代わりにこの記号を読み上げていました。見出しは入力欄と結び付いていない単なる文字でした。そこで見出しを正式なラベル（label）にして入力欄と関連付け、内部用の名前を削除しました。これで「日中の連絡先電話番号」と読み上げられます。見た目は変わりません。",
+  "vi": "Ô nhập số điện thoại có một tên kỹ thuật ẩn (fld_denwa_01) mà trình đọc màn hình đọc thay vì nhãn hiển thị. Nhãn là một div đơn thuần không liên kết với ô. Tôi đã biến nhãn thành một label thực sự liên kết với ô và loại bỏ tên ẩn, vì vậy trình đọc màn hình hiện công bố \"日中の連絡先電話番号\". Giao diện không thay đổi vì class CSS tương tự được giữ lại."
+ },
+ "The phone number field had a visible caption in a plain div, so it was not connected to the input and screen readers announced only \"edit\". Changing the div to a label linked to the field (for=\"denwa\") gives the field its name. The look is unchanged because the same class is kept.": {
+  "ja": "電話番号の入力欄には見出しがありましたが、単なる div だったため入力欄と結び付いておらず、読み上げでは「編集」としか聞こえませんでした。この div を label に変え、for=\"denwa\" で入力欄と関連付けました。クラスはそのままなので見た目は変わりません。",
+  "vi": "Ô nhập số điện thoại có một nhãn hiển thị trong một div đơn thuần, nên nó không được kết nối với ô nhập và trình đọc màn hình chỉ công bố \"edit\". Thay đổi div thành một label liên kết với ô (for=\"denwa\") cung cấp tên cho ô. Giao diện không thay đổi vì class tương tự được giữ lại."
+ },
+ "The postal code box had a hidden technical name (\"fld_yubin_01\") that screen readers read aloud instead of the visible caption. The caption was plain text not linked to the box. The fix turns the caption into a real label linked to the box and removes the technical name. Screen readers now say \"送付先の郵便番号\". Clicking the caption also focuses the box. The look stays the same because the label keeps the \"lbl\" class.": {
+  "ja": "郵便番号の入力欄には、画面に見える見出しではなく「fld_yubin_01」という技術的な名前が設定されていたため、スクリーンリーダーがその名前を読み上げていました。見出しを入力欄と正しく結び付けるラベル（label）に変更し、技術的な名前を削除しました。これにより「送付先の郵便番号」と読み上げられ、見出しをクリックしても入力欄が選択されます。見た目は従来のクラス（lbl）を残しているので変わりません。",
+  "vi": "Ô nhập mã bưu chính có một tên kỹ thuật ẩn (\"fld_yubin_01\") mà trình đọc màn hình đọc thay vì nhãn hiển thị. Nhãn là văn bản đơn thuần không liên kết với ô. Sửa lỗi biến nhãn thành một label thực sự liên kết với ô và loại bỏ tên kỹ thuật. Trình đọc màn hình hiện nói \"送付先の郵便番号\". Nhấp vào nhãn cũng tập trung vào ô. Giao diện vẫn giữ nguyên vì label giữ lại class \"lbl\"."
+ },
+ "The postal code field had a script that cancelled the Tab key every time it was pressed, so keyboard users could not leave the field. The script's only purpose was to remove stray spaces from the entry. We kept that behaviour but moved it to the moment the field loses focus (the blur event). Tab now works normally and the spaces are still trimmed.": {
+  "ja": "郵便番号の入力欄に、Tabキーを押すたびに動作を打ち消すスクリプトがあり、キーボードだけでは次の項目へ移動できませんでした。このスクリプトの目的は入力の前後の空白を取り除くことでした。そこで、Tabキーを止めるのをやめ、入力欄からフォーカスが外れたとき（blurイベント）に空白を取り除くよう変更しました。これでTabキーで通常どおり移動でき、空白の除去も従来どおり行われます。",
+  "vi": "Ô nhập mã bưu chính có một script hủy phím Tab mỗi khi nó được nhấn, do đó người dùng bàn phím không thể rời khỏi ô. Mục đích duy nhất của script là loại bỏ các khoảng trắng lạc lối khỏi mục nhập. Chúng tôi giữ lại hành vi đó nhưng chuyển nó đến thời điểm ô mất tiêu điểm (sự kiện blur). Tab hiện hoạt động bình thường và các khoảng trắng vẫn được loại bỏ."
+ },
+ "The postal code field had a script that pushed focus back into the field every time the user left it, so Tab and Shift+Tab could never move on. I removed that script. The field is still a normal labelled text box, and the page's navigation and formatting are unchanged.": {
+  "ja": "郵便番号の入力欄には、欄から離れるたびにカーソルを欄へ戻すスクリプトがあり、Tabキーで次の項目へ進めませんでした。このスクリプトを削除しました。入力欄とラベルはそのままで、ページの移動や見た目は変わりません。",
+  "vi": "Ô nhập mã bưu chính có một script đẩy con trỏ nhập liệu quay trở lại ô mỗi khi người dùng rời khỏi nó, nên phím Tab và Shift+Tab không bao giờ có thể tiếp tục. Tôi đã loại bỏ script đó. Ô vẫn là một ô văn bản có nhãn bình thường, và điều hướng cũng như định dạng của trang không thay đổi."
+ },
+ "The script on the ID number (CCCD) field blocked the Tab key, so keyboard users could not leave the field. I removed the line that cancels Tab. The field still trims spaces from the value when Tab is pressed, and focus now moves to the next control as normal.": {
+  "ja": "ID番号（CCCD）フィールドのスクリプトはTabキーをブロックしていたため、キーボードユーザーはフィールドを離れることができませんでした。Tabをキャンセルする行を削除しました。フィールドは依然としてTabが押されたときに値から空白をトリムしており、フォーカスは通常どおり次のコントロールに移動します。",
+  "vi": "Đoạn mã ở ô Số CCCD đã chặn phím Tab nên người dùng bàn phím không thể rời khỏi ô này. Tôi đã bỏ lệnh chặn phím Tab. Ô vẫn tự cắt khoảng trắng thừa khi nhấn Tab, và con trỏ giờ chuyển sang phần tử tiếp theo bình thường."
+ },
+ "The visible caption \"Họ và tên\" is not programmatically linked as the field's accessible name; screen-reader users hear an unlabeled textbox.": {
+  "ja": "表示されるキャプション「Họ và tên」はプログラム的にフィールドのアクセシブル名としてリンクされていません。スクリーンリーダーユーザーはラベルなしのテキストボックスを聞きます。",
+  "vi": "Nhãn hiển thị \"Họ và tên\" không được liên kết theo chương trình làm tên có thể truy cập của ô; người dùng trình đọc màn hình nghe một ô văn bản không có nhãn."
+ },
+ "The visible caption \"Nơi ĐKTT\" abbreviates a common Vietnamese administrative term; screen readers spell ĐKTT letter-by-letter without context. The applicant's permanent registered address is directly available in the profile.": {
+  "ja": "表示されるキャプション「Nơi ĐKTT」は一般的なベトナムの行政用語の略です。スクリーンリーダーはコンテキストなしでĐKTTを文字ごとに読み上げます。申請者の永住登録住所はプロフィールから直接入手可能です。",
+  "vi": "Nhãn hiển thị \"Nơi ĐKTT\" viết tắt một thuật ngữ hành chính phổ biến của Việt Nam; trình đọc màn hình đánh vần ĐKTT từng chữ cái mà không có bối cảnh. Địa chỉ thường trú đã đăng ký của người nộp đơn có sẵn trực tiếp trong hồ sơ."
+ },
+ "The visible caption clearly indicates an email address is needed, and the applicant profile provides a valid email. However, the empty accessible_name means screen readers will not announce any label, creating a barrier for blind users.": {
+  "ja": "表示されるキャプションはメールアドレスが必要なことを明確に示しており、申請者プロフィールは有効なメールを提供しています。ただし、空の accessible_name はスクリーンリーダーがラベルを読み上げないことを意味し、視覚障害ユーザーにとって障壁を作ります。",
+  "vi": "Nhãn hiển thị rõ ràng chỉ ra rằng cần một địa chỉ email, và hồ sơ của người nộp đơn cung cấp một email hợp lệ. Tuy nhiên, accessible_name trống rỗng có nghĩa là trình đọc màn hình sẽ không công bố bất kỳ nhãn nào, tạo ra một rào cản cho những người dùng mù."
+ },
+ "The visible caption clearly requests a daytime contact phone number, and the profile provides a Japanese phone number suitable for this field. However, the screen-reader-accessible name is only an internal identifier code that does not communicate the field's purpose.": {
+  "ja": "表示されるキャプションは明確に日中連絡先の電話番号をリクエストしており、プロフィールはこのフィールドに適した日本の電話番号を提供しています。ただし、スクリーンリーダー対応の名前は、フィールドの目的を伝えない内部識別子コードのみです。",
+  "vi": "Nhãn hiển thị rõ ràng yêu cầu một số điện thoại liên lạc trong ngày, và hồ sơ cung cấp một số điện thoại Nhật Bản phù hợp với ô này. Tuy nhiên, tên có thể truy cập bằng trình đọc màn hình chỉ là một mã định danh nội bộ không truyền đạt mục đích của ô."
+ },
+ "The visible caption unambiguously identifies this as a date of birth field in dd/mm/yyyy format. The applicant's Vietnamese date of birth is 12/03/1985, matching the required format exactly.": {
+  "ja": "表示されるキャプションは、これをdd/mm/yyyy形式の生年月日フィールドとして明確に識別しています。申請者のベトナムの生年月日は12/03/1985で、要求される形式とまったく一致しています。",
+  "vi": "Nhãn hiển thị xác định rõ ràng đây là ô nhập ngày sinh ở định dạng dd/mm/yyyy. Ngày sinh Việt Nam của người nộp đơn là 12/03/1985, khớp chính xác với định dạng được yêu cầu."
+ },
+ "The visible caption unambiguously requests full name (Họ và tên). The applicant profile provides \"Nguyễn Văn An\", which directly fills this field.": {
+  "ja": "表示されるキャプションは明確にフルネーム（Họ và tên）をリクエストしています。申請者プロフィールは「Nguyễn Văn An」を提供しており、これはこのフィールドを直接埋めます。",
+  "vi": "Nhãn hiển thị rõ ràng yêu cầu họ và tên (Họ và tên). Hồ sơ của người nộp đơn cung cấp \"Nguyễn Văn An\", điều này trực tiếp điền vào ô này."
+ },
+ "The visible label 生年月日 clearly indicates this field asks for date of birth. The accessible name is an internal field ID that would be spelled letter-by-letter by a screen reader, making it unclear without the visible caption context. The applicant's date of birth in Japanese format (1985年3月12日) is directly available in the profile.": {
+  "ja": "表示されるラベル 生年月日 は、このフィールドが生年月日を要求していることを明確に示しています。アクセシブル名は、スクリーンリーダーによって文字ごとに読み上げられる内部フィールドIDであり、表示されるキャプションのコンテキストなしでは不明確です。申請者の日本語形式での生年月日（1985年3月12日）はプロフィールから直接入手可能です。",
+  "vi": "Nhãn hiển thị 生年月日 rõ ràng chỉ ra rằng ô này yêu cầu ngày sinh. Tên có thể truy cập là một ID ô nội bộ sẽ được trình đọc màn hình đánh vần từng chữ cái, làm cho nó không rõ ràng nếu không có bối cảnh nhãn hiển thị. Ngày sinh của người nộp đơn ở định dạng Nhật Bản (1985年3月12日) có sẵn trực tiếp trong hồ sơ."
+ },
+ "The 本籍地 field had a hidden code (\"fld_hnsk_01\") as its accessible name, so screen readers read the code instead of the caption. The visible caption is now a real label tied to the input, and the hidden code is removed. Screen readers now read \"本籍地 （外国籍の方は国籍・地域）\", and clicking the caption focuses the field. The look and behaviour of the page are otherwise unchanged.": {
+  "ja": "「本籍地」の入力欄には、画面に見える見出しではなく「fld_hnsk_01」という内部コードが読み上げ用の名前として設定されていました。見出しを正式なラベル（label）として入力欄に関連付け、内部コードを削除しました。これにより、スクリーンリーダーは「本籍地 （外国籍の方は国籍・地域）」と読み上げ、見出しをクリックしても入力欄に移動します。ページの見た目や動作は変わりません。",
+  "vi": "Ô 本籍地 có một mã ẩn (\"fld_hnsk_01\") làm tên có thể truy cập của nó, nên trình đọc màn hình đọc mã thay vì nhãn. Nhãn hiển thị hiện là một label thực sự được gắn với ô nhập, và mã ẩn được loại bỏ. Trình đọc màn hình hiện đọc \"本籍地 （外国籍の方は国籍・地域）\", và nhấp vào nhãn tập trung vào ô. Giao diện và hành vi của trang vẫn không thay đổi."
+ },
+ "Tiếp tục": {
+  "en": "Continue",
+  "ja": "続行"
+ },
+ "Tiếp tục, nút": {
+  "en": "Continue, button",
+  "ja": "続行、ボタン"
+ },
+ "Tôi cam đoan thông tin đã khai là đúng sự thật": {
+  "en": "I certify that the information provided is accurate",
+  "ja": "入力した情報は正確であることを確認します"
+ },
+ "Tôi cam đoan thông tin đã khai là đúng sự thật, hộp kiểm, chưa chọn": {
+  "en": "I certify that the information provided is accurate, checkbox, unchecked",
+  "ja": "入力した情報は正確であることを確認します、チェックボックス、未チェック"
+ },
+ "Vietnamese Citizen Identity Card (CCCD) number — the standard national ID document used in Vietnam.": {
+  "ja": "ベトナム市民身分証（CCCD）番号—ベトナムで使用される標準的な国家身分証明書です。",
+  "vi": "Số Căn cước Công dân (CCCD) — tài liệu chứng minh danh tính quốc gia tiêu chuẩn được sử dụng ở Việt Nam."
+ },
+ "Visible caption states foreign nationals enter nationality; applicant is Vietnamese, so enter 'Vietnam'.": {
+  "ja": "キャプションは外国人が国籍を入力することを述べており、申請者がベトナム人であるため「ベトナム」を入力します。",
+  "vi": "Nhãn hiển thị nêu rõ những người nước ngoài nhập quốc tịch; người nộp đơn là người Việt Nam, vì vậy nhập \"Vietnam\"."
+ },
+ "Xác nhận": {
+  "en": "Confirm",
+  "ja": "確認"
+ },
+ "chưa chọn": {
+  "en": "Unchecked",
+  "ja": "未チェック"
+ },
+ "fld_denwa_01, 編集": {
+  "en": "fld_denwa_01, edit",
+  "vi": "fld_denwa_01, Chỉnh sửa"
+ },
+ "fld_diachi_01, ô nhập": {
+  "en": "fld_diachi_01, input field",
+  "ja": "fld_diachi_01、入力欄"
+ },
+ "fld_hnsk_01, 編集": {
+  "en": "fld_hnsk_01, edit",
+  "vi": "fld_hnsk_01, Chỉnh sửa"
+ },
+ "fld_ngaysinh_01, ô nhập": {
+  "en": "fld_ngaysinh_01, input field",
+  "ja": "fld_ngaysinh_01、入力欄"
+ },
+ "fld_sdt_01, ô nhập": {
+  "en": "fld_sdt_01, input field",
+  "ja": "fld_sdt_01、入力欄"
+ },
+ "fld_seinengappi_01, 編集": {
+  "en": "fld_seinengappi_01, edit",
+  "vi": "fld_seinengappi_01, Chỉnh sửa"
+ },
+ "fld_yubin_01, 編集": {
+  "en": "fld_yubin_01, Edit",
+  "vi": "fld_yubin_01, Chỉnh sửa"
+ },
+ "hình ảnh": {
+  "en": "image",
+  "ja": "画像"
+ },
+ "hình ảnh, CAPTCHA": {
+  "en": "image, CAPTCHA",
+  "ja": "画像、CAPTCHA"
+ },
+ "hộp kiểm": {
+  "en": "checkbox",
+  "ja": "チェックボックス"
+ },
+ "hộp xổ xuống": {
+  "en": "dropdown",
+  "ja": "ドロップダウン"
+ },
+ "nút": {
+  "en": "button",
+  "ja": "ボタン"
+ },
+ "ô nhập": {
+  "en": "input field",
+  "ja": "入力欄"
+ },
+ "ĐKTT abbreviation read letter-by-letter is unclear; expand to \"đăng ký thường trú\" (permanent registered residence).": {
+  "ja": "ĐKTT略語は文字ごとに読むと不明確です。「đăng ký thường trú」（永住登録住所）に展開してください。",
+  "vi": "Viết tắt ĐKTT đọc từng chữ cái là không rõ ràng; mở rộng thành \"đăng ký thường trú\" (permanent registered residence)."
+ },
+ "ĐKTT is an abbreviation for \"đăng ký thường trú\" (permanent registered residence); screen readers spell it out letter-by-letter and many users may not recognize it.": {
+  "ja": "ĐKTT は「đăng ký thường trú」（常時登録住所）の略称です。スクリーンリーダーは1文字ずつ読み上げるため、多くのユーザーが認識できない可能性があります。",
+  "vi": "ĐKTT là viết tắt của \"đăng ký thường trú\" (permanent registered residence); trình đọc màn hình đánh vần nó từng chữ cái và nhiều người dùng có thể không nhận ra nó."
+ },
+ "ĐKTT is the standard Vietnamese administrative abbreviation for permanent registered residence. The applicant profile explicitly provides this value as permanent_registered_address_vn.": {
+  "ja": "ĐKTT はベトナムの常時登録住所を示す標準的な行政上の略称です。申請者プロフィールにはこの値が permanent_registered_address_vn として明示されています。",
+  "vi": "ĐKTT là ký hiệu chuẩn trong hành chính Việt Nam chỉ địa chỉ thường trú đăng ký. Hồ sơ ứng viên cung cấp rõ ràng giá trị này là permanent_registered_address_vn."
+ },
+ "その他": {
+  "en": "Other",
+  "vi": "Khác"
+ },
+ "グエン・ヴァン・アン": {
+  "en": "グエン・ヴァン・アン",
+  "vi": "Nguyễn Văn An"
+ },
+ "コンボボックス": {
+  "en": "combo box",
+  "vi": "Hộp kết hợp"
+ },
+ "ステップ1/3 – 申請者の情報": {
+  "en": "Step 1/3 – Applicant Information",
+  "vi": "Bước 1/3 – Thông tin người nộp đơn"
+ },
+ "ステップ1/3 – 申請者の情報. ステップ1/3: 申請者の情報": {
+  "en": "Step 1/3 – Applicant Information. Step 1/3: Applicant Information",
+  "vi": "Bước 1/3 – Thông tin người nộp đơn. Bước 1/3: Thông tin người nộp đơn"
+ },
+ "ステップ1/3: 申請者の情報": {
+  "en": "Step 1/3: Applicant Information",
+  "vi": "Bước 1/3: Thông tin người nộp đơn"
+ },
+ "ステップ2/3 – 請求内容": {
+  "en": "Step 2/3 – Billing Details",
+  "vi": "Bước 2/3 – Nội dung yêu cầu"
+ },
+ "ステップ2/3 – 請求内容. ステップ2/3: 請求内容": {
+  "en": "Step 2/3 – Billing Details. Step 2/3: Billing Details",
+  "vi": "Bước 2/3 – Nội dung yêu cầu. Bước 2/3: Nội dung yêu cầu"
+ },
+ "ステップ2/3: 請求内容": {
+  "en": "Step 2/3: Billing Details",
+  "vi": "Bước 2/3: Nội dung yêu cầu"
+ },
+ "ステップ3/3 – 申請内容の確認": {
+  "en": "Step 3/3 – Application Confirmation",
+  "vi": "Bước 3/3 – Xác nhận nội dung đơn"
+ },
+ "ステップ3/3 – 申請内容の確認. ステップ3/3: 申請内容の確認": {
+  "en": "Step 3/3 – Application Confirmation. Step 3/3: Application Confirmation",
+  "vi": "Bước 3/3 – Xác nhận nội dung đơn. Bước 3/3: Xác nhận nội dung đơn"
+ },
+ "ステップ3/3: 申請内容の確認": {
+  "en": "Step 3/3: Confirm application details",
+  "vi": "Bước 3/3: Xác nhận nội dung đơn"
+ },
+ "チェックなし": {
+  "en": "Unchecked",
+  "vi": "Chưa được chọn"
+ },
+ "チェックボックス": {
+  "en": "Checkbox",
+  "vi": "Hộp kiểm"
+ },
+ "ボタン": {
+  "en": "Button",
+  "vi": "Nút"
+ },
+ "住所": {
+  "en": "Address",
+  "vi": "Địa chỉ"
+ },
+ "住所 (address) — enter current registered residential address in Japan": {
+  "ja": "住所 — 日本での現在の登録住所を入力してください。",
+  "vi": "住所 (địa chỉ) — nhập địa chỉ cư trú đăng ký hiện tại ở Nhật Bản"
+ },
+ "住所 is a standard, universally recognized Japanese administrative term for residential address, unambiguous to screen-reader users. The profile provides a current Japanese address matching this field's context in a Japanese municipal residence certificate procedure.": {
+  "ja": "住所 は日本の標準的で普遍的に認識される住所を指す行政用語であり、スクリーンリーダーユーザーにとって明確です。プロフィールが提供する現在の日本の住所は、日本の市区町村の住民票手続きに対応しています。",
+  "vi": "住所 là một thuật ngữ hành chính Nhật Bản chuẩn mực, được công nhân rộng rãi cho địa chỉ cư trú, rõ ràng với người dùng trình đọc màn hình. Hồ sơ cung cấp địa chỉ Nhật Bản hiện tại phù hợp với ngữ cảnh trường này trong quy trình chứng thực cư trú của chính quyền địa phương Nhật Bản."
+ },
+ "住所, 編集": {
+  "en": "Address, Edit",
+  "vi": "Địa chỉ, Chỉnh sửa"
+ },
+ "住民票の写し交付申請（模擬）": {
+  "en": "Resident record copy application (mock)",
+  "vi": "Đơn xin cấp giấy chứng thực hộ khẩu (Mô phỏng)"
+ },
+ "使用目的": {
+  "en": "Purpose of use",
+  "vi": "Mục đích sử dụng"
+ },
+ "使用目的, コンボボックス, 就職手続き": {
+  "en": "Purpose of use, Combo box, Employment procedure",
+  "vi": "Mục đích sử dụng, Hộp tổng hợp, Thủ tục tuyển dụng"
+ },
+ "就職手続き": {
+  "en": "Employment procedure",
+  "vi": "Thủ tục tuyển dụng"
+ },
+ "必要な通数": {
+  "en": "Number of copies needed",
+  "vi": "Số bản cần thiết"
+ },
+ "必要な通数, コンボボックス, 1通": {
+  "en": "Number of copies needed, Combo box, 1 copy",
+  "vi": "Số bản cần thiết, Hộp tổng hợp, 1 bản"
+ },
+ "日中の連絡先電話番号": {
+  "en": "Daytime contact phone number",
+  "vi": "Số điện thoại liên hệ ban ngày"
+ },
+ "日中の連絡先電話番号, 編集": {
+  "en": "Daytime contact phone number, Edit",
+  "vi": "Số điện thoại liên hệ ban ngày, Chỉnh sửa"
+ },
+ "本籍地 (honsekichi) means 'registered domicile'; this form asks foreign nationals for their nationality (ベトナム) instead": {
+  "ja": "本籍地（honsekichi）は登録地を意味しますが、このフォームは外国籍者に対して代わりに国籍（ベトナム）を尋ねています。",
+  "vi": "本籍地 (honsekichi) có nghĩa là 'địa chỉ thường trú đăng ký'; biểu mẫu này thay vào đó yêu cầu quốc tịch (ベトナム) của công dân nước ngoài"
+ },
+ "本籍地 （外国籍の方は国籍・地域）": {
+  "en": "Registered domicile (For foreign nationals: Nationality/Region)",
+  "vi": "Nơi đăng ký thường trú (Với người nước ngoài là quốc tịch/khu vực)"
+ },
+ "本籍地 （外国籍の方は国籍・地域）, 編集": {
+  "en": "Registered domicile (For foreign nationals: Nationality/Region), Edit",
+  "vi": "Nơi đăng ký thường trú (Với người nước ngoài là quốc tịch/khu vực), Chỉnh sửa"
+ },
+ "次へ": {
+  "en": "Next",
+  "vi": "Tiếp theo"
+ },
+ "次へ, ボタン": {
+  "en": "Next, Button",
+  "vi": "Tiếp theo, Nút"
+ },
+ "氏名": {
+  "en": "Full name",
+  "vi": "Họ và tên"
+ },
+ "氏名, 編集": {
+  "en": "Full name, Edit",
+  "vi": "Họ và tên, Chỉnh sửa"
+ },
+ "氏名, 編集, グエン・ヴァン・アン": {
+  "en": "Full name, Edit, Nguyen Van An",
+  "vi": "Họ và tên, Chỉnh sửa, Nguyen Van An"
+ },
+ "生年月日": {
+  "en": "Date of birth",
+  "vi": "Ngày sinh"
+ },
+ "生年月日 = date of birth (birth year, month, day)": {
+  "ja": "生年月日 = 生年月日（生年、月、日）",
+  "vi": "生年月日 = ngày sinh (năm sinh, tháng sinh, ngày sinh)"
+ },
+ "生年月日 is a standard Japanese administrative term meaning date of birth; the profile provides the applicant's date of birth in Japanese format (1985年3月12日), which is the natural fit for a Japanese municipal form.": {
+  "ja": "生年月日 は日本の標準的な行政用語で、申請者の生年月日を意味します。プロフィールは申請者の生年月日を日本形式（1985年3月12日）で提供しており、これは日本の市区町村のフォームに自然に適合しています。",
+  "vi": "生年月日 là một thuật ngữ hành chính Nhật Bản chuẩn mực có nghĩa là ngày sinh; hồ sơ cung cấp ngày sinh của ứng viên theo định dạng Nhật Bản (1985年3月12日), đây là điểm tương ứng tự nhiên cho một biểu mẫu chính quyền địa phương Nhật Bản."
+ },
+ "生年月日 is a well-established Japanese administrative term that screen readers read clearly; the applicant's date of birth is March 12, 1985 from the profile.": {
+  "ja": "生年月日 はスクリーンリーダーが明確に読み上げることができる確立された日本の行政用語です。プロフィールに記載されている申請者の生年月日は1985年3月12日です。",
+  "vi": "生年月日 là một thuật ngữ hành chính Nhật Bản được thiết lập tốt mà trình đọc màn hình đọc rõ ràng; ngày sinh của ứng viên từ hồ sơ là 12 tháng 3 năm 1985."
+ },
+ "生年月日 is the standard Japanese term for date of birth, immediately recognizable to Japanese-speaking screen reader users without decoding. The applicant's date of birth from the profile is 1985年3月12日 (March 12, 1985 in Japanese format).": {
+  "ja": "生年月日 は生年月日の標準的な日本語用語で、日本語を話すスクリーンリーダーユーザーが復号化なしに即座に認識できます。プロフィールに記載されている申請者の生年月日は1985年3月12日（日本形式）です。",
+  "vi": "生年月日 là thuật ngữ Nhật Bản chuẩn mực chỉ ngày sinh, dễ dàng nhận ra được bởi người dùng trình đọc màn hình nói tiếng Nhật mà không cần giải mã. Ngày sinh của ứng viên từ hồ sơ là 1985年3月12日 (12 tháng 3 năm 1985 theo định dạng Nhật Bản)."
+ },
+ "生年月日, 編集": {
+  "en": "Date of birth, Edit",
+  "vi": "Ngày sinh, Chỉnh sửa"
+ },
+ "生年月日, 編集, 1985/03/12": {
+  "en": "Date of birth, Edit, 1985/03/12",
+  "vi": "Ngày sinh, Chỉnh sửa, 1985/03/12"
+ },
+ "申請する": {
+  "en": "Submit",
+  "vi": "Nộp đơn"
+ },
+ "申請する, ボタン": {
+  "en": "Submit, Button",
+  "vi": "Nộp đơn, Nút"
+ },
+ "申請者": {
+  "en": "Applicant",
+  "vi": "Người nộp đơn"
+ },
+ "確認": {
+  "en": "Confirm",
+  "vi": "Xác nhận"
+ },
+ "編集": {
+  "en": "Edit",
+  "vi": "Chỉnh sửa"
+ },
+ "記載内容に誤りがないことを誓約します": {
+  "en": "I certify the information is accurate",
+  "vi": "Cam kết những nội dung kê khai không có sai sót"
+ },
+ "記載内容に誤りがないことを誓約します, チェックボックス, チェックなし": {
+  "en": "I certify the information is accurate, Checkbox, Unchecked",
+  "vi": "Cam kết những nội dung kê khai không có sai sót, Hộp kiểm, Chưa đánh dấu"
+ },
+ "請求内容": {
+  "en": "Billing",
+  "vi": "Nội dung yêu cầu"
+ },
+ "送付先の郵便番号": {
+  "en": "Mailing postal code",
+  "vi": "Mã bưu chính địa chỉ gửi"
+ },
+ "送付先の郵便番号 = Postal code for certificate delivery address; use applicant's registered postal code in Japan": {
+  "ja": "送付先の郵便番号 = 証明書送付先住所の郵便番号。申請者が日本に登録している郵便番号を使用してください。",
+  "vi": "送付先の郵便番号 = Mã bưu chính cho địa chỉ gửi chứng thực; sử dụng mã bưu chính đăng ký của ứng viên ở Nhật Bản"
+ },
+ "送付先の郵便番号, 編集": {
+  "en": "Mailing postal code, Edit",
+  "vi": "Mã bưu chính địa chỉ gửi, Chỉnh sửa"
+ },
+ "送付先の郵便番号, 編集, 123-4567": {
+  "en": "Mailing postal code, Edit, 123-4567",
+  "vi": "Mã bưu chính địa chỉ gửi, Chỉnh sửa, 123-4567"
+ },
+ "運転免許": {
+  "en": "Driver's license",
+  "vi": "Giấy phép lái xe"
+ }
+}

@@ -1,0 +1,11 @@
+{
+  "file": "gauge_01.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 6.69,
+  "retries": 0,
+  "result": {
+    "reading_cm": -19.8,
+    "confidence": 0.7,
+    "reason": "The 0 mark is at y≈421 and the -15 mark at y≈631, which gives about 14 px per cm. The blue water surface starts at y≈698, just above the -20 mark, so the reading is about -19.8 cm."
+  }
+}

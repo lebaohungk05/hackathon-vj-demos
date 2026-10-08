@@ -1,0 +1,11 @@
+{
+  "file": "gauge_06.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 7.2,
+  "retries": 0,
+  "result": {
+    "reading_cm": -15.3,
+    "confidence": 0.8,
+    "reason": "The water surface (top of the blue region) sits just below the -15 tick, about 0.3 cm lower. I used the 0 mark at the soil line and the -10, -15 and -20 ticks (about 14 px per cm) to place it."
+  }
+}

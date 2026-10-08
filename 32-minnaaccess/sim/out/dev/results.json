@@ -1,0 +1,2145 @@
+{
+ "dev_0_B": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 2,
+     "breakpoint": {
+      "step": 3,
+      "suspects": [
+       "3.3.2"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": ""
+       }
+      ],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "3.3.2",
+     "step": 3
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": [
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d0"
+     },
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_1_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "1.1.1",
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "1.1.1",
+     "step": 1
+    },
+    {
+     "sc": "2.1.1",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": [
+     {
+      "rule": "button-name",
+      "impact": "critical",
+      "defect": "d1"
+     },
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d2"
+     }
+    ]
+   }
+  ]
+ },
+ "dev_2_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "1.1.1",
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "1.1.1",
+     "step": 1
+    },
+    {
+     "sc": "2.1.1",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": [
+     {
+      "rule": "button-name",
+      "impact": "critical",
+      "defect": "d0"
+     },
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d2"
+     }
+    ]
+   }
+  ]
+ },
+ "dev_4_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "2.4.6"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": "Thông tin 2"
+       }
+      ],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.4.6",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": [
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_5_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_6_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_7_B": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": [
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_8_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": ""
+       }
+      ],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": [
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_9_B": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 1,
+     "breakpoint": {
+      "step": 2,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": {
+       "role": "textbox",
+       "name": "Địa chỉ cư trú"
+      }
+     }
+    },
+    {
+     "completed": false,
+     "steps_passed": 2,
+     "breakpoint": {
+      "step": 3,
+      "suspects": [
+       "3.3.2",
+       "captcha"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": ""
+       },
+       {
+        "role": "textbox",
+        "name": "Nhập mã xác nhận trong ảnh"
+       }
+      ],
+      "stuck_on": null
+     }
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 2
+    }
+   ],
+   "handoff": true,
+   "completed_after": false
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": [
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d0"
+     },
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d2"
+     }
+    ]
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_10_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_11_B": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   },
+   {
+    "step": 3,
+    "violations": []
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_12_B": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 2,
+     "breakpoint": {
+      "step": 3,
+      "suspects": [
+       "3.3.2"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": ""
+       }
+      ],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "3.3.2",
+     "step": 3
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": [
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_13_B": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 1,
+     "breakpoint": {
+      "step": 2,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 2
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_14_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "1.1.1",
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": false,
+     "steps_passed": 1,
+     "breakpoint": {
+      "step": 2,
+      "suspects": [
+       "1.1.1",
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "1.1.1",
+     "step": 1
+    },
+    {
+     "sc": "2.1.1",
+     "step": 1
+    },
+    {
+     "sc": "1.1.1",
+     "step": 2
+    },
+    {
+     "sc": "2.1.1",
+     "step": 2
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": [
+     {
+      "rule": "button-name",
+      "impact": "critical",
+      "defect": "d2"
+     },
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d2"
+     }
+    ]
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "button-name",
+      "impact": "critical",
+      "defect": "d1"
+     },
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   }
+  ]
+ },
+ "dev_15_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_16_B": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   },
+   {
+    "step": 3,
+    "violations": [
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_17_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 1,
+     "breakpoint": {
+      "step": 2,
+      "suspects": [
+       "captcha"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": "Nhập mã xác nhận trong ảnh"
+       }
+      ],
+      "stuck_on": null
+     }
+    }
+   ],
+   "patches": [],
+   "handoff": true,
+   "completed_after": false
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_18_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_19_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_20_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 2,
+     "breakpoint": {
+      "step": 3,
+      "suspects": [
+       "1.1.1",
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "1.1.1",
+     "step": 3
+    },
+    {
+     "sc": "2.1.1",
+     "step": 3
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": [
+     {
+      "rule": "button-name",
+      "impact": "critical",
+      "defect": "d1"
+     },
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   }
+  ]
+ },
+ "dev_21_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_22_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": {
+       "role": "textbox",
+       "name": "Số CCCD"
+      }
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_23_B": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 2,
+     "breakpoint": {
+      "step": 3,
+      "suspects": [
+       "3.3.2"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": ""
+       }
+      ],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "3.3.2",
+     "step": 3
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": [
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_24_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_25_B": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 2,
+     "breakpoint": {
+      "step": 3,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 3
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_26_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_27_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "1.1.1",
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "1.1.1",
+     "step": 1
+    },
+    {
+     "sc": "2.1.1",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": [
+     {
+      "rule": "button-name",
+      "impact": "critical",
+      "defect": "d1"
+     },
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_28_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": {
+       "role": "textbox",
+       "name": "Mã hồ sơ"
+      }
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_29_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 1,
+     "breakpoint": {
+      "step": 2,
+      "suspects": [
+       "captcha"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": "Nhập mã xác nhận trong ảnh"
+       }
+      ],
+      "stuck_on": null
+     }
+    }
+   ],
+   "patches": [],
+   "handoff": true,
+   "completed_after": false
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_30_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 1,
+     "breakpoint": {
+      "step": 2,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 2
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_31_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": "Thông tin 1"
+       }
+      ],
+      "stuck_on": {
+       "role": "textbox",
+       "name": "Mã hồ sơ"
+      }
+     }
+    },
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "2.4.6"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": "Thông tin 1"
+       }
+      ],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 1
+    },
+    {
+     "sc": "2.4.6",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_32_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_33_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_34_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_35_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_36_B": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 2,
+     "breakpoint": {
+      "step": 3,
+      "suspects": [
+       "3.3.2"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": ""
+       }
+      ],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "3.3.2",
+     "step": 3
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": [
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_37_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 1,
+     "breakpoint": {
+      "step": 2,
+      "suspects": [
+       "captcha"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": "Nhập mã xác nhận trong ảnh"
+       }
+      ],
+      "stuck_on": null
+     }
+    }
+   ],
+   "patches": [],
+   "handoff": true,
+   "completed_after": false
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": [
+     {
+      "rule": "image-alt",
+      "impact": "critical",
+      "defect": "d1"
+     }
+    ]
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_38_C": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "2.4.6"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": "Thông tin 2"
+       }
+      ],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.4.6",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_39_A": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": false,
+     "steps_passed": 0,
+     "breakpoint": {
+      "step": 1,
+      "suspects": [
+       "2.1.1"
+      ],
+      "unfilled": [
+       {
+        "role": "textbox",
+        "name": ""
+       }
+      ],
+      "stuck_on": null
+     }
+    },
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [
+    {
+     "sc": "2.1.1",
+     "step": 1
+    }
+   ],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": [
+     {
+      "rule": "label",
+      "impact": "critical",
+      "defect": "d0"
+     }
+    ]
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3000_C_clean": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3001_B_clean": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3002_A_clean": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 2,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3003_C_clean": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3004_B_clean": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3005_C_clean": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3006_C_clean": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3007_C_clean": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 3,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3008_B_clean": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ },
+ "dev_3009_B_clean": {
+  "agent": {
+   "rounds": [
+    {
+     "completed": true,
+     "steps_passed": 4,
+     "breakpoint": null
+    }
+   ],
+   "patches": [],
+   "handoff": false,
+   "completed_after": true
+  },
+  "axe": [
+   {
+    "step": 1,
+    "violations": []
+   },
+   {
+    "step": 2,
+    "violations": []
+   },
+   {
+    "step": 3,
+    "violations": []
+   },
+   {
+    "step": 4,
+    "violations": []
+   }
+  ]
+ }
+}

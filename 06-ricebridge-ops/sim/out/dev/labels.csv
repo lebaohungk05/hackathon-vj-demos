@@ -1,0 +1,620 @@
+fault,pid,cluster,day,end_day,detail,seed
+a_sensor,3,0,65,120,drift -0.75 cm/ngay,0
+a_sensor,13,2,26,120,stuck,0
+a_sensor,26,4,89,120,drift -1.09 cm/ngay,0
+c_photo_misread,2,0,4,4,-12.0 cm,0
+c_photo_misread,2,0,15,15,-9.1 cm,0
+c_photo_misread,2,0,34,34,-6.0 cm,0
+c_photo_misread,2,0,75,75,+8.4 cm,0
+c_photo_misread,3,0,14,14,+8.7 cm,0
+c_photo_misread,3,0,47,47,-6.7 cm,0
+c_photo_misread,10,1,38,38,+7.7 cm,0
+c_photo_misread,10,1,61,61,-10.4 cm,0
+c_photo_misread,10,1,79,79,-9.0 cm,0
+c_photo_misread,10,1,85,85,+7.9 cm,0
+c_photo_misread,11,1,95,95,+7.6 cm,0
+c_photo_misread,11,1,100,100,-6.2 cm,0
+c_photo_misread,15,2,16,16,-6.3 cm,0
+c_photo_misread,15,2,102,102,+8.7 cm,0
+c_photo_misread,18,3,45,45,+7.7 cm,0
+c_photo_misread,18,3,59,59,+7.7 cm,0
+c_photo_misread,18,3,64,64,-8.5 cm,0
+c_photo_misread,18,3,97,97,-7.9 cm,0
+c_photo_misread,23,3,37,37,-6.9 cm,0
+c_photo_misread,23,3,75,75,+9.0 cm,0
+c_photo_misread,23,3,87,87,-9.3 cm,0
+c_photo_misread,23,3,90,90,+7.1 cm,0
+c_photo_misread,23,3,93,93,+7.5 cm,0
+c_photo_misread,23,3,107,107,-9.8 cm,0
+c_photo_misread,23,3,108,108,+6.8 cm,0
+c_photo_misread,26,4,21,21,-9.5 cm,0
+c_photo_misread,26,4,22,22,-6.9 cm,0
+c_photo_misread,26,4,44,44,-11.5 cm,0
+c_photo_misread,26,4,45,45,+8.8 cm,0
+c_photo_misread,26,4,57,57,+11.5 cm,0
+c_photo_misread,26,4,80,80,-8.3 cm,0
+c_photo_misread,27,4,59,59,-8.5 cm,0
+c_photo_misread,27,4,63,63,-8.1 cm,0
+c_photo_misread,27,4,119,119,+8.0 cm,0
+c_photo_misread,27,4,120,120,+9.2 cm,0
+b_missing_logs,0,0,31,33,injected,0
+b_missing_logs,1,0,80,85,injected,0
+b_missing_logs,7,1,42,48,injected,0
+b_missing_logs,10,1,104,106,natural,0
+b_missing_logs,11,1,33,35,injected,0
+b_missing_logs,11,1,87,89,natural,0
+b_missing_logs,15,2,68,74,injected,0
+b_missing_logs,16,2,8,10,natural,0
+b_missing_logs,16,2,27,33,injected,0
+b_missing_logs,20,3,24,30,injected,0
+b_missing_logs,23,3,85,88,injected,0
+b_missing_logs,25,4,53,57,injected,0
+b_missing_logs,26,4,92,96,injected,0
+d_pump_schedule,-1,0,24,24,cancelled_unannounced,0
+d_pump_schedule,-1,0,35,35,cancelled_unannounced,0
+d_pump_schedule,-1,1,59,59,moved_announced,0
+d_pump_schedule,-1,1,80,80,moved_announced,0
+d_pump_schedule,-1,2,56,56,moved_announced,0
+d_pump_schedule,-1,2,70,70,moved_announced,0
+d_pump_schedule,-1,3,66,66,cancelled_unannounced,0
+d_pump_schedule,-1,3,77,77,moved_announced,0
+d_pump_schedule,-1,4,35,35,moved_announced,0
+d_pump_schedule,-1,4,84,84,moved_announced,0
+e_proxy_logging,5,0,0,104,not a fault,0
+e_proxy_logging,8,1,4,108,not a fault,0
+e_proxy_logging,17,2,8,112,not a fault,0
+e_proxy_logging,19,3,12,116,not a fault,0
+e_proxy_logging,28,4,16,120,not a fault,0
+a_sensor,0,0,49,120,drift -0.62 cm/ngay,1
+a_sensor,7,1,32,120,drift -1.14 cm/ngay,1
+a_sensor,14,2,86,120,stuck,1
+a_sensor,18,3,76,120,stuck,1
+a_sensor,20,3,85,120,stuck,1
+c_photo_misread,0,0,9,9,+7.4 cm,1
+c_photo_misread,0,0,23,23,-7.3 cm,1
+c_photo_misread,0,0,48,48,+7.6 cm,1
+c_photo_misread,4,0,31,31,-10.3 cm,1
+c_photo_misread,4,0,35,35,+8.4 cm,1
+c_photo_misread,4,0,75,75,-7.1 cm,1
+c_photo_misread,4,0,89,89,-9.3 cm,1
+c_photo_misread,7,1,7,7,+8.2 cm,1
+c_photo_misread,9,1,40,40,+6.2 cm,1
+c_photo_misread,9,1,79,79,-10.4 cm,1
+c_photo_misread,14,2,84,84,-8.3 cm,1
+c_photo_misread,17,2,30,30,-8.6 cm,1
+c_photo_misread,17,2,95,95,+6.3 cm,1
+c_photo_misread,20,3,12,12,-6.1 cm,1
+c_photo_misread,26,4,33,33,-9.3 cm,1
+c_photo_misread,26,4,39,39,-8.1 cm,1
+c_photo_misread,26,4,89,89,-9.3 cm,1
+c_photo_misread,27,4,50,50,-10.7 cm,1
+c_photo_misread,27,4,54,54,-10.5 cm,1
+c_photo_misread,27,4,65,65,+10.2 cm,1
+c_photo_misread,27,4,99,99,+8.6 cm,1
+b_missing_logs,1,0,42,47,injected,1
+b_missing_logs,1,0,84,86,natural,1
+b_missing_logs,3,0,102,104,natural,1
+b_missing_logs,5,0,39,45,injected,1
+b_missing_logs,7,1,15,18,injected,1
+b_missing_logs,9,1,41,43,natural,1
+b_missing_logs,10,1,24,26,natural,1
+b_missing_logs,11,1,75,80,injected,1
+b_missing_logs,13,2,80,88,injected,1
+b_missing_logs,16,2,36,39,injected,1
+b_missing_logs,18,3,34,39,injected,1
+b_missing_logs,19,3,90,94,injected,1
+b_missing_logs,20,3,28,30,natural,1
+b_missing_logs,22,3,78,80,natural,1
+b_missing_logs,24,4,77,81,injected,1
+b_missing_logs,26,4,45,47,natural,1
+b_missing_logs,28,4,30,34,injected,1
+d_pump_schedule,-1,0,17,17,cancelled_unannounced,1
+d_pump_schedule,-1,0,28,28,moved_announced,1
+d_pump_schedule,-1,1,31,31,moved_announced,1
+d_pump_schedule,-1,1,49,49,moved_announced,1
+d_pump_schedule,-1,2,35,35,cancelled_unannounced,1
+d_pump_schedule,-1,2,87,87,moved_announced,1
+d_pump_schedule,-1,3,31,31,cancelled_unannounced,1
+d_pump_schedule,-1,3,52,52,cancelled_unannounced,1
+d_pump_schedule,-1,4,66,66,moved_announced,1
+d_pump_schedule,-1,4,91,91,moved_announced,1
+e_proxy_logging,2,0,0,104,not a fault,1
+e_proxy_logging,8,1,4,108,not a fault,1
+e_proxy_logging,15,2,8,112,not a fault,1
+e_proxy_logging,21,3,12,116,not a fault,1
+e_proxy_logging,29,4,16,120,not a fault,1
+a_sensor,3,0,73,120,stuck,2
+a_sensor,5,0,41,120,drift +0.68 cm/ngay,2
+a_sensor,9,1,76,120,stuck,2
+a_sensor,14,2,69,120,drift +0.85 cm/ngay,2
+a_sensor,16,2,81,120,stuck,2
+a_sensor,23,3,40,120,drift -1.02 cm/ngay,2
+a_sensor,24,4,77,120,stuck,2
+c_photo_misread,3,0,0,0,-9.3 cm,2
+c_photo_misread,3,0,12,12,-9.9 cm,2
+c_photo_misread,3,0,23,23,-9.1 cm,2
+c_photo_misread,3,0,25,25,+11.8 cm,2
+c_photo_misread,3,0,26,26,+9.7 cm,2
+c_photo_misread,3,0,37,37,-9.3 cm,2
+c_photo_misread,3,0,52,52,-10.6 cm,2
+c_photo_misread,3,0,62,62,-8.4 cm,2
+c_photo_misread,5,0,0,0,-8.1 cm,2
+c_photo_misread,5,0,21,21,-7.9 cm,2
+c_photo_misread,6,1,8,8,+6.6 cm,2
+c_photo_misread,6,1,53,53,-8.7 cm,2
+c_photo_misread,6,1,96,96,+11.2 cm,2
+c_photo_misread,9,1,30,30,-8.2 cm,2
+c_photo_misread,14,2,13,13,-9.4 cm,2
+c_photo_misread,14,2,48,48,+6.9 cm,2
+c_photo_misread,14,2,64,64,-11.7 cm,2
+c_photo_misread,22,3,41,41,-11.2 cm,2
+c_photo_misread,22,3,74,74,-9.4 cm,2
+c_photo_misread,22,3,80,80,-7.9 cm,2
+c_photo_misread,23,3,12,12,+6.5 cm,2
+c_photo_misread,23,3,21,21,-11.1 cm,2
+c_photo_misread,24,4,21,21,-8.8 cm,2
+c_photo_misread,24,4,49,49,+6.2 cm,2
+c_photo_misread,24,4,58,58,+10.6 cm,2
+c_photo_misread,26,4,18,18,-9.7 cm,2
+c_photo_misread,26,4,46,46,+8.7 cm,2
+b_missing_logs,0,0,13,17,injected,2
+b_missing_logs,1,0,30,32,natural,2
+b_missing_logs,4,0,89,95,injected,2
+b_missing_logs,5,0,1,3,natural,2
+b_missing_logs,5,0,95,97,natural,2
+b_missing_logs,6,1,77,83,injected,2
+b_missing_logs,7,1,58,60,injected,2
+b_missing_logs,8,1,10,12,natural,2
+b_missing_logs,11,1,75,78,natural,2
+b_missing_logs,12,2,83,92,injected,2
+b_missing_logs,15,2,55,61,injected,2
+b_missing_logs,20,3,90,92,injected,2
+b_missing_logs,22,3,39,44,injected,2
+b_missing_logs,26,4,49,54,injected,2
+b_missing_logs,26,4,82,84,natural,2
+b_missing_logs,28,4,27,29,injected,2
+d_pump_schedule,-1,0,35,35,moved_announced,2
+d_pump_schedule,-1,0,49,49,cancelled_unannounced,2
+d_pump_schedule,-1,1,31,31,moved_announced,2
+d_pump_schedule,-1,1,59,59,cancelled_unannounced,2
+d_pump_schedule,-1,2,38,38,cancelled_unannounced,2
+d_pump_schedule,-1,2,98,98,moved_announced,2
+d_pump_schedule,-1,3,63,63,cancelled_unannounced,2
+d_pump_schedule,-1,3,77,77,moved_announced,2
+d_pump_schedule,-1,4,35,35,moved_announced,2
+d_pump_schedule,-1,4,66,66,cancelled_unannounced,2
+e_proxy_logging,2,0,0,104,not a fault,2
+e_proxy_logging,10,1,4,108,not a fault,2
+e_proxy_logging,13,2,8,112,not a fault,2
+e_proxy_logging,19,3,12,116,not a fault,2
+e_proxy_logging,27,4,16,120,not a fault,2
+a_sensor,2,0,52,120,stuck,3
+a_sensor,5,0,51,120,stuck,3
+a_sensor,6,1,61,120,stuck,3
+a_sensor,16,2,69,120,stuck,3
+a_sensor,17,2,68,120,drift +0.86 cm/ngay,3
+a_sensor,18,3,32,120,drift +1.10 cm/ngay,3
+a_sensor,25,4,56,120,stuck,3
+a_sensor,28,4,93,120,drift -0.73 cm/ngay,3
+c_photo_misread,2,0,10,10,-7.5 cm,3
+c_photo_misread,2,0,49,49,-8.2 cm,3
+c_photo_misread,5,0,41,41,-9.1 cm,3
+c_photo_misread,5,0,47,47,+10.1 cm,3
+c_photo_misread,6,1,20,20,+7.8 cm,3
+c_photo_misread,6,1,21,21,-10.7 cm,3
+c_photo_misread,6,1,43,43,+10.3 cm,3
+c_photo_misread,8,1,4,4,-10.6 cm,3
+c_photo_misread,8,1,32,32,-7.8 cm,3
+c_photo_misread,8,1,89,89,-8.7 cm,3
+c_photo_misread,16,2,14,14,-10.9 cm,3
+c_photo_misread,16,2,18,18,-10.6 cm,3
+c_photo_misread,17,2,33,33,-6.8 cm,3
+c_photo_misread,17,2,35,35,+7.7 cm,3
+c_photo_misread,19,3,34,34,-10.1 cm,3
+c_photo_misread,19,3,48,48,-8.9 cm,3
+c_photo_misread,25,4,36,36,+8.9 cm,3
+c_photo_misread,28,4,83,83,+11.4 cm,3
+b_missing_logs,1,0,34,39,injected,3
+b_missing_logs,2,0,11,13,natural,3
+b_missing_logs,5,0,56,61,injected,3
+b_missing_logs,6,1,55,59,injected,3
+b_missing_logs,7,1,31,33,natural,3
+b_missing_logs,10,1,93,99,injected,3
+b_missing_logs,11,1,97,99,natural,3
+b_missing_logs,13,2,33,37,injected,3
+b_missing_logs,15,2,48,51,injected,3
+b_missing_logs,18,3,83,90,injected,3
+b_missing_logs,20,3,24,30,injected,3
+b_missing_logs,20,3,79,81,natural,3
+b_missing_logs,25,4,96,98,natural,3
+b_missing_logs,27,4,39,41,injected,3
+b_missing_logs,27,4,82,84,natural,3
+b_missing_logs,29,4,28,30,injected,3
+d_pump_schedule,-1,0,49,49,cancelled_unannounced,3
+d_pump_schedule,-1,0,80,80,moved_announced,3
+d_pump_schedule,-1,1,66,66,moved_announced,3
+d_pump_schedule,-1,1,70,70,cancelled_unannounced,3
+d_pump_schedule,-1,2,45,45,cancelled_unannounced,3
+d_pump_schedule,-1,2,77,77,moved_announced,3
+d_pump_schedule,-1,3,35,35,moved_announced,3
+d_pump_schedule,-1,3,98,98,cancelled_unannounced,3
+d_pump_schedule,-1,4,77,77,cancelled_unannounced,3
+d_pump_schedule,-1,4,101,101,moved_announced,3
+e_proxy_logging,4,0,0,104,not a fault,3
+e_proxy_logging,9,1,4,108,not a fault,3
+e_proxy_logging,12,2,8,112,not a fault,3
+e_proxy_logging,22,3,12,116,not a fault,3
+e_proxy_logging,24,4,16,120,not a fault,3
+a_sensor,1,0,26,120,stuck,4
+a_sensor,2,0,24,120,stuck,4
+a_sensor,11,1,72,120,stuck,4
+a_sensor,16,2,32,120,stuck,4
+a_sensor,19,3,94,120,drift +0.97 cm/ngay,4
+c_photo_misread,2,0,2,2,+7.0 cm,4
+c_photo_misread,7,1,33,33,-9.3 cm,4
+c_photo_misread,7,1,75,75,+8.6 cm,4
+c_photo_misread,7,1,82,82,+7.7 cm,4
+c_photo_misread,11,1,17,17,-11.4 cm,4
+c_photo_misread,11,1,19,19,-11.1 cm,4
+c_photo_misread,11,1,20,20,+10.0 cm,4
+c_photo_misread,11,1,49,49,-8.2 cm,4
+c_photo_misread,12,2,18,18,-10.2 cm,4
+c_photo_misread,12,2,32,32,+10.0 cm,4
+c_photo_misread,12,2,42,42,-8.8 cm,4
+c_photo_misread,12,2,83,83,-7.2 cm,4
+c_photo_misread,16,2,29,29,+9.4 cm,4
+c_photo_misread,16,2,31,31,-7.7 cm,4
+c_photo_misread,19,3,72,72,-8.0 cm,4
+c_photo_misread,22,3,94,94,-7.9 cm,4
+c_photo_misread,24,4,33,33,+8.2 cm,4
+c_photo_misread,24,4,62,62,-6.4 cm,4
+c_photo_misread,24,4,64,64,+9.6 cm,4
+c_photo_misread,24,4,66,66,-8.2 cm,4
+c_photo_misread,26,4,17,17,+10.9 cm,4
+c_photo_misread,26,4,24,24,+8.1 cm,4
+c_photo_misread,26,4,34,34,-9.2 cm,4
+c_photo_misread,26,4,85,85,-9.5 cm,4
+b_missing_logs,1,0,60,62,natural,4
+b_missing_logs,1,0,80,82,natural,4
+b_missing_logs,2,0,24,27,injected,4
+b_missing_logs,3,0,8,10,natural,4
+b_missing_logs,3,0,84,88,injected,4
+b_missing_logs,5,0,49,51,natural,4
+b_missing_logs,8,1,91,95,injected,4
+b_missing_logs,9,1,22,29,injected,4
+b_missing_logs,10,1,41,44,natural,4
+b_missing_logs,12,2,57,59,natural,4
+b_missing_logs,12,2,70,74,injected,4
+b_missing_logs,14,2,29,31,natural,4
+b_missing_logs,16,2,26,28,natural,4
+b_missing_logs,17,2,11,13,natural,4
+b_missing_logs,17,2,58,64,injected,4
+b_missing_logs,19,3,63,67,injected,4
+b_missing_logs,22,3,66,72,injected,4
+b_missing_logs,24,4,60,66,injected,4
+b_missing_logs,24,4,98,100,natural,4
+b_missing_logs,26,4,76,78,natural,4
+b_missing_logs,26,4,118,120,natural,4
+b_missing_logs,28,4,69,74,injected,4
+d_pump_schedule,-1,0,66,66,moved_announced,4
+d_pump_schedule,-1,0,70,70,cancelled_unannounced,4
+d_pump_schedule,-1,1,56,56,cancelled_unannounced,4
+d_pump_schedule,-1,1,63,63,moved_announced,4
+d_pump_schedule,-1,2,28,28,moved_announced,4
+d_pump_schedule,-1,2,77,77,moved_announced,4
+d_pump_schedule,-1,3,45,45,moved_announced,4
+d_pump_schedule,-1,3,87,87,moved_announced,4
+d_pump_schedule,-1,4,42,42,moved_announced,4
+d_pump_schedule,-1,4,105,105,moved_announced,4
+e_proxy_logging,0,0,0,104,not a fault,4
+e_proxy_logging,6,1,4,108,not a fault,4
+e_proxy_logging,15,2,8,112,not a fault,4
+e_proxy_logging,20,3,12,116,not a fault,4
+e_proxy_logging,25,4,16,120,not a fault,4
+a_sensor,4,0,80,120,drift +1.10 cm/ngay,5
+a_sensor,8,1,29,120,drift -0.75 cm/ngay,5
+a_sensor,16,2,44,120,drift -1.08 cm/ngay,5
+a_sensor,17,2,61,120,drift +0.76 cm/ngay,5
+a_sensor,24,4,41,120,drift -1.10 cm/ngay,5
+a_sensor,27,4,83,120,drift +0.92 cm/ngay,5
+c_photo_misread,1,0,3,3,+8.8 cm,5
+c_photo_misread,1,0,45,45,+7.3 cm,5
+c_photo_misread,1,0,55,55,-9.1 cm,5
+c_photo_misread,1,0,79,79,+8.6 cm,5
+c_photo_misread,1,0,91,91,-10.7 cm,5
+c_photo_misread,4,0,30,30,+10.9 cm,5
+c_photo_misread,4,0,37,37,-11.4 cm,5
+c_photo_misread,4,0,42,42,-10.0 cm,5
+c_photo_misread,4,0,49,49,+7.2 cm,5
+c_photo_misread,8,1,8,8,-10.9 cm,5
+c_photo_misread,9,1,29,29,-10.9 cm,5
+c_photo_misread,9,1,36,36,-11.8 cm,5
+c_photo_misread,9,1,59,59,-7.8 cm,5
+c_photo_misread,9,1,86,86,+9.2 cm,5
+c_photo_misread,16,2,21,21,+8.3 cm,5
+c_photo_misread,16,2,31,31,+10.4 cm,5
+c_photo_misread,16,2,33,33,-6.4 cm,5
+c_photo_misread,17,2,12,12,+10.1 cm,5
+c_photo_misread,17,2,44,44,+7.9 cm,5
+c_photo_misread,21,3,13,13,-8.9 cm,5
+c_photo_misread,21,3,17,17,+8.2 cm,5
+c_photo_misread,21,3,30,30,-11.5 cm,5
+c_photo_misread,21,3,38,38,+8.9 cm,5
+c_photo_misread,21,3,60,60,+9.2 cm,5
+c_photo_misread,21,3,62,62,-9.8 cm,5
+c_photo_misread,21,3,70,70,-11.7 cm,5
+c_photo_misread,23,3,47,47,-6.8 cm,5
+c_photo_misread,23,3,85,85,-10.8 cm,5
+c_photo_misread,23,3,111,111,-6.1 cm,5
+c_photo_misread,27,4,44,44,-8.1 cm,5
+c_photo_misread,27,4,47,47,+7.2 cm,5
+c_photo_misread,27,4,54,54,-6.2 cm,5
+c_photo_misread,27,4,76,76,+10.3 cm,5
+b_missing_logs,1,0,52,57,injected,5
+b_missing_logs,5,0,33,40,injected,5
+b_missing_logs,5,0,51,54,natural,5
+b_missing_logs,7,1,61,67,injected,5
+b_missing_logs,8,1,37,43,injected,5
+b_missing_logs,9,1,17,19,natural,5
+b_missing_logs,10,1,53,55,natural,5
+b_missing_logs,16,2,65,68,injected,5
+b_missing_logs,16,2,101,103,natural,5
+b_missing_logs,17,2,41,45,injected,5
+b_missing_logs,17,2,76,78,natural,5
+b_missing_logs,17,2,90,93,natural,5
+b_missing_logs,18,3,87,91,injected,5
+b_missing_logs,20,3,47,49,natural,5
+b_missing_logs,23,3,26,30,injected,5
+b_missing_logs,23,3,64,66,natural,5
+b_missing_logs,23,3,106,108,natural,5
+b_missing_logs,24,4,32,34,natural,5
+b_missing_logs,24,4,98,103,injected,5
+b_missing_logs,29,4,40,43,injected,5
+d_pump_schedule,-1,0,17,17,cancelled_unannounced,5
+d_pump_schedule,-1,0,63,63,cancelled_unannounced,5
+d_pump_schedule,-1,1,63,63,moved_announced,5
+d_pump_schedule,-1,1,87,87,cancelled_unannounced,5
+d_pump_schedule,-1,2,28,28,cancelled_unannounced,5
+d_pump_schedule,-1,2,80,80,cancelled_unannounced,5
+d_pump_schedule,-1,3,66,66,cancelled_unannounced,5
+d_pump_schedule,-1,3,87,87,cancelled_unannounced,5
+d_pump_schedule,-1,4,73,73,cancelled_unannounced,5
+d_pump_schedule,-1,4,77,77,cancelled_unannounced,5
+e_proxy_logging,2,0,0,104,not a fault,5
+e_proxy_logging,6,1,4,108,not a fault,5
+e_proxy_logging,12,2,8,112,not a fault,5
+e_proxy_logging,19,3,12,116,not a fault,5
+e_proxy_logging,28,4,16,120,not a fault,5
+a_sensor,6,1,30,120,drift -0.72 cm/ngay,6
+a_sensor,29,4,69,120,drift -0.86 cm/ngay,6
+c_photo_misread,2,0,1,1,+7.8 cm,6
+c_photo_misread,2,0,44,44,-11.3 cm,6
+c_photo_misread,2,0,79,79,-6.1 cm,6
+c_photo_misread,2,0,87,87,+9.6 cm,6
+c_photo_misread,3,0,48,48,-9.2 cm,6
+c_photo_misread,3,0,63,63,+10.7 cm,6
+c_photo_misread,3,0,79,79,+6.5 cm,6
+c_photo_misread,3,0,88,88,+7.7 cm,6
+c_photo_misread,3,0,90,90,+8.8 cm,6
+c_photo_misread,6,1,19,19,+8.5 cm,6
+c_photo_misread,11,1,83,83,+8.0 cm,6
+c_photo_misread,14,2,84,84,-6.3 cm,6
+c_photo_misread,14,2,110,110,+11.5 cm,6
+c_photo_misread,15,2,32,32,+7.8 cm,6
+c_photo_misread,15,2,35,35,-10.1 cm,6
+c_photo_misread,20,3,13,13,-6.4 cm,6
+c_photo_misread,20,3,43,43,+10.3 cm,6
+c_photo_misread,20,3,59,59,+9.6 cm,6
+c_photo_misread,22,3,58,58,-7.4 cm,6
+c_photo_misread,22,3,85,85,+11.8 cm,6
+c_photo_misread,28,4,29,29,+7.0 cm,6
+c_photo_misread,28,4,113,113,-8.0 cm,6
+c_photo_misread,29,4,32,32,-9.5 cm,6
+c_photo_misread,29,4,46,46,-6.5 cm,6
+c_photo_misread,29,4,68,68,+9.1 cm,6
+b_missing_logs,2,0,64,69,injected,6
+b_missing_logs,3,0,21,27,injected,6
+b_missing_logs,7,1,68,74,injected,6
+b_missing_logs,9,1,53,55,natural,6
+b_missing_logs,11,1,36,40,injected,6
+b_missing_logs,13,2,81,88,injected,6
+b_missing_logs,16,2,53,57,injected,6
+b_missing_logs,19,3,49,53,injected,6
+b_missing_logs,22,3,18,20,natural,6
+b_missing_logs,22,3,95,98,injected,6
+b_missing_logs,25,4,76,80,injected,6
+b_missing_logs,27,4,49,52,injected,6
+d_pump_schedule,-1,0,21,21,cancelled_unannounced,6
+d_pump_schedule,-1,0,70,70,cancelled_unannounced,6
+d_pump_schedule,-1,1,38,38,cancelled_unannounced,6
+d_pump_schedule,-1,1,42,42,moved_announced,6
+d_pump_schedule,-1,2,31,31,moved_announced,6
+d_pump_schedule,-1,2,49,49,cancelled_unannounced,6
+d_pump_schedule,-1,3,59,59,moved_announced,6
+d_pump_schedule,-1,3,94,94,moved_announced,6
+d_pump_schedule,-1,4,31,31,moved_announced,6
+d_pump_schedule,-1,4,59,59,moved_announced,6
+e_proxy_logging,0,0,0,104,not a fault,6
+e_proxy_logging,10,1,4,108,not a fault,6
+e_proxy_logging,17,2,8,112,not a fault,6
+e_proxy_logging,21,3,12,116,not a fault,6
+e_proxy_logging,26,4,16,120,not a fault,6
+a_sensor,6,1,53,120,drift -0.78 cm/ngay,7
+a_sensor,11,1,24,120,stuck,7
+a_sensor,15,2,54,120,stuck,7
+a_sensor,17,2,89,120,stuck,7
+a_sensor,20,3,53,120,drift +0.60 cm/ngay,7
+a_sensor,22,3,32,120,drift +0.85 cm/ngay,7
+c_photo_misread,2,0,63,63,-9.2 cm,7
+c_photo_misread,2,0,85,85,+9.2 cm,7
+c_photo_misread,2,0,90,90,+8.3 cm,7
+c_photo_misread,5,0,1,1,-6.2 cm,7
+c_photo_misread,5,0,34,34,+6.6 cm,7
+c_photo_misread,6,1,8,8,+8.7 cm,7
+c_photo_misread,11,1,13,13,-11.1 cm,7
+c_photo_misread,15,2,24,24,-11.2 cm,7
+c_photo_misread,15,2,42,42,-7.9 cm,7
+c_photo_misread,17,2,21,21,-8.7 cm,7
+c_photo_misread,17,2,79,79,+11.2 cm,7
+c_photo_misread,20,3,26,26,+7.1 cm,7
+c_photo_misread,24,4,32,32,+10.5 cm,7
+c_photo_misread,24,4,44,44,+6.6 cm,7
+c_photo_misread,24,4,53,53,-11.6 cm,7
+c_photo_misread,24,4,67,67,+9.9 cm,7
+c_photo_misread,24,4,93,93,-9.3 cm,7
+c_photo_misread,28,4,16,16,+8.6 cm,7
+c_photo_misread,28,4,93,93,+11.4 cm,7
+b_missing_logs,1,0,33,35,injected,7
+b_missing_logs,3,0,90,96,injected,7
+b_missing_logs,6,1,74,80,injected,7
+b_missing_logs,10,1,59,61,natural,7
+b_missing_logs,11,1,60,66,injected,7
+b_missing_logs,16,2,98,104,injected,7
+b_missing_logs,17,2,90,94,injected,7
+b_missing_logs,19,3,34,41,injected,7
+b_missing_logs,20,3,56,62,injected,7
+b_missing_logs,20,3,96,98,natural,7
+b_missing_logs,23,3,73,75,natural,7
+b_missing_logs,24,4,63,65,natural,7
+b_missing_logs,24,4,81,83,natural,7
+b_missing_logs,27,4,51,57,injected,7
+b_missing_logs,29,4,42,47,injected,7
+b_missing_logs,29,4,50,52,natural,7
+d_pump_schedule,-1,0,84,84,cancelled_unannounced,7
+d_pump_schedule,-1,0,87,87,moved_announced,7
+d_pump_schedule,-1,1,31,31,cancelled_unannounced,7
+d_pump_schedule,-1,1,73,73,cancelled_unannounced,7
+d_pump_schedule,-1,2,42,42,cancelled_unannounced,7
+d_pump_schedule,-1,2,49,49,cancelled_unannounced,7
+d_pump_schedule,-1,3,31,31,cancelled_unannounced,7
+d_pump_schedule,-1,3,91,91,moved_announced,7
+d_pump_schedule,-1,4,70,70,moved_announced,7
+d_pump_schedule,-1,4,91,91,moved_announced,7
+e_proxy_logging,0,0,0,104,not a fault,7
+e_proxy_logging,8,1,4,108,not a fault,7
+e_proxy_logging,12,2,8,112,not a fault,7
+e_proxy_logging,21,3,12,116,not a fault,7
+e_proxy_logging,25,4,16,120,not a fault,7
+a_sensor,3,0,33,120,stuck,8
+a_sensor,7,1,38,120,drift -0.83 cm/ngay,8
+a_sensor,12,2,23,120,drift -0.67 cm/ngay,8
+a_sensor,16,2,54,120,stuck,8
+a_sensor,23,3,32,120,stuck,8
+a_sensor,26,4,92,120,stuck,8
+c_photo_misread,0,0,27,27,-9.9 cm,8
+c_photo_misread,0,0,46,46,+11.9 cm,8
+c_photo_misread,0,0,99,99,-7.9 cm,8
+c_photo_misread,3,0,13,13,-10.8 cm,8
+c_photo_misread,3,0,22,22,-6.4 cm,8
+c_photo_misread,6,1,44,44,-8.6 cm,8
+c_photo_misread,6,1,49,49,-10.6 cm,8
+c_photo_misread,6,1,77,77,+9.5 cm,8
+c_photo_misread,6,1,88,88,+7.5 cm,8
+c_photo_misread,6,1,93,93,+11.0 cm,8
+c_photo_misread,7,1,5,5,-9.6 cm,8
+c_photo_misread,16,2,35,35,+11.0 cm,8
+c_photo_misread,20,3,33,33,+8.6 cm,8
+c_photo_misread,23,3,27,27,-6.4 cm,8
+c_photo_misread,25,4,16,16,-6.0 cm,8
+c_photo_misread,25,4,45,45,+9.8 cm,8
+c_photo_misread,25,4,51,51,-11.1 cm,8
+c_photo_misread,25,4,96,96,+6.5 cm,8
+c_photo_misread,25,4,112,112,-8.8 cm,8
+c_photo_misread,26,4,16,16,-9.2 cm,8
+c_photo_misread,26,4,63,63,+7.5 cm,8
+c_photo_misread,26,4,72,72,-6.5 cm,8
+b_missing_logs,0,0,15,18,injected,8
+b_missing_logs,1,0,20,23,natural,8
+b_missing_logs,3,0,81,85,injected,8
+b_missing_logs,4,0,22,25,natural,8
+b_missing_logs,6,1,20,25,injected,8
+b_missing_logs,8,1,96,98,natural,8
+b_missing_logs,11,1,41,47,injected,8
+b_missing_logs,13,2,27,29,natural,8
+b_missing_logs,13,2,96,101,injected,8
+b_missing_logs,16,2,54,56,injected,8
+b_missing_logs,21,3,98,101,injected,8
+b_missing_logs,23,3,53,56,injected,8
+b_missing_logs,24,4,39,41,natural,8
+b_missing_logs,25,4,87,90,injected,8
+b_missing_logs,26,4,67,70,injected,8
+d_pump_schedule,-1,0,42,42,moved_announced,8
+d_pump_schedule,-1,0,52,52,cancelled_unannounced,8
+d_pump_schedule,-1,1,38,38,cancelled_unannounced,8
+d_pump_schedule,-1,1,63,63,cancelled_unannounced,8
+d_pump_schedule,-1,2,70,70,cancelled_unannounced,8
+d_pump_schedule,-1,2,94,94,moved_announced,8
+d_pump_schedule,-1,3,45,45,cancelled_unannounced,8
+d_pump_schedule,-1,3,101,101,moved_announced,8
+d_pump_schedule,-1,4,63,63,moved_announced,8
+d_pump_schedule,-1,4,77,77,moved_announced,8
+e_proxy_logging,5,0,0,104,not a fault,8
+e_proxy_logging,9,1,4,108,not a fault,8
+e_proxy_logging,15,2,8,112,not a fault,8
+e_proxy_logging,18,3,12,116,not a fault,8
+e_proxy_logging,27,4,16,120,not a fault,8
+a_sensor,3,0,17,120,drift +0.92 cm/ngay,9
+a_sensor,6,1,21,120,drift +0.73 cm/ngay,9
+a_sensor,11,1,69,120,drift +0.88 cm/ngay,9
+a_sensor,18,3,40,120,drift -0.87 cm/ngay,9
+a_sensor,19,3,92,120,stuck,9
+a_sensor,24,4,89,120,drift -0.92 cm/ngay,9
+c_photo_misread,3,0,3,3,-6.5 cm,9
+c_photo_misread,5,0,55,55,+11.3 cm,9
+c_photo_misread,5,0,103,103,+9.3 cm,9
+c_photo_misread,11,1,25,25,-11.2 cm,9
+c_photo_misread,11,1,33,33,-8.2 cm,9
+c_photo_misread,11,1,37,37,+8.0 cm,9
+c_photo_misread,11,1,47,47,+7.0 cm,9
+c_photo_misread,11,1,68,68,+11.7 cm,9
+c_photo_misread,15,2,15,15,+7.8 cm,9
+c_photo_misread,15,2,17,17,-8.0 cm,9
+c_photo_misread,15,2,73,73,-11.4 cm,9
+c_photo_misread,15,2,91,91,+6.9 cm,9
+c_photo_misread,17,2,16,16,-7.9 cm,9
+c_photo_misread,17,2,17,17,+10.0 cm,9
+c_photo_misread,17,2,20,20,+11.1 cm,9
+c_photo_misread,17,2,37,37,-8.1 cm,9
+c_photo_misread,18,3,35,35,-10.0 cm,9
+c_photo_misread,18,3,37,37,+9.8 cm,9
+c_photo_misread,19,3,50,50,-7.4 cm,9
+c_photo_misread,19,3,79,79,+9.5 cm,9
+c_photo_misread,19,3,83,83,-6.5 cm,9
+c_photo_misread,19,3,89,89,+10.6 cm,9
+c_photo_misread,24,4,35,35,+8.8 cm,9
+c_photo_misread,24,4,88,88,+9.0 cm,9
+c_photo_misread,26,4,31,31,+10.7 cm,9
+c_photo_misread,26,4,88,88,-10.2 cm,9
+c_photo_misread,26,4,101,101,-11.1 cm,9
+c_photo_misread,26,4,115,115,-9.0 cm,9
+b_missing_logs,0,0,81,83,natural,9
+b_missing_logs,1,0,76,78,natural,9
+b_missing_logs,4,0,18,22,natural,9
+b_missing_logs,4,0,52,59,injected,9
+b_missing_logs,5,0,43,49,injected,9
+b_missing_logs,6,1,47,50,injected,9
+b_missing_logs,10,1,46,53,injected,9
+b_missing_logs,12,2,8,10,natural,9
+b_missing_logs,13,2,66,68,injected,9
+b_missing_logs,15,2,70,75,injected,9
+b_missing_logs,20,3,53,57,injected,9
+b_missing_logs,20,3,87,89,natural,9
+b_missing_logs,23,3,27,32,injected,9
+b_missing_logs,24,4,26,28,natural,9
+b_missing_logs,25,4,62,65,injected,9
+b_missing_logs,29,4,44,47,injected,9
+d_pump_schedule,-1,0,59,59,cancelled_unannounced,9
+d_pump_schedule,-1,0,70,70,cancelled_unannounced,9
+d_pump_schedule,-1,1,45,45,cancelled_unannounced,9
+d_pump_schedule,-1,1,66,66,cancelled_unannounced,9
+d_pump_schedule,-1,2,84,84,cancelled_unannounced,9
+d_pump_schedule,-1,2,91,91,cancelled_unannounced,9
+d_pump_schedule,-1,3,49,49,cancelled_unannounced,9
+d_pump_schedule,-1,3,77,77,cancelled_unannounced,9
+d_pump_schedule,-1,4,52,52,moved_announced,9
+d_pump_schedule,-1,4,94,94,moved_announced,9
+e_proxy_logging,2,0,0,104,not a fault,9
+e_proxy_logging,8,1,4,108,not a fault,9
+e_proxy_logging,16,2,8,112,not a fault,9
+e_proxy_logging,22,3,12,116,not a fault,9
+e_proxy_logging,27,4,16,120,not a fault,9

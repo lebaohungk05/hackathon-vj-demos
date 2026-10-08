@@ -1,0 +1,5 @@
+playwright>=1.40,<2
+numpy>=1.24,<3
+pandas>=2,<3
+Pillow>=10,<13
+matplotlib>=3.7,<4

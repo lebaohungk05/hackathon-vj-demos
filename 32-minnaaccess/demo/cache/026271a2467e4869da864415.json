@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 5432,
+ "tries": 1,
+ "created": "2026-10-06T21:13:06",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"mouse_only\",\n  \"wcag\": \"2.1.1 Keyboard\",\n  \"element_id\": \"next3\",\n  \"screen_reader_heard\": \"(never announced: not in Tab order)\",\n  \"evidence\": \"Full Tab cycle (3 stops) never reached “Tiếp tục”: it is a <div> with onclick, not focusable, so Enter and Space cannot activate it\",\n  \"visible_caption\": \"Tiếp tục\"\n },\n \"page_language\": \"vi-VN\",\n \"file\": \"step3.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"vi\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>Bước 3/4 – Mục đích yêu cầu</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body>\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">Cổng Dịch vụ công <b>MÔ PHỎNG</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · not a real government site · dữ liệu giả</div></header>\\n<main>\\n<h1>Cấp Phiếu lý lịch tư pháp</h1>\\n<ol class=\\\"steps\\\"><li>1. Người yêu cầu</li><li>2. Liên hệ</li><li class=\\\"on\\\">3. Mục đích</li><li>4. Xác nhận</li></ol>\\n<h2>Bước 3/4: Mục đích yêu cầu</h2>\\n<div class=\\\"field\\\"><label for=\\\"loai\\\">Loại phiếu</label><select id=\\\"loai\\\"><option>Phiếu số 1</option><option>Phiếu số 2</option></select></div>\\n<div class=\\\"field\\\"><label for=\\\"soluong\\\">Số lượng bản</label><select id=\\\"soluong\\\"><option>1</option><option>2</option></select></div>\\n<div class=\\\"field check\\\"><input id=\\\"camdoan\\\" type=\\\"checkbox\\\"><label for=\\\"camdoan\\\">Tôi cam đoan thông tin đã khai là đúng sự thật</label></div>\\n<div class=\\\"actions\\\"><div class=\\\"btn\\\" id=\\\"next3\\\" onclick=\\\"location.href='step4.html'\\\">Tiếp tục</div></div>\\n<p class=\\\"foot\\\">Hotline hỗ trợ: 1900 0000 (mô phỏng) · Trang thử nghiệm, không gửi dữ liệu đi đâu.</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "<div class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</div>",
+    "replace": "<button type=\"button\" class=\"btn\" id=\"next3\" onclick=\"location.href='step4.html'\">Tiếp tục</button>"
+   }
+  ],
+  "explanation": "The \"Tiếp tục\" (Continue) control was a plain div with a click handler, so the keyboard could not reach or activate it. Replacing it with a native button makes it focusable and lets Enter and Space work. The same class, id and navigation to step4.html are kept, and the button does not submit anything.",
+  "explanation_local": "Nút \"Tiếp tục\" trước đây chỉ là một thẻ div có sự kiện nhấp chuột nên bàn phím không thể chọn hay kích hoạt. Đã đổi thành thẻ button chuẩn của HTML để có thể dùng phím Tab, Enter và Space. Giữ nguyên kiểu dáng, id và việc chuyển sang step4.html, và nút không gửi dữ liệu đi đâu.",
+  "technique": "Replace div[onclick] with native <button type=\"button\">"
+ }
+}

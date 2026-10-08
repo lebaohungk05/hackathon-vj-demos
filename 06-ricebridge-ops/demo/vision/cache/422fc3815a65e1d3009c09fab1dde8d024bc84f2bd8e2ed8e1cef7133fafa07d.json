@@ -1,0 +1,11 @@
+{
+  "file": "gauge_20.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 7.98,
+  "retries": 0,
+  "result": {
+    "reading_cm": 0.0,
+    "confidence": 0.6,
+    "reason": "The blue water column begins at the soil line, level with the red 0 mark. The tube above that is empty, and the +5 mark (about 70 px higher) is clearly above the water."
+  }
+}

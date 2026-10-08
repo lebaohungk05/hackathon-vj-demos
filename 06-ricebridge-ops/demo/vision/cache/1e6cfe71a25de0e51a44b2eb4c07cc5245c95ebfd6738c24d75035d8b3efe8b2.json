@@ -1,0 +1,11 @@
+{
+  "file": "gauge_24.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 7.97,
+  "retries": 0,
+  "result": {
+    "reading_cm": 4.0,
+    "confidence": 0.8,
+    "reason": "The water surface sits just below the +5 tick and well above the 0 mark. Using the +5 and 0 marks at about 14 px per cm, I put it at about +4 cm."
+  }
+}

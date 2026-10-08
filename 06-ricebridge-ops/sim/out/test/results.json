@@ -1,0 +1,1275 @@
+{
+  "split": "test",
+  "seeds": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019
+  ],
+  "summary": {
+    "agent": {
+      "seed": {
+        "mean": 1009.5,
+        "min": 1000.0,
+        "max": 1019.0,
+        "n": 20
+      },
+      "awd_violation_plot_days": {
+        "mean": 1.8,
+        "min": 0.0,
+        "max": 8.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 47.25,
+        "min": 29.0,
+        "max": 78.0,
+        "n": 20
+      },
+      "topdress_dry_plot_days": {
+        "mean": 16.35,
+        "min": 4.0,
+        "max": 50.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 404.65,
+        "min": 383.0,
+        "max": 429.0,
+        "n": 20
+      },
+      "awd_safe_drying_plot_days": {
+        "mean": 402.85,
+        "min": 381.0,
+        "max": 424.0,
+        "n": 20
+      },
+      "awd_deep_plot_days": {
+        "mean": 14.2,
+        "min": 6.0,
+        "max": 35.0,
+        "n": 20
+      },
+      "evidence_completeness_pct": {
+        "mean": 97.386,
+        "min": 96.667,
+        "max": 98.095,
+        "n": 20
+      },
+      "plot_irrigations": {
+        "mean": 362.5,
+        "min": 347.0,
+        "max": 378.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 116.45,
+        "min": 111.0,
+        "max": 122.0,
+        "n": 20
+      },
+      "water_applied_mm_per_plot": {
+        "mean": 630.97,
+        "min": 588.863,
+        "max": 675.415,
+        "n": 20
+      },
+      "remeasure_requests_per_plot_week": {
+        "mean": 0.731,
+        "min": 0.68,
+        "max": 0.767,
+        "n": 20
+      },
+      "officer_visits_per_plot_week": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.events": {
+        "mean": 4.9,
+        "min": 3.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "detection.a_sensor.detected": {
+        "mean": 4.9,
+        "min": 3.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "detection.a_sensor.false_alarms": {
+        "mean": 0.1,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.a_sensor.precision": {
+        "mean": 0.982,
+        "min": 0.8,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.a_sensor.recall": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.a_sensor.mean_ttd_days": {
+        "mean": 6.232,
+        "min": 4.2,
+        "max": 9.833,
+        "n": 20
+      },
+      "detection.b_missing_logs.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.detected": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.precision": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.recall": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.mean_ttd_days": {
+        "mean": 2.02,
+        "min": 2.0,
+        "max": 2.2,
+        "n": 20
+      },
+      "detection.c_photo_misread.events": {
+        "mean": 26.75,
+        "min": 13.0,
+        "max": 41.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.detected": {
+        "mean": 23.45,
+        "min": 12.0,
+        "max": 37.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.false_alarms": {
+        "mean": 0.05,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.precision": {
+        "mean": 0.998,
+        "min": 0.968,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.recall": {
+        "mean": 0.884,
+        "min": 0.71,
+        "max": 0.958,
+        "n": 20
+      },
+      "detection.c_photo_misread.mean_ttd_days": {
+        "mean": 1.077,
+        "min": 1.0,
+        "max": 1.316,
+        "n": 20
+      },
+      "detection.d_pump_schedule.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.detected": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.precision": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.recall": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.mean_ttd_days": {
+        "mean": -0.06,
+        "min": -0.6,
+        "max": 0.8,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_agent": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_naive_farmer_only_rule": {
+        "mean": 5.0,
+        "min": 5.0,
+        "max": 5.0,
+        "n": 20
+      }
+    },
+    "agent_risk": {
+      "seed": {
+        "mean": 1009.5,
+        "min": 1000.0,
+        "max": 1019.0,
+        "n": 20
+      },
+      "awd_violation_plot_days": {
+        "mean": 2.4,
+        "min": 0.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 49.35,
+        "min": 30.0,
+        "max": 79.0,
+        "n": 20
+      },
+      "topdress_dry_plot_days": {
+        "mean": 16.15,
+        "min": 5.0,
+        "max": 46.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 433.0,
+        "min": 405.0,
+        "max": 458.0,
+        "n": 20
+      },
+      "awd_safe_drying_plot_days": {
+        "mean": 430.6,
+        "min": 405.0,
+        "max": 451.0,
+        "n": 20
+      },
+      "awd_deep_plot_days": {
+        "mean": 18.25,
+        "min": 8.0,
+        "max": 34.0,
+        "n": 20
+      },
+      "evidence_completeness_pct": {
+        "mean": 95.348,
+        "min": 94.095,
+        "max": 96.381,
+        "n": 20
+      },
+      "plot_irrigations": {
+        "mean": 357.1,
+        "min": 343.0,
+        "max": 371.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 115.5,
+        "min": 108.0,
+        "max": 122.0,
+        "n": 20
+      },
+      "water_applied_mm_per_plot": {
+        "mean": 629.748,
+        "min": 583.783,
+        "max": 670.156,
+        "n": 20
+      },
+      "remeasure_requests_per_plot_week": {
+        "mean": 0.601,
+        "min": 0.551,
+        "max": 0.642,
+        "n": 20
+      },
+      "officer_visits_per_plot_week": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.events": {
+        "mean": 4.9,
+        "min": 3.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "detection.a_sensor.detected": {
+        "mean": 4.9,
+        "min": 3.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "detection.a_sensor.false_alarms": {
+        "mean": 0.1,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.a_sensor.precision": {
+        "mean": 0.982,
+        "min": 0.8,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.a_sensor.recall": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.a_sensor.mean_ttd_days": {
+        "mean": 6.247,
+        "min": 4.2,
+        "max": 9.833,
+        "n": 20
+      },
+      "detection.b_missing_logs.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.detected": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.precision": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.recall": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.mean_ttd_days": {
+        "mean": 2.015,
+        "min": 2.0,
+        "max": 2.2,
+        "n": 20
+      },
+      "detection.c_photo_misread.events": {
+        "mean": 26.75,
+        "min": 13.0,
+        "max": 41.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.detected": {
+        "mean": 23.5,
+        "min": 12.0,
+        "max": 38.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.false_alarms": {
+        "mean": 0.05,
+        "min": 0.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.precision": {
+        "mean": 0.998,
+        "min": 0.968,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.recall": {
+        "mean": 0.885,
+        "min": 0.71,
+        "max": 0.958,
+        "n": 20
+      },
+      "detection.c_photo_misread.mean_ttd_days": {
+        "mean": 1.077,
+        "min": 1.0,
+        "max": 1.316,
+        "n": 20
+      },
+      "detection.d_pump_schedule.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.detected": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.precision": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.recall": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.mean_ttd_days": {
+        "mean": -0.06,
+        "min": -0.6,
+        "max": 0.8,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_agent": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_naive_farmer_only_rule": {
+        "mean": 5.0,
+        "min": 5.0,
+        "max": 5.0,
+        "n": 20
+      }
+    },
+    "baseline": {
+      "seed": {
+        "mean": 1009.5,
+        "min": 1000.0,
+        "max": 1019.0,
+        "n": 20
+      },
+      "awd_violation_plot_days": {
+        "mean": 86.05,
+        "min": 61.0,
+        "max": 119.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 87.75,
+        "min": 63.0,
+        "max": 118.0,
+        "n": 20
+      },
+      "topdress_dry_plot_days": {
+        "mean": 31.55,
+        "min": 12.0,
+        "max": 57.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 616.45,
+        "min": 579.0,
+        "max": 655.0,
+        "n": 20
+      },
+      "awd_safe_drying_plot_days": {
+        "mean": 530.4,
+        "min": 491.0,
+        "max": 565.0,
+        "n": 20
+      },
+      "awd_deep_plot_days": {
+        "mean": 193.8,
+        "min": 168.0,
+        "max": 225.0,
+        "n": 20
+      },
+      "evidence_completeness_pct": {
+        "mean": 85.695,
+        "min": 82.857,
+        "max": 87.905,
+        "n": 20
+      },
+      "plot_irrigations": {
+        "mean": 346.3,
+        "min": 332.0,
+        "max": 359.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 109.9,
+        "min": 107.0,
+        "max": 115.0,
+        "n": 20
+      },
+      "water_applied_mm_per_plot": {
+        "mean": 628.267,
+        "min": 580.786,
+        "max": 668.211,
+        "n": 20
+      },
+      "remeasure_requests_per_plot_week": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "officer_visits_per_plot_week": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.events": {
+        "mean": 4.9,
+        "min": 3.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "detection.a_sensor.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.events": {
+        "mean": 26.75,
+        "min": 13.0,
+        "max": 41.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_agent": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_naive_farmer_only_rule": {
+        "mean": 5.0,
+        "min": 5.0,
+        "max": 5.0,
+        "n": 20
+      }
+    },
+    "checklist": {
+      "seed": {
+        "mean": 1009.5,
+        "min": 1000.0,
+        "max": 1019.0,
+        "n": 20
+      },
+      "awd_violation_plot_days": {
+        "mean": 4.5,
+        "min": 0.0,
+        "max": 14.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 74.55,
+        "min": 54.0,
+        "max": 103.0,
+        "n": 20
+      },
+      "topdress_dry_plot_days": {
+        "mean": 30.35,
+        "min": 12.0,
+        "max": 46.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 460.4,
+        "min": 426.0,
+        "max": 482.0,
+        "n": 20
+      },
+      "awd_safe_drying_plot_days": {
+        "mean": 455.9,
+        "min": 426.0,
+        "max": 479.0,
+        "n": 20
+      },
+      "awd_deep_plot_days": {
+        "mean": 40.75,
+        "min": 22.0,
+        "max": 63.0,
+        "n": 20
+      },
+      "evidence_completeness_pct": {
+        "mean": 96.943,
+        "min": 96.286,
+        "max": 98.0,
+        "n": 20
+      },
+      "plot_irrigations": {
+        "mean": 369.35,
+        "min": 353.0,
+        "max": 384.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 113.75,
+        "min": 110.0,
+        "max": 119.0,
+        "n": 20
+      },
+      "water_applied_mm_per_plot": {
+        "mean": 645.268,
+        "min": 598.86,
+        "max": 682.763,
+        "n": 20
+      },
+      "remeasure_requests_per_plot_week": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "officer_visits_per_plot_week": {
+        "mean": 1.937,
+        "min": 1.88,
+        "max": 1.973,
+        "n": 20
+      },
+      "detection.a_sensor.events": {
+        "mean": 4.9,
+        "min": 3.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "detection.a_sensor.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.events": {
+        "mean": 26.75,
+        "min": 13.0,
+        "max": 41.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_agent": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_naive_farmer_only_rule": {
+        "mean": 5.0,
+        "min": 5.0,
+        "max": 5.0,
+        "n": 20
+      }
+    },
+    "planner_only": {
+      "seed": {
+        "mean": 1009.5,
+        "min": 1000.0,
+        "max": 1019.0,
+        "n": 20
+      },
+      "awd_violation_plot_days": {
+        "mean": 9.45,
+        "min": 2.0,
+        "max": 22.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 56.8,
+        "min": 37.0,
+        "max": 88.0,
+        "n": 20
+      },
+      "topdress_dry_plot_days": {
+        "mean": 18.3,
+        "min": 8.0,
+        "max": 50.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 423.3,
+        "min": 370.0,
+        "max": 450.0,
+        "n": 20
+      },
+      "awd_safe_drying_plot_days": {
+        "mean": 413.85,
+        "min": 368.0,
+        "max": 441.0,
+        "n": 20
+      },
+      "awd_deep_plot_days": {
+        "mean": 30.6,
+        "min": 16.0,
+        "max": 56.0,
+        "n": 20
+      },
+      "evidence_completeness_pct": {
+        "mean": 86.895,
+        "min": 84.095,
+        "max": 89.048,
+        "n": 20
+      },
+      "plot_irrigations": {
+        "mean": 359.55,
+        "min": 348.0,
+        "max": 371.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 116.45,
+        "min": 111.0,
+        "max": 123.0,
+        "n": 20
+      },
+      "water_applied_mm_per_plot": {
+        "mean": 630.425,
+        "min": 582.749,
+        "max": 673.089,
+        "n": 20
+      },
+      "remeasure_requests_per_plot_week": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "officer_visits_per_plot_week": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.events": {
+        "mean": 4.9,
+        "min": 3.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "detection.a_sensor.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.events": {
+        "mean": 26.75,
+        "min": 13.0,
+        "max": 41.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.detected": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.precision": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.recall": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.mean_ttd_days": {
+        "mean": -0.06,
+        "min": -0.6,
+        "max": 0.8,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_agent": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_naive_farmer_only_rule": {
+        "mean": 5.0,
+        "min": 5.0,
+        "max": 5.0,
+        "n": 20
+      }
+    },
+    "oracle": {
+      "seed": {
+        "mean": 1009.5,
+        "min": 1000.0,
+        "max": 1019.0,
+        "n": 20
+      },
+      "awd_violation_plot_days": {
+        "mean": 1.85,
+        "min": 0.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "heading_dry_plot_days": {
+        "mean": 44.4,
+        "min": 25.0,
+        "max": 75.0,
+        "n": 20
+      },
+      "topdress_dry_plot_days": {
+        "mean": 14.45,
+        "min": 5.0,
+        "max": 42.0,
+        "n": 20
+      },
+      "awd_drying_plot_days": {
+        "mean": 422.95,
+        "min": 404.0,
+        "max": 449.0,
+        "n": 20
+      },
+      "awd_safe_drying_plot_days": {
+        "mean": 421.1,
+        "min": 404.0,
+        "max": 447.0,
+        "n": 20
+      },
+      "awd_deep_plot_days": {
+        "mean": 14.15,
+        "min": 4.0,
+        "max": 27.0,
+        "n": 20
+      },
+      "evidence_completeness_pct": {
+        "mean": 100.0,
+        "min": 100.0,
+        "max": 100.0,
+        "n": 20
+      },
+      "plot_irrigations": {
+        "mean": 353.4,
+        "min": 338.0,
+        "max": 372.0,
+        "n": 20
+      },
+      "pump_days_used": {
+        "mean": 112.15,
+        "min": 106.0,
+        "max": 119.0,
+        "n": 20
+      },
+      "water_applied_mm_per_plot": {
+        "mean": 631.029,
+        "min": 588.128,
+        "max": 668.239,
+        "n": 20
+      },
+      "remeasure_requests_per_plot_week": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "officer_visits_per_plot_week": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.events": {
+        "mean": 4.9,
+        "min": 3.0,
+        "max": 7.0,
+        "n": 20
+      },
+      "detection.a_sensor.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.a_sensor.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.b_missing_logs.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.events": {
+        "mean": 26.75,
+        "min": 13.0,
+        "max": 41.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.detected": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.c_photo_misread.recall": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.events": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.detected": {
+        "mean": 10.0,
+        "min": 10.0,
+        "max": 10.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.false_alarms": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.precision": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.recall": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "n": 20
+      },
+      "detection.d_pump_schedule.mean_ttd_days": {
+        "mean": -0.06,
+        "min": -0.6,
+        "max": 0.8,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_agent": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 20
+      },
+      "detection.e_proxy_false_flags_naive_farmer_only_rule": {
+        "mean": 5.0,
+        "min": 5.0,
+        "max": 5.0,
+        "n": 20
+      }
+    }
+  }
+}

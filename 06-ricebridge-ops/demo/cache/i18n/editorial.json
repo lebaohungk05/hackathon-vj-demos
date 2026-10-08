@@ -1,0 +1,75 @@
+{
+  "28e070fc61bb84dd7775": {
+    "vi": "Không có mưa dự báo (0.0 mm), nên ưu tiên các thửa cạn trước. F2, F4 và F5 dự kiến gần ngưỡng AWD −15 cm trước T3 03/03; F4 thoát nước nhanh nhất (4.4 mm/ngày). F1, F3 và F6 còn đủ nước để chờ lượt sau.",
+    "ja": "予報雨量は0.0 mmのため、先に乾く区画を優先する。F2・F4・F5は3月3日(火)までにAWD下限−15 cmに近づき、F4の排水が最も速い（4.4 mm/日）。F1・F3・F6は次回まで待てる。"
+  },
+  "4f598af6b52a5b5ea13c": {
+    "vi": "F2, F4, F5 và F6 đang phơi ruộng, nhưng mưa 33.5 mm hôm nay theo Open-Meteo sẽ nâng mực nước lên khoảng +1.6 đến +2.0 cm ngày mai, nên bơm lúc này sẽ lãng phí. F1 và F3 đã có nước trở lại; mức thấp nhất dự kiến trước T3 03/03 là +1.6 và +0.6 cm, có thể chờ lượt sau.",
+    "ja": "落水中のF2・F4・F5・F6も、今日の雨33.5 mm（Open-Meteo）で明日は約+1.6〜+2.0 cmになるため、送水は不要。再湛水したF1とF3の3月3日(火)までの最低予測水位は+1.6 cmと+0.6 cmで、次回まで待てる。"
+  },
+  "be41ae2972755688f9dd": {
+    "vi": "Mưa 44 mm qua đêm đã làm cả cụm có nước trở lại; số đo −8 cm buổi sáng ở F2 được kiểm tra lại khi lập lịch. Mực nước thấp nhất dự kiến trước T6 06/03 vẫn cho phép chờ lượt sau. Bơm ngay sẽ tốn nước và điện; các thửa giữ cống đóng.",
+    "ja": "夜間の雨44 mmで全区画が再湛水し、F2の朝の−8 cmという値を再確認した。3月6日(金)までの最低予測水位でも次回まで待てるため、今の送水は水と電力の浪費になる。全区画で取水口を閉じて待つ。"
+  },
+  "46319756200147790b16": {
+    "vi": "Tin nhắn báo rõ mực nước thửa bà Sáu (F3) là 3 phân, tương đương 3 cm, bằng đơn vị đo cụ thể.",
+    "ja": "サウさんの区画F3について、具体的な単位で水位3 cmと報告されている。",
+    "en": "The message explicitly reports a water level of 3 cm for Mrs Sau's field (F3), using a precise unit."
+  },
+  "27301f34c1d8d9fd429f": {
+    "vi": "F6 đi trước vì bắt đầu bón thúc T6 06/03 và sẽ xuống −4.9 cm nếu không bù nước. F4 đi thứ hai vì bắt đầu trổ T7 07/03 và thoát nước nhanh; số đo đã cũ nên HTX cần đo lại trước khi mở cống. Bốn thửa còn lại đủ nước đến lượt T3 10/03.",
+    "ja": "F6は3月6日(金)に追肥期が始まり、補給しないと−4.9 cmになるため最優先。F4は3月7日(土)に出穂し排水も速いため2番目だが、測定値が古いので開門前にHTXが再測定する。他の4区画は3月10日(火)まで待てる。"
+  },
+  "e6450a1510d4daa4339b": {
+    "vi": "Người gửi báo cụ thể thửa 2 có nước ba phân, tức 3 cm nước trên mặt ruộng.",
+    "ja": "送信者は区画2の水位を具体的に報告している。田面上3 cmの湛水を示す。",
+    "en": "The sender explicitly reports 3 cm of standing water above the soil in Field 2."
+  },
+  "fa880f1c7ad0647ed0c1": {
+    "vi": "F6 được ưu tiên vì bắt đầu bón thúc T6 06/03 và dự kiến thiếu nước mặt (−4.9 cm). F4 đi thứ hai: bắt đầu trổ T7 07/03, đất thoát nước nhanh đã mất nước mặt; số đo cũ 6 ngày nên HTX cần đo lại trước khi mở cống. Các thửa khác đã có nước trở lại và chờ được đến T3 10/03.",
+    "ja": "F6は3月6日(金)に追肥期が始まり、水位が−4.9 cmになる予測のため最優先。F4は3月7日(土)に出穂し、排水が速く湛水が失われているため2番目。測定から6日経過しており、HTXが開門前に測定する。他の区画は再湛水し3月10日(火)まで待てる。"
+  },
+  "efb4d435888b96697379": {
+    "vi": "Nông dân mô tả đất khô nứt, chưa có số đo chính xác từ ống. Mực nước có thể dưới mặt đất khoảng −10 cm nhưng cần đo xác nhận.",
+    "ja": "農家は乾いてひび割れた土を説明しているが、正確な観測管の値はない。水位は田面下約−10 cmと推定されるが、測定で確認する必要がある。"
+  },
+  "5a3fe34028badd1f4072": {
+    "vi": "Nông dân mô tả nước lấp xấp mắt cá, chưa đọc ống đo nên đây chỉ là ước lượng.",
+    "ja": "農家は水が足首ほどに浅く張っていると説明しているが、観測管の数値がないため概算である。"
+  },
+  "c7625c40b0864ab8ecd4": {
+    "vi": "F6 đi trước vì bắt đầu bón thúc T6 06/03 và dự kiến xuống −4.9 cm. F4 đi thứ hai vì bắt đầu trổ T7 07/03 khi thiếu nước mặt; số đo cũ nên HTX cần đo lại trước khi mở cống. Các thửa khác đã có nước trở lại, chờ được đến T3 10/03 dù dự báo chỉ mưa 0.7 mm.",
+    "ja": "F6は3月6日(金)に追肥期が始まり−4.9 cmになる予測のため最優先。F4は湛水のない状態で3月7日(土)に出穂するため2番目だが、測定値が古いのでHTXが開門前に測定する。他の区画は再湛水し、予報雨量0.7 mmでも3月10日(火)まで待てる。"
+  },
+  "8429b0f1d8e5bb005ddc": {
+    "vi": "Tin nhắn yêu cầu bỏ quy tắc và duyệt tưới. Trợ lý chỉ ghi số đo; quyền duyệt lịch thuộc HTX.",
+    "ja": "規則を無視して送水を承認する指示が含まれている。エージェントは測定値のみ記録し、送水の承認はHTXが行う。"
+  },
+  "104184c585759cbc9700": {
+    "vi": "F4 đi trước vì bắt đầu trổ T7 07/03 và đất thoát nước nhanh (4.4 mm/ngày), đã mất nước mặt. F6 đi thứ hai để có nước cho bón thúc CN 08/03. F1, F2, F3 và F5 đã có nước trở lại, chờ được đến T3 10/03. Số đo F4 cũ 6 ngày nên HTX cần đo lại trước khi mở cống.",
+    "ja": "F4は3月7日(土)に出穂し、排水が速く（4.4 mm/日）湛水が失われたため最優先。F6は3月8日(日)の追肥に湛水が必要なので2番目。F1・F2・F3・F5は再湛水し3月10日(火)まで待てる。F4の測定値は6日前なので開門前にHTXが測定する。"
+  },
+  "a3104887ecf87b3ce674": {
+    "vi": "Tin nhắn chỉ có ký tự ngẫu nhiên, không có số đo hoặc nội dung có thể hiểu được.",
+    "ja": "無作為な文字だけで、測定値や理解できる内容が含まれていない。"
+  },
+  "18672e8e31ee55a7c2fb": {
+    "vi": "Nông dân đang hỏi tình trạng ruộng, chưa báo số đo. Trợ lý chỉ ghi nhận số đo.",
+    "ja": "農家は圃場の状態を質問しており、測定値の報告ではない。エージェントは測定値のみ記録する。"
+  },
+  "15598897cb1f7f069efb": {
+    "vi": "Tin nhắn báo rõ mực nước thửa 2 là 3 cm, một số đo cụ thể.",
+    "ja": "区画2の水位が3 cmであると明確に報告されている。"
+  },
+  "1b1a9fba34d34f61d98d": {
+    "vi": "Tin nhắn chỉ có ký tự giữ chỗ, không chứa thông tin tưới hoặc mực nước.",
+    "ja": "仮の文字だけで、かんがいや水位の情報が含まれていない。"
+  },
+  "147cbae8a981da4378db": {
+    "ja": "区画4の水位を確認する必要があります。取水口近くの観測管で測定していただけますか。それとも隣の方にお願いしましょうか。"
+  },
+  "065b835ab2aeca977a7c": {
+    "en": "After the recent rain, field F2 should have water. Could you measure at the inlet tube, or should I ask Hung from HTX to check?",
+    "ja": "この2日間の雨で区画2には水があるはずです。取水口近くの観測管で測定していただけますか。それともHTXのフンさんにお願いしましょうか。"
+  }
+}

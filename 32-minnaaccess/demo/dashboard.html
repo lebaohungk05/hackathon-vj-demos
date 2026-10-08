@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>MinnaAccess Live Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="ui/dashboard.css">
+</head>
+<body>
+<div class="vjline" aria-hidden="true"></div>
+<div class="app" id="app">
+<header>
+  <div class="brand"><div class="logo" aria-hidden="true">M</div><div><h1>MinnaAccess</h1><small data-i18n="AI agent that walks e-government forms like a blind user">AI agent that walks e-government forms like a blind user</small></div></div>
+  <nav class="procs" id="procs" aria-label="Procedure" data-i18n-aria="Procedure"></nav>
+  <div class="hdr-right" id="hdr"></div>
+  <div class="langs" id="langs" role="group" aria-label="Language"></div>
+  <div class="modes" role="tablist" aria-label="Demo mode" data-i18n-aria="Demo mode"><button role="tab" id="modeReplay" data-mode="replay" aria-selected="true"><span data-i18n="Recorded run">Recorded run</span></button><button role="tab" id="modeLive" data-mode="live" aria-selected="false"><span class="dotlive" aria-hidden="true"></span><span data-i18n="Live run">Live run</span></button></div>
+</header>
+<nav class="rail" id="rail" aria-label="Agent loop stages" data-i18n-aria="Agent loop stages"></nav>
+<main id="main">
+  <section class="left" aria-label="Mock portal under test" data-i18n-aria="Mock portal under test">
+    <div class="viewer" id="viewer">
+      <div class="chrome"><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div><div class="url" id="url"></div><span class="mock" data-i18n="MOCK">MOCK</span><span class="tag" id="frameTag"></span></div>
+      <div class="screen" id="screen"><img id="frame" alt="Mock portal page as the agent saw it" data-i18n-alt="Mock portal page as the agent saw it"></div>
+    </div>
+    <div class="caption" id="caption"><div class="who"><div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><span id="capWho" data-i18n="Screen reader">Screen reader</span></div><div class="sayw"><div class="said" id="said"></div><div class="gloss cap" id="gloss"></div></div><span class="meta" id="capMeta"></span></div>
+  </section>
+  <section class="right" aria-label="What the agent does" data-i18n-aria="What the agent does">
+    <div class="shead" id="shead"></div>
+    <div class="panel" id="panel"></div>
+    <div class="card tlc" id="tlCard"></div>
+  </section>
+</main>
+<footer id="foot"><div class="prog"><i id="progBar"></i></div><div class="chapters" id="chapters"></div><div class="ticks" id="ticks"></div><span class="play" id="playState"></span><span class="hint" id="hint"></span></footer>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+<script src="out/run_data.js"></script>
+<script src="out_rule/run_data.js"></script>
+<script src="i18n/translations.js"></script>
+<script src="ui/strings.js"></script>
+<script src="ui/i18n.js"></script>
+<script src="ui/common.js"></script>
+<script src="ui/replay.js"></script>
+<script src="ui/live.js"></script>
+<script src="ui/main.js"></script>
+<script src="ui/presentation.js"></script>
+</body>
+</html>

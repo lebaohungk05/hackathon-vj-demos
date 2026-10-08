@@ -1,0 +1,19 @@
+{
+ "purpose": "write patch",
+ "model": "claude-sonnet-5-5",
+ "ms": 6981,
+ "tries": 1,
+ "created": "2026-10-07T09:47:19",
+ "prompt": "{\n \"barrier\": {\n  \"kind\": \"keyboard_trap\",\n  \"wcag\": \"2.1.1 Keyboard\",\n  \"element_id\": \"seinengappi\",\n  \"screen_reader_heard\": \"生年月日, 編集, 1985/03/12\",\n  \"evidence\": \"Tab pressed 3 times, focus never left this field\",\n  \"visible_caption\": \"生年月日\"\n },\n \"page_language\": \"ja-JP\",\n \"file\": \"step1.html\",\n \"source\": \"<!doctype html>\\n<html lang=\\\"ja\\\">\\n<head>\\n<meta charset=\\\"utf-8\\\">\\n<title>ステップ1/3 – 申請者の情報</title>\\n<link rel=\\\"stylesheet\\\" href=\\\"portal.css\\\">\\n</head>\\n<body class=\\\"jp\\\">\\n<header class=\\\"top\\\"><div class=\\\"brand\\\">みどり市 電子申請 <b>（模擬）</b></div><div class=\\\"note\\\">Demo portal for MinnaAccess · MOCK, not a real municipality · 架空データ</div></header>\\n<main>\\n<h1>住民票の写し交付申請（模擬）</h1>\\n<ol class=\\\"steps\\\"><li class=\\\"on\\\">1. 申請者</li><li>2. 請求内容</li><li>3. 確認</li></ol>\\n<h2>ステップ1/3: 申請者の情報</h2>\\n<div class=\\\"field\\\"><label for=\\\"shimei\\\">氏名</label><input id=\\\"shimei\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"seinengappi\\\">生年月日</label><input id=\\\"seinengappi\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"jusho\\\">住所</label><input id=\\\"jusho\\\" type=\\\"text\\\"></div>\\n<div class=\\\"field\\\"><label for=\\\"honseki\\\" class=\\\"lbl\\\">本籍地 <span class=\\\"hint\\\">（外国籍の方は国籍・地域）</span></label><input id=\\\"honseki\\\" type=\\\"text\\\"></div>\\n<div class=\\\"actions\\\"><button type=\\\"button\\\" id=\\\"next1\\\" class=\\\"btn\\\" onclick=\\\"location.href='step2.html'\\\">次へ</button></div>\\n<script id=\\\"input-format\\\">\\ndocument.getElementById('seinengappi').addEventListener('keydown', function (e) {\\n  if (e.key === 'Tab') { e.preventDefault(); this.value = this.value.trim(); }\\n});\\n</script>\\n<p class=\\\"foot\\\">お問い合わせ: 0000-00-0000（模擬） · 試験用ページです。データはどこにも送信されません。</p>\\n</main>\\n</body>\\n</html>\\n\",\n \"previous_attempt_feedback\": \"\"\n}",
+ "output": {
+  "edits": [
+   {
+    "find": "document.getElementById('seinengappi').addEventListener('keydown', function (e) {\n  if (e.key === 'Tab') { e.preventDefault(); this.value = this.value.trim(); }\n});",
+    "replace": "document.getElementById('seinengappi').addEventListener('blur', function () {\n  this.value = this.value.trim();\n});"
+   }
+  ],
+  "explanation": "The birth date field had a script that cancelled the Tab key every time it was pressed, so keyboard and screen reader users could never move on to the next field. The script was meant to remove stray spaces from the entered value. I changed it so the spaces are removed when the user leaves the field (blur event) instead of when Tab is pressed. The Tab key now works normally and the formatting is kept.",
+  "explanation_local": "生年月日の入力欄には、Tabキーを押すたびに動作を打ち消すスクリプトがあり、キーボードや読み上げソフトの利用者が次の項目へ進めませんでした。このスクリプトは入力値の余分な空白を取り除くためのものでした。そこで、Tabキーを押したときではなく、入力欄から離れたとき（blurイベント）に空白を取り除くよう変更しました。これでTabキーは通常どおり使え、空白の整形も維持されます。",
+  "technique": "Replace keydown handler that calls preventDefault on Tab with a blur handler that performs the same trim without blocking focus movement."
+ }
+}

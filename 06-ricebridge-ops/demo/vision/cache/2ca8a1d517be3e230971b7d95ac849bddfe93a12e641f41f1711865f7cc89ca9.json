@@ -1,0 +1,11 @@
+{
+  "file": "gauge_16.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 7.14,
+  "retries": 0,
+  "result": {
+    "reading_cm": -4.6,
+    "confidence": 0.7,
+    "reason": "The 0 mark is at the soil line and the -5 tick sits about 70 px below it, so each cm is about 14 px. The water surface is a little above the -5 tick, which puts it near -4.6."
+  }
+}

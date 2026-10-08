@@ -1,0 +1,11 @@
+{
+  "file": "gauge_13.jpg",
+  "model": "claude-sonnet-5-5",
+  "llm_seconds": 7.97,
+  "retries": 0,
+  "result": {
+    "reading_cm": -7.1,
+    "confidence": 0.7,
+    "reason": "The water line is at about y=514 on the tube's left edge. The -5 mark is at y≈486 and the -10 mark is at y≈554, so the water sits about 40% of the way from -5 to -10."
+  }
+}
