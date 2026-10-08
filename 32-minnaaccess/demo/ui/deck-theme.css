@@ -43,3 +43,10 @@ pre.diff,pre.diff[data-src]{color:#e7edf9;background:#111a30}.toast{background:#
 .rail{border-top:2px solid #d5b77f}.runbtn{background:linear-gradient(110deg,#172345,#30476d)}
 @media(max-width:1000px){.country-pair{left:57%}.country span{display:none}.country-pair{gap:.7rem;padding:.5rem .8rem}.deck-banner::before{opacity:.65}}
 @media(max-width:620px){.country-pair{left:auto;right:.3rem;transform:translateY(-50%);padding:.5rem;gap:.45rem}.country svg{width:2.3rem;height:1.53rem}.deck-title{font-size:1.5rem}.deck-overline{font-size:.5rem;letter-spacing:.13em}.deck-banner::before{opacity:.42}.deck-brand{max-width:68%}}
+
+/* Schematic country silhouettes and the partnership route. */
+.partnership-map{position:absolute;left:64%;top:50%;transform:translateY(-50%);width:17rem;height:6rem;color:#768aab;pointer-events:none}
+.map-land{opacity:.8}.map-route{stroke:#c08e44}.map-point{fill:#c54254}
+.bridge-symbol{display:block;width:3rem;height:1.7rem;color:#d3b06b}
+@media(max-width:1100px) and (min-width:621px){.partnership-map{left:69%;width:14rem}.deck-banner::before{opacity:.4}}
+@media(max-width:620px){.deck-banner{height:9.5rem}.partnership-map{left:auto;right:0;top:auto;bottom:.25rem;transform:none;width:10rem;height:4rem}.country-pair{top:28%}.deck-brand{align-self:flex-start;margin-top:1.4rem}.bridge-symbol{width:2rem;height:1.5rem}}
