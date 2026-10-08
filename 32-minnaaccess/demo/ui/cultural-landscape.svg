@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220" fill="none">
+  <defs>
+    <linearGradient id="mountain" x2="0" y2="1"><stop stop-color="#7e9dbf"/><stop offset="1" stop-color="#dbe7ee"/></linearGradient>
+    <linearGradient id="petal" x2="0" y2="1"><stop stop-color="#f9d2dc"/><stop offset="1" stop-color="#db809c"/></linearGradient>
+    <pattern id="waves" width="100" height="60" patternUnits="userSpaceOnUse"><path d="M-50 60a50 50 0 01100 0 50 50 0 01100 0M-40 60a40 40 0 0180 0m20 0a40 40 0 0180 0M-30 60a30 30 0 0160 0m40 0a30 30 0 0160 0" stroke="#bda77b" stroke-opacity=".15"/></pattern>
+    <g id="sakura"><g fill="url(#petal)"><ellipse cy="-9" rx="6" ry="11"/><ellipse cy="-9" rx="6" ry="11" transform="rotate(72)"/><ellipse cy="-9" rx="6" ry="11" transform="rotate(144)"/><ellipse cy="-9" rx="6" ry="11" transform="rotate(216)"/><ellipse cy="-9" rx="6" ry="11" transform="rotate(288)"/></g><circle r="3" fill="#be4263"/></g>
+  </defs>
+  <rect width="1000" height="220" fill="url(#waves)"/>
+  <circle cx="754" cy="83" r="60" fill="#e8a0a0" opacity=".4"/>
+  <!-- Ha Long limestone islands and a sailboat. -->
+  <g fill="#8ba9ad" opacity=".5"><path d="M15 181l16-27 11-1 7-33 15-12 15 10 9 37 13 26z"/><path d="M92 181l11-13 8-50 19-13 11 10 5 39 18 27z"/><path d="M161 183l8-44 16-16 11 8 8 26 23 26z"/></g>
+  <path d="M103 196h143M31 187h245M153 204h165" stroke="#9ebfc7" stroke-width="2" opacity=".6"/>
+  <path d="m190 192 10 8h31l12-8z" fill="#a48a68"/><path d="M215 153v38h-23z" fill="#dba47a"/><path d="M219 164v27h17z" fill="#ecc8a0"/>
+  <!-- Lotus, Vietnam. -->
+  <g transform="translate(317 176)" stroke="#c78b7b" stroke-width="1.2"><path d="M0 13C-23-8-18-33 0-54 18-33 23-8 0 13" fill="#f3bdcc"/><path d="M0 13C-32 8-46-14-43-37-16-34-2-14 0 13" fill="#f8d8df"/><path d="M0 13C32 8 46-14 43-37 16-34 2-14 0 13" fill="#f8d8df"/><path d="M0 13C-30 26-52 11-59-8-28-11-8 0 0 13M0 13C30 26 52 11 59-8 28-11 8 0 0 13" fill="#efd3cc"/><path d="M-43 21q43 12 86 0" stroke="#88a897" stroke-width="3"/></g>
+  <!-- Mount Fuji, Japan. -->
+  <path d="M520 199 727 61 926 199" fill="url(#mountain)" opacity=".8"/><path d="m677 95 50-34 56 40-30-5-17 9-17-19-15 16z" fill="#fff" opacity=".95"/>
+  <g fill="#526c8d" opacity=".75"><path d="M816 187h68v11h-68zM822 161h56v23h-56zM829 139h42v18h-42zM836 119h28v15h-28z"/><path d="m808 163 31-10h22l31 10zM817 141l25-10h16l25 10zM826 120l20-10h8l20 10z"/><path d="M849 96h2v19h-2z"/></g>
+  <!-- Cherry blossom branch. -->
+  <path d="M1000 8Q900 55 797 21m152 9q-16 54-72 79m41-68q-26-6-54-33" stroke="#947385" stroke-width="4"/>
+  <use href="#sakura" x="965" y="22"/><use href="#sakura" x="917" y="42"/><use href="#sakura" x="846" y="29"/><use href="#sakura" x="882" y="103"/><use href="#sakura" x="890" y="10"/><use href="#sakura" x="986" y="67"/>
+  <path d="M0 209Q230 162 475 201T1000 187" stroke="#bd3a4d" stroke-width="5"/><path d="M0 216Q230 169 475 208T1000 194" stroke="#d4b273" stroke-width="2"/>
+</svg>

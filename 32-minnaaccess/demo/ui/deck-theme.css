@@ -31,3 +31,15 @@ pre.diff,pre.diff[data-src]{color:#e7edf9;background:#111a30}.toast{background:#
 @media(min-width:621px){html{font-size:clamp(8px,min(.8333vw,1.34vh),22px)}}
 
 .score.x b,.stat.rule b{color:#71648e}.disclaimer{color:#84570c}.caption{--bad:#ff91a8;--ok:#89e6cc}.cell.now{border-color:#304c7d}
+
+/* Paired national flags and a continuous Vietnam–Japan landscape. */
+.deck-banner{background:linear-gradient(100deg,#fff 0%,#fff9f6 48%,#f3f6fc 100%);border-bottom-color:#d7bb98}
+.deck-banner::before{background-image:url("cultural-landscape.svg");background-size:auto 100%;opacity:.95}
+.deck-brand{position:relative;z-index:1}.deck-mark{border-color:#d8b77e;box-shadow:0 0 0 .3rem #d8b77e15}
+.country-pair{position:absolute;left:48%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:1rem;padding:.55rem 1.25rem;border:1px solid #e5d6cb;border-radius:1rem;background:#ffffffed;box-shadow:0 .25rem 1rem #26355308}
+.country{display:flex;align-items:center;gap:.65rem;font-size:.68rem;font-weight:800;letter-spacing:.13em;color:#38435e}
+.country svg{display:block;width:3rem;height:2rem;border-radius:.22rem;box-shadow:0 0 0 1px #17213e1c,0 .15rem .4rem #17213e12}
+.country-link{color:#af8b55;font-size:1.2rem}.deck-credit{background:#ffffffbf;padding:.25rem .5rem;border-radius:.3rem}
+.rail{border-top:2px solid #d5b77f}.runbtn{background:linear-gradient(110deg,#172345,#30476d)}
+@media(max-width:1000px){.country-pair{left:57%}.country span{display:none}.country-pair{gap:.7rem;padding:.5rem .8rem}.deck-banner::before{opacity:.65}}
+@media(max-width:620px){.country-pair{left:auto;right:.3rem;transform:translateY(-50%);padding:.5rem;gap:.45rem}.country svg{width:2.3rem;height:1.53rem}.deck-title{font-size:1.5rem}.deck-overline{font-size:.5rem;letter-spacing:.13em}.deck-banner::before{opacity:.42}.deck-brand{max-width:68%}}
