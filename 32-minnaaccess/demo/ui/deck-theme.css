@@ -1,0 +1,33 @@
+/* Vietnam?Japan slide identity, kept separate from application layout. */
+.deck-banner{height:6.8rem;margin:0 2rem;display:flex;align-items:center;justify-content:space-between;position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--line2)}
+.deck-banner::before{content:"";position:absolute;z-index:-1;inset:0;background:url("deck-art.svg") right center/auto 100% no-repeat;pointer-events:none}
+.deck-brand{display:flex;align-items:center;gap:1.4rem}.deck-mark{display:grid;place-items:center;width:3.2rem;height:3.2rem;border:1px solid #c4a366;border-radius:50%;font:800 1.1rem var(--sans);letter-spacing:-.06em}
+.deck-overline{font-size:.65rem;letter-spacing:.24em;font-weight:700;color:var(--mute);margin-bottom:.45rem}.deck-title{font-size:2rem;font-weight:800;letter-spacing:-.055em;line-height:1}.deck-title span{font-weight:400;color:var(--mute);font-size:1.1rem;letter-spacing:-.02em;margin-left:1rem}.deck-credit{align-self:flex-start;margin-top:1.3rem;font-size:.65rem;letter-spacing:.14em;font-weight:700;margin-right:.2rem}
+.app{height:calc(100dvh - 6.8rem);grid-template-rows:4.25rem 4.2rem minmax(0,1fr) 2.75rem}
+header{padding:0 2rem;background:var(--panel);border-bottom:1px solid var(--line)}
+.brand h1{font-size:1.25rem}.logo{border-radius:.6rem;width:2rem;height:2rem;font-size:.9rem}
+.rail{margin:.6rem 2rem 0;padding:0 1rem;border:1px solid var(--line);background:var(--panel);border-radius:.8rem}
+main{padding-top:1rem}.card,.viewer,.chat{border-radius:1rem}.card{box-shadow:0 .3rem 1rem #080f2510}
+button{transition:background .18s,border-color .18s,transform .18s}button:hover:not(:disabled){filter:brightness(.96)}
+button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--info);outline-offset:3px}
+footer{border-top:1px solid var(--line2)}
+@media(max-width:900px){.deck-credit{display:none}.deck-title span{font-size:.9rem}.deck-banner{margin:0 1.2rem}header{padding:0 1.2rem}.rail{margin-left:1.2rem;margin-right:1.2rem}}
+@media(max-width:620px){html,body{height:auto;min-height:100%;overflow:auto}html{font-size:12px}.deck-banner{height:7rem}.deck-title{font-size:1.6rem}.deck-title span{display:block;margin:.5rem 0 0}.deck-mark{display:none}.app{height:auto;min-height:calc(100dvh - 7rem);display:flex;flex-direction:column;width:100%}header{flex-wrap:wrap;padding:1rem;gap:.7rem;white-space:normal}.hdr-right{margin-left:0;flex-wrap:wrap}.rail{min-height:4rem;overflow-x:auto;gap:1rem;flex:none}.rail .st{min-width:8rem}.rail .st .bar{display:none}main{display:block;padding:1rem}.left{min-height:32rem}.right{margin-top:1rem}.viewer{min-height:25rem}footer{min-height:3rem;flex-wrap:wrap}}
+
+:root{color-scheme:light;--bg:#f7f8fc;--navy:#101331;--panel:#fff;--panel2:#edf0f7;--panel3:#e3e8f2;--ink:#131a39;--mute:#53617b;--dim:#62718b;--line:#e0e5ef;--line2:#c8d0e0;--llm:#6940b4;--llm2:#6940b4;--llmbg:#f1ebfb;--ok:#087c6a;--ok2:#128875;--okbg:#e7f5ef;--bad:#b92d4d;--bad2:#bc3551;--badbg:#fff0f3;--hum:#986210;--hum2:#a66a13;--hum3:#895b12;--humbg:#fff5df;--info:#225e9c}
+body{background:linear-gradient(135deg,#fff,#f3f5fb)}
+.deck-banner{color:#101331}.deck-mark{background:#111631;color:#fff}.deck-title{color:#101331}.deck-credit{color:#35425f}
+.logo{background:#151c3d}.proc.on,.seg button[aria-pressed="true"]{background:#172144;color:white;border-color:#172144}.seg button[aria-pressed="true"] small{color:#e0e5ef}
+.modes button[aria-selected="true"],.langs button[aria-pressed="true"]{background:#1b284e;box-shadow:none}
+.st.now .lb b{color:var(--ink)}.st.now .dot{box-shadow:0 0 0 .25rem #e4e9f5}.st .dot{background:#f5f7fb}
+.chrome{background:#eef1f8}.url{background:#fff}.chrome .dots i{background:#c3ccdc}.chrome .dots i:first-child{background:#d97380}.chrome .dots i:nth-child(2){background:#daba76}.chrome .dots i:nth-child(3){background:#7caf9d}
+.caption{background:#17213e;--mute:#c4cee0;--dim:#adbdd6;--info:#9ecbfa}.caption .who{color:#c7d7ed}
+select.sel{background:#fff}.runbtn{background:#1b284e;box-shadow:0 .4rem 1rem #15224520}.card.llmc{background:#f5f1fc;border-color:#d9ceec}.card.badc{background:#fff2f4;border-color:#e8c2cd}.card.okc{background:#eef8f3;border-color:#bfded1}.card.humc{background:#fff8e9;border-color:#e6d5b3}
+.blockhero p,.okc .blockhero p,.humc .blockhero p,.expl .loc{color:var(--mute)}.planted{color:#91233b}.planted b{color:#75203a}.fi.rule .ic{background:#e7eaf3}.btn.yes{color:white;box-shadow:none}.pill.ok{color:white}.checks .m.ok{color:white}.sc.ok{color:white}
+pre.diff,pre.diff[data-src]{color:#e7edf9;background:#111a30}.toast{background:#17213e;color:#fff}.ticks button::before{background:#ccd4e4}.ticks button.on::before{background:#253c6a}.ticks button.seen::before{background:#9181bb}.chapters button.on{background:#1b284e;color:#fff}.guard{background:#ffffff80}.minihow div{background:#fff}.shead h2{letter-spacing:-.035em}
+
+@media(max-width:620px){.chapters{flex-wrap:wrap}.ticks{min-width:100%;flex-basis:100%}footer{height:auto;padding:.8rem 1rem}.shead h2{white-space:normal}}
+
+@media(min-width:621px){html{font-size:clamp(8px,min(.8333vw,1.34vh),22px)}}
+
+.score.x b,.stat.rule b{color:#71648e}.disclaimer{color:#84570c}.caption{--bad:#ff91a8;--ok:#89e6cc}.cell.now{border-color:#304c7d}

@@ -7,6 +7,10 @@ Hai demo AI agent với giao diện tiếng Việt, tiếng Nhật và tiếng A
 | **MinnaAccess** | Agent dùng bàn phím để tìm rào cản tiếp cận trên cổng dịch vụ công giả lập, đề xuất bản sửa, chờ người duyệt và kiểm tra lại. | http://127.0.0.1:8765 |
 | **RiceBridge Ops** | Hỗ trợ HTX điều phối tưới lúa, đối chiếu thời tiết và số đo, xử lý dữ liệu mâu thuẫn và trình lịch tưới cho người duyệt. | http://127.0.0.1:8766 |
 
+## Giao diện
+
+UI lấy phong cách từ slide thuyết trình: MinnaAccess dùng nền sáng và xanh navy; RiceBridge Ops dùng navy và vàng. Họa tiết Việt–Nhật được vẽ bằng SVG, dùng được offline. Theme nằm trong `demo/ui/deck-theme.css` (MinnaAccess) và `demo/web/deck-theme.css` (RiceBridge Ops), có bố cục dọc cho màn hình điện thoại.
+
 ## Cài đặt
 
 Yêu cầu **Python 3.10+**. Chạy các lệnh sau tại thư mục gốc repo:
