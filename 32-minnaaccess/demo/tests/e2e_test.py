@@ -12,6 +12,7 @@ sys.path.insert(0, str(DEMO))
 import server as srv  # noqa: E402
 
 VIEWPORTS = [(1920, 1080), (1536, 864), (1366, 768), (1280, 720)]
+WINDOW_SIZES = [(1920, 1080), (1902, 914), (1920, 950), (1536, 864), (1536, 730), (1366, 768), (1366, 657), (1280, 720), (1280, 620)]
 LANGS = ["en", "ja", "vi"]
 SHOTS = DEMO / "shots"
 LAYOUT_JS = """() => {
@@ -20,7 +21,7 @@ LAYOUT_JS = """() => {
   const vis = el => { const s = getComputedStyle(el); return s.display !== 'none' && s.visibility !== 'hidden' && el.getClientRects().length; };
   if (document.documentElement.scrollWidth > vw + 1) bad.push('page scrolls horizontally');
   if (document.documentElement.scrollHeight > vh + 1) bad.push('page scrolls vertically');
-  document.querySelectorAll('header, .rail, main, footer, .right > *, .left > *, .card, .fi, .stat, .modes, .langs, .chip, .proc').forEach(el => {
+  document.querySelectorAll('header, .rail, main, footer, .right > *, .left > *, .card, .fi, .stat, .modes, .langs, .chip, .proc, .drawer, .whybox, .detail-toggle').forEach(el => {
     if (!vis(el)) return;
     const r = el.getBoundingClientRect();
     if (r.right > vw + 1 || r.bottom > vh + 1) bad.push('outside viewport: ' + (el.id || el.className));
@@ -30,10 +31,25 @@ LAYOUT_JS = """() => {
   const panel = document.getElementById('panel');
   if (panel && vis(panel) && panel.scrollHeight > panel.clientHeight + 3) bad.push('panel clipped ' + panel.scrollHeight + '>' + panel.clientHeight);
   document.querySelectorAll('.card').forEach(c => { if (vis(c) && getComputedStyle(c).overflow !== 'visible' && c.scrollHeight > c.clientHeight + 3 && !c.classList.contains('shrink')) bad.push('card clipped: ' + c.className + ' ' + c.scrollHeight + '>' + c.clientHeight); });
-  document.querySelectorAll('.proc, .chip, .st .lb b, .chap, .pill, th, .cell, .kicker, .modes button, .langs button, .seg button, .runbtn, .ghost').forEach(el => {
+  document.querySelectorAll('.proc, .chip, .st .lb b, .chap, .pill, th, .cell, .modes button, .langs button, .seg button, .runbtn, .ghost, .detail-toggle, .why summary').forEach(el => {
     if (vis(el) && el.getClientRects().length > 1) bad.push('wrapped: ' + el.textContent.trim().slice(0, 30));
   });
-  document.querySelectorAll('.hdr-right').forEach(el => { if (el.scrollWidth > el.clientWidth + 1) bad.push('header chips cut'); });
+  const hdr = document.querySelector('header');
+  if (hdr && vis(hdr)) {
+    const hr = hdr.getBoundingClientRect();
+    const kids = [...hdr.children].filter(k => vis(k) && !k.classList.contains('hdr-gap'));
+    kids.forEach(k => {
+      const r = k.getBoundingClientRect();
+      if (r.left < Math.max(0, hr.left) - 1 || r.right > Math.min(vw, hr.right) + 1 || r.top < hr.top - 1 || r.bottom > hr.bottom + 1) bad.push('header item clipped: ' + (k.id || k.className));
+      if (k.scrollWidth > k.clientWidth + 1 || k.scrollHeight > k.clientHeight + 1) bad.push('header item content cut: ' + (k.id || k.className));
+      [...k.querySelectorAll('button, h1, span')].filter(vis).forEach(c => {
+        const cr = c.getBoundingClientRect();
+        if (cr.right > r.right + 1 || cr.left < r.left - 1 || cr.bottom > r.bottom + 1 || cr.top < r.top - 1) bad.push('header content outside its group: ' + c.textContent.trim().slice(0, 20));
+        if (c.tagName === 'BUTTON' && c.getClientRects().length > 1) bad.push('header button wrapped: ' + c.textContent.trim().slice(0, 20));
+      });
+    });
+    for (let i = 1; i < kids.length; i++) if (kids[i].getBoundingClientRect().left < kids[i - 1].getBoundingClientRect().right - 0.5) bad.push('header overlap: ' + (kids[i - 1].id || kids[i - 1].className) + ' / ' + (kids[i].id || kids[i].className));
+  }
   const img = document.getElementById('frame');
   const left = document.querySelector('.left');
   if (left && vis(left) && img && !img.hidden && !(img.complete && img.naturalWidth)) bad.push('broken frame');
@@ -103,6 +119,37 @@ def wait_live_idle(page):
     page.wait_for_function("window.appReady && document.querySelector('[data-act=run]')", timeout=20000)
 
 
+def open_options(page):
+    if not page.evaluate("document.getElementById('liveOpts').open"):
+        page.click("#liveOpts summary")
+        page.wait_for_timeout(150)
+
+
+def open_drawer(page):
+    if page.evaluate("document.getElementById('drawer').hidden"):
+        page.click("#detailToggle")
+        page.wait_for_timeout(150)
+
+
+def drawer_suite(page, pr, lang, where):
+    open_drawer(page)
+    pr.check(page.evaluate("!document.getElementById('drawer').hidden"), f"Details drawer opens ({where})")
+    layout(page, pr, f"{where} drawer open")
+    mixed(page, pr, lang, f"{where} drawer open")
+    return page.inner_text("#drawer")
+
+
+def why_suite(page, pr, lang, where):
+    if not page.query_selector(".shead .why summary"):
+        return
+    page.click(".shead .why summary")
+    page.wait_for_timeout(250)
+    pr.check(page.evaluate("document.querySelector('.shead .why').open && document.querySelector('.whybox').innerText.trim().length > 10"), f"Why? opens an explanation ({where})")
+    layout(page, pr, f"{where} why open")
+    mixed(page, pr, lang, f"{where} why open")
+    page.click(".shead .why summary")
+
+
 def replay_suite(page, base, pr, w, h, shots, lang="en"):
     page.goto(base + f"dashboard.html?present&lang={lang}")
     page.wait_for_function("window.appReady === true", timeout=20000)
@@ -149,7 +196,31 @@ def replay_suite(page, base, pr, w, h, shots, lang="en"):
     pr.check(page.evaluate("window.sceneKey") == "jp-read-honseki", "reload keeps the scene")
     page.keyboard.press(" ")
     pr.check(page.evaluate("playing") is True, "Space starts autoplay")
+    text = drawer_suite(page, pr, "en", "replay")
+    pr.check("autoplay" in text, "Details drawer shows the autoplay state")
     page.keyboard.press(" ")
+    for want in ("LLM", "Haiku", "Sonnet", "calls", "fallback 0", "Space play", "Reset"):
+        pr.check(want in text, f"Details drawer shows {want!r}")
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(150)
+    pr.check(page.evaluate("document.getElementById('drawer').hidden"), "Escape closes the Details drawer")
+    pr.check(not page.is_visible("#tlCard"), "run timeline hidden by default")
+    open_drawer(page)
+    page.click("#tlToggle")
+    page.wait_for_timeout(300)
+    pr.check(page.is_visible("#tlCard") and "Attempt" in page.inner_text("#tlCard"), "Details: run timeline can be shown")
+    layout(page, pr, "replay with run timeline")
+    page.click("#tlToggle")
+    page.click("#resetAll")
+    page.wait_for_timeout(200)
+    pr.check(page.evaluate("cur") == 0 and page.evaluate("playing") is False, "Details: Reset returns to scene 1")
+    page.keyboard.press("Escape")
+    page.goto(base + "dashboard.html?present&lang=en#vn-blocked-hoten")
+    page.wait_for_function("window.appReady === true")
+    why_suite(page, pr, "en", "blocked scene")
+    pr.check(page.evaluate("document.querySelectorAll('#feed details.fi').length") >= 1, "agent feed shows compact cards")
+    page.click("#feed details.fi:last-child summary")
+    pr.check(page.evaluate("document.querySelector('#feed details.fi:last-child').open"), "feed card expands to show details")
     page.set_viewport_size({"width": 1100, "height": 620})
     page.wait_for_timeout(500)
     layout(page, pr, f"resized 1100x620 from {w}x{h}")
@@ -246,6 +317,12 @@ def live_suite(page, base, pr, shots, lang="en"):
     wait_live_idle(page)
     layout(page, pr, f"live setup {lang}")
     mixed(page, pr, lang, "live setup")
+    pr.check(page.evaluate("!document.getElementById('liveOpts').open && L.cfg.llm === 'cached' && L.cfg.speed === 1 && L.cfg.form === 'original'"), f"live setup: options collapsed, cached + presenter speed by default ({lang})")
+    pr.check(page.is_visible("#runBtn") and page.is_visible(".launch [data-act=reset]") and page.is_visible(".pickproc"), f"live setup shows procedure, Start agent and Reset ({lang})")
+    why_suite(page, pr, lang, f"live setup {lang}")
+    text = drawer_suite(page, pr, lang, f"live setup {lang}")
+    pr.check("Chromium" in text and "Claude CLI" in text, f"Details drawer shows live status chips ({lang})")
+    page.keyboard.press("Escape")
     if shots:
         page.screenshot(path=str(SHOTS / f"live_{lang}_0_setup.png"))
     res = run_live(page, pr, [True, True, True], f"live VN approve {lang}", f"live_{lang}_vn" if shots else None, lang=lang)
@@ -268,6 +345,7 @@ def inject_suite(page, base, pr, shots, lang="en"):
     page.goto(base + f"dashboard.html?speed=40&lang={lang}#live")
     wait_live_idle(page)
     page.click("#procs [data-proc=vn]")
+    open_options(page)
     page.click("[data-set=form][data-v=inject]")
     page.click("[data-set=barrier][data-v=keyboard_trap]")
     page.select_option("#targetSel", "email")
@@ -293,6 +371,7 @@ def inject_suite(page, base, pr, shots, lang="en"):
                  f"agent found and fixed the planted trap: {[(b['element_id'], b['kind'], b['status']) for b in found]}")
         pr.check(res["axe"] and not res["axe"]["comparison"][0]["axe"], "axe-core misses the planted keyboard trap")
     page.click("[data-act=setup]")
+    open_options(page)
     page.click("[data-set=barrier][data-v=captcha]")
     page.wait_for_timeout(600)
     res = run_live(page, pr, [], f"inject captcha {lang}", lang=lang)
@@ -314,6 +393,8 @@ def live_layouts(page, base, pr, langs):
             wait_live_idle(page)
             layout(page, pr, f"{w}x{h} {lang} live setup")
             mixed(page, pr, lang, f"{w}x{h} live setup")
+            open_options(page)
+            layout(page, pr, f"{w}x{h} {lang} live options")
             page.click("[data-set=form][data-v=inject]")
             page.wait_for_timeout(500)
             for kind in ("unnamed_field", "code_label", "keyboard_trap", "mouse_only", "captcha"):
@@ -328,6 +409,24 @@ def live_layouts(page, base, pr, langs):
             page.click("[data-set=form][data-v=original]")
             page.wait_for_timeout(300)
             i18n_complete(page, pr, lang, f"{w}x{h} live setup")
+
+
+def window_sizes_suite(page, base, pr, langs):
+    for lang in langs:
+        for w, h in WINDOW_SIZES:
+            page.set_viewport_size({"width": w, "height": h})
+            for key in ("vn-listen", "vn-blocked-hoten", "vn-fix-hoten", "vn-audit", "engine"):
+                page.goto(base + f"dashboard.html?present&lang={lang}#{key}")
+                page.wait_for_function("window.appReady === true", timeout=20000)
+                layout(page, pr, f"{w}x{h} {lang} #{key}")
+            why_suite(page, pr, lang, f"{w}x{h} {lang} #engine")
+            drawer_suite(page, pr, lang, f"{w}x{h} {lang} replay")
+            page.keyboard.press("Escape")
+            page.goto(base + f"dashboard.html?lang={lang}#live")
+            wait_live_idle(page)
+            layout(page, pr, f"{w}x{h} {lang} live")
+            drawer_suite(page, pr, lang, f"{w}x{h} {lang} live")
+            page.keyboard.press("Escape")
 
 
 def digest(folder):
@@ -347,7 +446,7 @@ def main():
     ap.add_argument("--shots", action="store_true", help="also write screenshots to shots/")
     ap.add_argument("--quick", action="store_true", help="replay at 1536x864 only")
     ap.add_argument("--langs", default=",".join(LANGS), help="comma-separated UI languages to test (default en,ja,vi)")
-    ap.add_argument("--only", choices=["replay", "live", "inject", "layouts"], help="run one part only")
+    ap.add_argument("--only", choices=["replay", "live", "inject", "layouts", "windows"], help="run one part only")
     args = ap.parse_args()
     langs = [x for x in args.langs.split(",") if x in LANGS]
     part = lambda name: args.only in (None, name)
@@ -405,6 +504,13 @@ def main():
                 watch(page, log, f"inject {lang}")
                 inject_suite(page, base, pr, args.shots, lang)
                 ctx.close()
+        if part("windows"):
+            print("header and controls at real window sizes", flush=True)
+            ctx = browser.new_context(viewport={"width": 1902, "height": 914})
+            page = ctx.new_page()
+            watch(page, log, "window sizes")
+            window_sizes_suite(page, base, pr, langs)
+            ctx.close()
         if part("layouts"):
             print("live setup layouts", flush=True)
             ctx = browser.new_context(viewport={"width": 1366, "height": 768})

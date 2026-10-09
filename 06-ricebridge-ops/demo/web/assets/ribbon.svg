@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 60" preserveAspectRatio="none" fill="none">
+  <defs>
+    <linearGradient id="redL" x1="0" x2="1">
+      <stop offset="0" stop-color="#c22a40"/>
+      <stop offset=".6" stop-color="#d63a4c" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#d63a4c" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="redR" x1="1" x2="0">
+      <stop offset="0" stop-color="#c22a40"/>
+      <stop offset=".55" stop-color="#d63a4c" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#d63a4c" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0" stop-color="#f6d27c"/>
+      <stop offset=".3" stop-color="#e8b84a" stop-opacity=".9"/>
+      <stop offset=".5" stop-color="#e8b84a" stop-opacity=".3"/>
+      <stop offset=".7" stop-color="#e8b84a" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#f6d27c"/>
+    </linearGradient>
+  </defs>
+  <path d="M0 26C160 20 330 24 520 38 600 44 660 50 700 56 640 54 560 50 500 48 320 40 160 40 0 44Z" fill="url(#redL)"/>
+  <path d="M1600 12C1480 14 1340 22 1200 34 1110 42 1040 50 990 56 1060 54 1150 50 1230 46 1380 38 1500 32 1600 30Z" fill="url(#redR)"/>
+  <path vector-effect="non-scaling-stroke" d="M0 46C200 42 420 46 640 54 780 59 880 59 1000 56 1180 50 1360 34 1600 32" stroke="url(#gold)" stroke-width="1.6"/>
+</svg>

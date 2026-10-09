@@ -7,38 +7,24 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="ui/dashboard.css">
 <link rel="stylesheet" href="ui/deck-theme.css">
+<link rel="icon" href="assets/lotus.svg" type="image/svg+xml">
 </head>
 <body>
-<div class="deck-banner">
-  <div class="deck-brand"><div class="deck-mark" aria-hidden="true">DI</div><div><div class="deck-overline">VIETNAM JAPAN AI HACKATHON 2026</div><div class="deck-title">MinnaAccess<span>Live Demo</span></div></div></div>
-  <div class="country-pair" aria-label="Vietnam · Japan">
-    <div class="country"><svg viewBox="0 0 60 40" role="img" aria-label="Vietnam"><path fill="#da251d" d="M0 0h60v40H0z"/><path fill="#ffdf00" d="m30 8 2.8 8.6h9L34.5 22l2.8 8.6-7.3-5.3-7.3 5.3 2.8-8.6-7.3-5.4h9z"/></svg><span>VIET NAM</span></div>
-    <span class="country-link" aria-hidden="true">×</span>
-    <div class="country"><svg viewBox="0 0 60 40" role="img" aria-label="Japan"><path fill="#fff" d="M0 0h60v40H0z"/><circle cx="30" cy="20" r="12" fill="#bc002d"/></svg><span>JAPAN</span></div>
-  </div>
-<svg class="partnership-map" viewBox="0 0 240 100" role="img" aria-label="Vietnam and Japan connected, schematic map">
-<g class="map-grid" fill="none" stroke="currentColor" opacity=".12"><ellipse cx="120" cy="50" rx="114" ry="44"/><ellipse cx="120" cy="50" rx="74" ry="44"/><path d="M12 35h216M12 65h216M120 6v88"/></g>
-<g class="map-land" fill="currentColor" stroke="currentColor" stroke-linejoin="round">
-<!-- Stylized Vietnam coastline, north at the top. -->
-<path d="m47 18 7-4 7 3 6-2 5 5-2 6-7 4-5 1 1 6 7 8 6 12 3 11-3 8-8 6-11 4-7-3 2-6 10-3 8-5 1-6-3-9-7-11-6-6-2-7-7-4 2-5z"/>
-<!-- Japan's four principal islands, Hokkaido to Kyushu. -->
-<path d="m186 11 7 6 8 1-3 5-8 1-5 7-7-3 4-6-2-6z"/><path d="m178 32 5 1-2 9-6 7-3 9-9 3-5 6-10 3-9 6-8-2 3-5 11-3 9-6 10-4 7-9 4-7z"/><path d="m148 74 9-5 5 2-4 5-9 2z"/><path d="m129 76 8 2 2 5-7 5-5 7-5-2 2-7-3-4z"/>
-</g>
-<path class="map-route" d="M67 52Q103 3 167 48" fill="none" stroke-width="1.6" stroke-dasharray="3 4"/>
-<g class="map-point"><circle cx="67" cy="52" r="3"/><circle cx="167" cy="48" r="3"/></g>
-<g fill="currentColor" font-family="Inter,Segoe UI,sans-serif" font-weight="700" font-size="8" letter-spacing="1"><text x="17" y="96">VIET NAM</text><text x="193" y="44">JAPAN</text></g>
-</svg>
-  <div class="deck-credit">DATA IMPACT · VN × JP</div>
-</div>
-<div class="vjline" aria-hidden="true"></div>
 <div class="app" id="app">
 <header>
-  <div class="brand"><div class="logo" aria-hidden="true">M</div><div><h1>MinnaAccess</h1><small data-i18n="AI agent that walks e-government forms like a blind user">AI agent that walks e-government forms like a blind user</small></div></div>
+  <div class="brand"><img class="di-logo" src="assets/data-impact-logo.png" width="602" height="160" alt="Data Impact"><span class="brand-rule" aria-hidden="true"></span><h1 title="AI agent that walks e-government forms like a blind user" data-i18n-title="AI agent that walks e-government forms like a blind user">MinnaAccess</h1></div>
   <nav class="procs" id="procs" aria-label="Procedure" data-i18n-aria="Procedure"></nav>
-  <div class="hdr-right" id="hdr"></div>
+  <div class="hdr-gap"></div>
   <div class="langs" id="langs" role="group" aria-label="Language"></div>
-  <div class="modes" role="tablist" aria-label="Demo mode" data-i18n-aria="Demo mode"><button role="tab" id="modeReplay" data-mode="replay" aria-selected="true"><span data-i18n="Recorded run">Recorded run</span></button><button role="tab" id="modeLive" data-mode="live" aria-selected="false"><span class="dotlive" aria-hidden="true"></span><span data-i18n="Live run">Live run</span></button></div>
+  <div class="modes" role="tablist" aria-label="Demo mode" data-i18n-aria="Demo mode"><button role="tab" id="modeReplay" data-mode="replay" aria-selected="true"><span data-i18n="Recorded">Recorded</span></button><button role="tab" id="modeLive" data-mode="live" aria-selected="false"><span class="dotlive" aria-hidden="true"></span><span data-i18n="Live">Live</span></button></div>
+  <button type="button" class="detail-toggle" id="detailToggle" aria-expanded="false" aria-controls="drawer"><span aria-hidden="true">⋯</span><span data-i18n="Details">Details</span></button>
 </header>
+<aside class="drawer" id="drawer" aria-label="Details" data-i18n-aria="Details" hidden>
+  <section class="dsec"><h4 data-i18n="Engine and answers">Engine and answers</h4><div class="dchips" id="hdr"></div></section>
+  <section class="dsec" id="dStatusSec"><h4 data-i18n="Status">Status</h4><div class="dchips" id="dStatus"></div></section>
+  <section class="dsec"><h4 data-i18n="Keyboard">Keyboard</h4><p class="hint" id="hint"></p><span class="play" id="playState"></span></section>
+  <div class="dacts"><label class="dtoggle"><input type="checkbox" id="tlToggle"><span data-i18n="Show run timeline">Show run timeline</span></label><button type="button" class="ghost" id="resetAll"><span aria-hidden="true">↺</span><span data-i18n="Reset">Reset</span></button></div>
+</aside>
 <nav class="rail" id="rail" aria-label="Agent loop stages" data-i18n-aria="Agent loop stages"></nav>
 <main id="main">
   <section class="left" aria-label="Mock portal under test" data-i18n-aria="Mock portal under test">
@@ -46,7 +32,7 @@
       <div class="chrome"><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div><div class="url" id="url"></div><span class="mock" data-i18n="MOCK">MOCK</span><span class="tag" id="frameTag"></span></div>
       <div class="screen" id="screen"><img id="frame" alt="Mock portal page as the agent saw it" data-i18n-alt="Mock portal page as the agent saw it"></div>
     </div>
-    <div class="caption" id="caption"><div class="who"><div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><span id="capWho" data-i18n="Screen reader">Screen reader</span></div><div class="sayw"><div class="said" id="said"></div><div class="gloss cap" id="gloss"></div></div><span class="meta" id="capMeta"></span></div>
+    <div class="caption" id="caption"><div class="who"><div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><span id="capWho" data-i18n="Screen reader">Screen reader</span></div><div class="sayw"><div class="said" id="said"></div><div class="gloss cap" id="gloss"></div></div><span class="meta" id="capMeta" hidden></span></div>
   </section>
   <section class="right" aria-label="What the agent does" data-i18n-aria="What the agent does">
     <div class="shead" id="shead"></div>
@@ -54,7 +40,14 @@
     <div class="card tlc" id="tlCard"></div>
   </section>
 </main>
-<footer id="foot"><div class="prog"><i id="progBar"></i></div><div class="chapters" id="chapters"></div><div class="ticks" id="ticks"></div><span class="play" id="playState"></span><span class="hint" id="hint"></span></footer>
+<footer id="foot">
+  <div class="foot-art" aria-hidden="true">
+    <img class="vista vista-vn" src="assets/vista-vietnam.png" width="550" height="84" alt="">
+    <img class="vista vista-jp" src="assets/vista-japan.png" width="472" height="153" alt="">
+    <svg class="swoosh" viewBox="0 0 1000 60" preserveAspectRatio="none"><path class="band" d="M0 29C220 32 440 36 620 31C780 26 890 16 1000 5V60H0Z"/><path class="ribbon-red" d="M0 29C220 32 440 36 620 31C780 26 890 16 1000 5V-1.5C890 10.5 780 21.5 620 27C440 32.6 220 30 0 27.8Z"/><path class="ribbon-gold" d="M0 26.4C220 28.8 440 31.6 620 25.4C780 19.4 890 8.4 1000 -4" vector-effect="non-scaling-stroke"/></svg>
+    <img class="lotus" src="assets/lotus.svg" width="220" height="170" alt="">
+  </div>
+  <div class="chapters" id="chapters"></div><div class="ticks" id="ticks"></div></footer>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
 <script src="out/run_data.js"></script>
@@ -63,6 +56,7 @@
 <script src="ui/strings.js"></script>
 <script src="ui/i18n.js"></script>
 <script src="ui/common.js"></script>
+<script src="ui/art.js"></script>
 <script src="ui/replay.js"></script>
 <script src="ui/live.js"></script>
 <script src="ui/main.js"></script>

@@ -8,7 +8,7 @@ It replays the hero scenario from the proposal (Appendix A) on real Open-Meteo w
 Needs Python 3.10+ and the simulation package `../sim` next to this folder (numpy, pandas).
 
 ```bash
-cd "06-ricebridge-ops/demo"
+cd "D:/Hackathon VJ/06-ricebridge-ops/demo"
 python start_demo.py            # auto: cached replies first, Claude CLI on a miss
 python start_demo.py --stage    # stage mode: offline, cache + rules only, never touches the network
 python start_demo.py --open     # also opens the browser

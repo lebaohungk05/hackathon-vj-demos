@@ -55,24 +55,32 @@ function sceneText(sc) {
   const P = R.procedures[sc.p];
   const e = sc.e, b = sc.b;
   switch (sc.panel) {
-    case "listen": return {label: t("Listen"), title: esc(procTitle(P.key)), sub: th("Attempt 1 · the agent hears the page like a blind user and moves by Tab only. Goal: {goal}.", {goal: esc(t(PROC_EN[P.key].goal))})};
+    case "listen": return {label: t("Listen"), title: esc(procTitle(P.key)), sub: th("The agent hears the page and moves by Tab only."),
+      why: `<p>${th("Attempt 1 · the agent hears the page like a blind user and moves by Tab only. Goal: {goal}.", {goal: esc(t(PROC_EN[P.key].goal))})}</p>${howList()}`};
     case "read": {
       const o = e.llm.output;
       const val = (e.text.match(/“(.*?)”/) || [])[1] || "";
-      return {label: t("LLM reads {heard}", {heard: e.llm.heard}), title: th("LLM reads an unclear label: {heard}", {heard: q(e.llm.heard, pageLang(P))}), sub: th("{meaning} → types {value}", {meaning: lx(o.field_meaning), value: q(val, langOf(val))})};
+      const base = baselineFor(P.key);
+      return {label: t("LLM reads {heard}", {heard: e.llm.heard}), title: th("LLM reads an unclear label: {heard}", {heard: q(e.llm.heard, pageLang(P))}), sub: th("{meaning} → types {value}", {meaning: lx(o.field_meaning), value: q(val, langOf(val))}),
+        why: readWhyHtml(e.llm, base && base.barriers.some(x => x.element_id === e.llm.field), P)};
     }
-    case "blocked": return {label: t("Blocked {id}", {id: "#" + b.element_id}), title: th("Blocked at step {n}: {kind}", {n: b.step, kind: esc(kindName(b.kind))}), sub: th("Attempt {a} · WCAG {sc} {title} (Level {l}) on {id}", {a: e.attempt, sc: esc(b.sc), title: esc(scTitle(b.sc, b.sc_title)), l: esc(b.level), id: code("#" + b.element_id)})};
-    case "fix": return {label: t("LLM fix"), title: th(isLLM(e.engine) ? "LLM proposes a fix for {id}" : "Rule engine proposes a fix for {id}", {id: code("#" + b.element_id)}), sub: th("Patch + plain-language explanation, pre-checked on a staging copy. Nothing is applied yet.")};
-    case "approve": return {label: t("Human approves"), title: th(sc.a ? (sc.a.approved ? "Developer approved the patch" : "Developer rejected the patch") : "Waiting for the developer to approve"), sub: th("Only a human can apply a change to the portal. Then the whole procedure restarts from step 1.")};
-    case "verified": return {label: t("Verified {id}", {id: "#" + b.element_id}), title: th("Restarted from step 1 · {id} verified", {id: code("#" + b.element_id)}), sub: th("Attempt {a} · judged by keyboard replay, the accessibility tree and axe-core. The LLM does not grade its own fix.", {a: e.attempt})};
-    case "handoff": return {label: t("Hand-off"), title: th("{kind} → hand off to a human", {kind: esc(kindName(e.barrier.kind))}), sub: th("Confirmation page reached. Never bypassed. The submit button is never pressed.")};
-    case "reached": return {label: t("Goal reached"), title: th("Confirmation step reached by keyboard only"), sub: th("Attempt {a} · stopped before the submit button. Form submitted: {v}.", {a: e.attempt, v: esc(yesNo(P.submitted || "no"))})};
-    case "audit": return P.key === "jp"
-      ? {label: t("Test results"), title: th("JIS X 8341-3:2016 test results from this run"), sub: th("Generated from the run. An NVDA user re-listens to each row and an officer re-checks it before the record is drawn up.")}
-      : {label: t("Audit record"), title: th("Audit record · TT 21/2023 + JIS X 8341-3"), sub: th("Generated from the run. An NVDA user re-listens to each row and an officer re-checks it before the record is drawn up.")};
-    case "axe": return {label: t("vs axe-core"), title: th("MinnaAccess vs axe-core 4.10.2 on the same original pages"), sub: th("{country} mock procedure, same run", {country: esc(procCountry(P.key))})};
-    case "engine": return {label: t("Engine & guardrails"), title: th("Who decided what: LLM, rules and humans"), sub: th("Every LLM call of this run, its latency, and what the rule-only engine did on the same pages")};
-    default: return {label: "", title: "", sub: ""};
+    case "blocked": return {label: t("Blocked {id}", {id: "#" + b.element_id}), title: th("Blocked at step {n}: {kind}", {n: b.step, kind: esc(kindName(b.kind))}), sub: th("WCAG {sc} {title}", {sc: esc(b.sc), title: esc(scTitle(b.sc, b.sc_title))}),
+      why: `<p>${th("Attempt {a} · WCAG {sc} {title} (Level {l}) on {id}", {a: e.attempt, sc: esc(b.sc), title: esc(scTitle(b.sc, b.sc_title)), l: esc(b.level), id: code("#" + b.element_id)})}</p>${blockedWhyHtml(b, P)}`};
+    case "fix": return {label: t("LLM fix"), title: th(isLLM(e.engine) ? "LLM proposes a fix for {id}" : "Rule engine proposes a fix for {id}", {id: code("#" + b.element_id)}), sub: th("Pre-checked. Nothing is applied yet."),
+      why: `<p>${th("Patch + plain-language explanation, pre-checked on a staging copy. Nothing is applied yet.")}</p>${isLLM(e.engine) && e.llm ? `<p class="mute">✦ ${esc(pretty(e.llm.model))} · ${esc(srcLabel(e.llm))}</p>` : ""}`};
+    case "approve": return {label: t("Human approves"), title: th(sc.a ? (sc.a.approved ? "Developer approved the patch" : "Developer rejected the patch") : "Waiting for the developer to approve"), sub: th("Only a human can apply a change."),
+      why: `<p>${th("Only a human can apply a change to the portal. Then the whole procedure restarts from step 1.")}</p>${sc.a ? `<p>${sc.a.approved ? th("Applied to the mock portal → the whole procedure restarts from step 1. Try it yourself in the Live run tab.") : th("Not applied. The barrier stays open and goes to a human officer.")}</p>` : ""}`};
+    case "verified": return {label: t("Verified {id}", {id: "#" + b.element_id}), title: th("Restarted from step 1 · {id} verified", {id: code("#" + b.element_id)}), sub: th("Judged by code, not by the LLM."),
+      why: `<p>${th("Attempt {a} · judged by keyboard replay, the accessibility tree and axe-core. The LLM does not grade its own fix.", {a: e.attempt})}</p>`};
+    case "handoff": return {label: t("Hand-off"), title: th("{kind} → hand off to a human", {kind: esc(kindName(e.barrier.kind))}), sub: th("Never bypassed. Nothing is submitted."),
+      why: `<p>${th("Confirmation page reached. Never bypassed. The submit button is never pressed.")}</p>${handoffWhyHtml(e.barrier, P.submitted)}`};
+    case "reached": return {label: t("Goal reached"), title: th("Confirmation step reached by keyboard only"), sub: th("Stopped before the submit button."),
+      why: `<p>${th("Attempt {a} · stopped before the submit button. Form submitted: {v}.", {a: e.attempt, v: esc(yesNo(P.submitted || "no"))})}</p>`};
+    case "audit": return {label: P.key === "jp" ? t("Test results") : t("Audit record"), title: P.key === "jp" ? th("JIS X 8341-3:2016 test results from this run") : th("Audit record · TT 21/2023 + JIS X 8341-3"), sub: th("Generated from this run."),
+      why: `<p>${th("Generated from the run. An NVDA user re-listens to each row and an officer re-checks it before the record is drawn up.")}</p>${auditWhy(P)}`};
+    case "axe": return {label: t("vs axe-core"), title: th("MinnaAccess vs axe-core, same pages"), sub: th("{country} mock procedure, same run", {country: esc(procCountry(P.key))}), why: axeWhy(P)};
+    case "engine": return {label: t("Engine & guardrails"), title: th("Who decided what: LLM, rules and humans"), sub: th("Every LLM call of this run"), why: engineWhy()};
+    default: return {label: "", title: "", sub: "", why: ""};
   }
 }
 
@@ -91,20 +99,21 @@ function chapterList() {
   return c.filter(x => x.idx >= 0);
 }
 
+function procButton(key, on, attrs) {
+  return `<button class="proc ${on ? "on" : ""}" ${attrs} title="${esc(procTitle(key))}" aria-label="${esc(procTitle(key))}" aria-pressed="${on}">${FLAG[key] || ""}<span>${esc(key.toUpperCase())}</span></button>`;
+}
+
 function replayHeader() {
   const sc = scenes[cur];
-  document.getElementById("procs").innerHTML = R.procedures.map((P, i) => {
-    const first = scenes.findIndex(s => s.p === i);
-    return `<button class="proc ${sc.p === i ? "on" : ""}" data-jump="${first}" title="${esc(procTitle(P.key))}" aria-pressed="${sc.p === i}">${FLAG[P.key] || ""}<span>${esc(procShort(P.key))}</span></button>`;
-  }).join("");
+  document.getElementById("procs").innerHTML = R.procedures.map((P, i) => procButton(P.key, sc.p === i, `data-jump="${scenes.findIndex(s => s.p === i)}"`)).join("");
   const calls = R.llm_calls || [];
   const fallbacks = R.procedures.flatMap(P => P.events).filter(e => String(e.engine || "").startsWith("rule fallback")).length;
   const llm = R.engine_kind === "llm";
-  const eng = llm ? `<span class="chip llm" data-prio="1"><i></i>LLM · ${esc(pretty(R.models.decisions))} + ${esc(pretty(R.models.patches))}</span><span class="chip ${fallbacks ? "warn" : "ok"}" data-prio="0">${th("fallback {n}", {n: fallbacks})}</span>` : `<span class="chip rule"><i></i>${th("Rule engine only")}</span>`;
+  const eng = llm ? `<span class="chip llm"><i></i>LLM · ${esc(pretty(R.models.decisions))} + ${esc(pretty(R.models.patches))}</span><span class="chip ${fallbacks ? "warn" : "ok"}">${th("fallback {n}", {n: fallbacks})}</span>` : `<span class="chip rule"><i></i>${th("Rule engine only")}</span>`;
   const how = R.llm_mode === "replay" ? t("cached replies") : R.llm_mode === "live" ? t("fresh LLM calls") : t("LLM, cached");
-  const mode = `<span class="chip" data-prio="2"><i></i>${th("Recorded run · {how} · {n} calls", {how: esc(how), n: calls.length})}</span>`;
+  const mode = `<span class="chip"><i></i>${th("Recorded run · {how} · {n} calls", {how: esc(how), n: calls.length})}</span>`;
   document.getElementById("hdr").innerHTML = eng + mode;
-  fitHeader();
+  document.getElementById("dStatusSec").hidden = true;
 }
 
 function replayTimeline(sc) {
@@ -116,8 +125,8 @@ function replayTimeline(sc) {
 function replayFeed(sc) {
   const P = P_(), ev = P.events, a = ev[sc.at].attempt;
   const items = ev.filter(e => e.attempt === a && e.i <= sc.at && ["hear", "action", "advisory", "barrier", "handoff", "reached", "restart", "pass", "verified"].includes(e.kind));
-  const tail = items.slice(-14);
-  return `<div class="feed" id="feed" aria-label="${esc(t("Screen reader and agent log"))}">${tail.map((e, i) => feedItem(e, i >= tail.length - 4, P)).join("")}</div>`;
+  const tail = items.slice(-4);
+  return `<div class="feed" id="feed" aria-label="${esc(t("Screen reader and agent log"))}">${tail.map((e, i) => feedItem(e, i >= tail.length - 2, P)).join("")}</div>`;
 }
 
 function readCard(sc) {
@@ -133,7 +142,7 @@ function approvalCard(sc) {
   const ok = sc.a.approved;
   return `<div class="card humc grow"><h3>✋ ${th("Human approval")} <span class="sp"><span class="pill g">${WHO.includes(sc.a.who) ? th(sc.a.who) : esc(sc.a.who || "")}</span></span></h3>
     <div class="decide"><button class="btn yes ${ok ? "chosen" : "dim"}" disabled>✓ ${ok ? th("Approved") : th("Approve")}</button><button class="btn no ${ok ? "dim" : "chosen"}" disabled>✗ ${ok ? th("Reject") : th("Rejected")}</button></div>
-    <div class="whoapp">${ok ? th("Applied to the mock portal → the whole procedure restarts from step 1. Try it yourself in the Live run tab.") : th("Not applied. The barrier stays open and goes to a human officer.")}</div></div>`;
+    </div>`;
 }
 
 function verifiedCard(sc) {
@@ -152,8 +161,12 @@ function reachedCard() {
     ${checksList({checks: rows})}</div>`;
 }
 
-function howCard() {
-  return `<div class="how"><div><b aria-hidden="true">🔊</b><span>${th("Hears every focus change as an NVDA-style line built from the accessibility tree")}</span></div><div><b aria-hidden="true">⌨</b><span>${th("Moves with Tab, Space, Enter and typing only. No mouse, no login, no submit")}</span></div><div><b aria-hidden="true">↻</b><span>${th("After every approved fix, restarts the whole procedure from step 1")}</span></div></div>`;
+function howList() {
+  return `<ul class="howl"><li>🔊 ${th("Hears every focus change as an NVDA-style line built from the accessibility tree")}</li><li>⌨ ${th("Moves with Tab, Space, Enter and typing only. No mouse, no login, no submit")}</li><li>↻ ${th("After every approved fix, restarts the whole procedure from step 1")}</li></ul>`;
+}
+
+function listenArt() {
+  return `<div class="card grow art">${heroFill("listen", true)}</div>`;
 }
 
 const JIS_TERM = "試験結果";
@@ -187,37 +200,50 @@ function auditPanel() {
     : `<th>${th("Step")}</th><th>${th("Success criterion")}</th><th>${th("Level")}</th><th>${th("Screen reader heard")}</th><th>${th("VN · TT 21/2023")}</th><th>${th("JP · JIS X 8341-3 {term}", {term: termHtml})}</th>`;
   const fixed = P.barriers.filter(b => b.status === "fixed").length;
   const hand = P.barriers.filter(b => b.status === "handoff").length;
-  const adv = (P.advisories || []).map(a => `<li>${code("#" + a.element)} ${q(a.heard, pl)}: ${lx(a.advisory)} <span class="pill llm">${th("LLM advisory · needs human")}</span></li>`).join("");
   const h3 = jp ? `${termHtml} · JIS X 8341-3:2016` : th("Audit record · Vietnam TT 21/2023 and Japan JIS X 8341-3");
   return `<div class="stats">
       <div class="stat"><b>${P.rounds}</b><span>${th("attempts, each from step 1")}</span></div>
       <div class="stat ok"><b>${fixed}</b><span>${th("barriers fixed and verified by replay")}</span></div>
       <div class="stat z"><b>${hand}</b><span>${th("handed to a human")}</span></div>
       <div class="stat"><b style="color:${P.submitted && P.submitted !== "no" ? "var(--bad)" : "var(--ok)"}">${esc(yesNo(P.submitted || "no"))}</b><span>${th("form submitted")}</span></div></div>
-    <div class="card grow audit" style="overflow:hidden;justify-content:flex-start"><h3 class="audith">${h3} <span class="sp"><span class="pill g">${esc(R.generated)}</span></span></h3>
+    <div class="card grow audit" style="overflow:hidden;justify-content:flex-start"><h3 class="audith">${h3}</h3>
     <table><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table>
-    ${adv ? `<p class="note">${th("Non-blocking advisories (LLM suggestion, not a test result):")}</p><ul class="note" style="margin-top:.2rem;padding-left:1.2rem">${adv}</ul>` : ""}
-    <p class="note">${th("{title} · {n} attempts · judged by keyboard replay, accessibility tree and axe-core · exported to {file}", {title: esc(procTitle(P.key)), n: P.rounds, file: code(`out/jis_shiken_kekka_${P.key}.csv`)})}</p>
     <div class="disclaimer">${th("Team simulation on a mock page. Not a conformance claim; not for self-declaring conformance.")}</div></div>`;
+}
+
+function auditWhy(P) {
+  const pl = pageLang(P);
+  const adv = (P.advisories || []).map(a => `<li>${code("#" + a.element)} ${q(a.heard, pl)}: ${lx(a.advisory)}</li>`).join("");
+  return `${adv ? `<p><b>${th("Non-blocking advisories (LLM suggestion, not a test result):")}</b></p><ul>${adv}</ul>` : ""}
+    <p>${th("{title} · {n} attempts · judged by keyboard replay, accessibility tree and axe-core · exported to {file}", {title: esc(procTitle(P.key)), n: P.rounds, file: code(`out/jis_shiken_kekka_${P.key}.csv`)})}</p><p class="mute">${esc(R.generated)}</p>`;
+}
+
+function axeWhy(P) {
+  const byRule = {};
+  P.axe.axe_only.forEach(x => { byRule[x.rule] = byRule[x.rule] || {n: 0, impact: x.impact, sc: x.sc.join(", "), steps: new Set()}; byRule[x.rule].n++; byRule[x.rule].steps.add(x.step); });
+  const extra = Object.entries(byRule).map(([k, v]) => th("{rule} ({impact}, WCAG {sc}) on {n} element(s), steps {steps}: a real issue, but it does not stop a keyboard + screen-reader user.", {rule: `<b>${code(k)}</b>`, impact: esc(t(v.impact)), sc: esc(v.sc), n: v.n, steps: [...v.steps].join(", ")})).join(" ");
+  return `<p>${th("MinnaAccess vs axe-core 4.10.2 on the same original pages")}.</p><p>${th("axe-core reported instead: {extra} After the approved fixes, axe-core finds {n} violation(s) on the fixed pages (the footer contrast issue is outside the procedure and left for the owner).", {extra: extra || th("nothing else."), n: P.axe.fixed_violations})}</p>`;
+}
+
+function engineWhy() {
+  return `<p>${th("Every LLM call of this run, its latency, and what the rule-only engine did on the same pages")}.</p><p>${th("claude CLI · strict JSON schema · validated · 1 retry · cached by prompt hash")}</p>
+    <p>${th("Latency is the time of the original live call (claude CLI round trip). Replays read the same answer from {dir}.", {dir: code("demo/cache")})}</p>
+    <p>🛡 ${th("{b}LLM{/b}: reads labels, chooses values, writes patches. {b}Rules{/b}: never press {submit1} / {submit2}, CAPTCHA → human, Tab-trap and Tab-order detection. {b}Humans{/b}: approve every patch, re-check every record. {b}Pass/fail{/b}: keyboard replay + accessibility tree + axe-core.", {b: "<b>", "/b": "</b>", submit1: q("Nộp hồ sơ", "vi"), submit2: q("申請する", "ja")})}</p>`;
 }
 
 function axePanel() {
   const P = P_(), c = P.axe.comparison;
   const n = c.length, axeN = c.filter(r => r.axe).length;
   const rows = c.map((r, i) => `<div class="brow" style="animation:slideIn .4s ${0.3 + i * 0.15}s both"><span><b>${th("Step {n}", {n: r.step})}</b> · ${esc(kindName(r.kind))} ${code("#" + r.element)} <span class="pill g">WCAG ${esc(r.sc)}</span></span><span class="dotc y" aria-label="${esc(t("found"))}">✓</span><span class="dotc ${r.axe ? "y" : "n"}" title="${esc(r.axe_rules.join(", "))}" aria-label="${esc(r.axe ? t("found") : t("missed"))}">${r.axe ? "✓" : "✗"}</span></div>`).join("");
-  const byRule = {};
-  P.axe.axe_only.forEach(x => { byRule[x.rule] = byRule[x.rule] || {n: 0, impact: x.impact, sc: x.sc.join(", "), steps: new Set()}; byRule[x.rule].n++; byRule[x.rule].steps.add(x.step); });
-  const extra = Object.entries(byRule).map(([k, v]) => th("{rule} ({impact}, WCAG {sc}) on {n} element(s), steps {steps}: a real issue, but it does not stop a keyboard + screen-reader user.", {rule: `<b>${code(k)}</b>`, impact: esc(t(v.impact)), sc: esc(v.sc), n: v.n, steps: [...v.steps].join(", ")})).join(" ");
   const m = R.sim_metrics && R.sim_metrics.blocking_detection;
   const bar = (label, v, total, col, unit, i) => `<div class="bar2"><span>${th(label)}</span><div class="track"><div class="fill" style="width:${100 * v / total}%;background:${col};animation-delay:${0.4 + i * 0.2}s"></div></div><b>${unit ? v + unit : v + "/" + total}</b></div>`;
   const sim = m ? `<div class="card"><h3>${th("Team simulation (proposal §2.4, rule-based engine)")} <span class="sp"><span class="pill g">${th("{n} mock forms with seeded defects", {n: R.sim_metrics.n_defect_variants})}</span></span></h3><div class="bars">
-    ${bar("Agent: blocking barriers found", m.agent.tp, R.sim_metrics.n_blocking_defects, "linear-gradient(90deg,#14b8a6,#2dd4bf)", "", 0)}
-    ${bar("axe-core: blocking barriers found", m.axe.tp, R.sim_metrics.n_blocking_defects, "#6f6896", "", 1)}
-    ${bar("Reached the last step, before fixes", Math.round(R.sim_metrics.journey_completion_defect_variants.before_repair * 1000) / 10, 100, "#d97706", "%", 2)}
-    ${bar("Reached the last step, after fixes", Math.round(R.sim_metrics.journey_completion_defect_variants.after_repair * 1000) / 10, 100, "linear-gradient(90deg,#7c3aed,#a78bfa)", "%", 3)}</div></div>` : "";
+    ${bar("Agent: blocking barriers found", m.agent.tp, R.sim_metrics.n_blocking_defects, "linear-gradient(90deg,#147a5e,#2f9a78)", "", 0)}
+    ${bar("axe-core: blocking barriers found", m.axe.tp, R.sim_metrics.n_blocking_defects, "#8f8aa3", "", 1)}
+    ${bar("Reached the last step, before fixes", Math.round(R.sim_metrics.journey_completion_defect_variants.before_repair * 1000) / 10, 100, "#b07414", "%", 2)}
+    ${bar("Reached the last step, after fixes", Math.round(R.sim_metrics.journey_completion_defect_variants.after_repair * 1000) / 10, 100, "linear-gradient(90deg,#2c4c8f,#5677b8)", "%", 3)}</div></div>` : "";
   return `<div class="vs"><div class="score a"><b>${n}/${n}</b><span><strong>MinnaAccess</strong>${th("blocking barriers found on the original pages (this run)")}</span></div><div class="vsx">vs</div><div class="score x"><b>${axeN}/${n}</b><span><strong>axe-core 4.10.2</strong>${th("same pages, same run")}</span></div></div>
-    <div class="card"><div class="brow h"><span>${th("Blocking barrier")}</span><span>MinnaAccess</span><span>axe-core</span></div>${rows}
-    <p class="note">${th("axe-core reported instead: {extra} After the approved fixes, axe-core finds {n} violation(s) on the fixed pages (the footer contrast issue is outside the procedure and left for the owner).", {extra: extra || th("nothing else."), n: P.axe.fixed_violations})}</p></div>${sim}`;
+    <div class="card"><div class="brow h"><span>${th("Blocking barrier")}</span><span>MinnaAccess</span><span>axe-core</span></div>${rows}</div>${sim}`;
 }
 
 function enginePanel() {
@@ -229,7 +255,7 @@ function enginePanel() {
   const med = a => { const s = [...a].sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : 0; };
   const rows = Object.values(by).map(g => {
     const u = Object.values(unique).filter(c => c.purpose === g.purpose && c.model === g.model).map(c => c.ms);
-    const range = u.length ? `${secs(Math.min(...u))} – ${secs(Math.max(...u))}` : "–";
+    const range = u.length ? `${secs(Math.min(...u))} - ${secs(Math.max(...u))}` : "-";
     return `<tr><td>${th(PURPOSE_LABEL[g.purpose] || g.purpose)}</td><td><span class="pill llm">✦ ${esc(pretty(g.model))}</span></td><td>${g.n}</td><td>${u.length}</td><td><b>${esc(secs(med(u)))}</b></td><td class="mute">${esc(range)}</td><td>${g.fail}</td></tr>`;
   }).join("");
   const events = R.procedures.flatMap(P => P.events);
@@ -248,11 +274,9 @@ function enginePanel() {
     <div class="stat rule"><b>${guardActs}</b><span>${th("actions and stops by hard-coded guards")}</span></div>
     <div class="stat z"><b>${fallbacks}</b><span>${th("rule fallbacks (LLM failed)")}</span></div>
     <div class="stat ok"><b>${R.procedures.reduce((s, P) => s + P.barriers.filter(b => b.status === "fixed").length, 0)}</b><span>${th("fixes verified by replay")}</span></div></div>
-  <div class="card"><h3>${th("LLM calls in this run")} <span class="sp"><span class="pill g">${th("claude CLI · strict JSON schema · validated · 1 retry · cached by prompt hash")}</span></span></h3>
-  <table><thead><tr><th>${th("Purpose")}</th><th>${th("Model")}</th><th>${th("Calls")}</th><th>${th("Unique")}</th><th>${th("Median latency")}</th><th>${th("Range")}</th><th>${th("Failed")}</th></tr></thead><tbody>${rows}</tbody></table>
-  <p class="note">${th("Latency is the time of the original live call (claude CLI round trip). Replays read the same answer from {dir}.", {dir: code("demo/cache")})}</p></div>
-  <div class="card"><h3>${th("Same pages, rule-only engine vs LLM engine")}</h3><table><thead><tr><th>${th("Procedure")}</th><th>${th("Rule-only engine")}</th><th>${th("LLM engine")}</th></tr></thead><tbody>${cmp}</tbody></table>
-  <div class="guard"><span>🛡</span><span>${th("{b}LLM{/b}: reads labels, chooses values, writes patches. {b}Rules{/b}: never press {submit1} / {submit2}, CAPTCHA → human, Tab-trap and Tab-order detection. {b}Humans{/b}: approve every patch, re-check every record. {b}Pass/fail{/b}: keyboard replay + accessibility tree + axe-core.", {b: "<b>", "/b": "</b>", submit1: q("Nộp hồ sơ", "vi"), submit2: q("申請する", "ja")})}</span></div></div>`;
+  <div class="card"><h3>${th("LLM calls in this run")}</h3>
+  <table><thead><tr><th>${th("Purpose")}</th><th>${th("Model")}</th><th>${th("Calls")}</th><th>${th("Unique")}</th><th>${th("Median latency")}</th><th>${th("Range")}</th><th>${th("Failed")}</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <div class="card"><h3>${th("Same pages, rule-only engine vs LLM engine")}</h3><table><thead><tr><th>${th("Procedure")}</th><th>${th("Rule-only engine")}</th><th>${th("LLM engine")}</th></tr></thead><tbody>${cmp}</tbody></table></div>`;
 }
 
 function captionFor(sc) {
@@ -300,7 +324,7 @@ function stampFor(sc) {
 }
 
 function urlBar(folder, P, file) {
-  return `${code(`${HOST}/${folder}/`)}<b>${code(`${P.key}/${file}`)}</b> · ${th("local mock, no government traffic")}`;
+  return `${code(`${HOST}/${folder}/`)}<b>${code(`${P.key}/${file}`)}</b>`;
 }
 
 function render(animate = true) {
@@ -317,11 +341,8 @@ function render(animate = true) {
   setRail(sc.stage);
   const wide = ["audit", "axe", "engine"].includes(sc.panel);
   document.getElementById("main").classList.toggle("wide", wide);
-  const tone = TONE[sc.stage];
-  const kicker = {listen: "Listen · attempt 1", read: "LLM reads a label", blocked: "Blocked", fix: "LLM proposes a fix", approve: "Human approves", verified: "Verified", handoff: "Human hand-off", reached: "Goal reached", audit: P.key === "jp" ? "Test results" : "Audit record", axe: "Agent vs axe-core", engine: "Engine & guardrails"}[sc.panel];
-  const kTone = {read: TONE.llm, handoff: TONE.human}[sc.panel] || tone;
   const txt = sceneText(sc);
-  document.getElementById("shead").innerHTML = `<div class="kicker" style="--tone:${kTone}"><i></i>${th(kicker)} · ${esc(procCountry(P.key))} · ${th("recorded run")}</div><h2>${txt.title}</h2><p>${txt.sub}</p>`;
+  document.getElementById("shead").innerHTML = sheadHtml(txt.title, txt.sub, whyHtml("why:" + sc.key, txt.why));
   if (!wide) {
     const shotEv = [...ev].reverse().find(x => x.i <= sc.at && x.shot) || ev.find(x => x.shot);
     setFrame(P, e, shotEv && shotEv.shot);
@@ -334,13 +355,13 @@ function render(animate = true) {
     if (changed || langChanged || !typeTimer) setCaption(cap.text, cap.tone, t("{lang} · NVDA-style, from the accessibility tree · {meta}", {lang: P.lang, meta: cap.meta}), changed, P);
   }
   const panels = {
-    listen: () => replayFeed(sc) + howCard(),
+    listen: listenArt,
     read: () => replayFeed(sc) + readCard(sc),
     blocked: () => replayFeed(sc) + blockedCardHtml(sc.b, P) + blockedLLMHtml(sc.e.llm, P),
     fix: () => patchCardHtml(sc.e, P, false) + precheckCardHtml(sc.e),
     approve: () => patchCardHtml(sc.e, P, true) + approvalCard(sc),
     verified: () => replayFeed(sc) + verifiedCard(sc),
-    handoff: () => replayFeed(sc) + handoffCardHtml(sc.b, P, P.submitted),
+    handoff: () => replayFeed(sc) + handoffCardHtml(sc.b, P),
     reached: () => replayFeed(sc) + reachedCard(),
     audit: auditPanel, axe: axePanel, engine: enginePanel,
   };
@@ -356,12 +377,15 @@ function render(animate = true) {
 }
 let lastLang = null;
 
+function chapterDots(ch, curCh) {
+  return ch.map((c, i) => `<button class="chap ${i === curCh ? "on" : ""}" data-i="${c.idx}" aria-current="${i === curCh}" title="${esc(`${i + 1} · ${c.label}`)}" aria-label="${esc(`${i + 1} · ${c.label}`)}"><i aria-hidden="true"></i><span>${esc(c.label)}</span></button>`).join("");
+}
+
 function replayFooter() {
   const ch = chapterList();
   const curCh = ch.reduce((a, c, i) => c.idx <= cur && (a < 0 || c.idx > ch[a].idx) ? i : a, -1);
-  document.getElementById("chapters").innerHTML = ch.map((c, i) => `<button class="chap ${i === curCh ? "on" : ""}" data-i="${c.idx}" aria-current="${i === curCh}"><kbd>${i + 1}</kbd>${esc(c.label)}</button>`).join("");
+  document.getElementById("chapters").innerHTML = chapterDots(ch, curCh);
   document.getElementById("ticks").innerHTML = scenes.map((s, i) => { const lb = sceneText(s).label; return `${i && s.p !== scenes[i - 1].p ? `<span class="gap"></span>` : ""}<button data-i="${i}" title="${esc(lb)}" aria-label="${esc(t("Scene {n}: {label}", {n: i + 1, label: lb}))}" class="${i === cur ? "on" : i < cur ? "seen" : ""}"></button>`; }).join("");
-  document.getElementById("progBar").style.width = (100 * (cur + 1) / scenes.length) + "%";
   document.getElementById("hint").innerHTML = `<b>${cur + 1}</b> / ${scenes.length} · ${th("← → step · Space play · 1–{n} chapters · L live run · G language", {n: ch.length})}`;
   document.getElementById("playState").textContent = playing ? t("▶ autoplay") : "";
 }

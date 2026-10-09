@@ -107,7 +107,7 @@ main.wide .left{display:none}
 .kicker{display:inline-flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tone,#7dd3fc);margin-bottom:.35rem}
 .kicker i{width:.6rem;height:.6rem;border-radius:50%;background:currentColor;box-shadow:0 0 .8rem currentColor}
 .shead h2{margin:0;font-size:2.05rem;line-height:1.15;font-weight:800;letter-spacing:-.02em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.shead p{margin:.4rem 0 0;color:var(--mute);font-size:1.08rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.subrow > p{margin:0;color:var(--mute);font-size:1.08rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .panel{flex:1;min-height:0;display:flex;flex-direction:column;gap:.8rem;overflow:hidden}
 .feed{flex:0 1 auto;min-height:0;display:flex;flex-direction:column;gap:.5rem;overflow:hidden}
 .feed:empty{display:none}
@@ -329,24 +329,13 @@ pre.diff[data-src]{background:#05020f}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
-/* Presentation hierarchy: calm surfaces, one primary action, optional diagnostics. */
 :root{--bg:#0c1423;--navy:#0c1423;--panel:#121e30;--panel2:#19273b;--panel3:#203047;--ink:#f1f5f9;--mute:#b3c0d2;--dim:#91a2ba;--line:rgba(183,201,225,.12);--line2:rgba(183,201,225,.23)}
 body{background:var(--bg)}
 .vjline{display:none}
 .logo,.st.now .dot,.modes button[aria-selected="true"],.langs button[aria-pressed="true"]{box-shadow:none}
-.logo{background:#276e85}
 .card{background:var(--panel);box-shadow:none}
-header{gap:.7rem}
-.brand small{max-width:23rem;overflow:hidden;text-overflow:ellipsis}
-.detail-toggle{flex:none;cursor:pointer;border:1px solid var(--line2);border-radius:.5rem;padding:.45rem .7rem;background:var(--panel2);color:var(--ink);font:600 .85rem var(--sans)}
-.detail-toggle[aria-pressed="true"]{border-color:var(--info);color:var(--info)}
 .rail .st .lb small{display:none}
-body:not(.show-details) header .chip.llm{display:none}
-body:not(.show-details) .brand small{display:none}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-
-body:not(.show-details) #tlCard,body:not(.show-details) #feed{display:none}
-.setup .card.dimmed{display:none}
+body:not(.show-timeline) #tlCard{display:none}
 .chrome{background:#1c2b40}.url{background:#111d2e}.viewer{background:var(--panel)}
 .viewer.tone-bad,.viewer.tone-ok,.viewer.tone-hum,.viewer.tone-llm{animation:none;box-shadow:none}
 .patch-details{margin-top:.7rem}.patch-details summary{cursor:pointer;color:var(--info);font-size:.95rem;padding:.4rem 0}

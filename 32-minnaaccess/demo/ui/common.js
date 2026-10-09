@@ -1,8 +1,8 @@
 const KIND = {unnamed_field: "Unnamed field", ambiguous_label: "Code instead of a label", keyboard_trap: "Keyboard trap", mouse_only: "Mouse-only button", captcha: "Image CAPTCHA"};
 const STAGES = [["listen", "Listen", "screen reader"], ["navigate", "Navigate", "keyboard only"], ["blocked", "Blocked", "barrier found"], ["llm", "LLM proposes fix", "HTML/JS + explanation"], ["human", "Human approves", "developer"], ["restart", "Restart", "from step 1"], ["verified", "Verified", "deterministic checks"]];
-const TONE = {listen: "#38bdf8", navigate: "#38bdf8", blocked: "#e11d48", llm: "#7c3aed", human: "#d97706", restart: "#38bdf8", verified: "#14b8a6"};
+const TONE = {listen: "#2a6496", navigate: "#2a6496", blocked: "#bf3a30", llm: "#2c4c8f", human: "#9a6512", restart: "#2a6496", verified: "#147a5e"};
 const FLAG = {
-  vn: `<svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#da251d"/><polygon fill="#ffcd00" points="15,4 16.76,9.43 22.47,9.43 17.86,12.79 19.62,18.21 15,14.86 10.38,18.21 12.14,12.79 7.53,9.43 13.24,9.43"/></svg>`,
+  vn: `<svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#da251d"/><polygon fill="#ffcd00" points="15,4 16.35,8.15 20.71,8.15 17.18,10.71 18.53,14.85 15,12.29 11.47,14.85 12.82,10.71 9.29,8.15 13.65,8.15"/></svg>`,
   jp: `<svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg>`,
 };
 const short = m => String(m || "").replace(/-\d{8}$/, "");
@@ -18,30 +18,42 @@ const engineName = engine => {
 const HOST = location.protocol.startsWith("http") ? location.host : "127.0.0.1:8765";
 const PURPOSE_LABEL = {"interpret field": "read a field label", "write patch": "write a patch"};
 
+const OPEN = {};
+const keepOpen = key => OPEN[key] ? " open" : "";
+
+function whyHtml(key, html) {
+  if (!html) return "";
+  return `<details class="why" data-keep="${esc(key)}"${keepOpen(key)}><summary>${th("Why?")}</summary><div class="whybox">${html}</div></details>`;
+}
+
+function fiHtml(cls, isNew, icon, label, text, right, sub) {
+  return `<details class="fi ${cls}${isNew ? " new" : ""}"><summary><span class="ic" aria-hidden="true">${icon}</span><span class="t">${text}</span><span class="r">${right || ""}</span></summary><div class="fx"><div class="k">${label}</div>${sub || ""}</div></details>`;
+}
+
 function feedItem(e, isNew, P) {
-  const n = isNew ? " new" : "";
   const step = th("step {n}", {n: e.step});
-  if (e.kind === "restart") return `<div class="fi rst${n}"><span class="ic">↻</span><div class="tx"><div class="t">${ax(e.text)}</div></div><span class="r">${th("attempt {n}", {n: e.attempt})}</span></div>`;
+  if (e.kind === "restart") return fiHtml("rst", isNew, "↻", th("Restart"), ax(e.text), th("attempt {n}", {n: e.attempt}));
   if (e.kind === "hear") {
-    const g = /^\(.*\)$/.test(e.text) ? null : glossText(e.text, pageLang(P));
-    return `<div class="fi hear${n}"><span class="ic" aria-hidden="true">🔊</span><div class="tx"><div class="k">${th("Screen reader hears")}</div><div class="t">${/^\(.*\)$/.test(e.text) ? ax(e.text) : q(e.text, pageLang(P))}</div>${g ? `<div class="s gl1"><span class="gl">${LANG.toUpperCase()}</span>${g.html}</div>` : ""}</div><span class="r">${step}</span></div>`;
+    const note = /^\(.*\)$/.test(e.text);
+    const g = note ? null : glossText(e.text, pageLang(P));
+    return fiHtml("hear", isNew, "🔊", th("Screen reader hears"), note ? ax(e.text) : q(e.text, pageLang(P)), step, g ? `<div class="s gl1"><span class="gl">${LANG.toUpperCase()}</span>${g.html}</div>` : "");
   }
   if (e.kind === "action" && isLLM(e.engine)) {
     const m = e.llm, o = m && m.output;
     const typed = e.op === "fill" ? e.value : (String(e.text).match(/^type “([\s\S]*?)” \(/) || [])[1];
     const act = typed !== undefined ? th("type {value}", {value: q(typed, langOf(typed))}) : ax(e.text.replace(/\s*\(.*$/, ""));
-    return `<div class="fi llm${n}"><span class="ic">✦</span><div class="tx"><div class="k">${th("LLM thought → action")}</div><div class="t">${act}</div>${o ? `<div class="s">${lx(o.field_meaning)}</div>` : ""}</div><span class="r">${m ? esc(pretty(m.model)) + " · " + esc(secs(m.ms)) : ""}</span></div>`;
+    return fiHtml("llm", isNew, "✦", th("LLM thought → action"), act, m ? esc(pretty(m.model)) : "", `${o ? `<div class="s">${lx(o.field_meaning)}</div>` : ""}${m ? `<div class="s">${esc(srcLabel(m))}</div>` : ""}`);
   }
-  if (e.kind === "action") return `<div class="fi rule${n}"><span class="ic">⌨</span><div class="tx"><div class="k">${String(e.engine || "").startsWith("rule fallback") ? th("Rule fallback · keyboard action") : th("Rule · keyboard action")}</div><div class="t">${ax(e.text)}</div></div><span class="r">${th("guard")}</span></div>`;
-  if (e.kind === "advisory") return `<div class="fi adv${n}"><span class="ic">!</span><div class="tx"><div class="k">${th("LLM advisory · needs human")}</div><div class="t">${lx(e.text)}</div></div><span class="r">${e.llm ? esc(pretty(e.llm.model)) : ""}</span></div>`;
-  if (e.kind === "barrier") return `<div class="fi bad${n}"><span class="ic">✗</span><div class="tx"><div class="k">${th("Deterministic check · blocked")}</div><div class="t">${ax(e.text)}</div></div><span class="r">WCAG ${esc(e.barrier.sc)}</span></div>`;
-  if (e.kind === "handoff") return `<div class="fi hum${n}"><span class="ic">✋</span><div class="tx"><div class="k">${th("Hand-off to a human")}</div><div class="t">${ax(e.text)}</div></div><span class="r">${th("guard")}</span></div>`;
-  if (e.kind === "patch") return `<div class="fi ${isLLM(e.engine) ? "llm" : "rule"}${n}"><span class="ic">✎</span><div class="tx"><div class="k">${isLLM(e.engine) ? th("LLM-written patch") : th("Rule-based patch")} · ${code(e.file)}</div><div class="t">${patchText(e, P)}</div></div><span class="r">${e.precheck && e.precheck.passed ? th("pre-check ✓") : th("pre-check ✗")}</span></div>`;
-  if (e.kind === "approval") return `<div class="fi ${e.approved ? "ok" : "bad"}${n}"><span class="ic">${e.approved ? "✓" : "✗"}</span><div class="tx"><div class="k">${th("Human decision")}</div><div class="t">${ax(e.text)}</div></div><span class="r">${step}</span></div>`;
-  if (e.kind === "precheck_fail") return `<div class="fi bad${n}"><span class="ic">⚙</span><div class="tx"><div class="k">${th("Pre-check failed · LLM retries")}</div><div class="t">${ax(e.text)}</div></div><span class="r">${th("retry")}</span></div>`;
-  if (["pass", "verified", "reached"].includes(e.kind)) return `<div class="fi ok${n}"><span class="ic">✓</span><div class="tx"><div class="k">${e.kind === "verified" ? th("Deterministic check · verified") : e.kind === "reached" ? th("Goal reached") : th("Deterministic check · pass")}</div><div class="t">${ax(e.text)}</div></div><span class="r">${step}</span></div>`;
-  if (e.kind === "sys") return `<div class="fi sys${n}"><span class="ic">i</span><div class="tx"><div class="k">${e.labelHtml || th(e.label || "Agent")}</div><div class="t">${e.html || ax(e.text)}</div></div><span class="r">${esc(e.right || "")}</span></div>`;
-  if (e.kind === "warn") return `<div class="fi warn${n}"><span class="ic">!</span><div class="tx"><div class="k">${th(e.label || "Notice")}</div><div class="t">${e.html || ax(e.text)}</div></div><span class="r"></span></div>`;
+  if (e.kind === "action") return fiHtml("rule", isNew, "⌨", String(e.engine || "").startsWith("rule fallback") ? th("Rule fallback · keyboard action") : th("Rule · keyboard action"), ax(e.text), th("guard"));
+  if (e.kind === "advisory") return fiHtml("adv", isNew, "!", th("LLM advisory · needs human"), lx(e.text), e.llm ? esc(pretty(e.llm.model)) : "");
+  if (e.kind === "barrier") return fiHtml("bad", isNew, "✗", th("Deterministic check · blocked"), ax(e.text), `WCAG ${esc(e.barrier.sc)}`);
+  if (e.kind === "handoff") return fiHtml("hum", isNew, "✋", th("Hand-off to a human"), ax(e.text), th("guard"));
+  if (e.kind === "patch") return fiHtml(isLLM(e.engine) ? "llm" : "rule", isNew, "✎", `${isLLM(e.engine) ? th("LLM-written patch") : th("Rule-based patch")} · ${code(e.file)}`, patchText(e, P), e.precheck && e.precheck.passed ? th("pre-check ✓") : th("pre-check ✗"));
+  if (e.kind === "approval") return fiHtml(e.approved ? "ok" : "bad", isNew, e.approved ? "✓" : "✗", th("Human decision"), ax(e.text), step);
+  if (e.kind === "precheck_fail") return fiHtml("bad", isNew, "⚙", th("Pre-check failed · LLM retries"), ax(e.text), th("retry"));
+  if (["pass", "verified", "reached"].includes(e.kind)) return fiHtml("ok", isNew, "✓", e.kind === "verified" ? th("Deterministic check · verified") : e.kind === "reached" ? th("Goal reached") : th("Deterministic check · pass"), ax(e.text), step);
+  if (e.kind === "sys") return fiHtml("sys", isNew, "i", e.labelHtml || th(e.label || "Agent"), e.html || ax(e.text), esc(e.right || ""));
+  if (e.kind === "warn") return fiHtml("warn", isNew, "!", th(e.label || "Notice"), e.html || ax(e.text), "");
   return "";
 }
 
@@ -74,26 +86,34 @@ function srcLabel(m) {
 }
 
 function llmChips(m) {
-  return m ? `<span class="sp"><span class="pill llm">✦ ${esc(pretty(m.model))}</span><span class="pill g">${esc(srcLabel(m))}</span></span>` : "";
+  return m ? `<span class="sp"><span class="pill llm" title="${esc(srcLabel(m))}">✦ ${esc(pretty(m.model))}</span></span>` : "";
 }
 
 function readCardHtml(m, ruleStopped, P) {
   const o = m.output;
-  const pl = pageLang(P);
   return `<div class="card llmc grow"><h3>✦ ${th("LLM reasoning")} ${llmChips(m)}</h3>
     <dl class="kv"><dt>${th("Screen reader heard")}</dt><dd class="heard big">${heardHtml(m.heard, P)}</dd>
-    <dt>${th("LLM reading")}</dt><dd style="font-size:1.1rem"><b>${lx(o.field_meaning)}</b></dd>
-    <dt>${th("Value to type")}</dt><dd class="big">${o.decision === "fill" ? `<b style="color:var(--ok)">${q(o.value, langOf(o.value))}</b>` : th("hand off to a human")}</dd>
-    <dt>${th("Why")}</dt><dd>${lx(o.reasoning)}</dd>
-    ${o.label_clear_for_screen_reader === false && o.advisory ? `<dt>${th("Advisory")}</dt><dd>${lx(o.advisory)}</dd>` : ""}</dl>
-    ${ruleStopped ? `<div class="guard" style="border-color:var(--hum2)"><span>⚖</span><span>${th("{b}Rule-only engine on the same field:{/b} stopped and handed it to a human, because {heard} is not in its keyword table.", {b: "<b>", "/b": "</b>", heard: q(m.heard, pl)})}</span></div>` : ""}
-    <div class="guard"><span>🛡</span><span>${th("{b}Guardrail:{/b} the LLM interprets and proposes. It never decides pass or fail. Submit stays forbidden by a hard rule.", {b: "<b>", "/b": "</b>"})}</span></div></div>`;
+    <dt>${th("LLM reading")}</dt><dd class="mean"><b>${lx(o.field_meaning)}</b></dd>
+    <dt>${th("Value to type")}</dt><dd class="big">${o.decision === "fill" ? `<b class="val">${q(o.value, langOf(o.value))}</b>` : th("hand off to a human")}</dd></dl></div>`;
+}
+
+function readWhyHtml(m, ruleStopped, P) {
+  const o = m.output;
+  const rows = [`<p><b>${th("Why")}:</b> ${lx(o.reasoning)}</p>`];
+  if (o.label_clear_for_screen_reader === false && o.advisory) rows.push(`<p><b>${th("Advisory")}:</b> ${lx(o.advisory)}</p>`);
+  if (m) rows.push(`<p class="mute">✦ ${esc(pretty(m.model))} · ${esc(srcLabel(m))}</p>`);
+  if (ruleStopped) rows.push(`<p>⚖ ${th("{b}Rule-only engine on the same field:{/b} stopped and handed it to a human, because {heard} is not in its keyword table.", {b: "<b>", "/b": "</b>", heard: q(m.heard, pageLang(P))})}</p>`);
+  rows.push(`<p>🛡 ${th("{b}Guardrail:{/b} the LLM interprets and proposes. It never decides pass or fail. Submit stays forbidden by a hard rule.", {b: "<b>", "/b": "</b>"})}</p>`);
+  return rows.join("");
 }
 
 function blockedCardHtml(b, P) {
   return `<div class="card badc grow"><div class="blockhero"><div class="sc"><small>WCAG</small><b>${esc(b.sc)}</b><em>${th("Level {l}", {l: esc(b.level)})}</em></div>
-    <div><h4>${esc(kindName(b.kind))} · ${code("#" + b.element_id)}</h4><p>${ax(b.evidence)}</p></div></div>
-    <div class="guard" style="border-color:var(--bad2)"><span>⚙</span><span>${th("Step {n} · {name} · found by a {b}deterministic {check}{/b}, not by the LLM.", {n: b.step, name: esc(stepName(P.key, b.step)), b: "<b>", "/b": "</b>", check: esc(t(checkLabel(b.check)))})}</span></div></div>`;
+    <div><h4>${esc(kindName(b.kind))} · ${code("#" + b.element_id)}</h4><p>${ax(b.evidence)}</p></div></div></div>`;
+}
+
+function blockedWhyHtml(b, P) {
+  return `<p>⚙ ${th("Step {n} · {name} · found by a {b}deterministic {check}{/b}, not by the LLM.", {n: b.step, name: esc(stepName(P.key, b.step)), b: "<b>", "/b": "</b>", check: esc(t(checkLabel(b.check)))})}</p>`;
 }
 
 function checkLabel(c) {
@@ -141,12 +161,15 @@ function verifiedCardHtml(b, P, attempt, record, axeAfter) {
     ${checksList({checks: rows})}</div>`;
 }
 
-function handoffCardHtml(b, P, submitted) {
-  const captcha = b.kind === "captcha";
+function handoffCardHtml(b, P) {
   return `<div class="card humc grow"><div class="blockhero"><div class="sc hum"><small>WCAG</small><b>${esc(b.sc)}</b><em>${esc(scTitle(b.sc, b.sc_title))}</em></div>
-    <div><h4>✋ ${th("{kind} → human officer", {kind: esc(kindName(b.kind))})}</h4><p>${ax(b.evidence)}</p></div></div>
-    <dl class="kv" style="margin-top:1rem"><dt>${th("Next owner")}</dt><dd>${th("Human officer.")} ${captcha ? th("Recommended fix: an audio or text alternative.") : th("The officer confirms what the field asks for.")}</dd>
-    <dt>${th("Guards")}</dt><dd>${th("No CAPTCHA solving · no submit (submitted: {v}) · no login · 127.0.0.1 only", {v: `<b>${esc(yesNo(submitted || "no"))}</b>`})}</dd></dl></div>`;
+    <div><h4>✋ ${th("{kind} → human officer", {kind: esc(kindName(b.kind))})}</h4><p>${ax(b.evidence)}</p></div></div></div>`;
+}
+
+function handoffWhyHtml(b, submitted) {
+  const captcha = b.kind === "captcha";
+  return `<p><b>${th("Next owner")}:</b> ${th("Human officer.")} ${captcha ? th("Recommended fix: an audio or text alternative.") : th("The officer confirms what the field asks for.")}</p>
+    <p><b>${th("Guards")}:</b> ${th("No CAPTCHA solving · no submit (submitted: {v}) · no login · 127.0.0.1 only", {v: `<b>${esc(yesNo(submitted || "no"))}</b>`})}</p>`;
 }
 
 function yesNo(v) {
@@ -173,7 +196,7 @@ function timelineHtml(P, events, curA, curStep, sweep, maxRows = 4) {
     }
   });
   const banner = sweep ? `<div class="restart-banner"><span class="ring"></span>${th("Restart from step 1 · attempt {n}", {n: curA})}</div>` : "";
-  return `<h3>${th("Run timeline")} <span class="sp"><span class="pill g">${th("restart from step 1 after every fix")}</span></span></h3>${banner}<div class="tlg" style="grid-template-columns:auto repeat(${P.steps.length},minmax(0,1fr))">${html}</div>`;
+  return `<h3>${th("Run timeline")}</h3>${banner}<div class="tlg" style="grid-template-columns:auto repeat(${P.steps.length},minmax(0,1fr))">${html}</div>`;
 }
 
 function setRail(stage) {
@@ -209,6 +232,7 @@ function setCaption(text, tone, meta, animate, P) {
   const isNote = /^\(.*\)$/.test(String(text || ""));
   const g = text && !isNote ? glossText(text, pageLang(P)) : null;
   capEl.className = "caption " + (tone || "") + (text ? "" : " quiet") + (g ? " glossed" : "");
+  capEl.title = meta || "";
   document.getElementById("capMeta").textContent = meta || "";
   const glossEl = document.getElementById("gloss");
   glossEl.innerHTML = "";
@@ -227,10 +251,27 @@ function setCaption(text, tone, meta, animate, P) {
   typewriter(text, animate, pageLang(P), showGloss);
 }
 
+const PETAL_STAMPS = ["VERIFIED ✓", "GOAL REACHED"];
+
 function setStamp(st) {
   const screen = document.getElementById("screen");
-  screen.querySelectorAll(".stamp-ov").forEach(x => x.remove());
-  if (st) screen.insertAdjacentHTML("beforeend", `<div class="stamp-ov ${st[0]}">${esc(t(st[1], st[2]))}</div>`);
+  const key = st ? `${st[0]}|${t(st[1], st[2])}` : "";
+  if (screen.dataset.stamp === key && (!st || screen.querySelector(".stamp-ov"))) return;
+  screen.dataset.stamp = key;
+  screen.querySelectorAll(".stamp-ov, .petal-fall").forEach(x => x.remove());
+  if (!st) return;
+  screen.insertAdjacentHTML("beforeend", `<div class="stamp-ov ${st[0]}">${esc(t(st[1], st[2]))}</div>`);
+  if (st[0] === "ok" && PETAL_STAMPS.includes(st[1])) dropPetals(screen);
+}
+
+function dropPetals(host) {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const fall = document.createElement("div");
+  fall.className = "petal-fall";
+  fall.setAttribute("aria-hidden", "true");
+  fall.innerHTML = "<i></i>".repeat(9);
+  host.append(fall);
+  setTimeout(() => fall.remove(), 6000);
 }
 
 let toastTimer = null;
@@ -243,15 +284,6 @@ function toast(html, bad) {
   toastTimer = setTimeout(() => { tEl.hidden = true; }, 4200);
 }
 
-function fitHeader() {
-  const hdr = document.getElementById("hdr");
-  if (!hdr) return;
-  const chips = [...hdr.children];
-  chips.forEach(c => { c.hidden = false; });
-  const order = [...chips].sort((x, y) => (+x.dataset.prio || 0) - (+y.dataset.prio || 0));
-  for (const c of order) {
-    if (hdr.scrollWidth <= hdr.clientWidth + 1) break;
-    if (order.filter(x => !x.hidden).length <= 1) break;
-    c.hidden = true;
-  }
+function sheadHtml(title, sub, why) {
+  return `<h2>${title}</h2>${sub || why ? `<div class="subrow">${sub ? `<p>${sub}</p>` : ""}${why || ""}</div>` : ""}`;
 }

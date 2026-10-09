@@ -2,7 +2,7 @@ const HTTP = location.protocol.startsWith("http");
 const DUR = {restart: 900, hear: 420, heading: 650, action: 600, fill: 750, advisory: 1300, barrier: 1900, patch: 900, approval: 1100,
   pass: 650, verified: 2000, reached: 1500, handoff: 1900, precheck_fail: 1100, info: 500, warning: 900, llm_start: 150, llm_end: 450, done: 0, stopped: 0, error: 0};
 const PURPOSE = {"interpret field": "Claude {model} is reading the field label", "write patch": "Claude {model} is writing a patch and a plain-language explanation"};
-const HL = {focus: "#2563eb", llm: "#7c3aed", bad: "#e11d48", ok: "#0f9f8f", hum: "#d97706", plant: "#d97706"};
+const HL = {focus: "#2a6496", llm: "#2c4c8f", bad: "#bf3a30", ok: "#147a5e", hum: "#b07414", plant: "#b07414"};
 
 const L = {
   options: null, health: null, offline: false,
@@ -301,26 +301,30 @@ function visiblePending() {
 
 function liveHeader() {
   const running = ["starting", "running", "waiting"].includes(L.status);
-  document.getElementById("procs").innerHTML = Object.values(L.options ? L.options.procedures : {vn: {key: "vn", title: ""}, jp: {key: "jp", title: ""}}).map(p =>
-    `<button class="proc ${L.cfg.procedure === p.key ? "on" : ""}" data-proc="${p.key}" title="${esc(procTitle(p.key))}" aria-pressed="${L.cfg.procedure === p.key}" ${running ? "disabled" : ""}>${FLAG[p.key] || ""}<span>${esc(procShort(p.key))}</span></button>`).join("");
-  if (L.offline) { document.getElementById("hdr").innerHTML = `<span class="chip warn"><i></i>${th("Live run needs the local server")}</span>`; fitHeader(); return; }
-  const mode = L.cfg.llm === "live" ? `<span class="chip llm" data-prio="2"><i></i>${th("Live Claude calls")}</span>` : `<span class="chip ok" data-prio="2"><i></i>${th("Cached LLM replies · offline")}</span>`;
-  const st = L.status === "waiting" && visiblePending() ? `<span class="chip warn" data-prio="3"><i></i>${th("Waiting for your decision")}</span>`
-    : running ? `<span class="chip live" data-prio="3"><i></i>${th("LIVE RUN")}</span>` : L.status === "done" ? `<span class="chip ok" data-prio="1"><i></i>${th("Run finished")}</span>` : "";
-  document.getElementById("hdr").innerHTML = `<span class="chip llm" data-prio="0"><i></i>LLM · Haiku 4.5 + Sonnet 5.5</span>${mode}${st}`;
-  fitHeader();
+  const procs = L.options ? Object.values(L.options.procedures) : [{key: "vn"}, {key: "jp"}];
+  document.getElementById("procs").innerHTML = procs.map(p => procButton(p.key, L.cfg.procedure === p.key, `data-proc="${p.key}" ${running ? "disabled" : ""}`)).join("");
+  if (L.offline) { document.getElementById("hdr").innerHTML = `<span class="chip warn"><i></i>${th("Live run needs the local server")}</span>`; return; }
+  const mode = L.cfg.llm === "live" ? `<span class="chip llm"><i></i>${th("Live Claude calls")}</span>` : `<span class="chip ok"><i></i>${th("Cached LLM replies · offline")}</span>`;
+  document.getElementById("hdr").innerHTML = `<span class="chip llm"><i></i>LLM · Haiku 4.5 + Sonnet 5.5</span>${mode}`;
+}
+
+function liveStatusHtml() {
+  const h = L.health || {};
+  const chip = (ok, label) => `<span class="chip ${ok ? "ok" : "warn"}"><i></i>${label}</span>`;
+  const running = ["starting", "running", "waiting"].includes(L.status);
+  const busyFor = L.busy ? Math.max(0, Math.round(Date.now() / 1000 - L.busy.since)) : 0;
+  const st = L.status === "waiting" && visiblePending() ? `<span class="chip warn"><i></i>${th("Waiting for your decision")}</span>`
+    : running ? `<span class="chip live"><i></i>${th("LIVE RUN")}</span>` : L.status === "done" ? `<span class="chip ok"><i></i>${th("Run finished")}</span>` : "";
+  return `${st}${chip(true, th("Local server"))}${chip(h.chromium !== false, h.chromium === false ? th("Chromium missing") : "Chromium")}${chip(h.claude_cli, h.claude_cli ? "Claude CLI" : th("Claude CLI not found"))}${running && L.busy ? `<span class="chip llm"><i></i>${th("Claude call {s} s", {s: busyFor})}</span>` : ""}${L.runId ? `<span class="mute">${th("run {id} · saved to {dir}", {id: esc(L.runId), dir: code("runs/live/")})}</span>` : ""}`;
 }
 
 function liveFooter() {
   document.getElementById("chapters").innerHTML = "";
   document.getElementById("ticks").innerHTML = "";
   document.getElementById("playState").textContent = "";
-  document.getElementById("progBar").style.width = "0";
-  const h = L.health || {};
-  const chip = (ok, label) => `<span class="chip ${ok ? "ok" : "warn"}"><i></i>${label}</span>`;
+  document.getElementById("dStatusSec").hidden = !!L.offline;
+  document.getElementById("dStatus").innerHTML = L.offline ? "" : liveStatusHtml();
   const running = ["starting", "running", "waiting"].includes(L.status);
-  const busyFor = L.busy ? Math.max(0, Math.round(Date.now() / 1000 - L.busy.since)) : 0;
-  document.getElementById("ticks").innerHTML = L.offline ? "" : `<div class="status">${chip(true, th("Local server"))}${chip(h.chromium !== false, h.chromium === false ? th("Chromium missing") : "Chromium")}${chip(h.claude_cli, h.claude_cli ? "Claude CLI" : th("Claude CLI not found"))}${running && L.busy ? `<span class="chip llm"><i></i>${th("Claude call {s} s", {s: busyFor})}</span>` : ""}${L.runId ? `<span class="mute">${th("run {id} · saved to {dir}", {id: esc(L.runId), dir: code("runs/live/")})}</span>` : ""}</div>`;
   const B = {b: "<b>", "/b": "</b>"};
   document.getElementById("hint").innerHTML = `${visiblePending() ? th("{b}A{/b} approve · {b}R{/b} reject", B) + " · " : ""}${running ? th("{b}Esc{/b} stop", B) + " · " : ""}${th("{b}L{/b} replay · {b}G{/b} language", B)}`;
 }
@@ -334,6 +338,12 @@ function seg(name, value, items, disabled) {
 function targetName(P, x) {
   if (x.id.startsWith("step")) return stepName(P.key, x.step);
   return labelPlain(x.name, pageLang(P)) || `#${x.id}`;
+}
+
+function optionsSummary() {
+  const form = L.cfg.form === "inject" ? t("Try it yourself") : t("Original mock");
+  const llm = L.cfg.llm === "live" ? t("Live Claude calls") : t("Cached replies");
+  return `${esc(form)} · ${esc(llm)} · ${L.cfg.speed}×`;
 }
 
 function setupPanel() {
@@ -350,27 +360,26 @@ function setupPanel() {
   const live = L.health.claude_cli;
   const planted = L.prepared && L.prepared.injected;
   const plantedOn = planted && planted.target_name && !String(planted.target).startsWith("step") ? `: ${q(planted.target_name, pageLang(P))}` : "";
-  return `<div class="setup">
-    <div class="card"><h3>▶ ${th("Run the agent now")} <span class="sp"><span class="pill g">${th("real Chromium · keyboard only · local mock")}</span></span></h3>
-      <div class="row"><span class="lbl">${th("Procedure")}</span>${seg("procedure", L.cfg.procedure, Object.values(O.procedures).map(p => [p.key, `${FLAG[p.key]} ${esc(procShort(p.key))}`, t("{n} steps", {n: p.steps.length})]))}</div>
+  const tryRows = inj ? `<div class="row"><span class="lbl">${th("Barrier")}</span>${seg("barrier", L.cfg.barrier, B.kinds.map(k => [k.id, th(k.short), "WCAG " + k.sc])).replace('class="seg"', 'class="seg kinds"')}</div>
+      <div class="row"><label for="targetSel">${th("Where")}</label><select class="sel" id="targetSel">${targets.map(x => `<option value="${esc(x.id)}" ${tg && x.id === tg.id ? "selected" : ""}>${esc(x.id.startsWith("step") ? t("Step {n} · {step}", {n: x.step, step: stepName(P.key, x.step)}) : t("Step {n} · {step} · {name}", {n: x.step, step: stepName(P.key, x.step), name: targetName(P, x)}))}${x.id.startsWith("step") ? "" : ` (#${esc(x.id)})`}</option>`).join("")}</select></div>
+      ${kind ? `<div class="planted"><span>⚑</span><span>${th("{b}{label}{/b} (WCAG {sc}){where}. {what} The agent is not told where it is.", {b: "<b>", "/b": "</b>", label: esc(t(kind.label)), sc: esc(kind.sc), where: planted ? " " + th("planted on step {n}", {n: planted.step}) + plantedOn : "", what: th(kind.what)})}</span></div>` : ""}` : "";
+  return `<div class="setup"><div class="card launch">
+      <div class="pickproc" role="group" aria-label="${esc(t("Procedure"))}">${Object.values(O.procedures).map(p => `<button type="button" data-set="procedure" data-v="${p.key}" aria-pressed="${L.cfg.procedure === p.key}">${FLAG[p.key]}<span><b>${esc(procShort(p.key))}</b><small>${esc(t("{n} steps", {n: p.steps.length}))}</small></span></button>`).join("")}</div>
+      <div class="go"><button class="runbtn" id="runBtn" data-act="run">▶ ${th("Start agent")}</button><button class="ghost" data-act="reset" title="${esc(t("Restore the original mock portal"))}">↺ ${th("Reset")}</button></div>
+      <details class="opts" id="liveOpts" data-keep="opts"${keepOpen("opts")}><summary><span>${th("Options")}</span><small>${optionsSummary()}</small></summary>
       <div class="row"><span class="lbl">${th("Start from")}</span>${seg("form", L.cfg.form, [["original", th("Original mock"), t("planted barriers")], ["inject", th("Try it yourself"), t("clean form + 1 barrier")]])}</div>
       <div class="row"><span class="lbl">${th("LLM answers")}</span>${seg("llm", L.cfg.llm, [["cached", th("Cached replies"), t("offline")], ["live", th("Live Claude calls"), live ? t("10–50 s each") : t("CLI not found"), !live]])}</div>
       <div class="row"><span class="lbl">${th("Speed")}</span>${seg("speed", String(L.cfg.speed), [["1", th("Stage"), "1×"], ["3", th("Fast"), "3×"]])}</div>
-      <div class="go"><button class="runbtn" id="runBtn" data-act="run">▶ ${th("Run agent now")}</button><button class="ghost" data-act="reset" title="${esc(t("Restore the original mock portal"))}">↺ ${th("Reset portal")}</button></div></div>
-    <div class="card ${inj ? "" : "dimmed"}"><h3>🧪 ${th("Try it yourself: plant one barrier")} ${inj ? "" : `<span class="sp"><span class="pill g">${th("choose “Try it yourself” above")}</span></span>`}</h3>
-      <div class="row"><span class="lbl">${th("Barrier")}</span>${seg("barrier", L.cfg.barrier, B.kinds.map(k => [k.id, th(k.short), "WCAG " + k.sc]), !inj).replace('class="seg"', 'class="seg kinds"')}</div>
-      <div class="row"><label for="targetSel">${th("Where")}</label><select class="sel" id="targetSel" ${inj ? "" : "disabled"}>${targets.map(x => `<option value="${esc(x.id)}" ${tg && x.id === tg.id ? "selected" : ""}>${esc(x.id.startsWith("step") ? t("Step {n} · {step}", {n: x.step, step: stepName(P.key, x.step)}) : t("Step {n} · {step} · {name}", {n: x.step, step: stepName(P.key, x.step), name: targetName(P, x)}))}${x.id.startsWith("step") ? "" : ` (#${esc(x.id)})`}</option>`).join("")}</select></div>
-      ${inj && kind ? `<div class="planted"><span>⚑</span><span>${th("{b}{label}{/b} (WCAG {sc}){where}. {what} The agent is not told where it is.", {b: "<b>", "/b": "</b>", label: esc(t(kind.label)), sc: esc(kind.sc), where: planted ? " " + th("planted on step {n}", {n: planted.step}) + plantedOn : "", what: th(kind.what)})}</span></div>` : ""}</div>
-  </div>`;
+      ${tryRows}</details></div>${heroFill("listen", true)}</div>`;
 }
 
 function thinkLine(s) {
-  return th("{s} s · live call through the claude CLI (timeout 90 s, then cached answer or rule engine)", {s});
+  return th("{s} s · live Claude call", {s});
 }
 
 function thinkingCard(c) {
   const s = Math.max(0, Math.round(Date.now() / 1000 - c.since));
-  return `<div class="card llmc"><div class="think"><span class="orb" aria-hidden="true"></span><div><b>✦ ${th(PURPOSE[c.purpose] || "Claude {model} is thinking", {model: esc(pretty(c.model))})}…</b><span id="thinkSecs">${thinkLine(s)}</span></div></div></div>`;
+  return `<div class="card llmc"><div class="think"><span class="orb" aria-hidden="true"></span><div><b>✦ ${th(PURPOSE[c.purpose] || "Claude {model} is thinking", {model: esc(pretty(c.model))})}…</b><span id="thinkSecs" title="${esc(t("{s} s · live call through the claude CLI (timeout 90 s, then cached answer or rule engine)", {s}))}">${thinkLine(s)}</span></div></div></div>`;
 }
 
 const CHECK_SHORT = {"Target element still present": "Target element still present", "Accessibility tree: accessible name matches the visible label": "accessible name matches the visible label",
@@ -389,7 +398,7 @@ function decisionCard(ev) {
   if (!p) return `<div class="card humc">${head}<div class="decide"><button class="btn yes" disabled>✓ ${th("Approve")}</button><button class="btn no" disabled>✗ ${th("Reject")}</button></div><div class="whoapp">${th("Waiting for the agent to hand over the patch…")}</div></div>`;
   const dis = L.decisionSent ? "disabled" : "";
   return `<div class="card humc">${head}<div class="decide"><button class="btn yes" data-act="approve" ${dis}>✓ ${th("Approve")} <kbd>A</kbd></button><button class="btn no" data-act="reject" ${dis}>✗ ${th("Reject")} <kbd>R</kbd></button></div>
-    <div class="whoapp">${L.decisionSent ? th("Sending your decision…") : th("Approve → written to the local mock portal, then the agent restarts from step 1. Reject → nothing changes; the barrier goes to a human.")}</div></div>`;
+    <div class="whoapp">${L.decisionSent ? th("Sending your decision…") : th("Approve → restart from step 1 · Reject → to a human")}</div></div>`;
 }
 
 function approvalResultCard(ev) {
@@ -407,7 +416,6 @@ const STATUS_TEXT = {fixed: "fixed ✓ verified", handoff: "→ human", rejected
 function resultCard(s) {
   const P = procMeta();
   const axeRows = s.axe ? s.axe.comparison : [];
-  const axeN = axeRows.filter(r => r.axe).length;
   const verdict = s.final === "rejected" ? th("Patch rejected: the barrier stays open and goes to a human officer.")
     : s.final === "handoff" ? (s.barriers.some(b => b.kind === "captcha" && b.status === "handoff") ? th("Stopped at a CAPTCHA: handed to a human. Never bypassed.") : th("Stopped at a field it could not read: handed to a human. Never bypassed."))
     : s.reached ? th("Confirmation step reached by keyboard only. The submit button was never pressed.") : th("Run ended: {final}.", {final: esc(t(s.final))});
@@ -415,12 +423,11 @@ function resultCard(s) {
     const a = axeRows.find(r => r.element === b.element_id && r.step === b.step);
     return `<tr><td class="nw">${th("Step {n}", {n: b.step})}</td><td>${esc(kindName(b.kind))} ${code("#" + b.element_id)}</td><td class="nw">WCAG ${esc(b.sc)}</td><td class="nw ${b.status === "fixed" ? "yes" : b.status === "rejected" ? "no" : ""}">${th(STATUS_TEXT[b.status] || b.status)}</td><td class="nw">${a ? (a.axe ? `<span class="yes">✓</span> ${code(a.axe_rules.join(", "))}` : `<span class="no">✗ ${th("missed")}</span>`) : "–"}</td></tr>`;
   }).join("");
-  return `<div class="card okc result grow" style="justify-content:flex-start"><h3 style="color:var(--ok)">${th("Run result · {title}", {title: esc(procTitle(P.key))})} <span class="sp"><span class="pill g">${s.llm_mode === "live" ? th("live Claude calls") : th("cached LLM replies")}</span></span></h3>
+  return `<div class="card okc result grow" style="justify-content:flex-start"><h3 style="color:var(--ok)">${th("Run result · {title}", {title: esc(procTitle(P.key))})}</h3>
     <p class="big" style="margin-bottom:.8rem">${verdict}</p>
     <div class="stats"><div class="stat"><b>${s.attempts}</b><span>${th("attempts, each from step 1")}</span></div><div class="stat ok"><b>${s.fixed}</b><span>${th("fixed and verified by replay")}</span></div><div class="stat z"><b>${s.handoff + s.rejected}</b><span>${th("left to a human")}</span></div><div class="stat"><b style="color:var(--ok)">${esc(yesNo(s.submitted))}</b><span>${th("form submitted")}</span></div></div>
     ${rows ? `<table style="margin-top:.8rem"><thead><tr><th>${th("Step")}</th><th>${th("Barrier found by the agent")}</th><th>${th("Criterion")}</th><th>${th("Outcome")}</th><th>${th("axe-core, same start page")}</th></tr></thead><tbody>${rows}</tbody></table>` : `<p class="note">${th("No blocking barrier found.")}</p>`}
-    ${s.axe ? `<p class="note">${th("axe-core 4.10.2 on the same starting pages found {n} of {total} blocking barrier(s) the agent found.", {n: axeN, total: axeRows.length})}</p>` : ""}
-    <div class="go"><button class="runbtn" data-act="run">▶ ${th("Run again")}</button><button class="ghost" data-act="setup">⚙ ${th("Change setup")}</button><button class="ghost" data-act="reset">↺ ${th("Reset portal")}</button></div></div>`;
+    <div class="go"><button class="runbtn" data-act="run">▶ ${th("Run again")}</button><button class="ghost" data-act="setup">⚙ ${th("Setup")}</button><button class="ghost" data-act="reset">↺ ${th("Reset")}</button></div>${heroFill(s.final === "rejected" || s.final === "handoff" ? "listen" : "done")}</div>`;
 }
 
 function runBar() {
@@ -428,11 +435,11 @@ function runBar() {
   const inj = L.prepared && L.prepared.injected;
   const label = L.cfg.form === "inject" && inj ? th("Try it yourself · {label} on step {n}", {label: esc(t(inj.label)), n: inj.step}) : L.cfg.form === "inject" ? th("Try it yourself") : th("Original mock · planted barriers");
   return `<div class="runbar"><div class="grow1"><span class="pill ${running ? "bad" : "g"}">${running ? "● " + th("running") : th(L.status)}</span><span class="pill g">${label}</span></div>
-    ${running ? `<button class="ghost bad" data-act="stop">■ ${th("Stop")} <kbd style="font-size:.7rem">Esc</kbd></button>` : `<button class="ghost" data-act="setup">⚙ ${th("Setup")}</button>`}<button class="ghost" data-act="reset">↺ ${th("Reset portal")}</button></div>`;
+    ${running ? `<button class="ghost bad" data-act="stop">■ ${th("Stop")} <kbd>Esc</kbd></button>` : `<button class="ghost" data-act="setup">⚙ ${th("Setup")}</button>`}<button class="ghost" data-act="reset">↺ ${th("Reset")}</button></div>`;
 }
 
 function liveFeedHtml(P) {
-  const tail = L.feed.slice(-14);
+  const tail = L.feed.slice(-5);
   return `<div class="feed" id="feed" aria-label="${esc(t("Live agent log"))}">${tail.map((e, i) => feedItem(e, i >= tail.length - 2, P)).join("")}</div>`;
 }
 
@@ -448,39 +455,47 @@ function currentCard(P) {
     const rec = patchRecordFor(c.ev.barrier.element_id);
     return verifiedCardHtml(c.ev.barrier, P, c.ev.attempt, rec ? {precheck: rec.precheck, patch_engine: rec.engine} : null, null);
   }
-  if (c.type === "handoff") return handoffCardHtml(c.ev.barrier, P, "no");
+  if (c.type === "handoff") return handoffCardHtml(c.ev.barrier, P);
   if (c.type === "result") return resultCard(c.summary);
-  if (c.type === "stopped") return `<div class="card grow"><h3>■ ${th("Run stopped")}</h3><p class="big">${ax(c.text)}</p><div class="go"><button class="runbtn" data-act="run">▶ ${th("Run again")}</button><button class="ghost" data-act="setup">⚙ ${th("Setup")}</button><button class="ghost" data-act="reset">↺ ${th("Reset portal")}</button></div></div>`;
-  if (c.type === "error") return `<div class="card badc grow"><h3>${th("Agent error")}</h3><p class="big">${ax(c.text)}</p><p class="note">${th("Nothing was submitted. The recorded replay (key L) is unaffected.")}</p><div class="go"><button class="runbtn" data-act="run">▶ ${th("Try again")}</button><button class="ghost" data-act="reset">↺ ${th("Reset portal")}</button></div></div>`;
+  if (c.type === "stopped") return `<div class="card grow"><h3>■ ${th("Run stopped")}</h3><p class="big">${ax(c.text)}</p><div class="go"><button class="runbtn" data-act="run">▶ ${th("Run again")}</button><button class="ghost" data-act="setup">⚙ ${th("Setup")}</button><button class="ghost" data-act="reset">↺ ${th("Reset")}</button></div></div>`;
+  if (c.type === "error") return `<div class="card badc grow"><h3>${th("Agent error")}</h3><p class="big">${ax(c.text)}</p><p class="note">${th("Nothing was submitted. The recorded replay (key L) is unaffected.")}</p><div class="go"><button class="runbtn" data-act="run">▶ ${th("Try again")}</button><button class="ghost" data-act="reset">↺ ${th("Reset")}</button></div></div>`;
   return "";
 }
 
 function liveShead(P) {
-  const country = P ? procCountry(P.key) : "";
-  let kicker = th("Live run"), title = th("Run the agent now on the local mock portal"), sub = th("A real Playwright + Chromium run, keyboard only, driven by the screen-reader view. You approve or reject every patch."), tone = TONE.listen;
-  if (L.offline) { title = th("Live run is not available here"); sub = th("Open the page through {cmd} to run the agent.", {cmd: code("python start_demo.py")}); }
+  let title = th("Run the agent on the mock portal"), sub = th("Keyboard only. You approve every fix."), why = `<p>${th("A real Playwright + Chromium run, keyboard only, driven by the screen-reader view. You approve or reject every patch.")}</p>`;
+  if (L.offline) { title = th("Live run is not available here"); sub = th("Open the page through {cmd} to run the agent.", {cmd: code("python start_demo.py")}); why = ""; }
   else if (L.view === "run") {
     const c = L.current;
     const s = L.attempt ? th("Attempt {a} · step {s}/{n}", {a: L.attempt, s: L.step, n: P.steps.length}) : th("Starting Chromium…");
-    tone = TONE[L.stage] || TONE.listen;
     title = L.status === "starting" && !L.attempt ? th("Starting the agent…") : th("Walking step {n}: {name}", {n: L.step, name: esc(stepName(P.key, L.step))});
-    sub = th("{s} · Tab, Space, Enter and typing only · local mock, nothing is submitted.", {s});
-    if (c && c.type === "thinking") { title = th(PURPOSE[c.purpose] || "Claude {model} is thinking", {model: esc(pretty(c.model))}); tone = TONE.llm; }
-    if (c && c.type === "read") { title = th("LLM reads {heard}", {heard: c.ev.llm.heard ? q(c.ev.llm.heard, pageLang(P)) : th("(no name)")}); sub = lx(c.ev.llm.output.field_meaning); tone = TONE.llm; kicker = th("Live run · LLM reads a label"); }
-    if (c && c.type === "blocked") { const b = c.ev.barrier; title = th("Blocked at step {n}: {kind}", {n: b.step, kind: esc(kindName(b.kind))}); sub = th("Attempt {a} · WCAG {sc} {title} (Level {l}) on {id}", {a: c.ev.attempt, sc: esc(b.sc), title: esc(scTitle(b.sc, b.sc_title)), l: esc(b.level), id: code("#" + b.element_id)}); kicker = th("Live run · blocked"); }
-    if (c && c.type === "patch") { title = visiblePending() ? th("Approve the fix for {id}?", {id: code("#" + c.ev.focus)}) : th(isLLM(c.ev.engine) ? "LLM proposes a fix for {id}" : "Rule engine proposes a fix for {id}", {id: code("#" + c.ev.focus)}); sub = th("Pre-checked on a staging copy. Nothing is applied until you decide."); tone = TONE.human; kicker = th("Live run · human approves"); }
-    if (c && c.type === "approval") { title = c.ev.approved ? th("Approved: patch written, restarting from step 1") : th("Rejected: nothing applied"); tone = TONE.human; }
-    if (c && c.type === "verified") { title = th("Restarted from step 1 · {id} verified", {id: code("#" + c.ev.barrier.element_id)}); sub = th("Attempt {a} · judged by keyboard replay, the accessibility tree and axe-core. The LLM does not grade its own fix.", {a: c.ev.attempt}); tone = TONE.verified; kicker = th("Live run · verified"); }
-    if (c && c.type === "handoff") { title = th("{kind} → hand off to a human", {kind: esc(kindName(c.ev.barrier.kind))}); sub = th("Never bypassed. The submit button is never pressed."); tone = TONE.human; }
-    if (c && c.type === "result") { title = th("Run finished"); sub = th("{n} attempt(s) · saved to {dir} · recorded replay untouched.", {n: L.result ? L.result.attempts : "", dir: code(L.result ? L.result.folder : "runs/live")}); tone = TONE.verified; kicker = th("Live run · result"); }
-    if (c && c.type === "stopped") { title = th("Run stopped"); tone = TONE.human; }
-    if (c && c.type === "error") { title = th("The agent hit an error"); tone = TONE.blocked; }
+    sub = s;
+    why = `<p>${th("{s} · Tab, Space, Enter and typing only · local mock, nothing is submitted.", {s})}</p>`;
+    if (c && c.type === "thinking") { title = th(PURPOSE[c.purpose] || "Claude {model} is thinking", {model: esc(pretty(c.model))}); }
+    if (c && c.type === "read") { title = th("LLM reads {heard}", {heard: c.ev.llm.heard ? q(c.ev.llm.heard, pageLang(P)) : th("(no name)")}); sub = lx(c.ev.llm.output.field_meaning); why = readWhyHtml(c.ev.llm, false, P); }
+    if (c && c.type === "blocked") { const b = c.ev.barrier; title = th("Blocked at step {n}: {kind}", {n: b.step, kind: esc(kindName(b.kind))}); sub = th("WCAG {sc} {title}", {sc: esc(b.sc), title: esc(scTitle(b.sc, b.sc_title))}); why = `<p>${th("Attempt {a} · WCAG {sc} {title} (Level {l}) on {id}", {a: c.ev.attempt, sc: esc(b.sc), title: esc(scTitle(b.sc, b.sc_title)), l: esc(b.level), id: code("#" + b.element_id)})}</p>${blockedWhyHtml(b, P)}`; }
+    if (c && c.type === "patch") { title = visiblePending() ? th("Approve the fix for {id}?", {id: code("#" + c.ev.focus)}) : th(isLLM(c.ev.engine) ? "LLM proposes a fix for {id}" : "Rule engine proposes a fix for {id}", {id: code("#" + c.ev.focus)}); sub = th("Nothing is applied until you decide."); why = `<p>${th("Pre-checked on a staging copy. Nothing is applied until you decide.")}</p><p>${th("Approve → written to the local mock portal, then the agent restarts from step 1. Reject → nothing changes; the barrier goes to a human.")}</p>${c.ev.llm ? `<p class="mute">✦ ${esc(pretty(c.ev.llm.model))} · ${esc(srcLabel(c.ev.llm))}</p>` : ""}`; }
+    if (c && c.type === "approval") { title = c.ev.approved ? th("Approved: patch written, restarting from step 1") : th("Rejected: nothing applied"); }
+    if (c && c.type === "verified") { title = th("Restarted from step 1 · {id} verified", {id: code("#" + c.ev.barrier.element_id)}); sub = th("Judged by code, not by the LLM."); why = `<p>${th("Attempt {a} · judged by keyboard replay, the accessibility tree and axe-core. The LLM does not grade its own fix.", {a: c.ev.attempt})}</p>`; }
+    if (c && c.type === "handoff") { title = th("{kind} → hand off to a human", {kind: esc(kindName(c.ev.barrier.kind))}); sub = th("Never bypassed. Nothing is submitted."); why = handoffWhyHtml(c.ev.barrier, "no"); }
+    if (c && c.type === "result") { title = th("Run finished"); sub = th("{n} attempt(s) · recorded replay untouched.", {n: L.result ? L.result.attempts : ""}); why = resultWhy(L.result); }
+    if (c && c.type === "stopped") { title = th("Run stopped"); }
+    if (c && c.type === "error") { title = th("The agent hit an error"); }
   } else if (L.cfg.form === "inject") {
-    kicker = th("Try it yourself"); tone = TONE.blocked;
     title = th("Plant a barrier, then let the agent find it");
-    sub = th("Pick a barrier and where it goes. The page on the left already contains it. The agent starts at step 1 without knowing where it is.");
+    sub = th("The agent does not know where it is.");
+    why = `<p>${th("Pick a barrier and where it goes. The page on the left already contains it. The agent starts at step 1 without knowing where it is.")}</p>`;
   }
-  document.getElementById("shead").innerHTML = `<div class="kicker" style="--tone:${tone}"><i></i>${kicker}${country ? " · " + esc(country) : ""}</div><h2>${title}</h2><p>${sub}</p>`;
+  const key = "why:live:" + (L.view === "run" ? (L.current ? L.current.type : "run") : L.cfg.form);
+  document.getElementById("shead").innerHTML = sheadHtml(title, sub, whyHtml(key, why));
+}
+
+function resultWhy(s) {
+  if (!s) return "";
+  const rows = s.axe ? s.axe.comparison : [];
+  return `<p>${th("{n} attempt(s) · saved to {dir} · recorded replay untouched.", {n: s.attempts, dir: code(s.folder || "runs/live")})}</p>
+    <p>${s.llm_mode === "live" ? th("live Claude calls") : th("cached LLM replies")}</p>
+    ${s.axe ? `<p>${th("axe-core 4.10.2 on the same starting pages found {n} of {total} blocking barrier(s) the agent found.", {n: rows.filter(r => r.axe).length, total: rows.length})}</p>` : ""}`;
 }
 
 function liveViewer(P) {
@@ -589,6 +604,7 @@ function renderLive(animate = true) {
     setCaption(capText, L.caption.tone, capMeta, !!capText && animate, P);
   } else {
     document.getElementById("capMeta").textContent = capMeta;
+    document.getElementById("caption").title = capMeta;
     const cap = document.getElementById("caption");
     cap.className = "caption " + (L.caption.tone || "") + (cap.classList.contains("glossed") ? " glossed" : "");
   }
@@ -601,7 +617,8 @@ function renderLive(animate = true) {
     const c = L.current;
     const focusCard = currentCard(P);
     const big = c && ["patch", "result"].includes(c.type);
-    panel.innerHTML = runBar() + (big ? "" : liveFeedHtml(P)) + focusCard;
+    const idle = !c || c.type === "thinking" || c.type === "approval";
+    panel.innerHTML = runBar() + (big ? "" : liveFeedHtml(P)) + focusCard + (idle ? heroFill(c && c.type === "thinking" ? "wait" : "listen") : "");
     tl.hidden = !!big;
     if (!big) tl.innerHTML = timelineHtml(P, L.events, L.attempt, L.step, c && c.type === "verified");
     trimFeed(1);

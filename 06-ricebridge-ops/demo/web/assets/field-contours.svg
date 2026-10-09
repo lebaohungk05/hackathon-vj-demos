@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270" fill="none" stroke-linejoin="round" stroke-linecap="round">
+<style>polygon{stroke:#c4d0eb;stroke-width:1.1}.c{stroke:#8cc8ec;stroke-width:1.2}.ch{stroke:#62d3b3;stroke-width:1.8}</style>
+<path class="c" d="M0 40Q25 33 50 40Q75 47 100 40Q125 33 150 40Q175 47 200 40Q225 33 250 40Q275 47 300 40Q325 33 350 40Q375 47 400 40" stroke-opacity="0.8"/><path class="c" d="M0 58Q25 52 50 58Q75 64 100 58Q125 52 150 58Q175 64 200 58Q225 52 250 58Q275 64 300 58Q325 52 350 58Q375 64 400 58" stroke-opacity="0.6000000000000001"/><path class="c" d="M0 74Q25 69 50 74Q75 79 100 74Q125 69 150 74Q175 79 200 74Q225 69 250 74Q275 79 300 74Q325 69 350 74Q375 79 400 74" stroke-opacity="0.4"/>
+<polygon points="20,210 120,196 132,250 14,258"/><polygon points="120,196 236,186 252,242 132,250"/><polygon points="236,186 352,180 378,236 252,242"/><polygon points="36,150 130,140 120,196 20,210"/><polygon points="130,140 230,132 236,186 120,196"/><polygon points="230,132 336,128 352,180 236,186"/><polygon points="54,104 138,96 130,140 36,150"/><polygon points="138,96 226,90 230,132 130,140"/><polygon points="226,90 322,86 336,128 230,132"/>
+<path class="ch" d="M176 160l9 9 17-20"/><path class="ch" d="M290 108l8 8 15-17"/>
+</svg>

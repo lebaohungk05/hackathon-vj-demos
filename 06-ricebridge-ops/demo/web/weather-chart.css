@@ -1,0 +1,68 @@
+/* A weather observatory within the existing dashboard, not a second page theme. */
+.tile.chartpanel{background:radial-gradient(ellipse at 80% 0%,#263c48 0,transparent 62%),linear-gradient(165deg,#102d40,#111f33 54%,#183930)!important;border-color:#4b7987}
+.chartpanel .khead{opacity:.85;flex:none}
+.chartpanel .scene{opacity:.65}
+.chartpanel .sc-sat{opacity:.25;top:27%;width:12rem}
+.chartpanel .sc-clouds{top:24%;opacity:.45}
+.chartpanel .sc-far{top:53%;height:18%;opacity:.5}
+.chartpanel .sc-mid{top:68%;height:24%;opacity:.5}
+.chartpanel .sc-near{opacity:.35;height:15%}
+.chartpanel .sc-buffalo,.chartpanel .sc-tractor{bottom:14%;opacity:.5;height:5rem}
+.chartpanel::after{content:"";position:absolute;inset:24% 20% 18%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 20%,#4bb9d52b,transparent 70%);opacity:0;transition:opacity .5s}
+.chartpanel[data-weather-wet="true"]::after{opacity:1}
+.weather-explorer{height:100%;display:grid;grid-template-rows:4.8rem minmax(0,1fr) 5.2rem;min-width:0;font-variant-numeric:tabular-nums}
+.wx-overview{display:flex;align-items:center;gap:2rem;padding:.2rem 2.4rem .7rem;border-bottom:1px solid #a8dbe21c;min-width:0}
+.wx-heading{margin-right:auto;min-width:0}
+.wx-heading>span{font-size:.72rem;color:#9fbcc8;letter-spacing:.025em}
+.wx-heading h3{font-size:1.7rem;line-height:1.18;color:#effafa;margin:.35rem 0 0;text-transform:none;letter-spacing:-.04em;font-weight:650}
+.wx-stat{flex:none;display:flex;flex-direction:column;gap:.2rem}
+.wx-stat>span{font-size:.76rem;color:#b9d4db}
+.wx-stat strong{font-size:2rem;line-height:1.1;letter-spacing:-.04em;color:#c5f5ff}
+.wx-stat small{font-size:.85rem;font-weight:500;color:#95b9c5;letter-spacing:0}
+.wx-stat.peak{padding-left:1.8rem;border-left:1px solid #9bd9d12b}
+.wx-stat.peak strong{color:#89e4ce}
+.wx-plot{position:relative;min-height:0;min-width:0}
+.wxbox .wx-explorer{position:absolute;width:100%;height:100%;cursor:crosshair;touch-action:pan-y}
+.wx-grid{stroke:#c8e9ee;stroke-opacity:.12;stroke-dasharray:3 6}
+.wx-axis{fill:#a9c2d2;font-family:var(--sans)}
+.wx-gold{fill:#dbc387}
+.wx-rainbar{stroke:#b0eff1;stroke-width:.6;stroke-opacity:.4;transform-box:fill-box;transform-origin:center bottom;animation:wx-rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--bar-delay);transition:filter .18s,stroke-opacity .18s}
+.wx-rainbar.is-selected{stroke:#e9fdff;stroke-width:1.5;stroke-opacity:1;filter:drop-shadow(0 0 5px #79dbed70)}
+.wx-peak-value{fill:#d7fffc;font-weight:700;paint-order:stroke;stroke:#153142;stroke-width:4px;stroke-linejoin:round}
+.wx-et-line,.wx-et-shadow{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.wx-et-line{stroke:#efc973;stroke-width:2;stroke-dasharray:1;animation:wx-trace 1.25s ease-out both}
+.wx-et-shadow{stroke:#0c1d2f;stroke-width:5;opacity:.7}
+.wx-et-node{fill:#efc973;opacity:.6}
+.wx-today{stroke:#d5e4ee;stroke-width:1;stroke-dasharray:4 6;opacity:.55}
+.wx-today-label{fill:#d5e4ee;font-weight:500}
+.wx-select-band{fill:#b4f1ff;opacity:.055}
+.wx-select-line{stroke:#a8e9f0;stroke-width:1;stroke-opacity:.6}
+.wx-select-dot{fill:#efc973;stroke:#fff5d7;stroke-width:2;filter:drop-shadow(0 0 5px #e1bc6260)}
+.wx-controls{position:relative;min-width:0;background:linear-gradient(90deg,#092637e8,#112c32e8);border-top:1px solid #86cec33b;border-radius:.65rem;padding:.55rem 1.1rem .4rem;z-index:1}
+.wx-readout{display:flex;align-items:center;gap:2rem;min-height:2.7rem}
+.wx-selected-date{display:flex;flex-direction:column;gap:.15rem;min-width:8.6rem}
+.wx-selected-date>b{font-size:1.13rem;color:#effafa}.wx-selected-date>span{font-size:.74rem;color:#a4c1c8}
+.wx-value{display:flex;align-items:baseline;gap:.65rem}.wx-value>span{font-size:.8rem;color:#adc4cb}.wx-value>b{font-size:1.25rem;letter-spacing:-.035em;white-space:nowrap}
+.wx-value.rain>b{color:#91e4f4}.wx-value.evaporation>b{color:#efce81}
+.wx-motion{margin-left:auto;border:1px solid #9bc9ce40;background:#b7e8e709;color:#c3dcd9;padding:.3rem .6rem;border-radius:.4rem;font:500 .74rem var(--sans);white-space:nowrap;cursor:pointer}
+.wx-motion:hover{background:#b7e8e71c}.wx-motion:focus-visible{outline:2px solid #c4f8ff;outline-offset:3px}
+.wx-scrubber{display:flex;align-items:center;gap:1rem;font-size:.72rem;color:#a4bdc7}.wx-scrubber>span:first-child{white-space:nowrap}
+.wx-scrubber input{flex:1;min-width:3rem;height:1rem;margin:0;accent-color:#79d9c7;cursor:ew-resize}
+.wx-scrubber input:focus-visible{outline:2px solid #c4f8ff;outline-offset:3px}
+.wx-scrub-hint{font-size:.68rem;color:#93afbb}
+.wx-motion-paused .scene i{animation-play-state:paused}
+.wx-motion-paused .wx-rainbar,.wx-motion-paused .wx-et-line{animation:none;transform:none;stroke-dashoffset:0}
+.weather-explorer.is-compact{grid-template-rows:2.6rem minmax(0,1fr) 4rem}
+.is-compact .wx-overview{padding:.2rem 1rem;align-items:center}
+.is-compact .wx-heading>span,.is-compact .wx-heading h3,.is-compact .wx-scrub-hint{display:none}
+.is-compact .wx-heading{flex:1}
+.is-compact .wx-stat{display:flex;align-items:baseline;gap:.6rem}
+.is-compact .wx-stat strong{font-size:1.3rem}
+.is-compact .wx-controls{padding:.2rem 1rem}
+.is-compact .wx-readout{min-height:2.3rem}
+.weather-empty{display:grid;place-items:center;height:100%;color:var(--mute)}
+@keyframes wx-rise{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}
+@keyframes wx-trace{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media(max-width:1300px){.wx-overview{gap:1.2rem}.wx-heading h3{font-size:1.45rem}.wx-scrub-hint{display:none}.wx-readout{gap:1.3rem}}
+@media(max-width:800px){.wx-overview{padding-left:.7rem;padding-right:.7rem;gap:.7rem}.wx-stat.peak{padding-left:.7rem}.wx-heading h3{font-size:1.1rem}.wx-stat strong{font-size:1.5rem}.wx-value{gap:.3rem}.wx-motion{font-size:.68rem}.wx-readout{gap:.7rem}.wx-selected-date{min-width:5rem}}
+@media(prefers-reduced-motion:reduce){.chartpanel *{animation:none!important;transition:none!important}.wx-et-line{stroke-dashoffset:0}.wx-rainbar{transform:none}}

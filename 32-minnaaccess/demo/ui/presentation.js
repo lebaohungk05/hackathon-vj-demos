@@ -1,26 +1,36 @@
-// Keep presentation controls independent from the running demo state.
 (() => {
-  const key = document.title.startsWith('Minna') ? 'minna-details' : 'rb-details';
-  let expanded = false;
-  try { expanded = localStorage.getItem(key) === 'true'; } catch (_) {}
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.id = 'detailToggle';
-  button.className = 'detail-toggle';
-  const labels = {vi: ['Chi tiết', 'Thu gọn'], en: ['Details', 'Simplify'], ja: ['詳細', '簡易表示']};
-  const update = () => {
-    const l = document.documentElement.lang || 'vi';
-    button.textContent = (labels[l] || labels.vi)[expanded ? 1 : 0];
-    button.setAttribute('aria-pressed', String(expanded));
-    document.body.classList.toggle('show-details', expanded);
+  const toggle = document.getElementById("detailToggle");
+  const drawer = document.getElementById("drawer");
+  const tl = document.getElementById("tlToggle");
+  const TL_KEY = "minna-timeline";
+  let showTimeline = false;
+  try { showTimeline = localStorage.getItem(TL_KEY) === "true"; } catch (e) { void e; }
+  const applyTimeline = () => {
+    tl.checked = showTimeline;
+    document.body.classList.toggle("show-timeline", showTimeline);
   };
-  document.querySelector('header').append(button);
-  button.addEventListener('click', () => {
-    expanded = !expanded;
-    try { localStorage.setItem(key, String(expanded)); } catch (_) {}
-    update();
-    window.dispatchEvent(new Event('resize'));
+  const setOpen = open => {
+    drawer.hidden = !open;
+    toggle.setAttribute("aria-expanded", String(open));
+  };
+  window.drawerOpen = () => !drawer.hidden;
+  window.closeDrawer = () => setOpen(false);
+  toggle.addEventListener("click", ev => {
+    setOpen(drawer.hidden);
+    if (ev.detail > 0) toggle.blur();
   });
-  new MutationObserver(update).observe(document.documentElement, {attributes: true, attributeFilter: ['lang']});
-  update();
+  tl.addEventListener("change", () => {
+    showTimeline = tl.checked;
+    try { localStorage.setItem(TL_KEY, String(showTimeline)); } catch (e) { void e; }
+    applyTimeline();
+    window.dispatchEvent(new Event("resize"));
+  });
+  document.addEventListener("click", ev => {
+    if (drawer.hidden || drawer.contains(ev.target) || toggle.contains(ev.target)) return;
+    setOpen(false);
+  });
+  document.addEventListener("keydown", ev => {
+    if (ev.key === "Escape" && !drawer.hidden) { setOpen(false); toggle.focus(); ev.stopImmediatePropagation(); ev.preventDefault(); }
+  }, true);
+  applyTimeline();
 })();

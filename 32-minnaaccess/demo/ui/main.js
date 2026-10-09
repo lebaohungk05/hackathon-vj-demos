@@ -34,7 +34,14 @@ function cycleLang() {
   setLang(LANGS[(LANGS.indexOf(LANG) + 1) % LANGS.length]);
 }
 
+function resetAll() {
+  if (MODE === "live") { resetPortal(); return; }
+  setPlaying(false);
+  go(0);
+}
+
 document.addEventListener("click", ev => {
+  if (ev.target.closest("#resetAll")) { resetAll(); return; }
   const langBtn = ev.target.closest("#langs button[data-lang]");
   if (langBtn) { setLang(langBtn.dataset.lang); if (ev.detail > 0) langBtn.blur(); return; }
   const modeBtn = ev.target.closest(".modes button");
@@ -47,6 +54,10 @@ document.addEventListener("click", ev => {
 });
 
 document.addEventListener("change", ev => { if (MODE === "live") liveChange(ev); });
+document.addEventListener("toggle", ev => {
+  const d = ev.target;
+  if (d.dataset && d.dataset.keep) OPEN[d.dataset.keep] = d.open;
+}, true);
 
 document.addEventListener("keydown", ev => {
   if (ev.ctrlKey || ev.altKey || ev.metaKey) return;
@@ -61,7 +72,7 @@ document.addEventListener("keydown", ev => {
 let resizeTimer = null;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => { if (MODE === "replay") render(false); else { scaleFrame(); renderLive(false); } fitHeader(); }, 120);
+  resizeTimer = setTimeout(() => { if (MODE === "replay") render(false); else { scaleFrame(); renderLive(false); } }, 120);
 });
 window.addEventListener("hashchange", onHash);
 setInterval(liveTick, 1000);
@@ -77,6 +88,6 @@ setInterval(liveTick, 1000);
   if (wantLive) { MODE = "live"; await liveInit(); setMode("live"); }
   else { setMode("replay"); await liveInit(); }
   if (AUTO > 0 && hasReplay && !wantLive) { window.autoDone = false; setPlaying(true, AUTO); }
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fitHeader(); rerender(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => rerender());
   window.appReady = true;
 })();

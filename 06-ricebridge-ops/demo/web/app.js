@@ -30,6 +30,8 @@ let testset = [];
 let localTick = null;
 let lastLiveAt = 0;
 let inflight = 0;
+const planOpen = new Set();
+let planOpenId = null;
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const t = (s, p) => {
@@ -192,6 +194,17 @@ const TASK_LABELS = {
 };
 const taskL = (k) => t(TASK_LABELS[k] || k);
 
+const INTRO_HEAD = {
+  en: ["Rain falls, pump plans change — the agent helps decide which fields to water first", "Shown on one cluster of fields sharing a pump, with real rainfall from Long Xuyen (Feb–Mar 2026)"],
+  ja: ["雨が降り、ポンプの予定が変わる — どの田から給水するか、エージェントが判断を支えます", "共同ポンプを使う一つの田んぼ群を例に、ロンスエンの実際の降雨データ（2026年2〜3月）で示します"],
+  vi: ["Trời mưa, trạm bơm đổi lịch — agent giúp HTX quyết định tưới ruộng nào trước", "Ví dụ trên một cụm ruộng dùng chung trạm bơm, với số liệu mưa thật ở Long Xuyên (2–3/2026)"],
+};
+const STEP_HEAD = {
+  start: { en: "Fields are drying out; the shared pump runs Fri 27 Feb", ja: "田んぼが乾き始め、共同ポンプは2月27日（金）に送水予定", vi: "Ruộng đang khô dần; trạm bơm chung dự kiến chạy thứ Sáu 27/02" },
+  photo: { en: "A farmer's gauge photo disagrees with the other sources", ja: "農家の観測管の写真が、他のデータと食い違う", vi: "Ảnh ống đo của nông dân lệch với các nguồn khác" },
+  remeasure: { en: "The cooperative re-measures at an independent gauge", ja: "協同組合が独立した観測管で測り直す", vi: "HTX đo lại ở một ống đo độc lập" },
+  voice: { en: "No smartphone? The cooperative records the field by voice", ja: "スマートフォンがなくても、協同組合が音声で代理記録", vi: "Không có điện thoại thông minh? HTX ghi hộ bằng giọng nói" },
+};
 const TONES = { info: "var(--info)", llm: "var(--llm)", ok: "var(--ok)", bad: "var(--bad)", hum: "var(--hum)" };
 const EVENT_KICKER = {
   start: ["info", "Context · deterministic tools"],
@@ -307,6 +320,8 @@ function renderStatic() {
   $$("[data-tp]").forEach((el) => { el.placeholder = t(el.dataset.tp); });
   $$("#langseg button").forEach((b) => { const on = b.dataset.lang === lang; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); b.title = LANG_NAME[b.dataset.lang]; });
   renderSamples();
+  const mb = $("#motionbtn");
+  if (mb) mb.textContent = t(document.body.classList.contains("still") ? "Resume motion" : "Pause motion");
 }
 
 function render() {
@@ -460,15 +475,20 @@ function bubble(m, isNew) {
     const v = m.vision;
     extra += `<div class="mphoto"><img src="/media/${esc(v.image.split("/").pop())}" alt="${esc(t("gauge photo"))}"><div>${v.engine === "vision" ? `<b>${esc(t("Vision LLM"))} ${cm(v.reading_cm)}</b><br>${esc(t("conf"))} ${num(v.confidence, 2)} · EXIF ${esc(momentL(v.captured_at))}<br>${(v.flags || []).map((f) => `<span title="${esc(flagL(f))}">${esc(f)}</span>`).join(" · ")}` : `${esc(t("Photo reading"))} ${esc(m.photo)}`}</div></div>`;
   }
+  const tips = [];
   if (m.parsed) {
     const p = m.parsed;
+    tips.push(p.value_cm === null || p.value_cm === undefined ? `${t("intent")}: ${intentL(p.intent)}` : `${p.field || "?"} · ${cm(p.value_cm)} · ${t("conf")} ${num(p.confidence, 2)}`);
     const reading = p.value_cm === null || p.value_cm === undefined ? `${esc(t("intent"))}: ${esc(intentL(p.intent))}` : `${esc(p.field || "?")} · ${cm(p.value_cm)} · ${esc(t("conf"))} ${num(p.confidence, 2)}`;
     const cls = p.intent !== "water_level" ? "g" : p.value_cm !== null && p.confidence >= 0.75 ? "ok" : "hum";
     extra += `<span class="tag pill ${cls}">${reading}</span>`;
   }
+  if (m.engine === "llm") tips.push(`LLM · ${modelName(m.model)}${m.ms ? ` · ${secs(m.ms)}` : ""}`);
   if (m.engine === "llm") extra += `<span class="tag pill llm">LLM · ${esc(modelName(m.model))}${m.ms ? ` · ${secs(m.ms)}` : ""}${m.source === "cache" ? ` · ${esc(t("cached"))}` : m.source === "live" ? ` · ${esc(t("live"))}` : ""}</span>`;
   else if (m.engine === "rules" && m.role !== "boss") extra += `<span class="tag pill rules">${esc(m.fallback_reason ? t("Rules · LLM fallback") : t("Rules"))}</span>`;
   const lines = (m.lines || []).map((l) => `<div class="line"><b>${esc(l.fid)}</b>${messageContent(l.vi, l.t || { en: l.en })}</div>`).join("");
+  if (m.engine === "rules" && m.role !== "boss") tips.push(m.fallback_reason ? t("Rules · LLM fallback") : t("Rules"));
+  if (tips.length) extra += `<span class="mk" title="${esc(tips.join(" · "))}">${m.engine === "llm" ? "✦" : "⚙"}</span>`;
   const rulesCls = m.role === "agent" && m.engine !== "llm" ? " rulesmsg" : "";
   const sent = m.role === "agent" && lang !== "vi" ? `<div class="sent">${esc(t("Sent in Vietnamese"))}</div>` : "";
   const quoteCls = ["farmer", "htx"].includes(m.role) ? " q" : "";
@@ -506,8 +526,9 @@ function renderChat() {
 
 function renderHead() {
   const sc = sceneOf();
-  let tone = "info", kicker = t("Team demo scenario · real weather"), h2 = esc(t("Six fields, one pump, one week of surprises")), h2plain = t("Six fields, one pump, one week of surprises");
-  let p = t("Real Open-Meteo rain for Long Xuyen, Feb–Mar 2026 · press → to step through, or type a farmer message on the left");
+  const intro = pick(INTRO_HEAD);
+  let tone = "info", kicker = t("Team demo scenario · real weather"), h2 = esc(intro[0]), h2plain = intro[0];
+  let p = intro[1];
   const last = S.step >= S.total_steps - 1;
   if (sc.kind === "live") {
     const v = sc.cur.result.verdict || {};
@@ -515,44 +536,55 @@ function renderHead() {
     kicker = t(VERDICT_KICKER[v.kind] || "Live message");
     h2plain = `“${sc.cur.event.transcript}”`;
     h2 = src(h2plain);
-    p = `${nm(sc.cur.event.sender)} · ${L(v.text_t) || v.text || ""}`;
+    p = nm(sc.cur.event.sender);
   } else if (sc.kind !== "intro") {
     const e = S.events.find((x) => x.id === sc.cur.event.id) || {};
     const [tn, kk] = EVENT_KICKER[sc.cur.event.id] || ["info", ""];
     tone = tn;
     kicker = t(kk);
-    h2plain = L(e.title_t) || sc.cur.event.title;
+    h2plain = (STEP_HEAD[sc.cur.event.id] && pick(STEP_HEAD[sc.cur.event.id])) || L(e.title_t) || sc.cur.event.title;
     h2 = esc(h2plain);
     p = L(e.sub_t);
     if (last && S.plan && S.plan.status === "approved") { tone = "ok"; kicker = t("Human approved · decision written to the evidence log"); }
     if (last && S.plan && S.plan.status === "rejected") { tone = "bad"; kicker = t("Human rejected · the agent does nothing on its own"); }
   }
+  $("#shead").style.setProperty("--tone", TONES[tone]);
   $("#shead").innerHTML = `<span class="kicker" style="--tone:${TONES[tone]}"><i></i>${esc(kicker)}</span><h2 title="${esc(h2plain)}">${h2}</h2><p title="${esc(p)}">${rich(p)}</p>`;
 }
 
-function weatherSvg(w, today, opts = {}) {
-  const W = 560, H = opts.h || 150, pl = 26, pr = 8, bw = (W - pl - pr) / w.length, maxR = 40, maxE = 8, base = H - 22;
-  const y = (v) => base - (v / maxR) * (base - 14);
-  let s = `<svg class="wx" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`;
-  [0, 20, 40].forEach((v) => { s += `<line x1="${pl}" x2="${W - pr}" y1="${y(v)}" y2="${y(v)}" stroke="rgba(255,255,255,.08)"/><text x="${pl - 4}" y="${y(v) + 4}" font-size="10" text-anchor="end" fill="#6f6896">${v}</text>`; });
-  const ti = w.findIndex((d) => d.date === today);
-  w.forEach((d, i) => {
-    const h = base - y(Math.min(d.rain_mm, maxR));
-    s += `<rect x="${pl + i * bw + 1.5}" y="${base - h}" width="${bw - 3}" height="${h}" rx="2" fill="${d.date <= today ? "#38bdf8" : "rgba(125,211,252,.28)"}"/>`;
-    if (d.rain_mm >= 10) s += `<text x="${pl + i * bw + bw / 2}" y="${base - h - 4}" font-size="10" text-anchor="middle" fill="#7dd3fc" font-weight="700">${d.rain_mm.toFixed(1)}</text>`;
-    if (i % 4 === 0) s += `<text x="${pl + i * bw + bw / 2}" y="${H - 6}" font-size="10" text-anchor="middle" fill="#6f6896">${dmy(d.date)}</text>`;
-  });
-  const pts = w.map((d, i) => `${pl + i * bw + bw / 2},${base - (d.et0_mm / maxE) * (base - 14)}`).join(" ");
-  s += `<polyline points="${pts}" fill="none" stroke="#fbbf24" stroke-width="2"/>`;
-  if (ti >= 0) s += `<line x1="${pl + ti * bw + bw}" x2="${pl + ti * bw + bw}" y1="6" y2="${base}" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 3"/><text x="${pl + ti * bw + bw + 4}" y="14" font-size="11" font-weight="700" fill="#fff">${esc(t("today"))}</text>`;
-  return s + `</svg>`;
+const HALO = `paint-order="stroke" stroke="rgba(8,16,36,.85)" stroke-width="3.5" stroke-linejoin="round"`;
+const ET0_LABEL = { en: "Evaporation ET0", ja: "蒸発散量 ET0", vi: "Bốc hơi ET0" };
+const RAIN_LABEL = { en: "Rain", ja: "降雨", vi: "Mưa" };
+const PER_DAY = { en: "mm/day", ja: "mm/日", vi: "mm/ngày" };
+const ET0_WHY = { en: "Water leaves the field by evaporation; the agent subtracts it in the water balance.", ja: "水は蒸発で田から失われます。エージェントは水収支でこの分を差し引きます。", vi: "Nước trong ruộng mất đi do bốc hơi; agent trừ phần này trong cân bằng nước." };
+function weatherSvg(w, today, W, H, rem) {
+  return RiceWeather.render(w, today, W, H, rem, {lang, date: dmy});
+}
+function chartLegend() {
+  return `<div class="wxlegend"><span class="lg-rain"><i></i>${esc(pick(RAIN_LABEL))} (${esc(pick(PER_DAY))})</span><span class="lg-et0" title="${esc(pick(ET0_WHY))}"><i></i>${esc(pick(ET0_LABEL))} (${esc(pick(PER_DAY))})</span>${why(esc(pick(ET0_WHY)))}</div>`;
 }
 
+function drawCharts() {
+  if (!S || !S.weather) return;
+  const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 12;
+  $$(".wxbox").forEach((box) => {
+    const W = Math.floor(box.clientWidth), H = Math.floor(box.clientHeight);
+    const key = `${W}x${H}:${lang}:${S.clock}`;
+    if (box.dataset.key === key) return;
+    box.dataset.key = key;
+    box.innerHTML = W > 60 && H > 60 ? weatherSvg(S.weather, S.clock.slice(0, 10), W, H, rem) : "";
+    RiceWeather.bind(box);
+  });
+}
+
+const scene = (full) => `<div class="scene${full ? "" : " lite"}" aria-hidden="true"><i class="sc-sky"></i><i class="sc-clouds"></i><i class="sc-sat"></i><i class="sc-birds"></i><i class="sc-far"></i><i class="sc-mid"></i><i class="sc-near"></i>${full ? `<i class="sc-tractor"></i><i class="sc-buffalo"></i>` : ""}</div>`;
+const why = (html, label) => (html ? `<details class="why"><summary>${esc(label || t("Why?"))}</summary><div class="whybody">${html}</div></details>` : "");
+
 function forecastLine() {
-  if (!forecast || !forecast.days || !forecast.days.length) return `<div class="sub" style="font-size:.72rem">${esc(t("Live forecast: {state}", { state: forecast && forecast.status === "offline" ? t("offline (the scenario does not need it)") : t("loading…") }))}</div>`;
+  if (!forecast || !forecast.days || !forecast.days.length) return `<div class="sub fc">${esc(t("Live forecast: {state}", { state: forecast && forecast.status === "offline" ? t("offline (the scenario does not need it)") : t("loading…") }))}</div>`;
   const d = forecast.days[0];
   const status = { live: t("live"), cached: t("cached"), offline: t("offline") }[forecast.status] || forecast.status;
-  return `<div class="sub" style="font-size:.72rem">${t("Today at Long Xuyen (Open-Meteo forecast, {status}): <b>{rain} mm</b> rain, chance {prob}%, ET0 {et0} mm · context only, the scenario replays Feb–Mar 2026", { status: esc(status), rain: num(d.rain_mm), prob: d.rain_prob ?? "–", et0: num(d.et0_mm) })}</div>`;
+  return `<div class="sub fc">${t("Today at Long Xuyen (Open-Meteo forecast, {status}): <b>{rain} mm</b> rain, chance {prob}%, ET0 {et0} mm · context only, the scenario replays Feb–Mar 2026", { status: esc(status), rain: num(d.rain_mm), prob: d.rain_prob ?? "–", et0: num(d.et0_mm) })}</div>`;
 }
 
 const SOURCE_NAMES = { "Gauge photo": "Gauge photo", "Chat report": "Chat report", Sensor: "Sensor", "Water balance": "Water balance" };
@@ -564,12 +596,105 @@ function srcBars(conflict) {
     <div class="dot" style="left:${pos(v)}%;background:${colors[name] || "var(--hum)"};color:${colors[name] || "var(--hum)"}"></div></div><span class="val">${cm(v)}</span></div>`).join("");
 }
 
+function engMark(label, tip) {
+  return `<span class="eng" title="${esc(tip)}">${esc(label)}</span>`;
+}
+
+function engOf(x) {
+  if (!x) return "";
+  if (x.engine === "llm" || x.engine === "vision") return engMark("LLM", `LLM · ${modelName(x.model)}${x.ms ? ` · ${secs(x.ms)}` : ""}${x.source === "cache" ? ` · ${t("cached")}` : x.source === "live" ? ` · ${t("live")}` : ""}`);
+  return engMark(t("Rules"), x.fallback_reason ? t("Rules · LLM fallback") : t("Rules"));
+}
+
+const deburr = (c) => c.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D");
+function typedHits(text, hits) {
+  const chars = Array.from(String(text || ""));
+  const flat = chars.map((c) => deburr(c).toLowerCase() || " ");
+  const joined = flat.join("");
+  const starts = [];
+  let acc = 0;
+  flat.forEach((x) => { starts.push(acc); acc += x.length; });
+  const found = [];
+  (hits || []).forEach((h) => {
+    const key = deburr(String(h)).toLowerCase();
+    const at = joined.indexOf(key);
+    if (at < 0) return;
+    const i0 = starts.findIndex((v) => v >= at);
+    let i1 = i0;
+    while (i1 < chars.length && starts[i1] < at + key.length) i1 += 1;
+    const word = chars.slice(i0, i1).join("");
+    if (word && !found.includes(word)) found.push(word);
+  });
+  return found;
+}
+
+const plainVerdict = (v) => {
+  const raw = (L(v.text_t) || v.text || "").replace(/\s*[（(][^()（）]*["“「][^()（）]*[)）]/g, "").trim();
+  return raw ? raw[0].toUpperCase() + raw.slice(1) : "";
+};
+
+const OUTCOME = { recorded: ["ok", "Recorded"], verified: ["ok", "Verified"], held: ["bad", "Held for an independent check"], refused: ["bad", "Refused"], clarify: ["hum", "Asked the farmer again"], not_reading: ["hum", "No reading recorded"] };
+const INTENT_PLAIN = { other: "Not a water-level report", question: "A question, not a reading", pump_schedule: "About the pump schedule", rain_report: "A rain report", water_level: "Water level, no number" };
+
+function outcomeTile(r, transcript) {
+  const v = r.verdict || {};
+  const [tone, word] = OUTCOME[v.kind] || ["info", "Result"];
+  const p = r.parse || {};
+  const words = typedHits(transcript, p.instruction_hits);
+  let note = "";
+  if (v.kind === "refused") note = `<p class="oc-note">${esc(t("Only the HTX can approve a schedule. No reading was recorded."))}</p>${words.length ? `<p class="oc-note">${esc(t("Words that triggered the guard"))}: ${words.map((w) => src(`“${w}”`)).join(", ")}</p>` : ""}`;
+  const bars = r.conflicts && r.conflicts[0] ? `<div class="oc-bars">${srcBars(r.conflicts[0])}</div>` : "";
+  const line = v.kind === "refused" ? esc(t("The message gives the agent orders, so it is not followed.")) : rich(plainVerdict(v));
+  return `<div class="outcome ${tone}"><div class="oc-stamp">${esc(t(word))}</div><div class="oc-body"><p class="oc-line">${line}</p>${note}${bars}</div>${engOf(p)}</div>`;
+}
+
+function checkList(r) {
+  const p = r.parse || {};
+  const th = S.thresholds;
+  const v = r.verdict || {};
+  const value = p.value_cm;
+  const hasValue = p.intent === "water_level" && value !== null && value !== undefined;
+  const checks = [
+    [t("Instruction guard (deterministic)"), !(p.instruction_hits || []).length],
+    [t("Is a water-level reading"), hasValue],
+    [t("Field known"), !!p.field],
+    [t("Range {lo}…+{hi} cm", { lo: Math.round(th.gauge_floor_cm), hi: Math.round(th.bund_cm) }), hasValue && value >= th.gauge_floor_cm && value <= th.bund_cm],
+    [t("Rule parser agrees (±0.5 cm)"), p.rule_value_cm === null || p.rule_value_cm === undefined || (hasValue && Math.abs(p.rule_value_cm - value) <= 0.5)],
+    [t("Confidence ≥ {c}", { c: th.accept_confidence }), Number(p.confidence || 0) >= th.accept_confidence],
+    [t("Within {n} cm of water balance", { n: th.conflict_cm }), !["held"].includes(v.kind)],
+  ];
+  const idx = checks.findIndex(([, ok]) => !ok);
+  const passed = idx < 0 ? checks : checks.slice(0, idx);
+  const skipped = idx < 0 ? 0 : checks.length - idx - 1;
+  const list = passed.map(([name]) => `<li class="ck ok"><span>✓</span>${esc(name)}</li>`).join("");
+  let html = "";
+  if (idx >= 0) html += `<div class="ck no"><span>✗</span>${esc(checks[idx][0])}</div>`;
+  if (passed.length) html += `<details class="ckmore"><summary>✓ ${esc(idx < 0 ? t("All {n} checks passed", { n: passed.length }) : t("{n} checks passed", { n: passed.length }))}</summary><ul>${list}</ul></details>`;
+  if (skipped) html += `<div class="ckskip">${esc(t("{n} other checks skipped — the message was stopped here", { n: skipped }))}</div>`;
+  return `<div class="pipeline">${html}</div>`;
+}
+
+function readingTile(r) {
+  const p = r.parse || {};
+  const has = p.intent === "water_level" && p.value_cm !== null && p.value_cm !== undefined;
+  const what = has ? `${esc(p.field || "?")} <span class="mono">${cm(p.value_cm)}</span>` : esc(t(INTENT_PLAIN[p.intent] || "Not a water-level report"));
+  const conf = Number(p.confidence || 0);
+  const reasoning = L(p.reasoning_t) || (lang === "en" ? p.reasoning_en : "");
+  const meter = has ? `<div class="confrow"><div class="confbar"><div class="fill" style="width:${Math.min(100, conf * 100)}%"></div><div class="thr" style="left:${(S.thresholds.accept_confidence || 0.75) * 100}%"></div></div><span>${esc(t("confidence"))} ${conf.toFixed(2)}</span></div>` : "";
+  return `<div class="tile plain cs"><div class="k">${esc(t("How the agent read it"))}</div><div class="rd">${what}</div>${meter}${checkList(r)}${reasoning ? why(`<div class="sub">${rich(reasoning)}</div>`) : ""}</div>`;
+}
+
+function actionTile(r) {
+  if (r.asks && r.asks[0]) return askTile(r.asks[0]);
+  if (r.diff.length || r.state_change) return `<div class="tile ok cs"><div class="k">${esc(t("New pump plan"))}</div>${diffList(S.plan)}</div>`;
+  return `<div class="oneline">✓ ${esc(t("Plan unchanged"))}</div>`;
+}
+
 function askTile(a) {
   const tl = lang === "vi" ? "" : L(a.message_t);
-  return `<div class="tile llm grow"><div class="k">LLM · ${esc(modelName(a.model))}${a.engine !== "llm" ? ` · ${esc(t("rules fallback"))}` : ""} · ${esc(t("whom to ask"))}</div>
-    <div class="sub"><b>${esc(t("Ask {who}", { who: nm(a.person) }))}</b> · ${esc(t("fallback"))} ${esc(nm(a.fallback))}</div>
-    <p class="quote askq" style="font-size:.86rem">${src(`“${a.message_vi}”`)}</p>${tl ? `<div class="sub et clamp2">${rich(tl)}</div>` : ""}
-    <div class="sub" style="font-size:.74rem">${esc(t("Not an independent check:"))} ${esc((a.not_chosen_t || []).map(L).join(lang === "ja" ? "、" : ", ") || "–")}</div></div>`;
+  return `<div class="tile llm cs"><div class="k">${esc(t("Ask {who}", { who: nm(a.person) }))}${engOf(a)}</div>
+    <p class="quote askq">${src(`“${a.message_vi}”`)}</p>${tl ? `<div class="sub et clamp2">${rich(tl)}</div>` : ""}
+    ${why(`${esc(t("fallback"))} ${esc(nm(a.fallback))} · ${esc(t("Not an independent check:"))} ${esc((a.not_chosen_t || []).map(L).join(lang === "ja" ? "、" : ", ") || "–")}`)}</div>`;
 }
 
 function parseTile(p) {
@@ -579,11 +704,11 @@ function parseTile(p) {
   const reasoning = L(p.reasoning_t) || (lang === "en" ? p.reasoning_en : "");
   const phrase = p.evidence_phrase ? `${src(`“${p.evidence_phrase}”`)} · ` : "";
   const hits = (p.instruction_hits || []).map((h) => src(`“${h}”`)).join(", ");
-  return `<div class="tile ${p.engine === "llm" ? "llm" : "plain"} grow"><div class="k">${esc(srcLabel)} · ${esc(t("understanding"))}</div>
+  return `<div class="tile ${p.engine === "llm" ? "llm" : "plain"} cs" title="${esc(srcLabel)}"><div class="k">${esc(t("How the agent read it"))}${engOf(p)}</div>
     <div class="mid">${reading}</div>
-    <div class="sub clamp2" title="${esc(reasoning)}">${phrase}${rich(reasoning)}</div>
     <div class="confbar"><div class="fill" style="width:${Math.min(100, conf * 100)}%"></div><div class="thr" style="left:${(S.thresholds.accept_confidence || 0.75) * 100}%"></div></div>
-    <div class="sub" style="font-size:.74rem">${esc(t("confidence {c} · accept ≥ {t} (tool) · rule parser {r}", { c: conf.toFixed(2), t: S.thresholds.accept_confidence, r: p.rule_value_cm === null || p.rule_value_cm === undefined ? t("no number") : cm(p.rule_value_cm) }))}${hits ? ` · <b style="color:var(--bad)">${esc(t("instruction guard"))}: ${hits}</b>` : ""}</div></div>`;
+    ${hits ? `<div class="sub"><b style="color:var(--bad)">${esc(t("instruction guard"))}: ${hits}</b></div>` : ""}
+    ${why(`<div class="sub">${phrase}${rich(reasoning)}</div><div class="sub">${esc(t("confidence {c} · accept ≥ {t} (tool) · rule parser {r}", { c: conf.toFixed(2), t: S.thresholds.accept_confidence, r: p.rule_value_cm === null || p.rule_value_cm === undefined ? t("no number") : cm(p.rule_value_cm) }))}</div>`)}</div>`;
 }
 
 function checksTile(r) {
@@ -622,38 +747,40 @@ function renderFocal() {
   const box = $("#focal");
   let html = "";
   if (sc.kind === "intro") {
-    html = `<div class="col grow"><div class="how">
-      <div class="tile llm"><div class="k">LLM</div><b>${esc(t("LLM understands"))}</b><p>${esc(t("Mekong dialect"))} (${src("“nước ba phân”")} = +3 cm), ${esc(t("whom to ask, farmer messages, combining events."))}</p></div>
-      <div class="tile ok"><div class="k">${esc(t("Tools"))}</div><b>${esc(t("Tools decide"))}</b><p>${esc(t("FAO-56 water balance, crop-stage safety, −15 cm AWD limit, 4 fields per pump run."))}</p></div>
-      <div class="tile hum"><div class="k">${esc(t("Human"))}</div><b>${esc(t("Human approves"))}</b><p>${esc(t("The pump-station manager approves every plan. The agent never pumps, opens gates or edits readings."))}</p></div></div>
-      <div class="tile info grow"><div class="k">${esc(t("Open-Meteo archive · Long Xuyen 10.37°N 105.43°E · real rain (bars) and ET0 (line)"))}</div>${weatherSvg(S.weather, S.clock.slice(0, 10), { h: 250 })}${forecastLine()}</div></div>`;
+    const roles = [
+      ["llm", t("LLM reads the chat"), `${t("LLM understands")}: ${t("Mekong dialect")} (“nước ba phân” = +3 cm), ${t("whom to ask, farmer messages, combining events.")}`],
+      ["ok", t("Tools compute the plan"), `${t("Tools decide")}: ${t("FAO-56 water balance, crop-stage safety, −15 cm AWD limit, 4 fields per pump run.")}`],
+      ["hum", t("Human approves"), t("The pump-station manager approves every plan. The agent never pumps, opens gates or edits readings.")],
+    ];
+    html = `<div class="col grow"><div class="roles">${roles.map(([k, label, tip]) => `<span class="role ${k}" title="${esc(tip)}"><i></i>${esc(label)}</span>`).join(`<span class="rolearrow" aria-hidden="true">→</span>`)}</div>
+      <div class="tile info grow chartpanel">${scene(true)}<div class="khead"><div class="k">${esc(t("Open-Meteo archive · Long Xuyen 10.37°N 105.43°E · real rain (bars) and ET0 (line)"))}</div>${chartLegend()}</div><div class="wxbox"></div>${forecastLine()}</div></div>`;
   } else {
     const r = sc.cur.result;
     const f = r.focal || {};
     if (sc.kind === "start") {
       html = `<div class="tile info hero"><div class="k">${esc(t("F2 sensor · 06:00"))}</div><div class="big">${cm(f.sensor_cm)}</div><div class="sub">${esc(t("AWD drying round · limit {cm}", { cm: cm(f.awd_limit_cm) }))}</div></div>
         <div class="col grow"><div class="tile plain"><dl class="kv"><dt>${esc(t("Pump run planned"))}</dt><dd><b>${esc(dayL(f.run_date))}</b></dd><dt>${esc(t("Forecast today"))}</dt><dd>${esc(t("{mm} mm (Open-Meteo)", { mm: num(f.forecast_mm) }))}</dd><dt>${esc(t("Water balance"))}</dt><dd>${esc(t("from the {day} HTX records, real rain + ET0", { day: dayL(f.basis_date || "2026-02-20") }))}</dd></dl></div>
-        <div class="tile info grow"><div class="k">${esc(t("Real rain and ET0 · Open-Meteo archive"))}</div>${weatherSvg(S.weather, S.clock.slice(0, 10), { h: 110 })}</div></div>`;
+        <div class="tile info grow chartpanel">${scene(false)}<div class="khead"><div class="k">${esc(t("Real rain and ET0 · Open-Meteo archive"))}</div>${chartLegend()}</div><div class="wxbox"></div></div></div>`;
     } else if (sc.kind === "rain") {
       html = `<div class="tile info hero"><div class="k">${esc(t("Open-Meteo · overnight rain"))}</div><div class="big">${num(f.total_mm)}<span style="font-size:1.2rem"> mm</span></div>
           <div class="raindays">${(f.days || []).map(([d, mm, iso]) => `<div>${esc(iso ? dayL(iso) : d)}<b>${num(mm)} mm</b></div>`).join("")}</div></div>
         <div class="col grow"><div class="tile ok"><div class="k">${esc(t("Tool · water balance (FAO-56) · F2"))}</div><div class="mid">${cm(f.before_cm)}<span class="arrow">→</span>${cm(f.after_cm)}</div>
-          <div class="sub">${esc(t("Specific yield {sy}: 1 cm of rain lifts the water table {lift} cm below the surface. F2 should be re-flooded by tomorrow morning.", { sy: num(f.sy, 2), lift: num(f.lift_cm_per_cm) }))}</div></div>
+          ${why(esc(t("Specific yield {sy}: 1 cm of rain lifts the water table {lift} cm below the surface. F2 should be re-flooded by tomorrow morning.", { sy: num(f.sy, 2), lift: num(f.lift_cm_per_cm) })))}</div>
           <div class="tile hum grow"><div class="k">${esc(t("Plan"))}</div><p style="font-size:1rem;font-weight:700">${esc(S.plan ? L(S.plan.summary_t) : "")}</p><div class="sub">${esc(t("The agent pauses pumping and asks for readings tomorrow morning."))}</div></div></div>`;
     } else if (sc.kind === "photo") {
       const v = r.vision || {};
       const c = r.conflicts[0];
       html = `${v.image ? `<img class="photoimg" src="/media/${esc(v.image.split("/").pop())}" alt="${esc(t("gauge photo"))}">` : ""}
-        <div class="col" style="flex:0 0 14rem"><div class="tile llm grow"><div class="k">${esc(t("LLM vision"))} · ${esc(modelName(v.model))}${v.source === "cache" ? ` · ${esc(t("cached"))}` : ""}</div><div class="big" style="font-size:2.3rem">${cm(v.used_cm)}</div>
-          <div class="sub">${esc(t("confidence"))} ${num(v.confidence, 2)}<br>${esc(t("EXIF capture"))} <b>${esc(momentL(v.captured_at))}</b><br>${esc(t("MAE 0.24 cm on 28 synthetic test images"))}</div>
-          <div class="flags">${(v.flags || []).map((fl) => `<span class="pill bad" title="${esc(flagL(fl.code))}">${esc(fl.code)}</span>`).join("")}</div></div></div>
-        <div class="col grow">${c ? `<div class="tile bad"><div class="k">${esc(t("Tool · conflict check · gap {g} cm > {t} cm", { g: num(c.gap_cm), t: c.threshold_cm }))}</div>${srcBars(c)}<div class="sub" style="font-size:.76rem">${rich(L(c.verdict_t) || c.verdict)}</div></div>` : ""}
+        <div class="col" style="flex:0 0 14rem"><div class="tile llm grow"><div class="k">${esc(t("LLM vision"))}${engOf(v)}</div><div class="big" style="font-size:2.3rem">${cm(v.used_cm)}</div>
+          <div class="sub">${esc(t("confidence"))} ${num(v.confidence, 2)}<br>${esc(t("EXIF capture"))} <b>${esc(momentL(v.captured_at))}</b></div>
+          <div class="flags">${(v.flags || []).map((fl) => `<span class="pill bad" title="${esc(flagL(fl.code))}">${esc(fl.code)}</span>`).join("")}</div>${why(esc(t("MAE 0.24 cm on 28 synthetic test images")))}</div></div>
+        <div class="col grow">${c ? `<div class="tile bad"><div class="k">${esc(t("Tool · conflict check · gap {g} cm > {t} cm", { g: num(c.gap_cm), t: c.threshold_cm }))}</div>${srcBars(c)}${why(rich(L(c.verdict_t) || c.verdict))}</div>` : ""}
           ${r.asks[0] ? askTile(r.asks[0]) : ""}</div>`;
     } else if (sc.kind === "remeasure" || (sc.kind === "live" && f.kind === "resolved")) {
       html = `<div class="tile ok hero"><div class="k">${esc(t("Second gauge"))} · ${esc(nm(f.recorder))}</div><div class="big">${cm(f.new_cm)}</div><div class="sub">${esc(t("verified · record #{n}", { n: f.new_seq }))}</div></div>
         <div class="col grow"><div class="tile ${f.status === "rejected" ? "bad" : "ok"}"><div class="k">${esc(t("Evidence log · entry #{n} {status}", { n: f.old_seq, status: statusL(f.status) }))}</div>
           <div class="mid"><span class="${f.status === "rejected" ? "strike" : ""}">${cm(f.old_cm)}</span><span class="arrow">→</span>${cm(f.new_cm)}</div>
-          <div class="sub">${rich(L(f.reason_t) || f.reason)}</div><div class="sub" style="font-size:.74rem">${esc(t("The old record is kept for audit and linked by hash; nothing is deleted."))}</div></div>
+          ${why(`${rich(L(f.reason_t) || f.reason)} ${esc(t("The old record is kept for audit and linked by hash; nothing is deleted."))}`)}</div>
           ${r.parse ? parseTile(r.parse) : ""}</div>`;
     } else if (sc.kind === "voice") {
       html = `<div class="col grow"><div class="tile plain"><div class="k">${esc(t("Voice note"))} · ${esc(nm(f.recorder || "HTX"))}</div><div class="quote">${src(`“${f.transcript || sc.cur.event.transcript}”`)}</div></div>
@@ -665,12 +792,12 @@ function renderFocal() {
         <div class="col grow"><div class="tile plain"><div class="k">${esc(t("LLM labels intent only · the date comes from the station record"))}</div><div class="quote" style="font-size:.9rem">${src(`“${f.transcript}”`)}</div><div class="sub">${esc(t("intent"))}: <b>${esc(intentL(f.intent))}</b></div></div>
           <div class="tile ok grow"><div class="k">${esc(t("Tool · scheduler re-plans the whole cluster"))}</div>${diffList(S.plan)}</div></div>`;
     } else if (sc.kind === "live") {
-      const extra = r.conflicts[0] ? srcBars(r.conflicts[0]) : "";
-      const side = r.asks[0] ? askTile(r.asks[0]) : `<div class="tile ok grow"><div class="k">${esc(t("Tool · new pump plan · diff vs previous plan"))}</div>${r.diff.length || r.state_change ? diffList(S.plan) : `<div class="sub">${esc(t("No reading recorded, so the plan does not change."))}</div>`}</div>`;
-      html = `<div class="col grow">${r.parse ? parseTile(r.parse) : ""}${checksTile(r)}</div><div class="col grow">${verdictTile(r.verdict, extra)}${side}</div>`;
+      html = `<div class="col grow livecol">${outcomeTile(r, sc.cur.event.transcript)}<div class="liverow">${readingTile(r)}${actionTile(r)}</div></div>`;
     }
   }
+  if (sc.kind !== "intro" && sc.kind !== "start") html = scene(true).replace('class="scene"', 'class="scene focalscene"') + html;
   box.innerHTML = html;
+  drawCharts();
 }
 
 const queueTag = (q) => (q ? " #" + q : "");
@@ -698,23 +825,25 @@ function explainLine(b) {
 function renderPlan() {
   const p = S.plan;
   const el = $("#plan");
+  el.classList.toggle("isempty", !p);
   if (!p) {
-    el.innerHTML = `<div class="planhead"><div class="t"><b>${esc(t("Plan"))} · –</b><small>${esc(t("No plan yet · press → to let the agent plan the first pump run"))}</small></div></div>
-      <div class="summary"><span>${esc(t("The agent proposes; the pump-station manager approves."))}</span></div>`;
+    el.innerHTML = `<div class="planempty"><b>${esc(t("Plan"))}</b><span>${esc(t("The agent proposes; the pump-station manager approves."))}</span></div>`;
     return;
   }
+  if (planOpenId !== p.id) { planOpen.clear(); planOpenId = p.id; }
   const changed = new Set((p.diff_rows || []).filter((d) => d.action_changed).map((d) => d.fid));
   const rows = p.rows.map((r) => {
     const nd = r.next_stage ? r.next_stage[2] : "";
     const basis = L(r.level_basis_t) || r.level_basis;
     const reason = L(r.reason_t) || r.reason;
-    return `<tr class="${changed.has(r.fid) ? "chg" : ""}">
+    const open = planOpen.has(r.fid);
+    const stage = `<span class="${r.stage === "heading" ? "flower" : ""}">${esc(stageFull(r.stage))}</span>${r.next_stage ? ` <span class="flower">→ ${esc(stageShort(r.next_stage_code))} ${dmy(nd)}</span>` : ""}`;
+    return `<tr class="prow${changed.has(r.fid) ? " chg" : ""}${open ? " open" : ""}" data-row="${esc(r.fid)}" tabindex="0" aria-expanded="${open}">
       <td><div class="main">${r.queue ? `<span class="qnum">${r.queue}</span>` : ""}${esc(r.fid)}</div><div class="subl">${esc(ownerShort(r.owner))}</div></td>
-      <td><div class="main ${r.stage === "heading" ? "flower" : ""}" title="${esc(stageFull(r.stage))}">${esc(stageShort(r.stage))}</div><div class="subl ${r.next_stage ? "flower" : ""}">${r.next_stage ? `→ ${esc(stageShort(r.next_stage_code))} ${dmy(nd)}` : "&nbsp;"}</div></td>
-      <td><div class="num">${cm(r.level_now)}</div><div class="subl" title="${esc(basis)}">${r.pending_check ? `<b style="color:var(--bad)">${esc(t("re-check"))}</b> · ` : ""}${esc(basis)}</div></td>
-      <td><div class="num">${cm(r.level_at_run)}</div></td>
-      <td><span class="act act-${esc(r.action)}" title="${esc(actionL(r.action))}">${esc(actionL(r.action))}</span>${r.measure_first ? `<div class="subl" style="color:var(--hum)">${esc(t("measure first"))}</div>` : ""}</td>
-      <td><div class="reason" title="${esc(reason)}">${rich(reason)}</div></td></tr>`;
+      <td><span class="act act-${esc(r.action)}" title="${esc(actionL(r.action))}">${esc(actionL(r.action))}</span>${r.measure_first ? `<div class="subl" style="color:var(--hum)">${esc(t("measure first"))}</div>` : ""}${r.pending_check ? `<div class="subl" style="color:var(--bad)">${esc(t("re-check"))}</div>` : ""}</td>
+      <td><div class="reason1" title="${esc(reason)}">${rich(reason)}</div></td>
+      <td class="chev" aria-hidden="true"></td></tr>
+      <tr class="pmore"${open ? "" : " hidden"}><td colspan="4"><div class="pmorebox"><span><small>${esc(t("Stage"))}</small>${stage}</span><span><small>${esc(t("Now"))}</small><b class="mono">${cm(r.level_now)}</b> · ${esc(basis)}</span><span><small>${esc(t("At run"))}</small><b class="mono">${cm(r.level_at_run)}</b></span></div><div class="pmorereason">${rich(reason)}</div></td></tr>`;
   }).join("");
   const job = isBusy();
   const decision = p.status === "proposed"
@@ -726,11 +855,16 @@ function renderPlan() {
   const decidedBy = p.decided_by ? t(p.status === "approved" ? "approved by {who}" : "rejected by {who}", { who: nm(p.decided_by) }) : "";
   const sub = p.status === "proposed" ? `${t("Waiting for the station manager")} · ${nm(p.approver)}` : p.decided_by ? `${decidedBy} · ${hhmm(p.decided_at)}` : statusL(p.status);
   const title = L(p.title_t) || p.title;
-  el.innerHTML = `<div class="planhead"><div class="t"><b>${esc(t("Plan"))} ${esc(p.id)} · ${esc(t("pump run"))} ${esc(dayL(p.run_date))}</b><small title="${esc(sub)}">${esc(title)} · ${esc(sub)}</small></div>${decision}</div>
+  el.innerHTML = `<div class="planhead"><div class="t"><b title="${esc(title)}">${esc(t("Plan"))} ${esc(p.id)} · ${esc(t("pump run"))} ${esc(dayL(p.run_date))}</b><small title="${esc(sub)}">${esc(sub)}</small></div>${decision}</div>
     <div class="summary ${p.pause_run ? "pause" : ""}"><span title="${esc(L(p.summary_t))}">${esc(L(p.summary_t) || p.summary)}</span></div>
-    <table class="ptable"><colgroup><col style="width:9%"><col style="width:13%"><col style="width:17%"><col style="width:9%"><col style="width:15%"><col style="width:37%"></colgroup>
-      <thead><tr><th>${esc(t("Field"))}</th><th>${esc(t("Stage"))}</th><th>${esc(t("Now"))}</th><th>${esc(t("At run"))}</th><th>${esc(t("Action"))}</th><th>${esc(t("Reason (deterministic tool)"))}</th></tr></thead><tbody>${rows}</tbody></table>
-    ${explain}${diffs || alerts}`;
+    <table class="ptable"><colgroup><col style="width:11%"><col style="width:22%"><col><col style="width:2.2rem"></colgroup>
+      <thead><tr><th>${esc(t("Field"))}</th><th>${esc(t("Action"))}</th><th>${esc(t("Reason (deterministic tool)"))}</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+    <div class="planfoot">${why(explain, `${t("Why?")} · LLM`)}${diffs || alerts}</div>`;
+  $$("#plan .prow").forEach((tr) => {
+    const toggle = () => { const fid = tr.dataset.row; if (planOpen.has(fid)) planOpen.delete(fid); else planOpen.add(fid); renderPlan(); };
+    tr.onclick = toggle;
+    tr.onkeydown = (ev) => { if (ev.key === "Enter") { ev.preventDefault(); ev.stopPropagation(); toggle(); } };
+  });
   const ap = $("#approve"), rj = $("#reject");
   if (ap) ap.onclick = (ev) => { ev.currentTarget.blur(); decide("approve"); };
   if (rj) rj.onclick = (ev) => { ev.currentTarget.blur(); decide("reject"); };
@@ -758,15 +892,16 @@ function renderTrace() {
   if (p && cur && cur.result.plan_id === p.id && p.status !== "proposed" && ["approved", "rejected"].includes(p.status)) items.push(`<div class="fi hum"><div class="ic">✋</div><div class="tx"><div class="k">${esc(t("Human decision"))}</div><div class="t">${esc(t(p.status === "approved" ? "approved by the station manager" : "rejected by the station manager"))}</div><div class="s">${esc(t("written to the hash-chained evidence log"))}</div></div></div>`);
   if (!items.length) items = [`<p class="empty">${esc(t("No step yet. Purple = LLM, teal = deterministic tool, amber = human."))}</p>`];
   $("#trace").innerHTML = `<h3>${esc(t("Agent trace · this step"))}<span class="sp"><span class="pill g">${esc(t("{n} steps", { n: trace.length }))}</span></span></h3>
-    <div class="feed ${items.length > 7 ? "dense" : ""}">${items.join("")}</div>
+    <div class="feed compact">${items.join("")}</div>
     <div class="legend"><span><i style="background:var(--llm2)"></i>${esc(t("LLM: language, wording"))}</span><span><i style="background:var(--ok2)"></i>${esc(t("TOOL: numbers, safety"))}</span><span><i style="background:var(--hum2)"></i>${esc(t("HUMAN: approves"))}</span></div>`;
+  $$("#trace .fi").forEach((el) => (el.onclick = () => el.classList.toggle("open")));
 }
 
 function levelColor(v) {
   if (v >= 0.5) return "#38bdf8";
-  if (v >= -10) return "#fbbf24";
+  if (v >= -10) return "#f0c55e";
   if (v >= -15) return "#f97316";
-  return "#e11d48";
+  return "#d23a4b";
 }
 
 function gaugeSvg(f) {
@@ -777,8 +912,8 @@ function gaugeSvg(f) {
   s += `<rect x="4" y="${y(0)}" width="32" height="${y(min) - y(0)}" fill="#2a1d0f" opacity=".7"/>`;
   s += `<rect x="12" y="${top}" width="16" height="${H - top * 2}" rx="3" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.25)"/>`;
   s += `<rect x="13" y="${y(lvl)}" width="14" height="${y(min) - y(lvl)}" fill="${levelColor(f.level)}" opacity=".9"/>`;
-  s += `<line x1="2" x2="38" y1="${y(0)}" y2="${y(0)}" stroke="#a9a3c9" stroke-width="1.5"/>`;
-  s += `<line x1="2" x2="38" y1="${y(-15)}" y2="${y(-15)}" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="3 2"/>`;
+  s += `<line x1="2" x2="38" y1="${y(0)}" y2="${y(0)}" stroke="#b9c2d6" stroke-width="1.5"/>`;
+  s += `<line x1="2" x2="38" y1="${y(-15)}" y2="${y(-15)}" stroke="#f2727f" stroke-width="1.5" stroke-dasharray="3 2"/>`;
   return s + `</svg>`;
 }
 
@@ -789,33 +924,32 @@ function renderFields() {
 
 function renderWiCard() {
   const dis = isBusy() || !S.plan ? "disabled" : "";
-  $("#wicard").innerHTML = `<h3>${esc(t("What-if for judges"))}<span class="sp"><span class="pill info">W</span></span></h3>
-    <div class="wigrid"><button class="wibtn" data-wi="rain" ${dis}><b>🌧</b><span>${esc(t("More rain"))}</span></button><button class="wibtn" data-wi="flowering" ${dis}><b>🌾</b><span>${esc(t("Field flowering"))}</span></button>
-    <button class="wibtn" data-wi="pump" ${dis}><b>⏱</b><span>${esc(t("Move pump day"))}</span></button><button class="wibtn" data-wi="photo" ${dis}><b>📷</b><span>${esc(t("Another gauge photo"))}</span></button></div>`;
-  $$(".wibtn").forEach((b) => (b.onclick = () => openWhatif(b.dataset.wi)));
+  const kinds = [["🌧", t("More rain")], ["🌾", t("Field flowering")], ["⏱", t("Move pump day")], ["📷", t("Another gauge photo")]];
+  $("#wicard").innerHTML = `<button class="wibtn wione" data-wi="" ${dis} title="${esc(kinds.map((k) => k[1]).join(" · "))}"><b>${kinds.map((k) => k[0]).join("")}</b><span>${esc(t("What-if lab"))}</span><kbd>W</kbd></button>`;
+  $$(".wibtn").forEach((b) => (b.onclick = () => openWhatif(b.dataset.wi || null)));
 }
 
 function mapSvg() {
   const comp = Object.fromEntries(S.completeness.map((c) => [c.fid, c]));
   const nextRun = S.runs.find((r) => r.status === "scheduled" && r.date >= S.clock.slice(0, 10));
   let s = `<svg viewBox="0 0 600 372" preserveAspectRatio="xMidYMid meet">`;
-  s += `<rect x="0" y="0" width="600" height="372" fill="#0c0729" rx="12"/>`;
+  s += `<rect x="0" y="0" width="600" height="372" fill="rgba(12,21,48,.55)" rx="12"/>`;
   s += `<rect x="30" y="30" width="540" height="26" fill="rgba(56,189,248,.3)"/><text x="300" y="48" text-anchor="middle" font-size="13" fill="#7dd3fc" font-weight="700">${esc(t("HTX canal"))}</text>`;
-  s += `<rect x="4" y="22" width="34" height="42" rx="6" fill="#14b8a6"/><text x="21" y="47" text-anchor="middle" font-size="10" fill="#04201c" font-weight="800">${esc(t("PUMP"))}</text>`;
-  s += `<text x="44" y="16" font-size="12" fill="#a9a3c9" font-weight="700">${esc(t("Shared pump"))} · ${esc(t("next run"))} ${nextRun ? esc(dayL(nextRun.date)) : "–"}</text>`;
+  s += `<rect x="4" y="22" width="34" height="42" rx="6" fill="#2fae8e"/><text x="21" y="47" text-anchor="middle" font-size="10" fill="#04201c" font-weight="800">${esc(t("PUMP"))}</text>`;
+  s += `<text x="44" y="16" font-size="12" fill="#b9c2d6" font-weight="700">${esc(t("Shared pump"))} · ${esc(t("next run"))} ${nextRun ? esc(dayL(nextRun.date)) : "–"}</text>`;
   S.fields.forEach((f) => {
     const c = comp[f.fid];
     const [lx, ly] = f.label_xy;
     const owner = /^Hộ thửa \d$/.test(f.owner) ? "" : ` · ${nm(f.owner)}`;
-    s += `<polygon points="${f.polygon}" fill="${levelColor(f.level)}" fill-opacity=".22" stroke="${f.pending_check ? "#fb7185" : "rgba(255,255,255,.25)"}" stroke-width="${f.pending_check ? 4 : 1.5}" ${f.pending_check ? 'stroke-dasharray="8 4"' : ""}/>`;
-    s += `<text x="${lx}" y="${ly - 34}" text-anchor="middle" font-size="16" font-weight="800" fill="#f3f1ff">${esc(f.fid)}${esc(owner)}</text>`;
+    s += `<polygon points="${f.polygon}" fill="${levelColor(f.level)}" fill-opacity=".22" stroke="${f.pending_check ? "#f2727f" : "rgba(255,255,255,.25)"}" stroke-width="${f.pending_check ? 4 : 1.5}" ${f.pending_check ? 'stroke-dasharray="8 4"' : ""}/>`;
+    s += `<text x="${lx}" y="${ly - 34}" text-anchor="middle" font-size="16" font-weight="800" fill="#f4f1ea">${esc(f.fid)}${esc(owner)}</text>`;
     s += `<text x="${lx}" y="${ly - 9}" text-anchor="middle" font-size="22" font-weight="700" fill="${levelColor(f.level)}" font-family="JetBrains Mono,Consolas,monospace">${cm(f.level)}</text>`;
-    s += `<text x="${lx}" y="${ly + 11}" text-anchor="middle" font-size="12" fill="#a9a3c9">${esc(stageShort(f.stage))}${f.has_sensor ? ` · ${esc(t("sensor"))}` : ""}</text>`;
-    s += `<rect x="${lx - 56}" y="${ly + 21}" width="112" height="23" rx="11.5" fill="${c.score === 100 ? "#14b8a6" : c.score >= 80 ? "#d97706" : "#e11d48"}"/>`;
+    s += `<text x="${lx}" y="${ly + 11}" text-anchor="middle" font-size="12" fill="#b9c2d6">${esc(stageShort(f.stage))}${f.has_sensor ? ` · ${esc(t("sensor"))}` : ""}</text>`;
+    s += `<rect x="${lx - 56}" y="${ly + 21}" width="112" height="23" rx="11.5" fill="${c.score === 100 ? "#2fae8e" : c.score >= 80 ? "#c9952c" : "#d23a4b"}"/>`;
     s += `<text x="${lx}" y="${ly + 37}" text-anchor="middle" font-size="12" font-weight="800" fill="${c.score === 100 ? "#04201c" : "#fff"}">${esc(t("evidence"))} ${c.score}%</text>`;
-    if (f.pending_check) s += `<text x="${lx}" y="${ly + 58}" text-anchor="middle" font-size="11" font-weight="800" fill="#fb7185">⚠ ${esc(t("re-measure pending"))}</text>`;
+    if (f.pending_check) s += `<text x="${lx}" y="${ly + 58}" text-anchor="middle" font-size="11" font-weight="800" fill="#f2727f">⚠ ${esc(t("re-measure pending"))}</text>`;
   });
-  s += `<text x="30" y="364" font-size="10" fill="#6f6896">${esc(t("Schematic layout"))} · ${S.weather_meta.requested_lat}°N ${S.weather_meta.requested_lon}°E · ${esc(t(S.scenario_label))}</text>`;
+  s += `<text x="30" y="364" font-size="10" fill="#8e9ab4">${esc(t("Schematic layout"))} · ${S.weather_meta.requested_lat}°N ${S.weather_meta.requested_lon}°E · ${esc(t(S.scenario_label))}</text>`;
   return s + `</svg>`;
 }
 
@@ -845,7 +979,7 @@ function renderCarbon(animate) {
   box.innerHTML = `
     <div class="col">
       <div class="card mapcard"><h3>${esc(t("Parcel map"))} · ${esc(t("Cluster A"))}<span class="sp"><span class="pill g">${esc(t(S.scenario_label))}</span></span></h3>${mapSvg()}
-        <div class="maplegend"><span><i style="background:#38bdf8"></i>${esc(t("flooded"))}</span><span><i style="background:#fbbf24"></i>${esc(t("0 to −10 cm"))}</span><span><i style="background:#f97316"></i>${esc(t("−10 to −15 cm"))}</span><span><i style="background:#e11d48"></i>${esc(t("below −15 cm"))}</span><span><i style="border:2px dashed #fb7185"></i>${esc(t("evidence conflict"))}</span></div></div>
+        <div class="maplegend"><span><i style="background:#38bdf8"></i>${esc(t("flooded"))}</span><span><i style="background:#f0c55e"></i>${esc(t("0 to −10 cm"))}</span><span><i style="background:#f97316"></i>${esc(t("−10 to −15 cm"))}</span><span><i style="background:#d23a4b"></i>${esc(t("below −15 cm"))}</span><span><i style="border:2px dashed #f2727f"></i>${esc(t("evidence conflict"))}</span></div></div>
       <div class="card misscard"><h3>${esc(t("Missing evidence"))}<span class="sp"><span class="muted" style="font-size:.7rem">${esc(t("what the auditor would ask for"))}</span></span></h3>
         ${missing.length ? `<ul class="mlist">${missing.slice(0, 5).join("")}</ul>` : `<p class="empty">${esc(t("Nothing missing."))}</p>`}</div>
       <div class="card auditcard"><h3>${esc(t("Audit trail"))}</h3>${audit ? `<ul class="alist">${audit}</ul>` : `<p class="empty">${esc(t("No disputed or assisted records yet."))}</p>`}</div>
@@ -868,11 +1002,9 @@ function renderCarbon(animate) {
 
 function renderFoot() {
   const m = S.weather_meta;
-  $("#foot").innerHTML = `<span><span class="dotk" style="background:var(--info)"></span>${t("<b>Open-Meteo</b> archive {a} → {b} (real)", { a: esc(m.window[0]), b: esc(m.window[1]) })}</span>
-    <span><span class="dotk" style="background:var(--ok)"></span>${esc(t("water balance · crop stage · pump capacity:"))} <b>${esc(t("deterministic tools"))}</b></span>
-    <span><span class="dotk" style="background:var(--llm)"></span>${esc(t("language · whom to ask · wording:"))} <b>${esc(S.engine.llm ? "Claude LLM" : t("rules"))}</b></span>
-    <span><span class="dotk" style="background:var(--hum)"></span>${esc(t("fields, people, chat:"))} <b>${esc(t(S.scenario_label))}</b></span>
-    <span class="keys">${esc(t("→ next · ← back · C carbon · J language · M message · W what-if · R reset"))}</span>`;
+  const tip = `${t("water balance · crop stage · pump capacity:")} ${t("deterministic tools")} · ${t("language · whom to ask · wording:")} ${S.engine.llm ? "Claude LLM" : t("rules")}`;
+  $("#foot").innerHTML = `<span title="${esc(tip)}"><span class="dotk" style="background:var(--info)"></span>${t("<b>Open-Meteo</b> archive {a} → {b} (real)", { a: esc(m.window[0]), b: esc(m.window[1]) })}</span>
+    <span><span class="dotk" style="background:var(--hum)"></span>${esc(t("fields, people, chat:"))} <b>${esc(t(S.scenario_label))}</b></span>`;
 }
 
 function openWhatif(tab) {
@@ -1075,19 +1207,40 @@ $("#compose").onsubmit = async (ev) => {
   await sendMessage(sender, text);
 };
 
+function setSamples(open) {
+  $("#samples").hidden = !open;
+  $("#samplebtn").setAttribute("aria-expanded", String(open));
+}
+
+function setMenu(open) {
+  const menu = $("#menu");
+  if (open) menu.style.top = `${Math.round($(".masthead").getBoundingClientRect().bottom + 6)}px`;
+  menu.hidden = !open;
+  $("#more").setAttribute("aria-expanded", String(open));
+}
+
 function renderSamples() {
   $("#samples").innerHTML = SAMPLES.map((s, i) => `<button type="button" class="sample${s.danger ? " danger" : ""}" data-i="${i}" data-tag="${esc(s.tag)}" title="${esc(nm(s.sender))}: ${esc(s.text)}">${s.danger ? esc(sampleTag(s)) : src(s.tag)}</button>`).join("");
   $$(".sample").forEach((b) => (b.onclick = () => {
     const s = SAMPLES[Number(b.dataset.i)];
     $("#sender").value = s.sender;
     $("#text").value = s.text;
+    setSamples(false);
     $("#text").focus();
   }));
 }
 
 $("#next").onclick = (ev) => { ev.currentTarget.blur(); next(); };
 $("#prev").onclick = (ev) => { ev.currentTarget.blur(); if (S) gotoStep(Math.max(-1, S.step - 1)); };
-$("#reset").onclick = (ev) => { ev.currentTarget.blur(); resetAll(); };
+$("#reset").onclick = (ev) => { ev.currentTarget.blur(); setMenu(false); resetAll(); };
+const setStill = (on) => { document.body.classList.toggle("still", on); store.set("rb.still", on ? "1" : "0"); $("#motionbtn").textContent = t(on ? "Resume motion" : "Pause motion"); $("#motionbtn").setAttribute("aria-pressed", String(on)); };
+setStill(store.get("rb.still", "0") === "1");
+$("#motionbtn").onclick = (ev) => { ev.currentTarget.blur(); setStill(!document.body.classList.contains("still")); };
+$("#whatifbtn").onclick = (ev) => { ev.currentTarget.blur(); setMenu(false); view = "htx"; render(); openWhatif(); };
+$("#more").onclick = (ev) => { ev.stopPropagation(); ev.currentTarget.blur(); setMenu($("#menu").hidden); };
+$("#samplebtn").onclick = (ev) => { ev.currentTarget.blur(); setSamples($("#samples").hidden); };
+document.addEventListener("click", (ev) => { if (!$("#menu").hidden && !ev.target.closest("#menu, #more")) setMenu(false); });
+window.addEventListener("resize", () => { if (!$("#menu").hidden) setMenu(true); drawCharts(); });
 $$("#langseg button").forEach((b) => (b.onclick = (ev) => { ev.currentTarget.blur(); setLang(b.dataset.lang); }));
 $$(".tab").forEach((x) => (x.onclick = (ev) => { ev.currentTarget.blur(); view = x.dataset.view; store.set("rb.view", view); render(); }));
 $("#wi-close").onclick = closeWhatif;
@@ -1096,7 +1249,7 @@ $("#whatif").onclick = (ev) => { if (ev.target.id === "whatif") closeWhatif(); }
 document.addEventListener("keydown", (ev) => {
   if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
   const tag = (document.activeElement && document.activeElement.tagName) || "";
-  if (ev.key === "Escape") { if (!$("#whatif").hidden) closeWhatif(); else document.activeElement && document.activeElement.blur(); return; }
+  if (ev.key === "Escape") { if (!$("#whatif").hidden) closeWhatif(); else if (!$("#menu").hidden) setMenu(false); else document.activeElement && document.activeElement.blur(); return; }
   if (["INPUT", "SELECT", "TEXTAREA"].includes(tag)) return;
   if (!$("#whatif").hidden) return;
   const k = ev.key.toLowerCase();

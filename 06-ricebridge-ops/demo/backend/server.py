@@ -167,9 +167,9 @@ class Runtime:
             except Exception:
                 log_error(f"side job {kind}")
             finally:
-                self.side.pop(key, None)
                 with self.mutate:
                     self.publish()
+                self.side.pop(key, None)
                 if kind != "translate":
                     self.maybe_translate()
         threading.Thread(target=runner, daemon=True).start()

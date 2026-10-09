@@ -123,6 +123,10 @@ window.UI_STRINGS = {
   "ja": "{id}の修正を適用しますか？",
   "vi": "Áp dụng cách sửa cho {id}?"
  },
+ "Approve → restart from step 1 · Reject → to a human": {
+  "ja": "承認 → ステップ1から再実行 · 却下 → 人へ",
+  "vi": "Duyệt → chạy lại từ bước 1 · Từ chối → chuyển người"
+ },
  "Approve → written to the local mock portal, then the agent restarts from step 1. Reject → nothing changes; the barrier goes to a human.": {
   "ja": "承認するとデモ画面に修正を適用し、最初から確認し直します。却下した場合は変更せず、担当者に対応を引き継ぎます。",
   "vi": "Nếu duyệt, thay đổi sẽ được áp dụng vào trang demo và agent kiểm tra lại từ bước 1. Nếu từ chối, trang được giữ nguyên để người phụ trách xử lý."
@@ -343,6 +347,10 @@ window.UI_STRINGS = {
   "ja": "デモモード",
   "vi": "Chế độ demo"
  },
+ "Details": {
+  "ja": "詳細",
+  "vi": "Chi tiết"
+ },
  "Deterministic check · blocked": {
   "ja": "自動チェック · 操作を進められません",
   "vi": "Kiểm tra tự động · chưa thể tiếp tục"
@@ -395,9 +403,17 @@ window.UI_STRINGS = {
   "ja": "仕組みと安全対策",
   "vi": "Cách hoạt động và giới hạn an toàn"
  },
+ "Engine and answers": {
+  "ja": "エンジンと応答",
+  "vi": "Động cơ và câu trả lời"
+ },
  "Enter activates it": {
   "ja": "Enterで実行できる",
   "vi": "Enter kích hoạt được"
+ },
+ "Every LLM call of this run": {
+  "ja": "この実行のすべてのLLM呼び出し",
+  "vi": "Mọi lần gọi LLM trong lần chạy này"
  },
  "Every LLM call of this run, its latency, and what the rule-only engine did on the same pages": {
   "ja": "この実行のすべてのLLM呼び出しと応答時間、同じページでのルールのみのエンジンの結果",
@@ -466,6 +482,10 @@ window.UI_STRINGS = {
  "Generated from the run. An NVDA user re-listens to each row and an officer re-checks it before the record is drawn up.": {
   "ja": "実行結果から自動作成。記録を作成する前に、NVDA利用者が各行を聞き直し、職員が再確認します。",
   "vi": "Tạo từ lần chạy. Người dùng NVDA nghe lại từng dòng và chuyên viên kiểm tra lại trước khi lập biên bản."
+ },
+ "Generated from this run.": {
+  "ja": "この実行から生成。",
+  "vi": "Tạo từ lần chạy này."
  },
  "Goal reached": {
   "ja": "目標に到達",
@@ -547,9 +567,17 @@ window.UI_STRINGS = {
   "ja": "日本",
   "vi": "Nhật Bản"
  },
+ "Judged by code, not by the LLM.": {
+  "ja": "判定はLLMではなくコードが行います。",
+  "vi": "Do code chấm, không phải LLM."
+ },
  "Keyboard": {
   "ja": "キーボード",
   "vi": "Bàn phím"
+ },
+ "Keyboard only. You approve every fix.": {
+  "ja": "キーボードのみ。修正はすべてあなたが承認します。",
+  "vi": "Chỉ dùng bàn phím. Bạn duyệt từng bản sửa."
  },
  "Keyboard replay: Enter activates it": {
   "ja": "キーボード操作の再実行: Enterで実行できる",
@@ -683,6 +711,10 @@ window.UI_STRINGS = {
   "ja": "聞く · 第1回",
   "vi": "Nghe · lượt 1"
  },
+ "Live": {
+  "ja": "ライブ",
+  "vi": "Trực tiếp"
+ },
  "Live Claude calls": {
   "ja": "Claudeに問い合わせる",
   "vi": "Gọi Claude trực tiếp"
@@ -747,6 +779,10 @@ window.UI_STRINGS = {
   "ja": "同じ元のページでMinnaAccessとaxe-core 4.10.2を比較",
   "vi": "MinnaAccess và axe-core 4.10.2 trên cùng các trang gốc"
  },
+ "MinnaAccess vs axe-core, same pages": {
+  "ja": "MinnaAccess対axe-core（同じページ）",
+  "vi": "MinnaAccess so với axe-core, cùng trang"
+ },
  "Mock portal page": {
   "ja": "模擬ポータルの画面",
   "vi": "Trang cổng mô phỏng"
@@ -782,6 +818,10 @@ window.UI_STRINGS = {
  "Navigate": {
   "ja": "移動",
   "vi": "Di chuyển"
+ },
+ "Never bypassed. Nothing is submitted.": {
+  "ja": "回避はしません。何も送信しません。",
+  "vi": "Không vượt qua. Không gửi gì cả."
  },
  "Never bypassed. The submit button is never pressed.": {
   "ja": "回避はせず、送信ボタンも押しません。",
@@ -823,6 +863,10 @@ window.UI_STRINGS = {
   "ja": "未確認",
   "vi": "Chưa xác nhận"
  },
+ "Nothing is applied until you decide.": {
+  "ja": "あなたが決めるまで何も適用しません。",
+  "vi": "Chưa áp dụng gì cho tới khi bạn quyết định."
+ },
  "Nothing was submitted. The recorded replay (key L) is unaffected.": {
   "ja": "何も送信していません。記録済みの再生（Lキー）には影響ありません。",
   "vi": "Không có gì được nộp. Phần phát lại đã ghi (phím L) không bị ảnh hưởng."
@@ -835,9 +879,17 @@ window.UI_STRINGS = {
   "ja": "ポータルへの変更を適用できるのは人だけです。適用後は手続き全体をステップ1から再実行します。",
   "vi": "Chỉ con người mới được áp dụng thay đổi lên cổng. Sau đó toàn bộ thủ tục chạy lại từ bước 1."
  },
+ "Only a human can apply a change.": {
+  "ja": "変更を適用できるのは人だけです。",
+  "vi": "Chỉ con người mới áp dụng được thay đổi."
+ },
  "Open the page through {cmd} to run the agent.": {
   "ja": "エージェントを実行するには、{cmd}からページを開いてください。",
   "vi": "Mở trang qua {cmd} để chạy agent."
+ },
+ "Options": {
+  "ja": "オプション",
+  "vi": "Tùy chọn"
  },
  "Original mock": {
   "ja": "問題を含むデモ",
@@ -887,6 +939,10 @@ window.UI_STRINGS = {
   "ja": "ステージング用コピーで事前チェック済み。あなたが判断するまで何も適用されません。",
   "vi": "Đã kiểm tra trước trên bản sao thử. Không áp dụng gì cho đến khi bạn quyết định."
  },
+ "Pre-checked. Nothing is applied yet.": {
+  "ja": "事前チェック済み。まだ適用していません。",
+  "vi": "Đã kiểm tra trước. Chưa áp dụng gì."
+ },
  "Procedure": {
   "ja": "手続き",
   "vi": "Thủ tục"
@@ -930,6 +986,10 @@ window.UI_STRINGS = {
  "Recommended fix: an audio or text alternative.": {
   "ja": "推奨する修正: 音声またはテキストによる代替手段。",
   "vi": "Cách sửa đề xuất: thêm phương án âm thanh hoặc văn bản."
+ },
+ "Recorded": {
+  "ja": "録画",
+  "vi": "Bản ghi"
  },
  "Recorded run": {
   "ja": "デモを再生",
@@ -978,6 +1038,10 @@ window.UI_STRINGS = {
  "Request details": {
   "ja": "請求内容",
   "vi": "Nội dung yêu cầu"
+ },
+ "Reset": {
+  "ja": "リセット",
+  "vi": "Đặt lại"
  },
  "Reset failed: {msg}": {
   "ja": "リセットに失敗しました: {msg}",
@@ -1067,6 +1131,10 @@ window.UI_STRINGS = {
   "ja": "デモの申請フォームをエージェントでチェック",
   "vi": "Để agent kiểm tra biểu mẫu demo"
  },
+ "Run the agent on the mock portal": {
+  "ja": "模擬ポータルでエージェントを実行",
+  "vi": "Chạy agent trên cổng mô phỏng"
+ },
  "Run timeline": {
   "ja": "実行の経過",
   "vi": "Tiến trình chạy"
@@ -1131,6 +1199,10 @@ window.UI_STRINGS = {
   "ja": "設定",
   "vi": "Cài đặt"
  },
+ "Show run timeline": {
+  "ja": "実行タイムラインを表示",
+  "vi": "Hiện dòng thời gian chạy"
+ },
  "Speed": {
   "ja": "速度",
   "vi": "Tốc độ"
@@ -1138,6 +1210,10 @@ window.UI_STRINGS = {
  "Stage": {
   "ja": "発表用",
   "vi": "Trình chiếu"
+ },
+ "Start agent": {
+  "ja": "エージェントを開始",
+  "vi": "Chạy agent"
  },
  "Start from": {
   "ja": "使うフォーム",
@@ -1170,6 +1246,10 @@ window.UI_STRINGS = {
  "Starting the agent…": {
   "ja": "エージェントを起動しています…",
   "vi": "Đang khởi động agent…"
+ },
+ "Status": {
+  "ja": "状態",
+  "vi": "Trạng thái"
  },
  "Step": {
   "ja": "ステップ",
@@ -1219,6 +1299,10 @@ window.UI_STRINGS = {
   "ja": "読み取れない入力欄で停止: 人に引き継ぎました。回避はしません。",
   "vi": "Dừng ở ô không đọc được: đã chuyển cho người. Không vượt rào."
  },
+ "Stopped before the submit button.": {
+  "ja": "送信ボタンの手前で停止。",
+  "vi": "Dừng trước nút nộp."
+ },
  "Success criterion": {
   "ja": "達成基準",
   "vi": "Tiêu chí thành công"
@@ -1266,6 +1350,14 @@ window.UI_STRINGS = {
  "The Continue button becomes a clickable <div>: not focusable, Enter and Space do nothing.": {
   "ja": "「次へ」ボタンがクリック専用の<div>になり、フォーカスできず、EnterもSpaceも効きません。",
   "vi": "Nút Tiếp tục thành một thẻ <div> chỉ bấm được bằng chuột: không nhận tiêu điểm, Enter và Space không có tác dụng."
+ },
+ "The agent does not know where it is.": {
+  "ja": "エージェントには場所を教えません。",
+  "vi": "Agent không được báo vị trí."
+ },
+ "The agent hears the page and moves by Tab only.": {
+  "ja": "エージェントはページを聞き、Tabだけで移動します。",
+  "vi": "Agent nghe trang và chỉ di chuyển bằng Tab."
  },
  "The agent hit an error": {
   "ja": "エージェントでエラーが発生しました",
@@ -1367,6 +1459,10 @@ window.UI_STRINGS = {
   "ja": "ベトナム",
   "vi": "Việt Nam"
  },
+ "WCAG {sc} {title}": {
+  "ja": "WCAG {sc} {title}",
+  "vi": "WCAG {sc} {title}"
+ },
  "Waiting for the agent to hand over the patch…": {
   "ja": "エージェントが修正案を準備しています…",
   "vi": "Đang chờ agent đề xuất cách sửa…"
@@ -1398,6 +1494,10 @@ window.UI_STRINGS = {
  "Why": {
   "ja": "理由",
   "vi": "Lý do"
+ },
+ "Why?": {
+  "ja": "理由",
+  "vi": "Vì sao?"
  },
  "Your decision": {
   "ja": "修正内容の承認",
@@ -2011,6 +2111,10 @@ window.UI_STRINGS = {
   "ja": "{meaning} → {value}と入力",
   "vi": "{meaning} → nhập {value}"
  },
+ "{n} attempt(s) · recorded replay untouched.": {
+  "ja": "{n}回の試行 · 記録済みの再生は変更なし。",
+  "vi": "{n} lượt · bản ghi giữ nguyên."
+ },
  "{n} attempt(s) · saved to {dir} · recorded replay untouched.": {
   "ja": "{n}回の実行 · {dir}に保存 · 記録済みの再生は変更なし。",
   "vi": "{n} lượt · lưu tại {dir} · phần phát lại đã ghi không bị đụng tới."
@@ -2034,6 +2138,10 @@ window.UI_STRINGS = {
  "{rule} ({impact}, WCAG {sc}) on {n} element(s), steps {steps}: a real issue, but it does not stop a keyboard + screen-reader user.": {
   "ja": "{rule}（{impact}、WCAG {sc}）が{n}要素、ステップ{steps}: 実在する問題ですが、キーボードとスクリーンリーダーの利用者を止めるものではありません。",
   "vi": "{rule} ({impact}, WCAG {sc}) trên {n} phần tử, bước {steps}: lỗi có thật nhưng không chặn người dùng bàn phím và trình đọc màn hình."
+ },
+ "{s} s · live Claude call": {
+  "ja": "{s}秒 · Claudeに問い合わせ中",
+  "vi": "{s} giây · đang gọi Claude"
  },
  "{s} s · live call through the claude CLI (timeout 90 s, then cached answer or rule engine)": {
   "ja": "{s}秒 · claude CLIでライブ呼び出し中（90秒でタイムアウトし、キャッシュの回答またはルールエンジンで代替）",

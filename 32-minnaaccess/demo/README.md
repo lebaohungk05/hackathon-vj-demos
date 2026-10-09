@@ -12,7 +12,7 @@ All pages are local mock pages with fake data. The agent's browser can only reac
 ## Start (one command)
 
 ```bash
-cd "32-minnaaccess/demo"
+cd "D:/Hackathon VJ/32-minnaaccess/demo"
 python start_demo.py            # checks prerequisites, starts one server on 127.0.0.1:8765, opens the browser
 ```
 

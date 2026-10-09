@@ -11,7 +11,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "tests" / "out"
-VIEWPORTS = [(1920, 1080), (1536, 864), (1366, 768), (1280, 720)]
+VIEWPORTS = [(1920, 1080), (1902, 914), (1920, 950), (1536, 864), (1536, 730), (1366, 768), (1366, 657), (1280, 720), (1280, 620)]
 SAMPLES = [
     ("nước ba phân", {"recorded"}),
     ("khô nứt chân chim", {"clarify", "not_reading"}),
@@ -36,6 +36,33 @@ LAYOUT_CHECK = """() => { const out = []; const W = innerWidth, H = innerHeight;
     if (el.closest('[hidden]')) return; if (el.scrollHeight > el.clientHeight + 2) { const box = el.getBoundingClientRect(); let worst = null;
       el.querySelectorAll('*').forEach(d => { const r = d.getBoundingClientRect(); if (r.height && r.bottom > box.bottom + 1 && (!worst || r.bottom > worst[1])) worst = [d.className || d.tagName, Math.round(r.bottom - box.bottom), (d.innerText || '').slice(0, 30)]; });
       out.push('clipped content: ' + (el.id || el.className) + ' ' + el.scrollHeight + '>' + el.clientHeight + ' by ' + JSON.stringify(worst)); } });
+  return out; }"""
+
+HEADER_CHECK = """() => { const out = []; const W = innerWidth, H = innerHeight;
+  const head = document.querySelector('header.masthead'); const rail = document.querySelector('#rail');
+  if (!head || !rail) return ['header or rail missing'];
+  const hd = head.getBoundingClientRect(), rl = rail.getBoundingClientRect();
+  if (hd.bottom > rl.top + 0.5) out.push('header overlaps rail ' + Math.round(hd.bottom) + '>' + Math.round(rl.top));
+  const name = (e) => e.id || e.getAttribute('data-lang') || e.getAttribute('data-view') || e.className || e.tagName;
+  const sel = '.di-logo, .brand, .brand h1, .event-tag, .tabs, .tab, #langseg, #langseg button, #prev, #next, #more';
+  const els = Array.from(head.querySelectorAll(sel)).filter((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden');
+  for (const e of els) { const r = e.getBoundingClientRect(); if (!r.width || !r.height) { out.push('collapsed: ' + name(e)); continue; }
+    if (r.left < hd.left - 0.5 || r.right > hd.right + 0.5 || r.top < hd.top - 0.5 || r.bottom > hd.bottom + 0.5) out.push('clipped by header: ' + name(e));
+    if (r.left < -0.5 || r.right > W + 0.5 || r.top < -0.5 || r.bottom > H + 0.5) out.push('outside viewport: ' + name(e));
+    if (r.bottom > rl.top + 0.5 && r.top < rl.bottom - 0.5) out.push('intersects rail: ' + name(e));
+    if (e.tagName === 'BUTTON' && e.scrollWidth > e.clientWidth + 1) out.push('label overflow: ' + name(e)); }
+  const top = ['.mast-id', '.tabs', '#langseg', '#prev', '#next', '#more'].map((q) => head.querySelector(q)).filter((e) => e && e.getClientRects().length);
+  for (let i = 0; i < top.length; i++) for (let j = i + 1; j < top.length; j++) { const a = top[i].getBoundingClientRect(), b = top[j].getBoundingClientRect();
+    if (a.left < b.right - 0.5 && b.left < a.right - 0.5 && a.top < b.bottom - 0.5 && b.top < a.bottom - 0.5) out.push('overlap: ' + name(top[i]) + ' / ' + name(top[j])); }
+  if (!['#prev', '#next', '#more', '#langseg', '.tabs'].every((q) => head.querySelector(q) && head.querySelector(q).getClientRects().length)) out.push('header control hidden');
+  return out; }"""
+
+MENU_CHECK = """() => { const out = []; const W = innerWidth, H = innerHeight; const m = document.querySelector('#menu');
+  if (!m || m.hidden) return ['menu not open']; const r = m.getBoundingClientRect(); const hd = document.querySelector('header.masthead').getBoundingClientRect();
+  if (r.left < 0 || r.right > W || r.top < 0 || r.bottom > H) out.push('menu outside viewport');
+  if (r.top < hd.bottom - 0.5) out.push('menu covers header controls');
+  m.querySelectorAll('button').forEach((b) => { const q = b.getBoundingClientRect(); if (!q.width || q.right > r.right + 0.5 || q.bottom > r.bottom + 0.5) out.push('menu button clipped: ' + (b.id || b.textContent)); });
+  if (!(document.querySelector('#clock').textContent || '').trim()) out.push('clock empty');
   return out; }"""
 
 MIXED_CHECK = r"""(lang) => {
@@ -109,9 +136,71 @@ def layout(page, c, vp, scene):
     page.evaluate("() => Promise.all(document.getAnimations().filter(a => a.effect && a.effect.getComputedTiming().iterations !== Infinity).map(a => a.finished.catch(() => null)))")
     issues = page.evaluate(LAYOUT_CHECK)
     c.ok(not issues, f"{vp} {scene}: layout {issues}")
+    header = page.evaluate(HEADER_CHECK)
+    c.ok(not header, f"{vp} {scene}: header controls clipped or overlapping {header}")
     lang = page.evaluate("() => window.__rb.lang()")
     mixed = page.evaluate(MIXED_CHECK, lang)
     c.ok(not mixed, f"{vp} {scene} [{lang}]: mixed-language text {mixed[:4]}")
+
+
+def open_menu(page):
+    if page.is_hidden("#menu"):
+        page.click("#more")
+    page.wait_for_selector("#menu:not([hidden])")
+
+
+def reset(page):
+    open_menu(page)
+    page.click("#reset")
+    page.wait_for_selector("#menu", state="hidden")
+
+
+def pick_sample(page, tag):
+    if page.is_hidden("#samples"):
+        page.click("#samplebtn")
+    page.click(f".sample[data-tag='{tag}']")
+    page.wait_for_selector("#samples", state="hidden")
+
+
+def hidden_features(page, c, tag):
+    open_menu(page)
+    issues = page.evaluate(MENU_CHECK)
+    c.ok(not issues, f"{tag} menu drawer {issues}")
+    c.ok(page.locator("#menu #reset").is_visible() and page.locator("#menu #detailToggle").is_visible() and page.locator("#menu #chips .chip").count() > 0, f"{tag} menu holds reset, details and engine badges")
+    page.keyboard.press("Escape")
+    page.wait_for_selector("#menu", state="hidden")
+    c.ok(page.get_attribute("#more", "aria-expanded") == "false", f"{tag} menu closes with Esc")
+    row = page.locator("#plan .prow").first
+    if row.count():
+        row.click()
+        c.ok(page.locator("#plan .pmore:not([hidden])").count() == 1 and page.locator("#plan .pmore:not([hidden]) .pmorebox").inner_text().strip() != "", f"{tag} plan row expands to stage, now, at run")
+        page.locator("#plan .prow").first.click()
+        c.ok(page.locator("#plan .pmore:not([hidden])").count() == 0, f"{tag} plan row collapses")
+        why = page.locator("#plan .why > summary")
+        if why.count():
+            why.first.click()
+            c.ok(page.locator("#plan .why[open] .whybody").is_visible(), f"{tag} plan Why? opens the explanation")
+            why.first.click()
+    page.click("#samplebtn")
+    c.ok(page.locator("#samples .sample").count() == 5 and page.is_visible("#samples"), f"{tag} sample chips open from one button")
+    page.click("#samplebtn")
+    c.ok(page.is_hidden("#samples"), f"{tag} sample chips collapse again")
+    open_menu(page)
+    page.click("#detailToggle")
+    page.wait_for_function("() => document.body.classList.contains('show-details')")
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(300)
+    layout(page, c, tag, "details mode")
+    c.ok(page.is_visible("#trace") and page.is_visible("#wicard .wibtn"), f"{tag} details mode shows trace and the what-if button")
+    fi = page.locator("#trace .fi").first
+    if fi.count():
+        fi.click()
+        c.ok("open" in (fi.get_attribute("class") or ""), f"{tag} trace item expands on click")
+    open_menu(page)
+    page.click("#detailToggle")
+    page.wait_for_function("() => !document.body.classList.contains('show-details')")
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(300)
 
 
 def set_lang(page, lang):
@@ -131,7 +220,7 @@ def language_pass(page, c, name, lang, shots):
     tag = f"{name} {lang}"
     set_lang(page, lang)
     page.keyboard.press("Escape")
-    page.click("#reset")
+    reset(page)
     idle(page)
     if page.is_visible("#view-carbon"):
         page.keyboard.press("c")
@@ -143,7 +232,8 @@ def language_pass(page, c, name, lang, shots):
         layout(page, c, tag, f"step {i + 1}")
         if shots:
             page.screenshot(path=str(shots / f"{name}_{lang}_step{i + 1}.png"))
-    c.ok(LANG_MARKERS[lang]["htx"].lower() in page.inner_text("#trace").lower(), f"{tag} farmer view labels in {lang}")
+    hidden_features(page, c, tag)
+    c.ok(LANG_MARKERS[lang]["htx"].lower() in (page.text_content("#trace") or "").lower(), f"{tag} farmer view labels in {lang}")
     c.ok(page.inner_text("#approve").startswith(LANG_MARKERS[lang]["approve"]), f"{tag} approve button in {lang}")
     page.click("#approve")
     idle(page)
@@ -155,7 +245,7 @@ def language_pass(page, c, name, lang, shots):
     else:
         c.ok(page.locator("#messages .et").count() == 0, f"{tag} no translation lines in Vietnamese mode")
     for sample, expected in (("thửa 4 âm năm phân", {"held"}), ("nước ba phân", {"recorded"}), ("prompt injection", {"refused"})):
-        page.click(f".sample[data-tag='{sample}']")
+        pick_sample(page, sample)
         page.press("#text", "Enter")
         idle(page)
         kind = state(page, "S.current.result.verdict && S.current.result.verdict.kind")
@@ -237,7 +327,7 @@ def run_viewport(browser, base, vp, c, mode, shots, full):
     page.on("response", lambda r: problems.append(f"HTTP {r.status} {r.url}") if r.status >= 400 else None)
     page.goto(base + "/?view=htx&lang=en")
     idle(page)
-    page.click("#reset")
+    reset(page)
     idle(page)
     c.ok(state(page, "S.step") == -1, f"{name} reset to intro")
     layout(page, c, name, "intro")
@@ -245,7 +335,7 @@ def run_viewport(browser, base, vp, c, mode, shots, full):
     idle(page)
     step = state(page, "S.step")
     c.ok(step in (0, 1), f"{name} double-click Next advanced at most twice (step {step})")
-    page.click("#reset")
+    reset(page)
     idle(page)
     kinds = ["sensor", "rain", "photo", "resolved", "assisted", "pump"]
     for i in range(6):
@@ -285,7 +375,7 @@ def run_viewport(browser, base, vp, c, mode, shots, full):
         page.screenshot(path=str(shots / f"{name}_carbon_ja.png"))
     page.keyboard.press("c")
     page.wait_for_timeout(300)
-    c.ok("詳細" in page.inner_text("#detailToggle"), f"{name} Japanese labels on the farmer view")
+    c.ok("詳細" in (page.text_content("#detailToggle") or ""), f"{name} Japanese labels on the farmer view")
     set_lang(page, "en")
     page.keyboard.press("c")
     page.wait_for_timeout(300)
@@ -302,7 +392,7 @@ def run_viewport(browser, base, vp, c, mode, shots, full):
     page.wait_for_timeout(300)
 
     for tag, expected in SAMPLES:
-        page.click(f".sample[data-tag='{tag}']")
+        pick_sample(page, tag)
         page.press("#text", "Enter")
         idle(page)
         kind = state(page, "S.current.result.verdict && S.current.result.verdict.kind")
@@ -414,7 +504,7 @@ def live_llm_check(browser, base, c):
     page.on("console", lambda m: problems.append(m.text) if m.type == "error" else None)
     page.goto(base)
     idle(page)
-    page.click("#reset")
+    reset(page)
     idle(page)
     for _ in range(6):
         page.keyboard.press("ArrowRight")
