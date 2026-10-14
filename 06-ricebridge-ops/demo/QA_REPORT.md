@@ -18,7 +18,7 @@ Method: Playwright (Chromium, headless and headed) at 1920×1080, 1536×864 (Win
 | L6 | The forecast card overflows the right column | Step 6 at 1536×864 | L1 plus a fixed-height column with too many cards |
 | L7 | The 日本語 toggle (J) does nothing on the Farmer/HTX view. Only Carbon labels are translated, so on stage it looks broken. | Press J on the Farmer view | Translation applied only in `renderCarbon` |
 | L8 | The chat is rebuilt every 1.2 s while the LLM writes and jumps to the bottom, so earlier messages cannot be read. After a step jump every bubble animates again. | Send a message and scroll the chat up | `renderChat` rewrites `innerHTML` on each poll; `seenChat = 0` on goto |
-| L9 | Dark/light mismatch with the approved MinnaAccess look (dark navy, purple = LLM, teal = verified) | Visual | Old light theme |
+| L9 | Dark/light mismatch with the approved deck look (dark navy, purple = LLM, teal = verified) | Visual | Old light theme |
 
 ### Server and concurrency
 
@@ -69,7 +69,7 @@ Totals: **9 layout + 9 server + 9 logic + 7 front-end = 34 bugs.** The worst for
 | L1–L6 | Dashboard rebuilt on a `rem` scale tied to the window (`html{font-size:clamp(9px,min(.8333vw,1.4815vh),22px)}`) with a CSS grid of `minmax(0,…)` columns. No fixed px sizes and no `viewport width=1920`. Chat, the LIVE box, Approve/Reject and the export buttons are visible at all four sizes. Long text is clamped or ellipsized on purpose, with a tooltip holding the full text. The e2e test fails on page scroll, clipped containers or any element outside the window. |
 | L7 | 日本語 now translates the labels of both views (header, rail, trace, plan, what-if, carbon) plus the event titles. A button in the header and the J key toggle it. |
 | L8 | The chat is appended incrementally and keyed by run epoch: no rebuild on poll, no scroll jump, and only new bubbles animate. |
-| L9 | MinnaAccess look: navy #090422, purple = LLM, teal = tool/verified, red = conflict, amber = human. Compact header chips, thin progress rail, one big focal element per step, cards slide in. Inter and JetBrains Mono are bundled locally. |
+| L9 | Deck look: navy #090422, purple = LLM, teal = tool/verified, red = conflict, amber = human. Compact header chips, thin progress rail, one big focal element per step, cards slide in. Inter and JetBrains Mono are bundled locally. |
 | S1 | The server publishes a JSON snapshot after every change, so `GET /api/state` never waits for a lock (measured < 1 s during a live Claude call). Changes run in one background job slot that reports its stage and elapsed time. |
 | S2 | LLM tracing is thread-local (`client.local.sink`, `client.last`); the brief thread passes its own trace entry. |
 | S3 | A late brief for a superseded plan is stored on that plan but no longer posted to the chat. |
