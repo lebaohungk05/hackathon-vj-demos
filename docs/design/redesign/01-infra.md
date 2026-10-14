@@ -4,7 +4,7 @@ Tổng: 6 giờ (chưa tính INF-07). Phạm vi: hạ tầng Azure. Việc kiể
 
 ## 1. Mục tiêu
 
-Dựng đủ hạ tầng để dev và test, tạo bằng tay theo [hướng dẫn từng bước](../../manual/azure-create-resources.md). Chi phí dự tính 30 USD (29,99) cho giai đoạn 14/10 – 09/11/2026. Khi không dùng thì tắt; chỉ xóa khi chắc chắn không dùng nữa.
+Dựng đủ hạ tầng để dev và test, tạo bằng tay theo [hướng dẫn từng bước](../../manual/azure-create-resources.md). Chi phí dự tính 29,9894 USD cho giai đoạn 14/10 – 09/11/2026. Khi không dùng thì tắt; chỉ xóa khi chắc chắn không dùng nữa.
 
 ## 2. Đặt tên và tag
 
@@ -59,7 +59,7 @@ Vùng: Azure OpenAI ở `japaneast`, còn lại ở `southeastasia`.
 
 | Khoản | USD |
 | --- | --- |
-| Dự tính trong ticket và giới hạn budget | 30 (tổng ước tính 29,99: OpenAI 12,18 + Container Apps 13,48 + ACR 4,33) |
+| Dự tính trong ticket và giới hạn budget | 29,9894 (OpenAI 12,18 + Container Apps 13,4778 + ACR 4,3316); budget đặt 30 |
 
 Phương án cho 26 ngày:
 
@@ -69,7 +69,7 @@ Phương án cho 26 ngày:
 | **B**: như A, 5% lượt dùng `strong` (`gpt-6-sol`) | 17,8 | 12,2 | khoảng 1.400 |
 | **C**: Container App về 0 khi không dev/test (`min-replicas 0`), bật khoảng 4 ngày; 5% lượt `strong` | 11,6 | 18,4 | khoảng 2.100 |
 
-Budget tạo trên Portal, phạm vi resource group, 30 USD/tháng. Cảnh báo: Actual 50 %, 80 %, 100 %, 150 %; Forecasted 100 %. Chỉ cảnh báo, không dừng tài nguyên.
+Budget tạo trên Portal ở INF-03, sau khi có resource group (INF-02); phạm vi resource group, 30 USD/tháng. Cảnh báo: Actual 50 %, 80 %, 100 %, 150 %; Forecasted 100 %. Chỉ cảnh báo, không dừng tài nguyên.
 
 Người nhận (mọi ngưỡng, gửi bằng email từ Azure Cost Management):
 

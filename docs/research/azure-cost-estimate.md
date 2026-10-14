@@ -104,7 +104,7 @@ Kết luận:
 
 ### 5.1 Phương án giới hạn 30 USD (quyết định của chủ dự án)
 
-Chủ dự án quyết định **chi thực tế không quá 30 USD** cho 26 ngày (14/10 – 09/11/2026) và ghi 30 USD trong ticket. Các kịch bản ở mục 4–5 (6.000 lượt trở lên) vượt xa mức này, nên phải giảm số lượt chạy:
+Chủ dự án quyết định **chi thực tế không quá 30 USD** cho 26 ngày (14/10 – 09/11/2026) và ghi 29,9894 USD (số trong file Excel) trong ticket. Các kịch bản ở mục 4–5 (6.000 lượt trở lên) vượt xa mức này, nên phải giảm số lượt chạy:
 
 | Phương án | Container App | Cố định | Ngân sách token | Số lượt chạy |
 | --- | --- | --- | --- | --- |
@@ -114,7 +114,7 @@ Chủ dự án quyết định **chi thực tế không quá 30 USD** cho 26 ng�
 
 Đơn giá mỗi lượt (36.000 token vào, 1.500 ra): `gpt-6-luna` ≈ 0,0043 USD, `gpt-6-sol` ≈ 0,091 USD (lượt `strong` ra nhiều token hơn khoảng 1,3 lần). Container App rảnh: 0,000004 USD/s cho mỗi vCPU và mỗi GiB; bận: 0,000034 USD/s/vCPU.
 
-File Excel đính kèm ticket mô tả **phương án A**: Container Registry 4,33 + Container Apps 13,48 + Azure OpenAI 12,18 (khoảng 2.800 lượt `gpt-6-luna`) = **29,99 USD**. Máy tính không có mô hình replica rảnh, nên dòng Container Apps được đặt bằng số giây "bận" tương đương để ra gần đúng 13,48 USD (sau phần miễn phí mà máy tính tự trừ). Tạo lại bằng:
+File Excel đính kèm ticket mô tả **phương án A**: Container Registry 4,3316 + Container Apps 13,4778 + Azure OpenAI 12,18 (khoảng 2.800 lượt `gpt-6-luna`) = **29,9894 USD**. Máy tính không có mô hình replica rảnh, nên dòng Container Apps được đặt bằng số giây "bận" tương đương để ra gần đúng 13,48 USD (sau phần miễn phí mà máy tính tự trừ). Tạo lại bằng:
 
 ```bash
 python scripts/azure_cost_estimate.py --days 26 --export outputs/azure-cost/ExportedEstimate.xlsx
