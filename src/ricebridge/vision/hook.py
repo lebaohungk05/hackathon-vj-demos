@@ -50,7 +50,7 @@ def cancellable_ask(reader):
         except subprocess.TimeoutExpired:
             proc.kill()
             proc.communicate()
-            raise RuntimeError(f"vision call timed out after {timeout} s")
+            raise RuntimeError(f"vision call timed out after {timeout} s") from None
         finally:
             CANCEL["procs"].discard(proc)
         if CANCEL["epoch"] != epoch:

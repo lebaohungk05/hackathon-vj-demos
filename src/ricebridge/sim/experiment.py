@@ -4,10 +4,10 @@ import sys
 import numpy as np
 import pandas as pd
 
+from ..paths import SIM_OUT_DIR
 from .policies import AgentPolicy, AgentRiskPolicy, BaselinePolicy, ChecklistPolicy, OraclePolicy, PlannerOnlyPolicy
 from .scenario import AWD_THRESHOLD_CM, MAX_DRY_DAYS_POORLY_DRAINED, SEASON_DAYS, build_scenario
 from .simulate import simulate
-from ..paths import SIM_OUT_DIR
 
 DEV_SEEDS = list(range(0, 10))
 TEST_SEEDS = list(range(1000, 1020))
@@ -112,7 +112,7 @@ def run_one(seed, policy_cls, **scenario_args):
         {
             "evidence_completeness_pct": 100 * evidence_completeness(sc, truth, policy.evidence),
             "plot_irrigations": int((irrigation > 0).sum()),
-            "pump_days_used": int(len({(sc.plots[i].cluster, d) for i, d in zip(*np.nonzero(irrigation > 0))})),
+            "pump_days_used": int(len({(sc.plots[i].cluster, d) for i, d in zip(*np.nonzero(irrigation > 0), strict=True)})),
             "water_applied_mm_per_plot": float(irrigation.sum() / len(sc.plots)),
             "remeasure_requests_per_plot_week": float((actions["action"] == "remeasure").sum() / season_plot_weeks),
             "officer_visits_per_plot_week": float((actions["action"] == "officer_walk").sum() / season_plot_weeks),
@@ -144,7 +144,7 @@ def summarize(rows):
 
 def save_ground_truth(out, seed, sc, results):
     rows = []
-    for name, (policy, result) in results.items():
+    for name, (_policy, result) in results.items():
         truth = result["truth"]
         for p in sc.plots:
             for d in range(p.sowing_day, p.sowing_day + SEASON_DAYS):
@@ -168,7 +168,7 @@ def main(split):
             sc, policy, result, metrics = run_one(seed, policy_cls)
             per_seed[policy.name].append({"seed": seed, **flatten(metrics)})
             results[policy.name] = (policy, result)
-        for key, frame in zip(tables, save_ground_truth(out, seed, sc, results)):
+        for key, frame in zip(tables, save_ground_truth(out, seed, sc, results), strict=False):
             tables[key].append(frame)
     for key, frames in tables.items():
         pd.concat(frames).to_csv(out / f"{key}.csv", index=False)

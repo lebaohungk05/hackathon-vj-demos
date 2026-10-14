@@ -62,7 +62,7 @@ def cluster_trace(split="test"):
     baseline = gt[gt.policy == "baseline"]
     acts = actions[(actions.seed == seed) & (actions.policy == "agent") & actions.action.isin(ACTION_STYLE)]
     acts = acts.drop_duplicates(["pid", "day", "action"])
-    day_to_date = dict(zip(agent.day, agent.date))
+    day_to_date = dict(zip(agent.day, agent.date, strict=True))
     pids = sorted(agent.pid.unique())
 
     fig, axes = plt.subplots(len(pids) + 1, 1, figsize=(11, 13), sharex=True, gridspec_kw={"height_ratios": [1.1] + [1] * len(pids)})
@@ -73,7 +73,7 @@ def cluster_trace(split="test"):
     axes[0].set_title(f"Cụm {cluster + 1} ({site}), 6 thửa chung một trạm bơm: mực nước thật trong mô phỏng\nMưa: dữ liệu thật Open-Meteo, Đông Xuân 2025-26. Mực nước, lỗi và hành động: mô phỏng (seed kiểm tra {seed})", loc="left", color=INK, fontsize=10)
     axes[0].grid(axis="y", color=GRID, linewidth=0.6)
 
-    for ax, pid in zip(axes[1:], pids):
+    for ax, pid in zip(axes[1:], pids, strict=False):
         a = agent[agent.pid == pid]
         b = baseline[baseline.pid == pid]
         heading = a[a.stage == "heading"]
@@ -82,7 +82,7 @@ def cluster_trace(split="test"):
         ax.axhline(0, color=GRID, linewidth=0.8)
         ax.plot(b.date, b.true_level_cm, color=BASELINE, linewidth=1.4, alpha=0.9)
         ax.plot(a.date, a.true_level_cm, color=AGENT, linewidth=2)
-        level = dict(zip(a.day, a.true_level_cm))
+        level = dict(zip(a.day, a.true_level_cm, strict=True))
         for action, (marker, color, _) in ACTION_STYLE.items():
             sel = acts[(acts.pid == pid) & (acts.action == action)]
             if action == "irrigate":
@@ -90,7 +90,7 @@ def cluster_trace(split="test"):
                 ys = [-27] * len(sel)
             else:
                 ys = [level.get(d, np.nan) for d in sel.day]
-            ax.scatter([day_to_date[d] for d in sel.day if d in day_to_date], [y for d, y in zip(sel.day, ys) if d in day_to_date], marker=marker, s=34, color=color, edgecolor=SURFACE, linewidth=0.8, zorder=5)
+            ax.scatter([day_to_date[d] for d in sel.day if d in day_to_date], [y for d, y in zip(sel.day, ys, strict=False) if d in day_to_date], marker=marker, s=34, color=color, edgecolor=SURFACE, linewidth=0.8, zorder=5)
         plot_labels = labels[(labels.seed == seed) & (labels.pid == pid) & labels.fault.isin(["a_sensor", "c_photo_misread", "b_missing_logs"])]
         for n, (_, lab) in enumerate(plot_labels.sort_values("day").iterrows()):
             if lab.day in day_to_date:
@@ -134,8 +134,8 @@ def comparison_bars(split="test"):
     ]
     policies = [("baseline", "Lịch cố định", BASELINE), ("agent", "Agent", AGENT), ("oracle", "Biết mực nước thật\n(mốc tham chiếu)", ORACLE)]
     fig, axes = plt.subplots(1, len(panels), figsize=(12, 3.8))
-    for ax, (key, title, note) in zip(axes, panels):
-        for i, (name, label, color) in enumerate(policies):
+    for ax, (key, title, note) in zip(axes, panels, strict=False):
+        for i, (name, _label, color) in enumerate(policies):
             s = summary[name][key]
             ax.bar(i, s["mean"], color=color, width=0.62)
             ax.errorbar(i, s["mean"], yerr=[[s["mean"] - s["min"]], [s["max"] - s["mean"]]], color=INK, capsize=3, linewidth=1)

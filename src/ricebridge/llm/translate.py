@@ -6,8 +6,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 from .. import i18n
 from ..paths import I18N_DIR
-from .interpreter import brief_texts, ask_texts, numbers_in, parse_texts
 from .client import CACHE_DIR, FAST_MODEL, LLMClient, LLMUnavailable, SchemaError, extract_json
+from .interpreter import ask_texts, brief_texts, numbers_in, parse_texts
 
 STORE_PATH = I18N_DIR / "translations.json"
 BATCH = 12

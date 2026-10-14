@@ -43,7 +43,7 @@ line-length = 160
 extend-exclude = ["outputs", "data"]
 
 [tool.ruff.lint]
-select = ["E", "F"]  # B (bugbear) and I (isort) can be enabled once the legacy code is cleaned
+select = ["E", "F", "I", "B"]
 ignore = [
     "E501",  # long lines are pre-existing; formatter is not enforced yet
     "E701", "E702", "E731", "E741",

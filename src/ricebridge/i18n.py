@@ -520,7 +520,7 @@ def person(name):
         return lit("")
     name = str(name)
     if name in PEOPLE:
-        return dict(zip(LANGS, PEOPLE[name]))
+        return dict(zip(LANGS, PEOPLE[name], strict=True))
     for suffix, tpl in SUFFIXES.items():
         if name.endswith(suffix):
             base = person(name[: -len(suffix)])
@@ -540,7 +540,7 @@ def role(text):
     text = str(text or "")
     same = text.endswith(SAME_PERSON)
     base = text[: -len(SAME_PERSON)] if same else text
-    out = dict(zip(LANGS, ROLES.get(base, (base, base, base))))
+    out = dict(zip(LANGS, ROLES.get(base, (base, base, base)), strict=True))
     if same:
         out = {lang: SAME_PERSON_T[i].format(x=out[lang]) for i, lang in enumerate(LANGS)}
     return out
