@@ -11,7 +11,7 @@ Khán giả cần nhắn tin và gửi ảnh từ điện thoại trong buổi t
 
 - Chạy server trong một Azure Container App, minReplicas = maxReplicas = 1, activeRevisionsMode = single, không traffic split, ingress HTTPS. Không deploy giữa demo cần giữ phiên; single revision không đảm bảo không restart/mất RAM.
 - Image lưu trong Azure Container Registry, Container App kéo image bằng user-assigned managed identity có role AcrPull.
-- Mọi tài nguyên khai báo bằng Bicep trong `infra/`, nằm trong một resource group để xóa một lần.
+- Mọi tài nguyên tạo bằng tay bằng Azure CLI theo hướng dẫn trong `docs/manual/azure-create-resources.md`, nằm trong một resource group để xóa một lần.
 - URL được bảo vệ bằng PRESENTER_TOKEN đổi sang cookie dashboard và AUDIENCE_CODE đổi sang phiên thiết bị. Audience chỉ POST message/photo và GET status item của chính mình; không đọc state/log/media chung. Token/code được bỏ khỏi URL và không ghi log.
 - Auth theo allowlist route/media; POST kiểm Origin; approval bắt buộc plan_id/epoch/state_version đã commit. Vai khán giả không cấp quyền làm cán bộ/người đo độc lập.
 - Image pip install . với data chỉ đọc tại RICEBRIDGE_DATA_DIR và runtime writable tại RICEBRIDGE_RUNTIME_DIR, không dựa vào site-packages để tìm data. Runtime chứa upload/cache/recording mới, không commit dữ liệu cá nhân.

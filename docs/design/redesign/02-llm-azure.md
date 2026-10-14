@@ -1,6 +1,6 @@
 # 02 · Chuyển sang Azure OpenAI, gỡ Claude CLI (LLM)
 
-Tổng: 51 giờ. Nhánh: `feat/llm-azure`. Phụ thuộc: INF-06 cho các test live; config, baseline và provider giả làm trước được.
+Tổng: 51 giờ. Nhánh: `feat/llm-azure`. Phụ thuộc: INF-04 cho các test live; config, baseline và provider giả làm trước được.
 
 ## Mục tiêu
 
@@ -42,7 +42,7 @@ Hợp đồng áp dụng tới vision, forecast, translation và pre-flight, kh�
 | --- | --- | --- | --- | --- | --- |
 | LLM-00 | Chụp baseline trước thay đổi: stage lưu kế hoạch/completeness/log đã chuẩn hóa; ghi riêng lỗi parser/tự duyệt/completeness và các ca có/không có thao tác duyệt | `tests/unit/baseline/cluster_a.json`, `tests/unit/test_baseline.py` | Baseline tái hiện code hiện tại; danh sách lỗi có test để sửa, không buộc giữ lỗi | 3 | – |
 | LLM-01 | Settings endpoint/key/deployment/mode/timeout/deadline/token/request budgets; đọc env/.env, env ưu tiên; xử lý thiếu cấu hình theo bảng chế độ | `config.py`, `.env.example` | Test cả 4 mode; live thiếu biến fail, auto cảnh báo rồi offline; key không nằm trong log/repr | 3 | – |
-| LLM-02 | AzureLLM complete_json/complete_with_image/chat_with_tools; ánh xạ lỗi theo scope, một lớp retry, deadline, cancel theo run và response muộn; thêm SDK openai | `llm/azure.py`, `pyproject.toml` | Transport giả cho 429/timeout/filter/refusal/schema/truncation; cancel xong lần live tiếp vẫn dùng được; smoke thật qua | 8 | LLM-01, INF-08 |
+| LLM-02 | AzureLLM complete_json/complete_with_image/chat_with_tools; ánh xạ lỗi theo scope, một lớp retry, deadline, cancel theo run và response muộn; thêm SDK openai | `llm/azure.py`, `pyproject.toml` | Transport giả cho 429/timeout/filter/refusal/schema/truncation; cancel xong lần live tiếp vẫn dùng được; smoke thật qua | 8 | LLM-01, INF-04 |
 | LLM-03 | Tách store/trace; chuẩn hóa cache key có model version/ảnh/schema; đọc data cố định + runtime overlay, ghi nguyên tử trong runtime | `llm/store.py` | Replay cũ qua; ảnh/prompt thay đổi không trúng cache; data read-only vẫn chạy | 5 | LLM-02 |
 | LLM-04 | Port `parse_message`, `choose_remeasurer`, `plan_brief` sang `AzureLLM`; sửa 3 schema cho strict mode; `parse_message` và `choose_remeasurer` dùng `fast`, `plan_brief` dùng `strong` | `llm/interpreter.py` | Cả 5 tin nhắn mẫu và kịch bản chạy ở `--mode live`; kết quả qua validator | 4 | LLM-03 |
 | LLM-05 | Port đọc ảnh: gửi ảnh base64 lên `strong` thay cho `claude -p --allowedTools Read`; giữ đọc EXIF, sha256, cờ của `consistency.py` | `vision/gauge_reader.py`, `vision/hook.py` | 28 ảnh thử đọc được; không còn tiến trình con nào được tạo | 4 | LLM-02 |
@@ -65,5 +65,5 @@ Hợp đồng áp dụng tới vision, forecast, translation và pre-flight, kh�
 | Rủi ro | Cách giảm |
 | --- | --- |
 | Model Azure hiểu tiếng miền Tây kém hơn ("nước ba phân" = +3 cm) | 5 tin nhắn mẫu trong LLM-04 là test bắt buộc; thêm ví dụ vào prompt nếu sai |
-| Đọc ảnh kém chính xác hơn | LLM-07 đo trước khi gỡ hẳn; nếu kém, đổi `strong` sang model khác qua tham số Bicep |
+| Đọc ảnh kém chính xác hơn | LLM-07 đo trước khi gỡ hẳn; nếu kém, đổi `strong` sang model khác qua tham số cấu hình |
 | Content filter chặn nhầm tin nhắn bình thường | Ghi lại mọi lần bị chặn trong log; dùng bộ lọc mặc định, chỉ xin nới khi có bằng chứng chặn nhầm |
