@@ -47,6 +47,10 @@ pytest tests/e2e -m e2e         # Playwright: chạy cả kịch bản trên tr�
 python tests/e2e/run_e2e.py     # bộ kiểm thử đầy đủ: nhiều cỡ màn hình, ngôn ngữ, what-if (vài phút)
 ```
 
+## Đóng góp
+
+Xem [CONTRIBUTING.md](CONTRIBUTING.md): cắt nhánh từ `dev`, mở PR vào `dev`, không push thẳng.
+
 ## Phạm vi
 
 Đây là nguyên mẫu trình diễn. RiceBridge Ops dùng kịch bản HTX và cảm biến mô phỏng, dữ liệu thời tiết đã cache và ảnh thước đo tổng hợp. Chỉ số mô phỏng không phải kết quả triển khai thực địa. Duyệt lịch tưới cần con người xác nhận.

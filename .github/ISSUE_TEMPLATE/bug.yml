@@ -1,0 +1,28 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected and what you got.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: "python -m ricebridge --stage\n1. ...\n2. ..."
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: LLM mode
+      options: [stage / replay (offline), auto, live, rules]
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: "OS, Python version, browser"
