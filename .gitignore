@@ -1,14 +1,24 @@
+# Python
 __pycache__/
 *.py[cod]
+*.egg-info/
 .venv/
 venv/
+.ruff_cache/
+.pytest_cache/
+
+# Secrets
 .env
 .env.*
 !.env.example
+
+# Runtime and test artefacts (recreated locally)
+.cache/
+tests/out/
+outputs/shots/
+outputs/video/
 *.log
+
+# OS
 .DS_Store
 Thumbs.db
-**/demo/runs/
-**/demo/shots/
-**/demo/video/
-**/demo/tests/out/
