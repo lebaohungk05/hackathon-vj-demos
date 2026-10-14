@@ -1,0 +1,37 @@
+{
+ "_huong_dan": [
+  "Khoa = '<report key>|<page key>'. Gia tri null nghia la page khong co slicer dung duoc.",
+  "p1 = slicer cho luot filter 1, p2 = slicer cho luot filter 2. PHAI la hai slicer KHAC NHAU.",
+  "Slicer nen khac nhau giua cac page de co do phu.",
+  "aria = thuoc tinh aria-label that cua slicer (lay tu slicers.json sau khi chay --discover).",
+  "label = ten hien thi tren report, chi de doc bao cao cho de hieu.",
+  "v = gia tri se chon. Phai NAM TRONG khoang ngay neu ban co ep ngay.",
+  "note = ghi chu se hien trong bao cao, vi du khi page chi co mot slicer dung duoc."
+ ],
+ "R1|P1": {
+  "p1": {
+   "aria": "<aria-label slicer 1>",
+   "label": "<ten hien thi>",
+   "v": "<gia tri>"
+  },
+  "p2": {
+   "aria": "<aria-label slicer 2>",
+   "label": "<ten hien thi>",
+   "v": "<gia tri>"
+  }
+ },
+ "R1|P2": null,
+ "R1|P3": {
+  "p1": {
+   "aria": "<aria-label>",
+   "label": "<ten>",
+   "v": "<gia tri A>"
+  },
+  "p2": {
+   "aria": "<aria-label>",
+   "label": "<ten>",
+   "v": "<gia tri B>"
+  },
+  "note": "page chi co mot slicer dung duoc nen hai luot buoc phai dung cung slicer, khac gia tri"
+ }
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "_comment": "Project-level settings. Committed to the repo so every developer gets the same baseline.",
+
+  "_model_note": "Cố tình KHÔNG pin 'model' ở đây. Project settings (.claude/settings.json) ưu tiên cao hơn ~/.claude/settings.json — nơi lệnh /model lưu lựa chọn của dev. Nếu pin 'model' ở file này, mỗi lần khởi động nó sẽ ĐÈ lại lựa chọn /model của dev, khiến phải chọn model lại mỗi session. Bỏ trống = dùng default theo account tier + auto Opus/Sonnet routing, và giữ nguyên lựa chọn /model của từng dev. Dev nào muốn cố định model thì đặt trong .claude/settings.local.json (gitignored — ưu tiên cao hơn file này nên đè được).",
+
+  "includeCoAuthoredBy": false,
+  "cleanupPeriodDays": 30,
+
+  "permissions": {
+    "defaultMode": "acceptEdits",
+
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git show:*)",
+
+      "Bash(pytest:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(ruff:*)",
+      "Bash(mypy:*)",
+      "Bash(uv run:*)",
+      "Bash(poetry run:*)",
+
+      "Bash(pnpm:*)",
+      "Bash(pnpm run:*)",
+      "Bash(pnpm test:*)",
+      "Bash(npm run:*)",
+      "Bash(npm test:*)",
+      "Bash(npx playwright:*)",
+      "Bash(tsc --noEmit)",
+      "Bash(eslint:*)",
+      "Bash(prettier --check:*)",
+
+      "Bash(docker compose:*)",
+      "Bash(terraform fmt:*)",
+      "Bash(terraform validate:*)",
+      "Bash(terraform plan:*)",
+      "Bash(tflint:*)",
+
+      "Bash(az pipelines build list:*)",
+      "Bash(az boards work-item show:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr diff:*)"
+    ],
+
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(terraform apply:*)",
+      "Bash(docker push:*)",
+      "Bash(az pipelines run:*)"
+    ]
+  },
+
+  "_hooks_note": "Enforce CLAUDE.md security rules at the harness level. Scripts ship inside this .claude/ subtree; paths resolve via ${CLAUDE_PROJECT_DIR} (the consuming repo's root).",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/block-secret-paths.js\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/guard-bash.cjs\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  },
+
+  "enableAllProjectMcpServers": false,
+  "enabledMcpjsonServers": [
+    "github",
+    "azure-devops",
+    "postgres",
+    "playwright",
+    "filesystem",
+    "context7"
+  ]
+}
