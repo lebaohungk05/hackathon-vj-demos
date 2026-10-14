@@ -2,7 +2,8 @@ import datetime as dt
 import json
 import urllib.parse
 import urllib.request
-from pathlib import Path
+
+from .paths import FIXTURES_DIR, RUNTIME_DIR
 
 ARCHIVE_URL = "https://archive-api.open-meteo.com/v1/archive"
 FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
@@ -10,8 +11,9 @@ SITE_NAME = "Long Xuyên, An Giang"
 SITE_LAT, SITE_LON = 10.37, 105.43
 WINDOW_START, WINDOW_END = "2026-02-16", "2026-03-12"
 DAILY_VARS = "precipitation_sum,et0_fao_evapotranspiration,temperature_2m_max"
-CACHE_PATH = Path(__file__).resolve().parents[1] / "data" / f"open_meteo_an_giang_{WINDOW_START}_{WINDOW_END}.json"
-FORECAST_CACHE = Path(__file__).resolve().parents[1] / "data" / "open_meteo_forecast_latest.json"
+CACHE_PATH = FIXTURES_DIR / f"open_meteo_an_giang_{WINDOW_START}_{WINDOW_END}.json"
+FORECAST_SEED = FIXTURES_DIR / "open_meteo_forecast_latest.json"
+FORECAST_CACHE = RUNTIME_DIR / "open_meteo_forecast_latest.json"
 
 
 def request_params():
@@ -87,12 +89,14 @@ def forecast(timeout=6):
         with urllib.request.urlopen(url, timeout=timeout) as response:
             payload = json.load(response)
         record = {"fetched_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "request_url": url, "response": payload}
+        RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
         FORECAST_CACHE.write_text(json.dumps(record, ensure_ascii=False, indent=1), encoding="utf-8")
         status = "live"
     except (OSError, ValueError) as exc:
-        if not FORECAST_CACHE.exists():
+        cached = next((p for p in (FORECAST_CACHE, FORECAST_SEED) if p.exists()), None)
+        if cached is None:
             return {"status": "offline", "error": str(exc), "site_name": SITE_NAME}
-        record = json.loads(FORECAST_CACHE.read_text(encoding="utf-8"))
+        record = json.loads(cached.read_text(encoding="utf-8"))
         status = "cached"
     return {"status": status, "fetched_at": record["fetched_at"], "site_name": SITE_NAME, "lat": SITE_LAT, "lon": SITE_LON,
             "source": "Open-Meteo Forecast API", **summarize_forecast(record["response"])}

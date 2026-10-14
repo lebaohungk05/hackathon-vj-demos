@@ -1,14 +1,11 @@
 import json
-import math
 import random
 from datetime import datetime, timedelta
-from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
-HERE = Path(__file__).resolve().parent
-OUT = HERE / "testset"
+from ricebridge.paths import TESTSET_DIR as OUT
 W, H = 480, 720
 PX_PER_CM = 14
 TUBE_X0, TUBE_X1 = 190, 290

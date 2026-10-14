@@ -1,13 +1,13 @@
 import json
 import sys
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-from policies import AgentPolicy, AgentRiskPolicy, BaselinePolicy, ChecklistPolicy, OraclePolicy, PlannerOnlyPolicy
-from scenario import AWD_THRESHOLD_CM, MAX_DRY_DAYS_POORLY_DRAINED, N_DAYS, SEASON_DAYS, build_scenario
-from simulate import simulate
+from .policies import AgentPolicy, AgentRiskPolicy, BaselinePolicy, ChecklistPolicy, OraclePolicy, PlannerOnlyPolicy
+from .scenario import AWD_THRESHOLD_CM, MAX_DRY_DAYS_POORLY_DRAINED, SEASON_DAYS, build_scenario
+from .simulate import simulate
+from ..paths import SIM_OUT_DIR
 
 DEV_SEEDS = list(range(0, 10))
 TEST_SEEDS = list(range(1000, 1020))
@@ -15,7 +15,7 @@ DRY_CM = -5.0
 GRACE_DAYS = 2
 VALID_READING_CM = 3.0
 EVIDENCE_BLOCK_DAYS = 3
-OUT = Path(__file__).parent / "out"
+OUT = SIM_OUT_DIR
 POLICIES = (AgentPolicy, AgentRiskPolicy, BaselinePolicy, ChecklistPolicy, PlannerOnlyPolicy, OraclePolicy)
 
 

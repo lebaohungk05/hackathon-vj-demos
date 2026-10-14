@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from scenario import FILL_LEVEL_CM, N_DAYS, crop_coefficient, level_to_storage, step_level
+from .scenario import FILL_LEVEL_CM, N_DAYS, crop_coefficient, level_to_storage, step_level
 
 INITIAL_LEVEL_CM = 3.0
 SENSOR_MIN_CM = -30.0

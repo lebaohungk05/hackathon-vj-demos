@@ -4,14 +4,10 @@ import statistics
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
-from pathlib import Path
 
-from consistency import check_photo
-from gauge_reader import MODEL, read_gauge_photo
-
-HERE = Path(__file__).resolve().parent
-TESTSET = HERE / "testset"
-OUT = HERE / "out"
+from ricebridge.paths import TESTSET_DIR as TESTSET, VISION_OUT_DIR as OUT
+from ricebridge.vision.consistency import check_photo
+from ricebridge.vision.gauge_reader import MODEL, read_gauge_photo
 
 HERO_CONTEXT = {"sensor_cm": 2.0, "water_balance_cm": 2.0, "latest_rain_at": "2026-02-24T19:00:00", "submitted_at": "2026-02-25T07:10:00"}
 
@@ -65,7 +61,7 @@ def main():
         "hero": {"file": hero["file"], "truth_cm": hero["truth_cm"], "reading_cm": hero["reading_cm"], "captured_at": hero["captured_at"], "context": HERO_CONTEXT, "consistency": hero_check},
         "per_image": rows,
     }
-    OUT.mkdir(exist_ok=True)
+    OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "metrics.json").write_text(json.dumps(metrics, indent=2, ensure_ascii=False), encoding="utf-8")
     for r in rows:
         shown = "NA" if r["reading_cm"] is None else f"{r['reading_cm']:+.1f}"

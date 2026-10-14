@@ -5,18 +5,17 @@ It replays the hero scenario from the proposal (Appendix A) on real Open-Meteo w
 
 ## Start (one command)
 
-Needs Python 3.10+ and the simulation package `../sim` next to this folder (numpy, pandas).
+Needs Python 3.10+. Install once from the repository root: `pip install -e ".[test]"` (numpy, pandas, Pillow, pytest, Playwright).
 
 ```bash
-cd "D:/Hackathon VJ/06-ricebridge-ops/demo"
-python start_demo.py            # auto: cached replies first, Claude CLI on a miss
-python start_demo.py --stage    # stage mode: offline, cache + rules only, never touches the network
-python start_demo.py --open     # also opens the browser
+python -m ricebridge            # auto: cached replies first, Claude CLI on a miss
+python -m ricebridge --stage    # stage mode: offline, cache + rules only, never touches the network
+python -m ricebridge --open     # also opens the browser
 ```
 
 Open http://127.0.0.1:8766 in Chrome and press F11. The layout scales to the window and was tested at 1920×1080, 1536×864 (a laptop at 125 %), 1366×768 and 1280×720, plus a headed browser.
 
-`start_demo.py` runs a pre-flight check before it starts: Python version, the `../sim` package, the weather cache, the LLM cache (47 replies), the vision cache (28 images), the Claude CLI version and Playwright. If the Claude CLI is missing it switches to `--stage` by itself. The fonts (Inter, JetBrains Mono) are bundled in `web/fonts/` with Yu Gothic/Meiryo for Japanese, so there is no CDN dependency. The server log is `server.log`.
+`python -m ricebridge` runs a pre-flight check before it starts: Python version, the `ricebridge.sim` package, the weather cache, the LLM cache (77 replies), the vision cache (28 images), the Claude CLI version and Playwright. If the Claude CLI is missing it switches to `--stage` by itself. The fonts (Inter, JetBrains Mono) are bundled in `src/ricebridge/web/fonts/` with Yu Gothic/Meiryo for Japanese, so there is no CDN dependency. The server log is `.cache/server.log`.
 
 | Mode | Behaviour |
 |---|---|
@@ -25,11 +24,11 @@ Open http://127.0.0.1:8766 in Chrome and press F11. The layout scales to the win
 | `--mode live` | Always calls the Claude CLI and refreshes the cache |
 | `--mode rules` | No LLM at all |
 
-The server can also be started directly: `python backend/server.py --port 8766 --auto`.
+The server can also be started directly: `python -m ricebridge.server.app --port 8766 --auto`.
 
 ## Three-minute stage script
 
-Before going on stage, run `python start_demo.py --stage` and press **R** (Reset).
+Before going on stage, run `python -m ricebridge --stage` and press **R** (Reset).
 
 | Time | Key / action | What to say |
 |---|---|---|
@@ -55,11 +54,11 @@ If Claude is slow on a new sentence, the live box shows the running stage with e
 The segmented control in the header (or **J**) switches the whole dashboard to one language at a time: English, Japanese or Vietnamese (default). The choice is remembered in the browser; `?lang=ja` or `?lang=vi` in the URL selects it directly.
 
 - Messages show the selected language first. In English and Japanese, **Original Vietnamese** expands the source when a translation is available. Agent messages remain marked as sent in Vietnamese. If a translation is unavailable, the source is retained.
-- Plan reasons, guardrail verdicts, trace lines, log notes and errors come from code templates in all three languages (`backend/i18n.py`); UI labels are in `web/i18n.js`.
+- Plan reasons, guardrail verdicts, trace lines, log notes and errors come from code templates in all three languages (`src/ricebridge/i18n.py`); UI labels are in `web/i18n.js`.
 - LLM explanations show only the chosen language. Translations of every cached LLM reply are pre-generated with Claude Haiku and shipped in `cache/i18n/translations.json`, so `--stage` works offline. In `auto` mode a new live message is translated on demand into the same file; until then, or offline, the English text is shown.
 - Japanese crop terms were checked with Claude Sonnet: 落水可（AWD）, 出穂期, 追肥期, 苗立ち期, 観測管 (gauge tube).
 
-Re-generate the translation cache after a prompt or scenario change: `python backend/translate.py` (needs the Claude CLI).
+Re-generate the translation cache after a prompt or scenario change: `python -m ricebridge.llm.translate` (needs the Claude CLI).
 
 ## Live messages
 
@@ -96,14 +95,16 @@ Sandbox for judges. Nothing is written to the evidence log and nothing can be ap
 ## Tests, screenshots, video
 
 ```bash
-python tests/e2e_test.py                       # offline, 4 viewports, ~2 min, 302 checks
-python tests/e2e_test.py --headed --shots      # same in a visible browser, screenshots to tests/out/
-python tests/e2e_test.py --mode auto --with-llm  # also a new sentence through the real Claude CLI
-python capture.py --mode auto --no-video       # warm the cache after a prompt or scenario change
-python capture.py                              # shots/01…19_*.png, evidence exports, video/ricebridge_demo_run.mp4 (~82 s)
+pytest                                          # unit tests (fast)
+pytest tests/e2e -m e2e                         # Playwright smoke test: whole scripted scenario in a browser, ~5 s
+python tests/e2e/run_e2e.py                     # exhaustive offline suite: viewports, languages, what-if, exports
+python tests/e2e/run_e2e.py --headed --shots    # same in a visible browser, screenshots to tests/out/
+python tests/e2e/run_e2e.py --mode auto --with-llm  # also a new sentence through the real Claude CLI
+python scripts/capture.py --mode auto --no-video    # warm the cache after a prompt or scenario change
+python scripts/capture.py                       # outputs/shots/01…19_*.png, evidence exports, outputs/video/ricebridge_demo_run.mp4 (~82 s)
 ```
 
-The e2e test starts its own server, checks the API error handling, then at each viewport: the hero scenario, back/jump, approve and reject, all 5 sample chips, free text (Vietnamese, nonsense, emoji, Japanese, 420 characters, empty), a message sent while the agent is busy, four what-ifs plus an upload, CSV/JSON export, verify/tamper, reset mid-way and reload; then the language switch (J, reload, `?lang=`) and a full pass in Japanese and in Vietnamese (hero scenario, live messages, what-ifs, carbon view). Every scene is also checked for mixed languages: no Japanese or Vietnamese characters in English mode, no Vietnamese or English sentences in Japanese mode, no Japanese or English sentences in Vietnamese mode, outside elements marked as source quotes. Every scene is checked for page scroll, clipping and elements outside the window. It fails on any console error, failed request, HTTP error or server traceback. Results are in `QA_REPORT.md`.
+The e2e test starts its own server, checks the API error handling, then at each viewport: the hero scenario, back/jump, approve and reject, all 5 sample chips, free text (Vietnamese, nonsense, emoji, Japanese, 420 characters, empty), a message sent while the agent is busy, four what-ifs plus an upload, CSV/JSON export, verify/tamper, reset mid-way and reload; then the language switch (J, reload, `?lang=`) and a full pass in Japanese and in Vietnamese (hero scenario, live messages, what-ifs, carbon view). Every scene is also checked for mixed languages: no Japanese or Vietnamese characters in English mode, no Vietnamese or English sentences in Japanese mode, no Japanese or English sentences in Vietnamese mode, outside elements marked as source quotes. Every scene is checked for page scroll, clipping and elements outside the window. It fails on any console error, failed request, HTTP error or server traceback. Results are in `docs/report/qa-report.md`.
 
 ## What is real and what is scripted
 
@@ -111,9 +112,9 @@ The e2e test starts its own server, checks the API error handling, then at each 
 |---|---|
 | Daily rain and FAO-56 ET0, 16 Feb – 12 Mar 2026 | Open-Meteo Historical Weather API, 10.37°N 105.43°E (Long Xuyên), cached |
 | "Today" line on the intro screen | Open-Meteo Forecast API, live with cached fallback; context only |
-| Water balance, Kc, stages, −15 cm AWD limit, 5 cm conflict rule, 4 fields per run | `../sim/scenario.py`, `../sim/policies.py` |
+| Water balance, Kc, stages, −15 cm AWD limit, 5 cm conflict rule, 4 fields per run | `src/ricebridge/sim/scenario.py`, `src/ricebridge/sim/policies.py` |
 | Fields, people, chat, photo, pump notice | Team demo scenario (scripted); sensor readings simulated from the water balance |
-| Gauge photos | Synthetic images from `vision/make_testset.py`, read by Claude vision (MAE 0.24 cm on 28 images) |
+| Gauge photos | Synthetic images from `scripts/vision_make_testset.py`, read by Claude vision (MAE 0.24 cm on 28 images) |
 | 75 → 49, 1.94 → 0.60, 95 % / 97 % | Team simulation (proposal 2.4, Appendix B), not field data |
 
 The proposal says "40 mm on Tuesday night". The demo uses the real event: 44.4 mm on Thu 26 – Fri 27 Feb 2026, so the photo arrives on Saturday and the pump run moves from Tue 03 to Fri 06 Mar.
@@ -122,14 +123,14 @@ The proposal says "40 mm on Tuesday night". The demo uses the real event: 44.4 m
 
 The default presentation uses two columns: messages and the current decision. **Chi tiết / Details** reveals the trace, field gauges and scenario tools; **W** also opens the scenario lab directly. This display choice is remembered and does not reset the demo.
 
-Translations are applied to a deep copy of each snapshot, leaving engine data and source evidence unchanged. `cache/i18n/editorial.json` supplements the generated cache with reviewed translations for the main scenario and sample inputs. Approval requests from the UI carry the plan ID and reset epoch, so an old browser view cannot approve a newer plan.
+Translations are applied to a deep copy of each snapshot, leaving engine data and source evidence unchanged. `data/i18n/editorial.json` supplements the generated cache with reviewed translations for the main scenario and sample inputs. Approval requests from the UI carry the plan ID and reset epoch, so an old browser view cannot approve a newer plan.
 
-- `start_demo.py`: pre-flight check and server start.
-- `backend/server.py`: HTTP API. Published snapshots (reads never wait for the LLM), one job slot with progress, cancel, JSON errors, what-if, upload.
-- `backend/engine.py`: cluster state, events, intake guardrails, planner, what-if sandbox, evidence log.
-- `backend/interpreter.py`: rule parser (compound Vietnamese numbers), instruction guard, LLM prompts, schemas and validators.
-- `backend/llm.py`: Claude CLI client, cache, retry, cancellation, thread-safe tracing.
-- `backend/vision_hook.py`, `backend/weather_source.py`: vision and weather adapters.
-- `backend/i18n.py`, `backend/translate.py`: templates in EN/JA/VI and the LLM translation cache.
-- `web/`: dashboard (`index.html`, `style.css`, `app.js`, `i18n.js`, `fonts/`).
-- `tests/e2e_test.py`, `capture.py`, `QA_REPORT.md`.
+- `src/ricebridge/cli.py`: pre-flight check and server start (`python -m ricebridge`).
+- `src/ricebridge/server/app.py`: HTTP API. Published snapshots (reads never wait for the LLM), one job slot with progress, cancel, JSON errors, what-if, upload.
+- `src/ricebridge/engine.py`: cluster state, events, intake guardrails, planner, what-if sandbox, evidence log.
+- `src/ricebridge/llm/interpreter.py`: rule parser (compound Vietnamese numbers), instruction guard, LLM prompts, schemas and validators.
+- `src/ricebridge/llm/client.py`: Claude CLI client, cache, retry, cancellation, thread-safe tracing.
+- `src/ricebridge/vision/hook.py`, `src/ricebridge/weather_source.py`: vision and weather adapters.
+- `src/ricebridge/i18n.py`, `src/ricebridge/llm/translate.py`: templates in EN/JA/VI and the LLM translation cache.
+- `src/ricebridge/web/`: dashboard (`index.html`, `style.css`, `app.js`, `i18n.js`, `fonts/`).
+- `tests/`, `scripts/capture.py`, `docs/report/qa-report.md`.

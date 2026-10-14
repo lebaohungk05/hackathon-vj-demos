@@ -6,11 +6,9 @@ import shutil
 import subprocess
 import threading
 import time
-from pathlib import Path
 
-import i18n
-
-CACHE_DIR = Path(__file__).resolve().parents[1] / "cache"
+from .. import i18n
+from ..paths import LLM_CACHE_DIR as CACHE_DIR
 FAST_MODEL = "claude-haiku-4-5-20251001"
 REASON_MODEL = "claude-sonnet-5-5"
 CALL_TIMEOUT_S = int(os.environ.get("RICEBRIDGE_LLM_TIMEOUT", "75"))

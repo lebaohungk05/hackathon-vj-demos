@@ -3,13 +3,13 @@ import json
 import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor
-from pathlib import Path
 
-import i18n
-from interpreter import brief_texts, ask_texts, numbers_in, parse_texts
-from llm import CACHE_DIR, FAST_MODEL, LLMClient, LLMUnavailable, SchemaError, extract_json
+from .. import i18n
+from ..paths import I18N_DIR
+from .interpreter import brief_texts, ask_texts, numbers_in, parse_texts
+from .client import CACHE_DIR, FAST_MODEL, LLMClient, LLMUnavailable, SchemaError, extract_json
 
-STORE_PATH = CACHE_DIR / "i18n" / "translations.json"
+STORE_PATH = I18N_DIR / "translations.json"
 BATCH = 12
 ALLOWED_EXTRA = {float(n) for n in range(0, 32)} | {2026.0}
 

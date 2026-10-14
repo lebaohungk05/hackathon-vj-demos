@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
 
-from weather import load_weather
+from .weather import load_weather
 
 N_DAYS = 121
 SEASON_DAYS = 105

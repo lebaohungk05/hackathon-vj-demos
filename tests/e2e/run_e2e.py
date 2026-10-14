@@ -9,7 +9,7 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "tests" / "out"
 VIEWPORTS = [(1920, 1080), (1902, 914), (1920, 950), (1536, 864), (1536, 730), (1366, 768), (1366, 657), (1280, 720), (1280, 620)]
 SAMPLES = [
@@ -310,7 +310,7 @@ def api_robustness(base, c):
                                   ("/api/upload", {"data": "bm90IGFuIGltYWdl"}, None, 400)]:
         status, reply = http(base, path, body, raw)
         c.ok(status == code and reply.get("ok") is False and reply.get("message"), f"api {path} {body or raw} -> {status} {reply}")
-    status, reply = http(base, "/media/..%2F..%2Fbackend%2Fserver.py")
+    status, reply = http(base, "/media/..%2F..%2F..%2Fsrc%2Fricebridge%2Fserver%2Fapp.py")
     c.ok(status in (400, 404) and reply.get("ok") is False, f"media traversal blocked ({status})")
 
 
@@ -463,7 +463,7 @@ def run_viewport(browser, base, vp, c, mode, shots, full):
         page.click("#wi-run")
         idle(page)
         c.ok(state(page, "S.whatif.flags.some(f => f.code === 'STALE_PHOTO')"), f"{name} what-if photo with EXIF flagged STALE_PHOTO")
-        page.set_input_files("#wi-upload", str(ROOT / "vision" / "testset" / "gauge_05.jpg"))
+        page.set_input_files("#wi-upload", str(ROOT / "data" / "vision" / "testset" / "gauge_05.jpg"))
         page.wait_for_selector(".pill.info:has-text('your upload')")
         page.click("#wi-run")
         idle(page, 240_000)
@@ -540,8 +540,8 @@ def main():
     log_path = OUT / f"server_{args.mode}.log"
     base = f"http://127.0.0.1:{args.port}"
     log = open(log_path, "w", encoding="utf-8")
-    server = subprocess.Popen([sys.executable, str(ROOT / "backend" / "server.py"), "--port", str(args.port), f"--{args.mode}"],
-                              cwd=ROOT / "backend", stdout=log, stderr=subprocess.STDOUT)
+    server = subprocess.Popen([sys.executable, "-m", "ricebridge.server.app", "--port", str(args.port), f"--{args.mode}"],
+                              cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
     c = Check()
     started = time.time()
     try:

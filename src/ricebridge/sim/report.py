@@ -1,7 +1,7 @@
 import json
-from pathlib import Path
+from ..paths import SIM_OUT_DIR
 
-OUT = Path(__file__).parent / "out" / "test"
+OUT = SIM_OUT_DIR / "test"
 
 ROWS = [
     ("awd_violation_plot_days", "Ngày-thửa khô quá ngưỡng AWD (dưới −15 cm quá 2 ngày, hoặc ruộng thoát nước kém khô quá 10 ngày)", 1),

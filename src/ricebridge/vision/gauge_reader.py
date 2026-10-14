@@ -11,8 +11,8 @@ from pathlib import Path
 
 from PIL import Image
 
-HERE = Path(__file__).resolve().parent
-CACHE_DIR = HERE / "cache"
+from ..paths import VISION_CACHE_DIR as CACHE_DIR
+
 MODEL = "claude-sonnet-5-5"
 READING_RANGE = (-40.0, 30.0)
 

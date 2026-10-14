@@ -1,15 +1,16 @@
-from pathlib import Path
-
 import pandas as pd
-import requests
+
+from ..paths import FIXTURES_DIR
 
 ARCHIVE_URL = "https://archive-api.open-meteo.com/v1/archive"
 SITES = {"an_giang": (10.37, 105.43), "can_tho": (10.03, 105.78)}
 START, END = "2025-12-01", "2026-03-31"
-CACHE = Path(__file__).parent / "data"
+CACHE = FIXTURES_DIR
 
 
 def fetch_site(name, lat, lon):
+    import requests  # only needed when a weather CSV is missing (pip install ".[sim]")
+
     params = {
         "latitude": lat,
         "longitude": lon,
@@ -35,10 +36,10 @@ def fetch_site(name, lat, lon):
 
 
 def load_weather():
-    CACHE.mkdir(exist_ok=True)
+    CACHE.mkdir(parents=True, exist_ok=True)
     frames = []
     for name, (lat, lon) in SITES.items():
-        path = CACHE / f"weather_{name}.csv"
+        path = CACHE / f"sim_weather_{name}.csv"
         if not path.exists():
             fetch_site(name, lat, lon).to_csv(path, index=False)
         frames.append(pd.read_csv(path, parse_dates=["date"]))

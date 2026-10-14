@@ -1,6 +1,5 @@
 import json
 import sys
-from pathlib import Path
 
 import matplotlib
 
@@ -10,7 +9,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-OUT = Path(__file__).parent / "out"
+from ..paths import SIM_OUT_DIR
+
+OUT = SIM_OUT_DIR
 AGENT = "#2a78d6"
 BASELINE = "#eb6834"
 ORACLE = "#8a8984"

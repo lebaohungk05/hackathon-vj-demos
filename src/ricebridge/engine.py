@@ -2,22 +2,16 @@ import copy
 import datetime as dt
 import hashlib
 import json
-import sys
 from dataclasses import dataclass
-from pathlib import Path
 
-SIM_DIR = Path(__file__).resolve().parents[2] / "sim"
-sys.path.insert(0, str(SIM_DIR))
-
-from policies import AWD_MARGIN_CM, SENSOR_PHOTO_CONFLICT_CM, WET_MARGIN_CM
-from scenario import AWD_THRESHOLD_CM, BUND_CM, FILL_LEVEL_CM, NO_DRYING_STAGES, PUMP_CAPACITY, crop_coefficient, stage, step_level
-
-import i18n
-import vision_hook
-import weather_source
-from i18n import tr
-from interpreter import REFUSAL_EN, REFUSAL_T, REFUSAL_VI, RuleBasedInterpreter, get_interpreter, instruction_hits
-from llm import FAST_MODEL, REASON_MODEL, LLMClient
+from .sim.policies import AWD_MARGIN_CM, SENSOR_PHOTO_CONFLICT_CM, WET_MARGIN_CM
+from .sim.scenario import AWD_THRESHOLD_CM, BUND_CM, FILL_LEVEL_CM, NO_DRYING_STAGES, PUMP_CAPACITY, crop_coefficient, stage, step_level
+from . import i18n, weather_source
+from .paths import DATA_DIR
+from .vision import hook as vision_hook
+from .i18n import tr
+from .llm.interpreter import REFUSAL_T, RuleBasedInterpreter, get_interpreter, instruction_hits
+from .llm.client import FAST_MODEL, REASON_MODEL, LLMClient
 
 FORECAST_HORIZON_DAYS = 1
 STALE_READING_DAYS = 3
@@ -25,7 +19,7 @@ CHECK_BEFORE_OPEN_DAYS = 2
 FAST_DRAINING_MM = 3.0
 MRV_WINDOW_START = dt.date(2026, 2, 20)
 MODEL_START = dt.datetime(2026, 2, 20, 6, 0)
-DEMO_DIR = Path(__file__).resolve().parents[1]
+DEMO_DIR = DATA_DIR
 ACCEPT_CONFIDENCE = 0.75
 PARSER_AGREEMENT_CM = 0.5
 GAUGE_FLOOR_CM = -40.0

@@ -1,37 +1,20 @@
 import hashlib
-import importlib.util
+import importlib
 import json
 import subprocess
-import sys
-import threading
 import time
 from pathlib import Path
 
-VISION_DIR = Path(__file__).resolve().parents[1] / "vision"
-READER_PATH = VISION_DIR / "gauge_reader.py"
-CONSISTENCY_PATH = VISION_DIR / "consistency.py"
-TESTSET_DIR = VISION_DIR / "testset"
-UPLOAD_DIR = VISION_DIR / "uploads"
+from ..paths import TESTSET_DIR, UPLOAD_DIR  # noqa: F401  (re-exported for the server)
+
+READER_PATH = Path(__file__).with_name("gauge_reader.py")
 GROUND_TRUTH = TESTSET_DIR / "ground_truth.json"
 SYNTHETIC_NOTE = "synthetic test images"
 BLOCKING_FLAGS = {"UNREADABLE_PHOTO", "STALE_PHOTO", "PHOTO_SUSPECT", "SOURCES_DISAGREE"}
-MODULES = {}
-LOAD_LOCK = threading.Lock()
 
 
-def load_module(name, path):
-    with LOAD_LOCK:
-        if name in MODULES:
-            return MODULES[name]
-        if not path.exists():
-            return None
-        if str(VISION_DIR) not in sys.path:
-            sys.path.insert(0, str(VISION_DIR))
-        spec = importlib.util.spec_from_file_location(name, path)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        MODULES[name] = module
-        return module
+def load_module(name):
+    return importlib.import_module(f"{__package__}.{name}")
 
 
 CANCEL = {"epoch": 0, "at": 0.0, "procs": set()}
@@ -92,7 +75,7 @@ def file_digest(path):
 
 def check_consistency(reading_cm, captured_at, context, confidence):
     try:
-        consistency = load_module("consistency", CONSISTENCY_PATH)
+        consistency = load_module("consistency")
     except Exception:
         consistency = None
     if consistency is None:
@@ -105,7 +88,7 @@ def read_gauge_photo(image_path, replay=False, context=None):
     if image_path is None or not Path(image_path).exists():
         return empty("no image file for this event")
     try:
-        reader = load_module("gauge_reader", READER_PATH)
+        reader = load_module("gauge_reader")
     except Exception as exc:
         return empty(f"vision module failed to load: {exc}", image_path)
     if reader is None or not callable(getattr(reader, "read_gauge_photo", None)):

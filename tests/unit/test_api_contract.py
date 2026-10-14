@@ -1,14 +1,11 @@
 """Regression checks for request parsing, approval identity and translation isolation."""
 import io
 import json
-import sys
 import unittest
-from pathlib import Path
 from types import SimpleNamespace
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
-import server
-import translate
+from ricebridge.llm import translate
+from ricebridge.server import app as server
 
 
 class ApiContract(unittest.TestCase):

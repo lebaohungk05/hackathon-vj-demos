@@ -10,18 +10,15 @@ import time
 import traceback
 import uuid
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlparse
 
-import i18n
-import translate
-import vision_hook
-import weather_source
-from engine import EVENTS, FIELD_IDS, SENDERS, DemoError, Demo
-from i18n import tr
-from llm import CALL_TIMEOUT_S, cli_version
-
-WEB_DIR = Path(__file__).resolve().parents[1] / "web"
+from .. import i18n, weather_source
+from ..engine import EVENTS, FIELD_IDS, SENDERS, DemoError, Demo
+from ..i18n import tr
+from ..llm import translate
+from ..llm.client import CALL_TIMEOUT_S, cli_version
+from ..paths import WEB_DIR
+from ..vision import hook as vision_hook
 MEDIA_DIRS = (vision_hook.TESTSET_DIR, vision_hook.UPLOAD_DIR)
 MAX_BODY_BYTES = 12 * 1024 * 1024
 MAX_UPLOAD_BYTES = 8 * 1024 * 1024

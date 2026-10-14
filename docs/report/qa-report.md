@@ -1,5 +1,7 @@
 # RiceBridge Ops demo · QA report
 
+> **Note (2026-10-14):** this report was written before the repository was restructured into `src/ricebridge`. File names below (`backend/`, `web/`, `capture.py`, `tests/e2e_test.py`) map to `src/ricebridge/…`, `src/ricebridge/web/`, `scripts/capture.py` and `tests/e2e/run_e2e.py`. See `docs/design/architecture.md`.
+
 Date: 2026-10-06. Build under test: the demo as found (`backend/server.py --auto`, `web/` v1).
 
 Method: Playwright (Chromium, headless and headed) at 1920×1080, 1536×864 (Windows laptop at 125 %), 1366×768 and 1280×720. Every button, tab, step, approve/reject, Farmer/Carbon switch, 日本語, CSV/JSON export, verify/tamper, all 5 sample messages and free-typed messages (nonsense, empty, 400 characters, emoji, Japanese). Also reset mid-way, reload, double-click, Space after a click, and a second message sent while the first LLM call was still running. API probes ran against a second server on port 8790 with stderr captured, so tracebacks could be counted. Logic was checked in-process in `--rules` mode.

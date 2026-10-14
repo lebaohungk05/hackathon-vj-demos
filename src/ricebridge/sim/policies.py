@@ -1,6 +1,6 @@
 import numpy as np
 
-from scenario import (
+from .scenario import (
     AWD_THRESHOLD_CM,
     FILL_LEVEL_CM,
     MAX_DRY_DAYS_POORLY_DRAINED,

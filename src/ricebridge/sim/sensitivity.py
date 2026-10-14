@@ -1,7 +1,7 @@
 import json
 
-from experiment import OUT, TEST_SEEDS, run_one, summarize
-from policies import AgentPolicy, BaselinePolicy, OraclePolicy
+from .experiment import OUT, TEST_SEEDS, run_one, summarize
+from .policies import AgentPolicy, BaselinePolicy, OraclePolicy
 
 CAPACITIES = (3, 4, 6)
 KEYS = ("awd_violation_plot_days", "heading_dry_plot_days", "awd_drying_plot_days", "pump_days_used")

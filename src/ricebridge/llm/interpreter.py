@@ -2,8 +2,8 @@ import re
 import unicodedata
 from typing import Protocol
 
-import i18n
-from llm import FAST_MODEL, REASON_MODEL, LLMClient, LLMUnavailable
+from .. import i18n
+from .client import FAST_MODEL, REASON_MODEL, LLMClient, LLMUnavailable
 
 VI_NUMBERS = {
     "mot": 1, "hai": 2, "ba": 3, "bon": 4, "tu": 4, "nam": 5, "lam": 5,
