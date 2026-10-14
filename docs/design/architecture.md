@@ -17,6 +17,7 @@ src/ricebridge/
   paths.py            Mọi đường dẫn file (nguồn duy nhất)
   cli.py, __main__.py Kiểm tra điều kiện chạy rồi khởi động server (python -m ricebridge)
   engine.py           Lõi: trạng thái cụm, sự kiện, rào chắn nhập liệu, lập lịch, what-if, nhật ký
+  scenario_data.py    Dữ liệu kịch bản: 6 thửa, người, 7 sự kiện, nhãn (chỉ dữ liệu, không có hành vi)
   i18n.py             Mẫu câu EN/JA/VI cho phần do mã sinh ra
   weather_source.py   Thời tiết Open-Meteo (có cache)
   llm/
