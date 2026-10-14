@@ -13,12 +13,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, unquote, urlparse
 
 from .. import i18n, weather_source
-from ..engine import EVENTS, FIELD_IDS, SENDERS, DemoError, Demo
+from ..engine import EVENTS, FIELD_IDS, SENDERS, Demo, DemoError
 from ..i18n import tr
 from ..llm import translate
 from ..llm.client import CALL_TIMEOUT_S, cli_version
 from ..paths import WEB_DIR
 from ..vision import hook as vision_hook
+
 MEDIA_DIRS = (vision_hook.TESTSET_DIR, vision_hook.UPLOAD_DIR)
 MAX_BODY_BYTES = 12 * 1024 * 1024
 MAX_UPLOAD_BYTES = 8 * 1024 * 1024

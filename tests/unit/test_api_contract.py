@@ -31,7 +31,7 @@ class ApiContract(unittest.TestCase):
         for body in [{"plan_id": "P1", "epoch": 2}, {"plan_id": "P2", "epoch": 1}]:
             handler = object.__new__(server.Handler)
             handler.path = "/api/decision"
-            handler.read_json = lambda: {"decision": "approve", **body}
+            handler.read_json = lambda body=body: {"decision": "approve", **body}
             handler.runtime = SimpleNamespace(
                 demo=SimpleNamespace(plan={"id": "P2"}, epoch=2),
                 start_job=lambda kind, label, fn: fn(),

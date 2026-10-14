@@ -5,7 +5,8 @@ import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-from ricebridge.paths import TESTSET_DIR as TESTSET, VISION_OUT_DIR as OUT
+from ricebridge.paths import TESTSET_DIR as TESTSET
+from ricebridge.paths import VISION_OUT_DIR as OUT
 from ricebridge.vision.consistency import check_photo
 from ricebridge.vision.gauge_reader import MODEL, read_gauge_photo
 

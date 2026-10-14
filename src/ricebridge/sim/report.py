@@ -1,4 +1,5 @@
 import json
+
 from ..paths import SIM_OUT_DIR
 
 OUT = SIM_OUT_DIR / "test"
@@ -57,7 +58,7 @@ def main():
         "|---|---|---|---|---|",
     ]
     for key, label in DETECTION:
-        a = lambda m: cell(s["agent"], f"detection.{key}.{m}", 2)
+        a = lambda m, key=key: cell(s["agent"], f"detection.{key}.{m}", 2)
         lines.append(f"| {label} | {cell(s['agent'], f'detection.{key}.events', 1)} | {a('precision')} | {a('recall')} | {a('mean_ttd_days')} |")
     lines += [
         f"| (e) HTX ghi hộ cho nông dân lớn tuổi (không phải lỗi) | 5 thửa | Agent gắn cờ nhầm: {cell(s['agent'], 'detection.e_proxy_false_flags_agent', 0)} | Quy tắc chỉ đếm nhật ký của chính nông dân sẽ gắn cờ nhầm: {cell(s['agent'], 'detection.e_proxy_false_flags_naive_farmer_only_rule', 0)} | – |",

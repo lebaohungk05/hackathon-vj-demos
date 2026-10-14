@@ -3,17 +3,17 @@ import datetime as dt
 import hashlib
 import json
 
-from .sim.policies import AWD_MARGIN_CM, SENSOR_PHOTO_CONFLICT_CM, WET_MARGIN_CM
-from .sim.scenario import AWD_THRESHOLD_CM, BUND_CM, FILL_LEVEL_CM, NO_DRYING_STAGES, PUMP_CAPACITY, crop_coefficient, stage, step_level
 from . import i18n, weather_source
+from .i18n import tr
+from .llm.client import FAST_MODEL, REASON_MODEL, LLMClient
+from .llm.interpreter import REFUSAL_T, RuleBasedInterpreter, get_interpreter, instruction_hits
 from .paths import DATA_DIR
-from .vision import hook as vision_hook
 from .scenario_data import (
     ACTION_LABELS,
     CLUSTER_NAME,
     EVENTS,
-    FIELDS,
     FIELD_IDS,
+    FIELDS,
     HTX_OFFICER,
     MODEL_START,
     MRV_WINDOW_START,
@@ -29,9 +29,9 @@ from .scenario_data import (
     TECH_OFFICER_OPTION,
     TITLE_KEYS,
 )
-from .i18n import tr
-from .llm.interpreter import REFUSAL_T, RuleBasedInterpreter, get_interpreter, instruction_hits
-from .llm.client import FAST_MODEL, REASON_MODEL, LLMClient
+from .sim.policies import AWD_MARGIN_CM, SENSOR_PHOTO_CONFLICT_CM, WET_MARGIN_CM
+from .sim.scenario import AWD_THRESHOLD_CM, BUND_CM, FILL_LEVEL_CM, NO_DRYING_STAGES, PUMP_CAPACITY, crop_coefficient, stage, step_level
+from .vision import hook as vision_hook
 
 FORECAST_HORIZON_DAYS = 1
 STALE_READING_DAYS = 3
@@ -994,7 +994,7 @@ class Demo:
             levels = sorted(dt.datetime.fromisoformat(e["time"]).date() for e in rows
                             if e["kind"] == "water_level" and e["status"] == "accepted")
             points = [MRV_WINDOW_START] + levels + [today]
-            worst_gap = max(((b - a).days, a, b) for a, b in zip(points, points[1:]))
+            worst_gap = max(((b - a).days, a, b) for a, b in zip(points, points[1:], strict=False))
             person = [e for e in rows if e["kind"] == "water_level" and e["status"] == "accepted" and e["source"] in PERSON_READ_SOURCES
                       and dt.datetime.fromisoformat(e["time"]).date() > MRV_WINDOW_START]
             decided = any(e["kind"] == "decision" and e["status"] == "approved" for e in rows)
@@ -1204,7 +1204,7 @@ class Demo:
                         "short_ja": e["short_ja"], "time": e["time"],
                         "title_t": {"en": e.get("title_ui", e["title"]), "ja": e["title_ja"], "vi": e["title_vi"]},
                         "short_t": {"en": e["short"], "ja": e["short_ja"], "vi": e["short_vi"]},
-                        "sub_t": dict(zip(i18n.LANGS, e["sub"]))} for e in EVENTS],
+                        "sub_t": dict(zip(i18n.LANGS, e["sub"], strict=True))} for e in EVENTS],
             "current": self.history[-1] if self.history else None,
             "history_len": len(self.history),
             "plan": self.plan, "fields": fields, "tasks": self.tasks(),

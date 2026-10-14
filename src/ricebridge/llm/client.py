@@ -9,6 +9,7 @@ import time
 
 from .. import i18n
 from ..paths import LLM_CACHE_DIR as CACHE_DIR
+
 FAST_MODEL = "claude-haiku-4-5-20251001"
 REASON_MODEL = "claude-sonnet-5-5"
 CALL_TIMEOUT_S = int(os.environ.get("RICEBRIDGE_LLM_TIMEOUT", "75"))
@@ -177,7 +178,7 @@ class LLMClient:
             except subprocess.TimeoutExpired:
                 proc.kill()
                 proc.communicate()
-                raise LLMUnavailable(f"Claude CLI timed out after {CALL_TIMEOUT_S} s")
+                raise LLMUnavailable(f"Claude CLI timed out after {CALL_TIMEOUT_S} s") from None
         finally:
             with self.guard:
                 self.running.pop(token, None)
