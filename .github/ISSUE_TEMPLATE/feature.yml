@@ -1,0 +1,19 @@
+name: Feature request
+description: Suggest an improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or need
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposed change
+  - type: textarea
+    id: guardrails
+    attributes:
+      label: Impact on guardrails
+      description: Does it touch what the LLM may do, what needs human approval, or the evidence log?
