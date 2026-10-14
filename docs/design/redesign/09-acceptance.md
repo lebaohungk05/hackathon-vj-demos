@@ -27,7 +27,7 @@ Tài liệu này là tiêu chí dùng chung của 01–08, không phải kế ho
 4. **Một kế hoạch cuối.** Sau sửa dữ liệu phải draft_plan lại; final tham chiếu kế hoạch và refs của nhánh sẽ commit. Finish không tạo plan mới sau final. Câu thiếu cơ sở dùng mẫu tất định; số có trong payload vẫn phải đúng thửa/đơn vị/giờ/hành động.
 5. **Offline bao trùm.** Replay adapter output, chạy lại code nghiệp vụ; hash ảnh và phiên bản policy/schema nằm trong manifest. Epoch không làm cache miss sau reset nhưng vẫn chặn commit cũ. Không đưa thời gian thật hoặc transport live/cache vào so ngữ nghĩa.
 6. **What-if cách ly.** Chỉ cấp run_what_if cho sandbox; không cấp công cụ commit/duyệt. Trạng thái nghiệp vụ chính giống nhau trước/trong/sau thử nghiệm, kể cả cancel/lỗi/reset; progress và số liệu vận hành có thể thay đổi. Callback muộn không sửa phiên chính.
-7. **Ngân sách hữu hạn.** ≤ 8 công cụ/run; mặc định dừng request LLM/vision/final/retry ở 50 giây, hoàn tất job ≤ 60 giây. Token/request/run/session giới hạn bằng config đã đo ở INF-08; số request gồm cả retry. Một lớp retry; không reset budget phiên vận hành bằng phím reset nghiệp vụ.
+7. **Ngân sách hữu hạn.** ≤ 8 công cụ/run; mặc định dừng request LLM/vision/final/retry ở 50 giây, hoàn tất job ≤ 60 giây. Token/request/run/session giới hạn bằng config đã đo ở INF-07; số request gồm cả retry. Một lớp retry; không reset budget phiên vận hành bằng phím reset nghiệp vụ.
 8. **Quyền đọc tách biệt.** Presenter đọc snapshot/media/evidence và điều khiển; audience chỉ gửi và xem status của mình. Approval thiếu hoặc stale plan/epoch/version, provisional và sandbox đều bị từ chối. Health công khai không lộ dữ liệu/bí mật.
 
 ## 3. Bộ ca tối thiểu

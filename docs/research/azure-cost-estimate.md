@@ -104,7 +104,7 @@ Kết luận:
 
 ### 5.1 Phương án giới hạn 30 USD (quyết định của chủ dự án)
 
-Chủ dự án quyết định **chi thực tế không quá 30 USD** cho 26 ngày (14/10 – 09/11/2026) và **xin 50 USD** trong ticket, phần 20 USD còn lại là dự phòng. Các kịch bản ở mục 4–5 (6.000 lượt trở lên) vượt xa mức này, nên phải giảm số lượt chạy:
+Chủ dự án quyết định **chi thực tế không quá 30 USD** cho 26 ngày (14/10 – 09/11/2026) và ghi 30 USD trong ticket. Các kịch bản ở mục 4–5 (6.000 lượt trở lên) vượt xa mức này, nên phải giảm số lượt chạy:
 
 | Phương án | Container App | Cố định | Ngân sách token | Số lượt chạy |
 | --- | --- | --- | --- | --- |

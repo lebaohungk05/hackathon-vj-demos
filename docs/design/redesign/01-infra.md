@@ -4,7 +4,7 @@ Tổng: 6 giờ (chưa tính INF-07). Phạm vi: hạ tầng Azure. Việc kiể
 
 ## 1. Mục tiêu
 
-Dựng đủ hạ tầng để dev và test, tạo bằng tay theo [hướng dẫn từng bước](../../manual/azure-create-resources.md). Chi phí thực tế tối đa 30 USD (xin 50 USD) cho giai đoạn 14/10 – 09/11/2026. Khi không dùng thì tắt; chỉ xóa khi chắc chắn không dùng nữa.
+Dựng đủ hạ tầng để dev và test, tạo bằng tay theo [hướng dẫn từng bước](../../manual/azure-create-resources.md). Chi phí dự tính 30 USD (29,99) cho giai đoạn 14/10 – 09/11/2026. Khi không dùng thì tắt; chỉ xóa khi chắc chắn không dùng nữa.
 
 ## 2. Đặt tên và tag
 
@@ -59,9 +59,7 @@ Vùng: Azure OpenAI ở `japaneast`, còn lại ở `southeastasia`.
 
 | Khoản | USD |
 | --- | --- |
-| Xin trong ticket | 50 |
-| Giới hạn thực tế (budget cảnh báo) | 30 |
-| Dự phòng | 20 |
+| Dự tính trong ticket và giới hạn budget | 30 (tổng ước tính 29,99: OpenAI 12,18 + Container Apps 13,48 + ACR 4,33) |
 
 Phương án cho 26 ngày:
 
@@ -120,7 +118,7 @@ Biến `SUB`, `RG`, `ACR_ID` như trong [hướng dẫn tạo tay](../../manual/
 | Lộ key | Key chỉ vào `.env` và secret của Container App; không chép vào chat, ticket hay file được commit | Mục 10, dòng 5 |
 | Hết quota model đã chọn | Đổi region hoặc model: xóa và tạo lại deployment cùng tên | Mục 10, dòng 1 |
 | Thiếu quyền gán role hoặc purge | Người tạo cần Contributor và User Access Administrator ở phạm vi subscription | Nhờ chủ subscription cấp quyền rồi chạy lại bước bị lỗi |
-| Vượt 30 USD | Budget Actual + Forecasted; 20 USD dự phòng; phương án C; giới hạn số lượt ở phía ứng dụng | Mục 10, dòng 6 |
+| Vượt 30 USD | Budget Actual + Forecasted; phương án C; giới hạn số lượt ở phía ứng dụng | Mục 10, dòng 6 |
 | Chi phí khi không dùng | Tắt Container App về 0; ACR Basic vẫn tốn khoảng 5 USD/tháng nếu chưa xóa | Mục 10, dòng 6 và 7 |
 
 ## 9. Verify
