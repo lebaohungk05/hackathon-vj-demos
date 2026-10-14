@@ -1,6 +1,6 @@
 # 06 · Triển khai lên Azure Container Apps (DEP)
 
-Tổng: 39 giờ (35 giờ nếu bỏ DEP-06 tùy chọn). Nhánh: `feat/dep-aca`. Phụ thuộc: M0, INF-04 và AGT-13 cho context duyệt. DEP-11/AGT-13 làm sớm; deploy khi M0 và các task nền này xong, không đợi M1/M2, để phát hiện lỗi môi trường rồi cập nhật dần.
+Tổng: 39 giờ (35 giờ nếu bỏ DEP-06 tùy chọn). Nhánh: `feat/dep-aca`. Phụ thuộc: M0, INF-02 và AGT-13 cho context duyệt. DEP-11/AGT-13 làm sớm; deploy khi M0 và các task nền này xong, không đợi M1/M2, để phát hiện lỗi môi trường rồi cập nhật dần.
 
 ## Mục tiêu
 
@@ -22,10 +22,10 @@ Demo chạy trên một URL HTTPS công khai, ổn định trong ngày thi, ch�
 | Replica/revision | `minReplicas: 1`, `maxReplicas: 1`, `activeRevisionsMode: single`, không chia traffic (trạng thái trong bộ nhớ) |
 | Ingress | external, `targetPort: 8080`, chỉ HTTPS |
 | Tài nguyên | 0,5 vCPU / 1 GiB |
-| Secret | `aoai-key` (Bicep lấy bằng `listKeys()`), `presenter-token`, `audience-code` |
+| Secret | `aoai-key` (đặt bằng lệnh lấy key từ account Azure OpenAI), `presenter-token`, `audience-code` |
 | Env | Azure/mode, data/runtime paths và budgets; key/token/code qua `secretRef` |
 | Probe | liveness và readiness gọi `GET /api/health` |
-| Registry | ACR qua user-assigned identity (INF-04) |
+| Registry | ACR qua user-assigned identity (INF-02) |
 
 ### Bảo vệ URL công khai
 
@@ -46,8 +46,8 @@ Phân quyền theo allowlist endpoint, gồm `/api/state`, `/api/verify`, `/api/
 | DEP-01 | CLI host/port/mode và env PORT/RICEBRIDGE_MODE; chặn bind ngoài loopback khi thiếu token; health không gọi mạng/không giữ mutate lock | `server/app.py` | Test local, cloud có/thiếu token và mode override; health trả nhanh lúc agent/vision bận | 2 | M0 |
 | DEP-02 | Cookie/token, constant-time compare, Origin, allowlist route/media; duyệt bắt buộc plan_id/epoch/state_version, cấm what-if/provisional; tách phiên audience | `server/app.py`, `web/` | Ma trận route người lạ/khán giả/presenter/local qua; thiếu/stale approval context bị từ chối; không lộ token trong log | 7 | DEP-01, AGT-13 |
 | DEP-03 | Dockerfile/.dockerignore, exec entrypoint, data chỉ đọc/runtime writable, non-root; kiểm package sau pip install . | `Dockerfile`, `.dockerignore` | Container chạy hết stage, forecast offline, ảnh/what-if; ghi upload/cache đúng runtime; signal dừng tới Python | 4 | DEP-01, DEP-11, LLM-11 |
-| DEP-04 | Container App theo bảng: single revision/không traffic split, paths/budgets, probes/secretRef; imageTag và output URL | `infra/app.bicep` | Health HTTPS qua; chỉ revision hiện tại nhận traffic; restart được ghi nhận là mất phiên | 4 | INF-04, DEP-03 |
-| DEP-05 | Script build và deploy: `az acr build -t ricebridge:<git-sha>` rồi deploy `app.bicep` với tag mới; sinh `presenter-token` và `audience-code` ngẫu nhiên nếu chưa có; in URL người trình bày | `infra/release.ps1`, `infra/release.sh` | Một lệnh từ máy dev ra bản mới trong < 5 phút | 3 | DEP-04 |
+| DEP-04 | Container App theo bảng: single revision/không traffic split, paths/budgets, probes/secretRef; imageTag và output URL | Lệnh `az containerapp create` (mẫu ở [azure-create-resources.md](../../manual/azure-create-resources.md)) | Health HTTPS qua; chỉ revision hiện tại nhận traffic; restart được ghi nhận là mất phiên | 4 | INF-02, DEP-03 |
+| DEP-05 | Script build và deploy: `az acr build -t ricebridge:<git-sha>` rồi `az containerapp update --image <acr>/ricebridge:<git-sha>`; sinh `presenter-token` và `audience-code` ngẫu nhiên nếu chưa có; in URL người trình bày | `infra/release.ps1`, `infra/release.sh` | Một lệnh từ máy dev ra bản mới trong < 5 phút | 3 | DEP-04 |
 | DEP-06 | (Tùy chọn) GitHub Actions deploy khi merge vào `main`, đăng nhập Azure bằng OIDC (federated credential), không lưu secret Azure trong GitHub | `.github/workflows/deploy.yml` | Merge vào `main` tự ra bản mới | 4 | DEP-05 |
 | DEP-07 | JSON stdout: run/item id, epoch/state_version, engine/source/fallback, queue/precheck/tool/final/total ms, token/request, commit/aborted; KQL chậm/fallback/lỗi | `agent/runner.py`, `docs/manual/cloud-runbook.md` | Truy vấn có dữ liệu; không log key/token, nội dung riêng tư hay ảnh base64 | 2 | DEP-04, AGT-06 |
 | DEP-08 | Runbook deploy/key rotation/mode/reset/recovery/teardown; Skip cho lỗi live tại chỗ; đổi mode bằng env gây restart nên phải khôi phục phiên; budget không tự ngắt | `docs/manual/cloud-runbook.md` | Người khác theo được; mode replay đúng CLI/env; restart không âm thầm khôi phục approval cũ | 3 | DEP-05, DEP-12, AGT-09, AGT-11 |

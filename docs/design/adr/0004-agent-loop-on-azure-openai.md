@@ -32,7 +32,7 @@ Luồng hiện tại là chuỗi hàm `on_<sự kiện>` gọi công cụ theo t
 
 ## Model
 
-Điền sau INF-01 và INF-08.
+Điền sau INF-01; kiểm năng lực và đo token ở INF-07.
 
 | Deployment | Model/version | API/client | Region | Capacity → TPM/RPM | Thời gian trung vị |
 | --- | --- | --- | --- | --- | --- |

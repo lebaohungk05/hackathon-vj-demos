@@ -5,9 +5,9 @@ Bộ tài liệu này mô tả hệ thống mới và chia việc thành các ta
 Thiết kế mục tiêu (chi tiết ở [ADR 0004](../adr/0004-agent-loop-on-azure-openai.md) và [ADR 0005](../adr/0005-hosting-on-azure-container-apps.md); các ADR vẫn là đề xuất, code hiện tại chưa triển khai redesign):
 
 - LLM: **Azure OpenAI**, gọi bằng function calling ngay trong tiến trình Python. **Gỡ hẳn Claude CLI.**
-- Xác thực: **API key**. Ở máy dev để trong `.env`; trên cloud là secret của Container App, Bicep lấy trực tiếp bằng `listKeys()` nên không ai phải chép key bằng tay.
+- Xác thực: **API key**. Ở máy dev để trong `.env`; trên cloud là secret của Container App, đặt một lần bằng lệnh lấy key từ account Azure OpenAI (không chép key vào chat hay file).
 - Chạy: **Azure Container Apps**, 1 replica, HTTPS công khai. Vẫn chạy local được để phát triển.
-- Hạ tầng tạo mới bằng **Bicep**.
+- Hạ tầng tạo **bằng tay** theo [hướng dẫn từng bước](../../manual/azure-create-resources.md) (Azure CLI), không dùng Bicep hay Terraform.
 
 ## 0. Phạm vi và cách kết luận đã đáp ứng
 
@@ -97,7 +97,7 @@ Propose vẫn là thao tác có hiệu ứng: phải có giao dịch/chống ghi
 
 ```mermaid
 flowchart LR
-  subgraph RG[Resource group rb-demo]
+  subgraph RG[Resource group di-hackathon-ricebridge]
     AOAI[Azure OpenAI<br/>fast + strong]
     ACR[Container Registry]
     LAW[Log Analytics]
@@ -140,7 +140,7 @@ Giữ nguyên mô hình cân bằng nước và chính sách an toàn theo giai 
 
 | Kế hoạch | Mã task | Nội dung | Giờ |
 | --- | --- | --- | --- |
-| [01 · Hạ tầng Azure](01-infra.md) | INF | Bicep: Azure OpenAI, 2 deployment, ACR, Container Apps env, budget; script tạo và xóa | 18 |
+| [01 · Hạ tầng Azure](01-infra.md) | INF | Tạo tay: Azure OpenAI, 2 deployment, ACR, Container Apps env, budget; đặt tên/tag theo subscription, giới hạn chi phí 30 USD, xóa và purge sau cuộc thi | 6 |
 | [02 · Chuyển sang Azure OpenAI](02-llm-azure.md) | LLM | Provider, vision và dịch tương thích; mode/offline/retry/cancel; gỡ CLI | 51 |
 | [03 · Vòng lặp agent](03-agent-loop.md) | AGT | Công cụ, giao dịch, validator, RulesPolicy sửa parser, recording/eval/budgets | 84 |
 | [04 · Hộp thư chung](04-unified-inbox.md) | INB | Nguồn/bằng chứng/áp input, bỏ tự duyệt, chuyển kịch bản, sửa completeness | 47 |
@@ -148,9 +148,9 @@ Giữ nguyên mô hình cân bằng nước và chính sách an toàn theo giai 
 | [06 · Triển khai Container Apps](06-cloud-deploy.md) | DEP | Package paths, Docker, auth/revision, deploy/log/runbook/recovery | 39 |
 | [07 · Khán giả tham gia](07-live-audience.md) | AUD | Mobile/QR, queue/status/idempotency/limits, ảnh thật, what-if tự nhiên | 40 |
 | [08 · Tốc độ và đa ngôn ngữ](08-latency-i18n.md) | PERF | Prechecks P0, vi/en/ja và kiểm nghĩa, đo receipt/queue/final | 21 |
-| | | **Tổng** | **≈ 342 giờ ≈ 43 ngày-người (8 giờ/ngày)** |
+| | | **Tổng** | **≈ 330 giờ ≈ 41 ngày-người (8 giờ/ngày)** |
 
-Ước lượng tăng 95 giờ so với bản đầu vì thêm giao dịch, bằng chứng, offline toàn luồng và kiểm thử lỗi. Đây là dự toán công việc, chưa phải số liệu triển khai. [09](09-acceptance.md) là hợp đồng nghiệm thu, không có ngân sách giờ riêng; test/tài liệu thuộc các task đã liệt kê.
+Ước lượng tăng 83 giờ so với bản đầu vì thêm giao dịch, bằng chứng, offline toàn luồng, kiểm thử lỗi, và (ở hạ tầng, đã bớt phần tự động hóa) quy ước tên/tag theo subscription và tính chi phí. Đây là dự toán công việc, chưa phải số liệu triển khai. [09](09-acceptance.md) là hợp đồng nghiệm thu, không có ngân sách giờ riêng; test/tài liệu thuộc các task đã liệt kê.
 
 ```mermaid
 flowchart LR
