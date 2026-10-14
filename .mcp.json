@@ -1,0 +1,48 @@
+{
+  "_comment": "MCP servers tailored to our stack. Secrets come from the developer's shell env — do not hard-code tokens.",
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+
+    "azure-devops": {
+      "command": "npx",
+      "args": ["-y", "@azure-devops/mcp", "${AZURE_DEVOPS_ORG}"],
+      "env": {
+        "AZURE_DEVOPS_PAT": "${AZURE_DEVOPS_PAT}"
+      }
+    },
+
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "${POSTGRES_READONLY_URL}"
+      ]
+    },
+
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "."
+      ]
+    },
+
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    }
+  }
+}

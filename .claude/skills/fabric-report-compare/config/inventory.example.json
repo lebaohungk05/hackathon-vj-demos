@@ -1,0 +1,54 @@
+{
+ "_huong_dan": [
+  "versions: id 'v0' BAT BUOC la ban goc. Cac ban toi uu dat ten tuy y (v1, v2, v3, v35...).",
+  "ws  = GUID workspace, lay tu URL Fabric: /groups/<GUID>/",
+  "ids = GUID cua report do TRONG TUNG version. Khac nhau o moi version.",
+  "dataset = GUID cua semantic model. Chi can khi dung --refresh api.",
+  "pid = id cua page trong report, lay tu URL khi mo page.",
+  "nv  = so visual tren page (chi de tham khao). hidden=true neu page bi an."
+ ],
+ "versions": [
+  {
+   "id": "v0",
+   "label": "v0 (goc)",
+   "ws": "<GUID-workspace-goc>",
+   "dataset": "<GUID-semantic-model>"
+  },
+  {
+   "id": "v1",
+   "label": "v1",
+   "ws": "<GUID-workspace-bien-the>",
+   "dataset": "<GUID-semantic-model>"
+  },
+  {
+   "id": "v2",
+   "label": "v2",
+   "ws": "<GUID-workspace-bien-the>",
+   "dataset": "<GUID-semantic-model>"
+  }
+ ],
+ "reports": [
+  {
+   "key": "R1",
+   "name": "<Ten day du cua report>",
+   "ids": {
+    "v0": "<GUID-report-o-v0>",
+    "v1": "<GUID-report-o-v1>",
+    "v2": "<GUID-report-o-v2>"
+   },
+   "pages": [
+    {
+     "k": "P1",
+     "pid": "<page-id>",
+     "nm": "<Ten page>"
+    },
+    {
+     "k": "P2",
+     "pid": "<page-id>",
+     "nm": "<Ten page>",
+     "hidden": true
+    }
+   ]
+  }
+ ]
+}

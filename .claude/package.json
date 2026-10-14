@@ -1,0 +1,31 @@
+{
+  "name": "@di/claude-base",
+  "version": "0.1.0",
+  "description": "Shared Claude Code config — agents, skills, hooks, references",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "node scripts/postinstall.mjs",
+    "link": "node scripts/postinstall.mjs",
+    "test": "node --test scripts/postinstall.test.mjs"
+  },
+  "bin": {
+    "claude-base-link": "scripts/postinstall.mjs"
+  },
+  "files": [
+    "agents",
+    "skills",
+    "hooks",
+    "references",
+    "assets",
+    "settings.json",
+    "CLAUDE.md",
+    ".mcp.json",
+    "scripts/postinstall.mjs",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,63 @@
+Parts of this skill are adapted from ckw-design-skill, which is MIT licensed. The MIT licence
+requires its copyright and permission notice to travel with the work, so it is reproduced in full
+below.
+
+    Source:  https://github.com/connerkward/ckw-design-skill
+    Commit:  c8de7c8e9279648a2cbeb4021508b874e88d41f1  (2026-06-16)
+    Author:  Conner K Ward
+
+What was taken, and where it went:
+
+    design-thinking/SKILL.md                          -> references/direction.md
+    design-system/SKILL.md                            -> references/design-system.md
+    design-system/references/motion-choreography.md   -> references/motion.md
+    deterministic-design/design-spatial/SKILL.md      -> references/spatial.md
+    deterministic-design/design-ux/SKILL.md           -> references/usability.md
+    design-philosophy/{SKILL,reference}.md            -> references/philosophy.md   (merged)
+    SKILL.md (its three specific UI rules)            -> references/interaction-rules.md
+    .../design-spatial/scripts/layout-audit.js        -> scripts/layout-audit.js     (verbatim)
+
+What was changed, and why. The upstream bundle is seven sibling skills that cross-reference each
+other by path; collapsed into one skill those references would dangle, so:
+
+  * Every cross-reference was rewritten to this skill's layout.
+  * Two upstream section numbers were wrong and are corrected here: design-ux cited the overflow
+    gate as design-spatial §2 (it is §4) and Fitts/transit-time as §3 (it is §5).
+  * design-system linked design-spatial as `../design-spatial/SKILL.md`, which was not its sibling.
+  * References to five upstream rules that exist only in the author's own repository
+    (restraint-rule, verify-outputs-rule, media-attribution-rule, motion-preference-rule) were
+    replaced with the plain statement of the rule, since naming a rule nobody here can read is
+    worse than stating it.
+  * design-spatial named two companion artifacts, `asym.html` and `analyze.py`, which the upstream
+    repository does not contain. The techniques are kept and now say they must be built.
+  * The upstream entry skill's routing was dropped; this skill's SKILL.md is the router, and its
+    aesthetic direction is Anthropic's original frontend-design skill, which was not replaced.
+  * The two blocking gates (render-and-judge, measure horizontal overflow) were promoted into
+    SKILL.md, because a gate in a file nobody loaded is not a gate.
+
+The upstream discussion of the "generic AI mean" and the pre-existing skill's list of AI clichés
+said the same thing twice; they are merged into one section rather than stated in both places.
+
+--------------------------------------------------------------------------------
+
+MIT License
+
+Copyright (c) 2026 Conner K Ward
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -1,0 +1,6 @@
+{
+  "name": "fabric-report-compare-scripts",
+  "private": true,
+  "type": "commonjs",
+  "_note": "BAT BUOC: .claude/package.json khai bao type=module, nen node se coi cac file .js o day la ES module va require() se khong ton tai. File nay ep lai ve CommonJS cho rieng thu muc scripts."
+}

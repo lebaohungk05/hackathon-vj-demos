@@ -1,0 +1,47 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8">
+<title>So sánh report v0 vs v1/v2/v3/v3.5</title><style>
+*{box-sizing:border-box}
+body{font:14px/1.55 "Segoe UI",Meiryo,system-ui,sans-serif;margin:0;background:#f5f6f8;color:#1b1f23}
+.wrap{max-width:1620px;margin:0 auto;padding:26px 20px 90px}
+h1{font-size:26px;margin:0 0 4px}
+h2{font-size:20px;margin:40px 0 12px;padding-bottom:7px;border-bottom:2px solid #d5d9de}
+h3{font-size:17px;margin:30px 0 8px}
+h4{font-size:15px;margin:22px 0 8px;color:#333}
+.sub{color:#666;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:13px}
+th,td{border:1px solid #d5d9de;padding:6px 9px;vertical-align:top}
+th{background:#eceff3;font-weight:600}
+td.c,th.c{text-align:center}
+.same{background:#e7f6ea;color:#166a2b;font-weight:600}
+.diff{background:#fdeaea;color:#a4161a;font-weight:700}
+.dval{background:#fdeaea;color:#a4161a;font-weight:700}
+.dui{background:#fff2df;color:#8a4b00;font-weight:600}
+.lbl.dval{background:#a4161a;color:#fff}.lbl.dui{background:#b3651a;color:#fff}
+.pill{display:inline-block;font-size:11px;padding:2px 9px;border-radius:11px;margin-left:8px;font-weight:600}
+.pill.v{background:#fdeaea;color:#a4161a}.pill.u{background:#fff2df;color:#8a4b00}
+.pill.s{background:#e7f6ea;color:#166a2b}.pill.m{background:#fff4e0;color:#8a5a00}
+details details{margin:8px 0 8px 18px}
+.miss{background:#fff4e0;color:#8a5a00;font-weight:600}
+.nos{background:#eef0f2;color:#666}
+.box{background:#fff;border:1px solid #d5d9de;border-radius:7px;padding:14px 16px;margin:14px 0}
+.warn{background:#fff8e6;border-color:#e3c46b}.bad{background:#fdeaea;border-color:#e39a9a}
+.ok{background:#eaf7ee;border-color:#8fc79f}
+code{background:#eceff3;padding:1px 5px;border-radius:3px;font-size:12px}
+img{max-width:100%;display:block;border:1px solid #c3c8ce}
+.small{font-size:12px;color:#666}
+details{background:#fff;border:1px solid #d5d9de;border-radius:7px;margin:12px 0}
+details>summary{cursor:pointer;padding:11px 14px;font-weight:600;background:#eceff3;border-radius:7px}
+details[open]>summary{border-bottom:1px solid #d5d9de;border-radius:7px 7px 0 0}
+.dbody{padding:16px}
+.shot{margin:0 0 18px;border:2px solid #c3c8ce;border-radius:6px;overflow:hidden;background:#fff}
+.shot>.lbl{padding:7px 12px;font-weight:700;font-size:14px;letter-spacing:.2px}
+.lbl.base{background:#1f4e79;color:#fff}
+.lbl.same{background:#e7f6ea;color:#166a2b}
+.lbl.diff{background:#a4161a;color:#fff}
+.lbl.miss{background:#fff4e0;color:#8a5a00}
+.shot.d{border-color:#a4161a}
+.zoom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 20px}
+.zoom .shot{margin:0}
+.tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;margin-left:8px;vertical-align:middle}
+.tag.d{background:#fdeaea;color:#a4161a}.tag.s{background:#e7f6ea;color:#166a2b}
+</style></head><body><div class="wrap">
