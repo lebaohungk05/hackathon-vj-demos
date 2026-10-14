@@ -1,5 +1,5 @@
 (() => {
-  const key = document.title.startsWith('Minna') ? 'minna-details' : 'rb-details';
+  const key = 'rb-details';
   let expanded = false;
   try { expanded = localStorage.getItem(key) === 'true'; } catch (_) {}
   const button = document.createElement('button');
