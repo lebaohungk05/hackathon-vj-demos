@@ -232,7 +232,7 @@ async function request(path, body) {
     res = await fetch(path, opts);
   } catch (e) {
     setOffline(true);
-    return { ok: false, error: "network", message: t("The demo server is not reachable. Restart it with python start_demo.py; the page reconnects by itself.") };
+    return { ok: false, error: "network", message: t("The demo server is not reachable. Restart it with python -m ricebridge; the page reconnects by itself.") };
   }
   setOffline(false);
   let data;
