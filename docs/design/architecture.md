@@ -18,7 +18,7 @@ src/ricebridge/
   cli.py, __main__.py Kiểm tra điều kiện chạy rồi khởi động server (python -m ricebridge)
   engine.py           Lõi: trạng thái cụm, sự kiện, lập lịch, what-if, nhật ký
   guards.py           check_reading(): 6 kiểm tra số đo, hàm thuần trả Verdict
-  scenario_data.py    Dữ liệu kịch bản: 6 thửa, người, 7 sự kiện, nhãn (chỉ dữ liệu, không có hành vi)
+  scenario_data.py    Dữ liệu kịch bản: 6 thửa, người, người đo lại từng thửa, 7 sự kiện, nhãn (chỉ dữ liệu, không có hành vi)
   i18n.py             Mẫu câu EN/JA/VI cho phần do mã sinh ra
   weather_source.py   Thời tiết Open-Meteo (có cache)
   llm/

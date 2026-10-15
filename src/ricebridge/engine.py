@@ -20,6 +20,7 @@ from .scenario_data import (
     MRV_WINDOW_START,
     PUMP_RUNS,
     REMEASURE_OPTIONS,
+    REMEASURERS,
     ROUTINE_REPORTS,
     SCENARIO_LABEL,
     SENDERS,
@@ -629,7 +630,9 @@ class Demo:
                            "lift_cm_per_cm": round(1 / self.spec["F2"].sy, 1)}
         return "Re-plan after the rain"
 
-    def candidates_for(self, fid, sender):
+    def candidates_for(self, fid, sender=None):
+        sender = sender or self.spec[fid].owner
+        registry = REMEASURERS[fid]
         if fid in REMEASURE_OPTIONS:
             options = [dict(o) for o in REMEASURE_OPTIONS[fid]]
             for option in options:
@@ -638,18 +641,15 @@ class Demo:
             if sender not in (o["name"] for o in REMEASURE_OPTIONS[fid] if o["independent"]):
                 return REMEASURE_OPTIONS[fid]
         else:
-            farmer = self.spec[fid].owner
-            options = [
-                {"name": f"{sender}, same gauge", "role": "re-read the same tube", "walk_min": 0, "response_rate": 0.85, "independent": False},
-                {"name": f"{farmer}, gauge near the inlet", "role": "farmer measures a second tube", "walk_min": 3, "response_rate": 0.85, "independent": fid != "F3"},
-                {"name": HTX_OFFICER, "role": "HTX officer measures a second tube", "walk_min": 12, "response_rate": 0.95, "independent": True},
-                {"name": "Hộ thửa bên cạnh", "role": "neighbour reads a second tube", "walk_min": 5, "response_rate": 0.8, "independent": True},
-            ]
+            options = [{"name": f"{sender}, same gauge", "role": "re-read the same tube", "walk_min": 0, "response_rate": 0.85, "independent": False}]
+            options += [r.candidate() for r in registry if not r.reserve]
             for option in options[1:]:
                 if option["name"].startswith(sender):
                     option.update(independent=False, role=option["role"] + " (same person who sent the disputed report)")
-        if sum(o["independent"] for o in options) < 2:
-            options.append(dict(TECH_OFFICER_OPTION))
+        for reserve in (r for r in registry if r.reserve):
+            if sum(o["independent"] for o in options) >= 2:
+                break
+            options.append(reserve.candidate())
         return options
 
     def ask_remeasure(self, fid, reporter, situation, result, use_llm=True):
