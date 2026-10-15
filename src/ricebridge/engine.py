@@ -4,6 +4,7 @@ import hashlib
 import json
 
 from . import i18n, weather_source
+from .guards import ACCEPT_CONFIDENCE, GAUGE_FLOOR_CM, REFUSED, SUSPICIOUS, check_reading, fmt_cm
 from .i18n import tr
 from .llm.client import FAST_MODEL, REASON_MODEL, LLMClient
 from .llm.interpreter import REFUSAL_T, RuleBasedInterpreter, get_interpreter, instruction_hits
@@ -38,9 +39,6 @@ STALE_READING_DAYS = 3
 CHECK_BEFORE_OPEN_DAYS = 2
 FAST_DRAINING_MM = 3.0
 DEMO_DIR = DATA_DIR
-ACCEPT_CONFIDENCE = 0.75
-PARSER_AGREEMENT_CM = 0.5
-GAUGE_FLOOR_CM = -40.0
 SIGNIFICANT_RAIN_MM = 10.0
 FLOWERING_DAYS = 20
 MAX_WHATIF_RAIN_MM = 150.0
@@ -59,10 +57,6 @@ class DemoError(ValueError):
 
 def fmt_day(day):
     return day.strftime("%a %d %b")
-
-
-def fmt_cm(value):
-    return f"{value:+.1f} cm".replace("-", "−")
 
 
 def plain_number(value):
@@ -781,38 +775,20 @@ class Demo:
         fid, value, conf = parsed.get("field"), parsed.get("value_cm"), parsed.get("confidence", 0)
         self.say(sender, "htx" if sender == HTX_OFFICER else "farmer", text, parsed.get("gloss_en", ""), tl=parsed.get("gloss_t"),
                  parsed={"intent": parsed["intent"], "field": fid, "value_cm": value, "confidence": conf}, **self.engine_tag(parsed))
-        kind, check = "clarify", None
-        hits_t = ", ".join(f"“{h}”" for h in hits)
-        if hits:
-            verdict, kind = f"message gives instructions to the agent ({', '.join(hits)}): nothing recorded; only the HTX approves plans", "refused"
-            verdict_t = tr("v.refused", hits=hits_t)
+        reading = check_reading(text, parsed, rule, round(self.levels[fid], 1) if fid in self.levels else None, hits=hits)
+        if reading.kind == REFUSED:
+            hits_t = ", ".join(f"“{h}”" for h in hits)
             self.tool("Instruction guard", f"matched {', '.join(hits)} → message treated as data, never as a command", tr("tr.guard", hits=hits_t))
-        elif parsed["intent"] != "water_level" or value is None:
-            verdict, kind = "not a water-level reading: nothing recorded, no plan change", "not_reading"
-            verdict_t = tr("v.not_reading")
-        elif fid is None:
-            verdict = "field unknown: ask which field"
-            verdict_t = tr("v.no_field")
-        elif not GAUGE_FLOOR_CM <= value <= BUND_CM:
-            verdict = f"{fmt_cm(value)} is outside the physical range ({fmt_cm(GAUGE_FLOOR_CM)} to {fmt_cm(BUND_CM)}, bund height): not recorded; ask again"
-            verdict_t, check = tr("v.range", v=fmt_cm(value), lo=fmt_cm(GAUGE_FLOOR_CM), hi=fmt_cm(BUND_CM)), "again"
-        elif rule["value_cm"] is not None and abs(rule["value_cm"] - value) > PARSER_AGREEMENT_CM:
-            verdict = f"LLM {fmt_cm(value)} and rule parser {fmt_cm(rule['value_cm'])} disagree: ask again"
-            verdict_t, check = tr("v.disagree", a=fmt_cm(value), b=fmt_cm(rule["value_cm"])), "again"
-        elif conf < ACCEPT_CONFIDENCE:
-            verdict = f"confidence {conf:.2f} < {ACCEPT_CONFIDENCE}: estimate not recorded as evidence; ask for the gauge number"
-            verdict_t = tr("v.lowconf", c=f"{conf:.2f}", t=ACCEPT_CONFIDENCE)
-        else:
-            verdict = None
-        if verdict:
+        if reading.blocked:
+            kind, verdict, verdict_t = reading.kind, reading.text, reading.text_t
             self.tool("Reading intake guardrail", verdict, verdict_t)
             if parsed.get("reply_vi"):
                 reply_t = dict(parsed.get("reply_t") or {"vi": parsed["reply_vi"], "en": parsed.get("reply_en", "")})
             else:
                 reply_t = tr("chat.ask_field") if fid is None else tr("chat.ask_gauge_field", n=fid[1:])
-            if kind == "refused":
+            if kind == REFUSED:
                 reply_t = dict(parsed.get("reply_t") or {}) if parsed["intent"] != "water_level" and parsed.get("reply_vi") else dict(REFUSAL_T)
-            elif check == "again":
+            elif reading.ask_again:
                 reply_t = tr("chat.ask_again", n=fid[1:])
             if parsed["intent"] == "water_level" and fid in FIELD_IDS:
                 self.append(self.clock, fid, "message", source, None, sender, via, "clarify",
@@ -829,7 +805,7 @@ class Demo:
             self.resolve_pending(fid, value, sender, result)
             return fid
         model = round(self.levels[fid], 1)
-        if abs(value - model) > SENSOR_PHOTO_CONFLICT_CM:
+        if reading.kind == SUSPICIOUS:
             entry = self.append(self.clock, fid, "water_level", source, value, sender, via, "suspicious",
                                 note=f"“{text}” → {fmt_cm(value)}; water balance {fmt_cm(model)}; gap > {SENSOR_PHOTO_CONFLICT_CM} cm",
                                 note_t=tr("log.suspicious", quote=f"“{text}”", v=fmt_cm(value), m=fmt_cm(model), t=SENSOR_PHOTO_CONFLICT_CM))
