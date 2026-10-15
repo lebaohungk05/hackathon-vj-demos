@@ -16,8 +16,9 @@ Mục 1–9 mô tả **code hiện tại** sau khi tái cấu trúc thành packa
 src/ricebridge/
   paths.py            Mọi đường dẫn file (nguồn duy nhất)
   cli.py, __main__.py Kiểm tra điều kiện chạy rồi khởi động server (python -m ricebridge)
-  engine.py           Lõi: trạng thái cụm, sự kiện, rào chắn nhập liệu, lập lịch, what-if, nhật ký
-  scenario_data.py    Dữ liệu kịch bản: 6 thửa, người, 7 sự kiện, nhãn (chỉ dữ liệu, không có hành vi)
+  engine.py           Lõi: trạng thái cụm, sự kiện, lập lịch, what-if, nhật ký
+  guards.py           check_reading(): 6 kiểm tra số đo, hàm thuần trả Verdict
+  scenario_data.py    Dữ liệu kịch bản: 6 thửa, người, người đo lại từng thửa, 7 sự kiện, nhãn (chỉ dữ liệu, không có hành vi)
   i18n.py             Mẫu câu EN/JA/VI cho phần do mã sinh ra
   weather_source.py   Thời tiết Open-Meteo (có cache)
   llm/
@@ -61,7 +62,7 @@ flowchart LR
 
 ## 4. Rào chắn nhập liệu
 
-Một số đo từ tin nhắn chỉ được ghi khi qua lần lượt các kiểm tra trong `Demo.intake()`:
+Một số đo từ tin nhắn chỉ được ghi khi qua lần lượt các kiểm tra trong `check_reading()` ([guards.py](../../src/ricebridge/guards.py)). Hàm này thuần, trả về `Verdict`; `Demo.intake()` gọi nó rồi mới ghi nhật ký và trả lời người gửi:
 
 | # | Kiểm tra | Nếu không qua |
 | --- | --- | --- |

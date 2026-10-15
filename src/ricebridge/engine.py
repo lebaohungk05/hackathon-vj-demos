@@ -4,6 +4,7 @@ import hashlib
 import json
 
 from . import i18n, weather_source
+from .guards import ACCEPT_CONFIDENCE, GAUGE_FLOOR_CM, REFUSED, SUSPICIOUS, check_reading, fmt_cm
 from .i18n import tr
 from .llm.client import FAST_MODEL, REASON_MODEL, LLMClient
 from .llm.interpreter import REFUSAL_T, RuleBasedInterpreter, get_interpreter, instruction_hits
@@ -19,6 +20,7 @@ from .scenario_data import (
     MRV_WINDOW_START,
     PUMP_RUNS,
     REMEASURE_OPTIONS,
+    REMEASURERS,
     ROUTINE_REPORTS,
     SCENARIO_LABEL,
     SENDERS,
@@ -38,9 +40,6 @@ STALE_READING_DAYS = 3
 CHECK_BEFORE_OPEN_DAYS = 2
 FAST_DRAINING_MM = 3.0
 DEMO_DIR = DATA_DIR
-ACCEPT_CONFIDENCE = 0.75
-PARSER_AGREEMENT_CM = 0.5
-GAUGE_FLOOR_CM = -40.0
 SIGNIFICANT_RAIN_MM = 10.0
 FLOWERING_DAYS = 20
 MAX_WHATIF_RAIN_MM = 150.0
@@ -59,10 +58,6 @@ class DemoError(ValueError):
 
 def fmt_day(day):
     return day.strftime("%a %d %b")
-
-
-def fmt_cm(value):
-    return f"{value:+.1f} cm".replace("-", "−")
 
 
 def plain_number(value):
@@ -635,7 +630,9 @@ class Demo:
                            "lift_cm_per_cm": round(1 / self.spec["F2"].sy, 1)}
         return "Re-plan after the rain"
 
-    def candidates_for(self, fid, sender):
+    def candidates_for(self, fid, sender=None):
+        sender = sender or self.spec[fid].owner
+        registry = REMEASURERS[fid]
         if fid in REMEASURE_OPTIONS:
             options = [dict(o) for o in REMEASURE_OPTIONS[fid]]
             for option in options:
@@ -644,18 +641,15 @@ class Demo:
             if sender not in (o["name"] for o in REMEASURE_OPTIONS[fid] if o["independent"]):
                 return REMEASURE_OPTIONS[fid]
         else:
-            farmer = self.spec[fid].owner
-            options = [
-                {"name": f"{sender}, same gauge", "role": "re-read the same tube", "walk_min": 0, "response_rate": 0.85, "independent": False},
-                {"name": f"{farmer}, gauge near the inlet", "role": "farmer measures a second tube", "walk_min": 3, "response_rate": 0.85, "independent": fid != "F3"},
-                {"name": HTX_OFFICER, "role": "HTX officer measures a second tube", "walk_min": 12, "response_rate": 0.95, "independent": True},
-                {"name": "Hộ thửa bên cạnh", "role": "neighbour reads a second tube", "walk_min": 5, "response_rate": 0.8, "independent": True},
-            ]
+            options = [{"name": f"{sender}, same gauge", "role": "re-read the same tube", "walk_min": 0, "response_rate": 0.85, "independent": False}]
+            options += [r.candidate() for r in registry if not r.reserve]
             for option in options[1:]:
                 if option["name"].startswith(sender):
                     option.update(independent=False, role=option["role"] + " (same person who sent the disputed report)")
-        if sum(o["independent"] for o in options) < 2:
-            options.append(dict(TECH_OFFICER_OPTION))
+        for reserve in (r for r in registry if r.reserve):
+            if sum(o["independent"] for o in options) >= 2:
+                break
+            options.append(reserve.candidate())
         return options
 
     def ask_remeasure(self, fid, reporter, situation, result, use_llm=True):
@@ -781,38 +775,20 @@ class Demo:
         fid, value, conf = parsed.get("field"), parsed.get("value_cm"), parsed.get("confidence", 0)
         self.say(sender, "htx" if sender == HTX_OFFICER else "farmer", text, parsed.get("gloss_en", ""), tl=parsed.get("gloss_t"),
                  parsed={"intent": parsed["intent"], "field": fid, "value_cm": value, "confidence": conf}, **self.engine_tag(parsed))
-        kind, check = "clarify", None
-        hits_t = ", ".join(f"“{h}”" for h in hits)
-        if hits:
-            verdict, kind = f"message gives instructions to the agent ({', '.join(hits)}): nothing recorded; only the HTX approves plans", "refused"
-            verdict_t = tr("v.refused", hits=hits_t)
+        reading = check_reading(text, parsed, rule, round(self.levels[fid], 1) if fid in self.levels else None, hits=hits)
+        if reading.kind == REFUSED:
+            hits_t = ", ".join(f"“{h}”" for h in hits)
             self.tool("Instruction guard", f"matched {', '.join(hits)} → message treated as data, never as a command", tr("tr.guard", hits=hits_t))
-        elif parsed["intent"] != "water_level" or value is None:
-            verdict, kind = "not a water-level reading: nothing recorded, no plan change", "not_reading"
-            verdict_t = tr("v.not_reading")
-        elif fid is None:
-            verdict = "field unknown: ask which field"
-            verdict_t = tr("v.no_field")
-        elif not GAUGE_FLOOR_CM <= value <= BUND_CM:
-            verdict = f"{fmt_cm(value)} is outside the physical range ({fmt_cm(GAUGE_FLOOR_CM)} to {fmt_cm(BUND_CM)}, bund height): not recorded; ask again"
-            verdict_t, check = tr("v.range", v=fmt_cm(value), lo=fmt_cm(GAUGE_FLOOR_CM), hi=fmt_cm(BUND_CM)), "again"
-        elif rule["value_cm"] is not None and abs(rule["value_cm"] - value) > PARSER_AGREEMENT_CM:
-            verdict = f"LLM {fmt_cm(value)} and rule parser {fmt_cm(rule['value_cm'])} disagree: ask again"
-            verdict_t, check = tr("v.disagree", a=fmt_cm(value), b=fmt_cm(rule["value_cm"])), "again"
-        elif conf < ACCEPT_CONFIDENCE:
-            verdict = f"confidence {conf:.2f} < {ACCEPT_CONFIDENCE}: estimate not recorded as evidence; ask for the gauge number"
-            verdict_t = tr("v.lowconf", c=f"{conf:.2f}", t=ACCEPT_CONFIDENCE)
-        else:
-            verdict = None
-        if verdict:
+        if reading.blocked:
+            kind, verdict, verdict_t = reading.kind, reading.text, reading.text_t
             self.tool("Reading intake guardrail", verdict, verdict_t)
             if parsed.get("reply_vi"):
                 reply_t = dict(parsed.get("reply_t") or {"vi": parsed["reply_vi"], "en": parsed.get("reply_en", "")})
             else:
                 reply_t = tr("chat.ask_field") if fid is None else tr("chat.ask_gauge_field", n=fid[1:])
-            if kind == "refused":
+            if kind == REFUSED:
                 reply_t = dict(parsed.get("reply_t") or {}) if parsed["intent"] != "water_level" and parsed.get("reply_vi") else dict(REFUSAL_T)
-            elif check == "again":
+            elif reading.ask_again:
                 reply_t = tr("chat.ask_again", n=fid[1:])
             if parsed["intent"] == "water_level" and fid in FIELD_IDS:
                 self.append(self.clock, fid, "message", source, None, sender, via, "clarify",
@@ -829,7 +805,7 @@ class Demo:
             self.resolve_pending(fid, value, sender, result)
             return fid
         model = round(self.levels[fid], 1)
-        if abs(value - model) > SENSOR_PHOTO_CONFLICT_CM:
+        if reading.kind == SUSPICIOUS:
             entry = self.append(self.clock, fid, "water_level", source, value, sender, via, "suspicious",
                                 note=f"“{text}” → {fmt_cm(value)}; water balance {fmt_cm(model)}; gap > {SENSOR_PHOTO_CONFLICT_CM} cm",
                                 note_t=tr("log.suspicious", quote=f"“{text}”", v=fmt_cm(value), m=fmt_cm(model), t=SENSOR_PHOTO_CONFLICT_CM))

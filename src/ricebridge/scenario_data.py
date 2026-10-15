@@ -62,6 +62,7 @@ class FieldSpec:
     lon: float
     polygon: str
     label_xy: tuple
+    note: str = ""
 
 
 FIELDS = [
@@ -70,7 +71,8 @@ FIELDS = [
     FieldSpec("F2", "Hộ thửa 2", "photo app + sensor", dt.date(2026, 1, 10), 0.4, 0.2, 0.2, True, 0.2, 2.0,
               10.3713, 105.4298, "220,70 380,70 380,200 220,200", (300, 135)),
     FieldSpec("F3", "Bà Sáu", "74, no smartphone; HTX officer records by voice", dt.date(2026, 1, 9), 0.6, 0.4, 0.3, False, 0.0, 4.0,
-              10.3714, 105.4315, "390,70 560,70 560,200 390,200", (475, 135)),
+              10.3714, 105.4315, "390,70 560,70 560,200 390,200", (475, 135),
+              note="Bà Sáu, 74, has no smartphone; the HTX officer records her field by voice"),
     FieldSpec("F4", "Hộ thửa 4", "photo app", dt.date(2026, 1, 6), 3.6, 0.8, 0.3, False, 0.0, 5.0,
               10.3699, 105.4282, "40,210 210,210 210,340 40,340", (125, 275)),
     FieldSpec("F5", "Hộ thửa 5", "sensor only", dt.date(2026, 1, 10), 0.5, 0.3, 0.3, True, -0.3, 2.0,
@@ -80,14 +82,63 @@ FIELDS = [
 ]
 FIELD_IDS = [f.fid for f in FIELDS]
 
-REMEASURE_OPTIONS = {
-    "F2": [
-        {"name": "Hộ thửa 2, same gauge", "role": "re-photograph the same tube", "walk_min": 0, "response_rate": 0.88, "independent": False},
-        {"name": "Hộ thửa 2, gauge near the inlet", "role": "farmer measures a second tube", "walk_min": 2, "response_rate": 0.88, "independent": True},
-        {"name": HTX_OFFICER, "role": "HTX officer measures a second tube", "walk_min": 12, "response_rate": 0.95, "independent": True},
-    ]
+SAME_GAUGE = "same_gauge"
+FAMILY = "family"
+NEIGHBOUR = "neighbour"
+HTX = "htx_officer"
+TECHNICAL = "technical_officer"
+NEIGHBOUR_NAME = "Hộ thửa bên cạnh"
+
+
+@dataclass(frozen=True)
+class Remeasurer:
+    name: str
+    role: str
+    relation: str
+    walk_min: int
+    response_rate: float
+    independent: bool
+    reserve: bool = False
+
+    def candidate(self) -> dict:
+        return {"name": self.name, "role": self.role, "walk_min": self.walk_min, "response_rate": self.response_rate, "independent": self.independent}
+
+
+TECH_OFFICER_REMEASURER = Remeasurer("Cán bộ kỹ thuật", "technical officer measures a second tube", TECHNICAL, 30, 0.9, True, reserve=True)
+TECH_OFFICER_OPTION = TECH_OFFICER_REMEASURER.candidate()
+
+
+def household_remeasurer(owner: str, independent: bool = True, walk_min: int = 3, response_rate: float = 0.85) -> Remeasurer:
+    return Remeasurer(f"{owner}, gauge near the inlet", "farmer measures a second tube", FAMILY, walk_min, response_rate, independent)
+
+
+def htx_remeasurer() -> Remeasurer:
+    return Remeasurer(HTX_OFFICER, "HTX officer measures a second tube", HTX, 12, 0.95, True)
+
+
+def neighbour_remeasurer(reserve: bool = False) -> Remeasurer:
+    return Remeasurer(NEIGHBOUR_NAME, "neighbour reads a second tube", NEIGHBOUR, 5, 0.8, True, reserve=reserve)
+
+
+def field_remeasurers(owner: str, household_independent: bool = True) -> tuple:
+    return (household_remeasurer(owner, household_independent), htx_remeasurer(), neighbour_remeasurer(), TECH_OFFICER_REMEASURER)
+
+
+REMEASURERS = {
+    "F1": field_remeasurers("Hộ thửa 1"),
+    "F2": (
+        Remeasurer("Hộ thửa 2, same gauge", "re-photograph the same tube", SAME_GAUGE, 0, 0.88, False),
+        household_remeasurer("Hộ thửa 2", walk_min=2, response_rate=0.88),
+        htx_remeasurer(),
+        TECH_OFFICER_REMEASURER,
+        neighbour_remeasurer(reserve=True),
+    ),
+    "F3": field_remeasurers("Bà Sáu", household_independent=False),
+    "F4": field_remeasurers("Hộ thửa 4"),
+    "F5": field_remeasurers("Hộ thửa 5"),
+    "F6": field_remeasurers("Hộ thửa 6"),
 }
-TECH_OFFICER_OPTION = {"name": "Cán bộ kỹ thuật", "role": "technical officer measures a second tube", "walk_min": 30, "response_rate": 0.9, "independent": True}
+REMEASURE_OPTIONS = {"F2": [r.candidate() for r in REMEASURERS["F2"] if not r.reserve]}
 
 ROUTINE_REPORTS = [
     ("2026-02-21T07:10", "F1", "photo", "Hộ thửa 1"),
