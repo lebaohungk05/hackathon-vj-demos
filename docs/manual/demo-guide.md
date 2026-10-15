@@ -13,7 +13,13 @@ python -m ricebridge --stage    # stage mode: offline, cache + rules only, never
 python -m ricebridge --open     # also opens the browser
 ```
 
-Open http://127.0.0.1:8766 in Chrome and press F11. The layout scales to the window and was tested at 1920×1080, 1536×864 (a laptop at 125 %), 1366×768 and 1280×720, plus a headed browser.
+Open http://127.0.0.1:8766 in Chrome and press F11. The layout scales to the window and is tested at 1920×1080, 1902×914, 1920×950, 1536×864, 1536×730, 1366×768, 1366×657, 1280×720 and 1280×620 in English, Japanese and Vietnamese.
+
+## Two views: story and engineering
+
+The page opens in the **story view**, written for HTX staff, farmers and non-technical judges. Each step shows one plain sentence (what happened), one picture (rain chart, field map with water levels, the gauge photo, a chat message or the pump plan), one decision line and one button (Next, or Approve / Reject on the decision step). The chat shows only the messages: the Vietnamese original, plus a translation line in English or Japanese. The carbon view shows one number (fields with complete evidence), the parcel map, Export and Verify.
+
+**How it works** in the header (or key **E**) switches to the **engineering view**: agent trace with LLM and tool steps, model, latency and cache, the guardrail checks, the full plan table with reasons, the What-if lab, sample and prompt-injection chips, and the hash-chain log with tampering. The choice is remembered in the browser; `?view=eng` or `?view=story` in the URL selects it directly. The presenter can switch live on stage; the scenario state does not change.
 
 `python -m ricebridge` runs a pre-flight check before it starts: Python version, the `ricebridge.sim` package, the weather cache, the LLM cache (77 replies), the vision cache (28 images), the Claude CLI version and Playwright. If the Claude CLI is missing it switches to `--stage` by itself. The fonts (Inter, JetBrains Mono) are bundled in `src/ricebridge/web/fonts/` with Yu Gothic/Meiryo for Japanese, so there is no CDN dependency. The server log is `.cache/server.log`.
 
@@ -32,7 +38,7 @@ Before going on stage, run `python -m ricebridge --stage` and press **R** (Reset
 
 | Time | Key / action | What to say |
 |---|---|---|
-| 0:00 | Intro screen | "Six fields share one pump. Purple is the LLM, teal is a deterministic tool, amber is the human. Real Open-Meteo rain for Long Xuyên." |
+| 0:00 | Intro screen (story view) | "Six fields share one pump. Real Open-Meteo rain for Long Xuyên. The pump-station manager approves every plan." |
 | 0:15 | **→** Context | "Field 2 is drying (AWD). The pump runs Friday." |
 | 0:30 | **→** 44 mm rain | "Real rain, 44 mm. The FAO-56 water balance says Field 2 is flooded again, so the agent proposes to pause the pump." |
 | 0:50 | **→** Photo −8 cm | "A farmer sends a gauge photo. Claude vision reads −8.3 cm, but the sensor and water balance both say +2. The EXIF time shows the photo is from Sunday, before the rain. The photo is held, not used. The LLM picks an *independent* re-measure, not the same tube." |
@@ -45,7 +51,9 @@ Before going on stage, run `python -m ricebridge --stage` and press **R** (Reset
 | 2:35 | **W** → Flowering → F2 → Run | "What-if: if Field 2 were flowering, the planner adds it to the run. Sandbox only, nothing logged." |
 | 2:45 | **Esc**, **C**, Verify, Simulate tampering, **J** | "Carbon view: 4/6 parcels complete, hash-chained log, tampering detected. The same view in Japanese for the buyer, and in Vietnamese for the HTX." |
 
-Keys: → / Space next (on the last step it approves, then opens the carbon view) · ← back · 1–6 jump to a step · C Farmer ↔ Carbon · J language (EN → JA → VI) · M type a message · W what-if lab · Esc close · R reset.
+Keys: → / Space next (on the last step it approves, then opens the carbon view) · ← back · 1-6 jump to a step · C Farmer ↔ Carbon · J language (EN → JA → VI) · E story ↔ engineering view · M type a message · W what-if lab (engineering view) · Esc close · R reset.
+
+The live box, sample chips, what-if lab and tampering demo at 2:05-2:45 are in the engineering view: press **E** first.
 
 If Claude is slow on a new sentence, the live box shows the running stage with elapsed seconds. **Skip LLM** kills the call; the agent falls back to rules and the UI stays usable. A message typed while the agent is busy is queued and sent afterwards.
 
@@ -96,8 +104,8 @@ Sandbox for judges. Nothing is written to the evidence log and nothing can be ap
 
 ```bash
 pytest                                          # unit tests (fast)
-pytest tests/e2e -m e2e                         # Playwright smoke test: whole scripted scenario in a browser, ~5 s
-python tests/e2e/run_e2e.py                     # exhaustive offline suite: viewports, languages, what-if, exports
+pytest tests/e2e -m e2e                         # Playwright smoke tests: scripted scenario, story view, engineering toggle, ~40 s
+python tests/e2e/run_e2e.py                     # exhaustive offline suite: 9 viewports, story and engineering views in EN/JA/VI, what-if, exports
 python tests/e2e/run_e2e.py --headed --shots    # same in a visible browser, screenshots to tests/out/
 python tests/e2e/run_e2e.py --mode auto --with-llm  # also a new sentence through the real Claude CLI
 python scripts/capture.py --mode auto --no-video    # warm the cache after a prompt or scenario change
@@ -121,7 +129,7 @@ The proposal says "40 mm on Tuesday night". The demo uses the real event: 44.4 m
 
 ## Files
 
-The default presentation uses two columns: messages and the current decision. **Chi tiết / Details** reveals the trace, field gauges and scenario tools; **W** also opens the scenario lab directly. This display choice is remembered and does not reset the demo.
+The page opens in the story view: messages plus one plain sentence, one picture and one decision per step. **How it works** (key **E**) switches to the engineering view with the trace, field gauges, guardrail checks and scenario tools; **W** opens the scenario lab there. The choice is remembered and does not reset the demo.
 
 Translations are applied to a deep copy of each snapshot, leaving engine data and source evidence unchanged. `data/i18n/editorial.json` supplements the generated cache with reviewed translations for the main scenario and sample inputs. Approval requests from the UI carry the plan ID and reset epoch, so an old browser view cannot approve a newer plan.
 
@@ -132,5 +140,5 @@ Translations are applied to a deep copy of each snapshot, leaving engine data an
 - `src/ricebridge/llm/client.py`: Claude CLI client, cache, retry, cancellation, thread-safe tracing.
 - `src/ricebridge/vision/hook.py`, `src/ricebridge/weather_source.py`: vision and weather adapters.
 - `src/ricebridge/i18n.py`, `src/ricebridge/llm/translate.py`: templates in EN/JA/VI and the LLM translation cache.
-- `src/ricebridge/web/`: dashboard (`index.html`, `style.css`, `app.js`, `i18n.js`, `fonts/`).
+- `src/ricebridge/web/`: dashboard (`index.html`, `style.css`, `app.js`, `i18n.js`, `fonts/`); `story.js` and `story.css` render the story view, `app.js` the engineering view and the mode switch.
 - `tests/`, `scripts/capture.py`, `docs/report/qa-report.md`.

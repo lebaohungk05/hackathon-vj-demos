@@ -1,5 +1,7 @@
 window.I18N = {
 "ja": {
+"An order to the agent, not a reading": "エージェントへの命令で、測定値ではない",
+"refused by the guard": "ガードが拒否",
 "The message gives the agent orders, so it is not followed.": "エージェントへの命令を含むメッセージのため、従いません。",
 "Recorded": "記録済み",
 "Verified": "確認済み",
@@ -356,6 +358,8 @@ window.I18N = {
 "−10 to −15 cm": "−10〜−15 cm"
 },
 "vi": {
+"An order to the agent, not a reading": "Lệnh gửi cho agent, không phải số đo",
+"refused by the guard": "bị chặn, không làm theo",
 "The message gives the agent orders, so it is not followed.": "Tin nhắn ra lệnh cho trợ lý nên không làm theo.",
 "Recorded": "Đã ghi",
 "Verified": "Đã xác minh",

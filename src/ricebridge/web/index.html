@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>RiceBridge Ops · Live demo</title>
+<title>RiceBridge Ops</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <meta name="description" content="RiceBridge Ops live demo: AWD irrigation agent for a shared pump, Vietnam x Japan.">
@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="/theme.css">
 <link rel="stylesheet" href="/weather-chart.css">
+<link rel="stylesheet" href="/story.css">
 </head>
 <body>
 <div class="app" id="app">
@@ -35,24 +36,27 @@
       <div id="langseg" class="seg" role="group" aria-label="Language" data-tt="Language (J)">
         <button type="button" data-lang="en" aria-pressed="true" class="on">EN</button><button type="button" data-lang="ja" aria-pressed="false">JA</button><button type="button" data-lang="vi" aria-pressed="false">VI</button>
       </div>
-      <div class="controls">
-        <button id="prev" class="hbtn ghost" data-tt="Previous event (←)">◀</button>
-        <button id="next" class="hbtn primary" data-tt="Next event (→)">Next ▶</button>
+      <button id="engToggle" class="hbtn ghost engtoggle" type="button" aria-pressed="false">How it works</button>
+      <div id="hdrControls" class="hdr-controls">
+        <div class="controls">
+          <button id="prev" class="hbtn ghost sbtn" type="button" data-tt="Previous event (←)">◀</button>
+          <button id="next" class="hbtn primary sbtn" type="button" data-tt="Next event (→)">Next</button>
+        </div>
       </div>
       <button id="more" class="hbtn ghost more" type="button" aria-expanded="false" aria-controls="menu" data-tt="More">⋯</button>
     </div>
     <div class="goldrule" aria-hidden="true"><i></i></div>
   </header>
   <div id="menu" class="menu" role="dialog" aria-label="More" hidden>
-    <p class="menu-about" data-t="AWD irrigation agent · 6 fields, 1 shared pump · An Giang">AWD irrigation agent · 6 fields, 1 shared pump · An Giang</p>
+    <p class="menu-about eng-only" data-t="AWD irrigation agent · 6 fields, 1 shared pump · An Giang">AWD irrigation agent · 6 fields, 1 shared pump · An Giang</p>
     <div class="menu-row"><small data-t="Scenario clock">Scenario clock</small><b id="clock">–</b></div>
-    <div id="chips" class="chips"></div>
+    <div id="chips" class="chips eng-only"></div>
     <div class="menu-actions">
       <button id="reset" class="hbtn ghost" type="button" data-tt="Reset (R)" data-t="Reset">Reset</button>
-      <button id="whatifbtn" class="hbtn ghost" type="button" data-tt="What-if lab (W)" data-t="What-if lab">What-if lab</button>
+      <button id="whatifbtn" class="hbtn ghost eng-only" type="button" data-tt="What-if lab (W)" data-t="What-if lab">What-if lab</button>
       <button id="motionbtn" class="hbtn ghost" type="button" aria-pressed="false">Pause motion</button>
     </div>
-    <p class="menu-keys" data-t="→ next · ← back · C carbon · J language · M message · W what-if · R reset">→ next · ← back · C carbon · J language · M message · W what-if · R reset</p>
+    <p class="menu-keys eng-only" data-t="→ next · ← back · C carbon · J language · M message · W what-if · R reset">→ next · ← back · C carbon · J language · M message · W what-if · R reset</p>
   </div>
   <nav id="rail" class="rail"></nav>
   <main id="main">
@@ -61,12 +65,12 @@
         <div class="chat">
           <div class="chathead">
             <div class="avatar">A</div>
-            <div class="chatname"><b data-t="Cluster A group chat · HTX">Cluster A group chat · HTX</b><small data-t="Zalo-style · farmers write in Vietnamese">Zalo-style · farmers write in Vietnamese</small></div>
+            <div class="chatname"><b id="chatTitle">HTX group chat</b><small class="eng-only" data-t="Zalo-style · farmers write in Vietnamese">Zalo-style · farmers write in Vietnamese</small></div>
           </div>
           <div id="messages" class="messages"></div>
           <div id="typing" class="typing" hidden></div>
           <form id="compose" class="live" autocomplete="off">
-            <div class="livehead"><span class="livetag"><i></i><span data-t="Live input">Gửi tin</span></span><button type="button" id="samplebtn" class="samplebtn" aria-expanded="false" aria-controls="samples"><span data-t="Sample messages">Sample messages</span></button><span id="queue" class="queue" hidden></span></div>
+            <div class="livehead"><span class="livetag eng-only"><span data-t="Live input">Live input</span></span><button type="button" id="samplebtn" class="samplebtn eng-only" aria-expanded="false" aria-controls="samples"><span data-t="Sample messages">Sample messages</span></button><span id="queue" class="queue" hidden></span></div>
             <div id="samples" class="samples" hidden></div>
             <div class="composerow">
               <select id="sender" aria-label="sender"></select>
@@ -78,6 +82,11 @@
         </div>
       </aside>
       <section class="stage">
+        <section id="story" class="story" hidden>
+          <h2 id="storyTitle" class="story-title"></h2>
+          <div id="storyMain" class="story-main"></div>
+          <div class="story-foot"><p id="storyLine" class="story-line" aria-live="polite"></p><div class="story-actions"><span id="storyNav" class="story-nav"></span><span id="storyDecide" class="story-decide"></span></div></div>
+        </section>
         <div id="shead" class="shead"></div>
         <div id="focal" class="focal"></div>
         <div id="plan" class="card plan"></div>
@@ -108,7 +117,7 @@
 <div id="toast" class="toast" hidden></div>
 <script src="/i18n.js"></script>
 <script src="/weather-chart.js"></script>
+<script src="/story.js"></script>
 <script src="/app.js"></script>
-<script src="presentation.js"></script>
 </body>
 </html>

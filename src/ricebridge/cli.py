@@ -108,7 +108,7 @@ def main():
     server, demo, cli = build_server(args.port, mode)
     print(f"\n  RiceBridge Ops is running:  {url}")
     print(f"  LLM mode: {mode} · Claude CLI: {cli['version'] or 'not used'} · log: {LOG_PATH.name}")
-    print("  Stage keys: → next · ← back · C carbon · J language EN/JA/VI · M message · W what-if · R reset · F11 full screen")
+    print("  Stage keys: → next · ← back · C carbon · J language EN/JA/VI · E story or engineering view · M message · W what-if · R reset · F11 full screen")
     print("  Stop with Ctrl+C.\n", flush=True)
     if args.open:
         threading.Timer(0.8, lambda: webbrowser.open(url)).start()

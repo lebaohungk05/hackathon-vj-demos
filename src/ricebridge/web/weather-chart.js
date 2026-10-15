@@ -1,11 +1,10 @@
-/* Local, dependency-free weather explorer. Values remain the archive's daily measurements. */
 window.RiceWeather = (() => {
   let selectedDate = null;
   let serial = 0;
   const copy = {
-    vi: {title: 'Nhịp mưa trên đồng', total: 'Tổng mưa trong kỳ', peak: 'Ngày mưa nhiều nhất', rain: 'Lượng mưa', et: 'Bốc hơi ET0', browse: 'Khám phá từng ngày', hint: 'Rê chuột trên biểu đồ hoặc kéo thanh ngày', dry: 'Không mưa', wet: 'Có mưa', heavy: 'Ngày mưa nổi bật', today: 'Ngày trong demo', pause: 'Dừng chuyển động', play: 'Bật chuyển động', empty: 'Chưa có dữ liệu thời tiết', day: 'Chọn ngày xem số liệu', archive: 'Dữ liệu lịch sử'},
-    en: {title: 'The rhythm of the rains', total: 'Rain across this period', peak: 'Wettest day', rain: 'Rainfall', et: 'ET0 evaporation', browse: 'Explore day by day', hint: 'Hover over the chart or move the date slider', dry: 'No rain', wet: 'Rain recorded', heavy: 'Rainfall highlight', today: 'Demo date', pause: 'Pause motion', play: 'Enable motion', empty: 'No weather data available', day: 'Select a date to inspect', archive: 'Historical data'},
-    ja: {title: '田んぼを潤す雨のリズム', total: '期間中の総雨量', peak: '最も雨が多かった日', rain: '降水量', et: '蒸発散量 ET0', browse: '日ごとのデータを見る', hint: 'グラフにカーソルを合わせるか、スライダーで日付を選択', dry: '降雨なし', wet: '降雨あり', heavy: '雨量の多い日', today: 'デモ内の日付', pause: '動きを止める', play: '動きを再開', empty: '気象データがありません', day: '確認する日付を選択', archive: '過去の観測データ'},
+    vi: {title: 'Mưa và bốc hơi mỗi ngày', total: 'Tổng mưa trong kỳ', peak: 'Ngày mưa nhiều nhất', rain: 'Lượng mưa', et: 'Bốc hơi ET0', browse: 'Khám phá từng ngày', hint: 'Rê chuột trên biểu đồ hoặc kéo thanh ngày', dry: 'Không mưa', wet: 'Có mưa', heavy: 'Ngày mưa lớn', today: 'Ngày trong demo', pause: 'Dừng chuyển động', play: 'Bật chuyển động', empty: 'Chưa có dữ liệu thời tiết', day: 'Chọn ngày xem số liệu', archive: 'Dữ liệu lịch sử'},
+    en: {title: 'Daily rain and evaporation', total: 'Rain across this period', peak: 'Wettest day', rain: 'Rainfall', et: 'ET0 evaporation', browse: 'Explore day by day', hint: 'Hover over the chart or move the date slider', dry: 'No rain', wet: 'Rain recorded', heavy: 'Heavy rain', today: 'Demo date', pause: 'Pause motion', play: 'Enable motion', empty: 'No weather data available', day: 'Select a date to inspect', archive: 'Historical data'},
+    ja: {title: '毎日の雨量と蒸発量', total: '期間中の総雨量', peak: '最も雨が多かった日', rain: '降水量', et: '蒸発散量 ET0', browse: '日ごとのデータを見る', hint: 'グラフにカーソルを合わせるか、スライダーで日付を選択', dry: '降雨なし', wet: '降雨あり', heavy: '大雨の日', today: 'デモ内の日付', pause: '動きを止める', play: '動きを再開', empty: '気象データがありません', day: '確認する日付を選択', archive: '過去の観測データ'},
   };
   const escape = s => String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const number = n => Number(n).toFixed(1);
@@ -21,7 +20,8 @@ window.RiceWeather = (() => {
     const sum = rows.reduce((a, d) => a + d.rain_mm, 0);
     const fs = Math.max(10, rem * .88);
     const compact = height < rem * 24;
-    const W = width, H = Math.max(50, height - rem * (compact ? 6.6 : 10));
+    const bare = !!context.bare;
+    const W = width, H = Math.max(50, height - rem * (bare ? (compact ? 2.8 : 5) : (compact ? 6.6 : 10)));
     const left = fs * 3, right = fs * 3.2, top = fs * 2.4, base = H - fs * 2;
     const plotWidth = W - left - right, step = plotWidth / rows.length;
     const maxRain = Math.max(40, Math.ceil(rows[maxIndex].rain_mm / 10) * 10);
@@ -50,12 +50,11 @@ window.RiceWeather = (() => {
       ${rows.some(d=>d.date===today)?`<line class="wx-today" x1="${x(rows.findIndex(d=>d.date===today))}" x2="${x(rows.findIndex(d=>d.date===today))}" y1="${top}" y2="${base}"/><text x="${x(rows.findIndex(d=>d.date===today))+fs*.6}" y="${top-fs*.8}" font-size="${fs}" class="wx-today-label">${escape(c.today)}</text>`:''}
       <g class="wx-cursor" pointer-events="none"><rect class="wx-select-band" y="${top}" width="${step}" height="${base-top}"/><line class="wx-select-line" y1="${top}" y2="${base}"/><circle class="wx-select-dot" r="5"/></g>
     </svg>`;
-    const html = `<section class="weather-explorer${compact?' is-compact':''}${paused?' motion-paused':''}" data-weather-id="${id}" aria-label="${c.title}">
-      <div class="wx-overview"><div class="wx-heading"><span>${c.archive} · ${fmtDate(rows[0].date)}–${fmtDate(rows[rows.length-1].date)}</span><h3>${c.title}</h3></div><div class="wx-stat"><span>${c.total}</span><strong>${number(sum)}<small> mm</small></strong></div><div class="wx-stat peak"><span>${c.peak} · ${fmtDate(rows[maxIndex].date)}</span><strong>${number(rows[maxIndex].rain_mm)}<small> mm</small></strong></div></div>
+    const html = `<section class="weather-explorer${compact?' is-compact':''}${bare?' is-bare':''}${paused?' motion-paused':''}" data-weather-id="${id}" aria-label="${c.title}">
+      <div class="wx-overview"><div class="wx-heading"><span>${c.archive}, ${fmtDate(rows[0].date)}-${fmtDate(rows[rows.length-1].date)}</span><h3>${c.title}</h3></div><div class="wx-stat"><span>${c.total}</span><strong>${number(sum)}<small> mm</small></strong></div><div class="wx-stat peak"><span>${c.peak}, ${fmtDate(rows[maxIndex].date)}</span><strong>${number(rows[maxIndex].rain_mm)}<small> mm</small></strong></div></div>
       <div class="wx-plot">${svg}</div>
-      <div class="wx-controls"><div class="wx-readout"><div class="wx-selected-date"><b data-wx-date></b><span data-wx-condition></span></div><div class="wx-value rain"><span>${c.rain}</span><b data-wx-rain></b></div><div class="wx-value evaporation"><span>${c.et}</span><b data-wx-et></b></div><button type="button" class="wx-motion" aria-pressed="${!paused}">${paused?c.play:c.pause}</button></div><div class="wx-scrubber"><span>${c.browse}</span><input type="range" min="0" max="${rows.length-1}" value="${index}" step="1" aria-label="${c.day}"/><span class="wx-scrub-hint">${c.hint}</span></div></div>
+      ${bare?'':`<div class="wx-controls"><div class="wx-readout"><div class="wx-selected-date"><b data-wx-date></b><span data-wx-condition></span></div><div class="wx-value rain"><span>${c.rain}</span><b data-wx-rain></b></div><div class="wx-value evaporation"><span>${c.et}</span><b data-wx-et></b></div><button type="button" class="wx-motion" aria-pressed="${!paused}">${paused?c.play:c.pause}</button></div><div class="wx-scrubber"><span>${c.browse}</span><input type="range" min="0" max="${rows.length-1}" value="${index}" step="1" aria-label="${c.day}"/><span class="wx-scrub-hint">${c.hint}</span></div></div>`}
     </section>`;
-    // Retain only the most recent render descriptors; detached nodes are weakly held after binding.
     pending.set(id, {rows,index,c,x,ye,left,step,W,date:context.date});
     if (pending.size > 8) pending.delete(pending.keys().next().value);
     return html;
@@ -76,12 +75,15 @@ window.RiceWeather = (() => {
       const d = state.rows[i];
       state.index = i;
       selectedDate = d.date;
-      root.querySelector('[data-wx-date]').textContent = state.date(d.date);
-      root.querySelector('[data-wx-condition]').textContent = d.rain_mm>=10?state.c.heavy:d.rain_mm>0?state.c.wet:state.c.dry;
-      root.querySelector('[data-wx-rain]').textContent = number(d.rain_mm)+' mm';
-      root.querySelector('[data-wx-et]').textContent = number(d.et0_mm)+' mm';
-      slider.value = i;
-      slider.setAttribute('aria-valuetext', `${state.date(d.date)}. ${state.c.rain}: ${number(d.rain_mm)} mm. ${state.c.et}: ${number(d.et0_mm)} mm.`);
+      const put = (q, text) => { const el = root.querySelector(q); if (el) el.textContent = text; };
+      put('[data-wx-date]', state.date(d.date));
+      put('[data-wx-condition]', d.rain_mm>=10?state.c.heavy:d.rain_mm>0?state.c.wet:state.c.dry);
+      put('[data-wx-rain]', number(d.rain_mm)+' mm');
+      put('[data-wx-et]', number(d.et0_mm)+' mm');
+      if (slider) {
+        slider.value = i;
+        slider.setAttribute('aria-valuetext', `${state.date(d.date)}. ${state.c.rain}: ${number(d.rain_mm)} mm. ${state.c.et}: ${number(d.et0_mm)} mm.`);
+      }
       root.dataset.selectedDate = d.date;
       if (panel) panel.dataset.weatherWet = String(d.rain_mm>=10);
       root.querySelector('.wx-select-band').setAttribute('x',state.x(i)-state.step/2);
@@ -96,9 +98,11 @@ window.RiceWeather = (() => {
     };
     svg.addEventListener('pointermove',ev=>{if(ev.pointerType==='mouse')point(ev);});
     svg.addEventListener('click',point);
-    slider.addEventListener('input',()=>select(Number(slider.value)));
-    slider.addEventListener('keydown',ev=>ev.stopPropagation());
-    root.querySelector('.wx-motion').addEventListener('click',()=>{
+    if (slider) {
+      slider.addEventListener('input',()=>select(Number(slider.value)));
+      slider.addEventListener('keydown',ev=>ev.stopPropagation());
+    }
+    root.querySelector('.wx-motion')?.addEventListener('click',()=>{
       paused=!paused;
       document.querySelectorAll('.weather-explorer').forEach(el=>{
         el.classList.toggle('motion-paused',paused);
