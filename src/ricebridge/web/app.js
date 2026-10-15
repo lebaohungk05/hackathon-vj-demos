@@ -9,12 +9,18 @@ const LANGS = ["en", "ja", "vi"];
 const normLang = (x) => (LANGS.includes(String(x || "").toLowerCase()) ? String(x).toLowerCase() : "vi");
 const params = new URLSearchParams(location.search);
 let S = null;
-let view = params.get("view") || store.get("rb.view", "htx");
+const TAB_VIEWS = ["htx", "carbon"];
+const MODES = ["story", "eng"];
+const pickTab = (x) => (TAB_VIEWS.includes(x) ? x : null);
+let view = pickTab(params.get("view")) || pickTab(params.get("tab")) || pickTab(store.get("rb.view", "htx")) || "htx";
+let mode = MODES.includes(params.get("view")) ? params.get("view") : MODES.includes(params.get("mode")) ? params.get("mode") : MODES.includes(store.get("rb.mode", "story")) ? store.get("rb.mode", "story") : "story";
+store.set("rb.mode", mode);
 let lang = normLang(params.get("lang") || store.get("rb.lang", "vi"));
 store.set("rb.lang", lang);
 let renderedVersion = -1;
 let renderedLang = null;
 let renderedView = null;
+let renderedMode = null;
 let sceneKey = "";
 let chatKey = "";
 let chatCount = 0;
@@ -33,10 +39,11 @@ let inflight = 0;
 const planOpen = new Set();
 let planOpenId = null;
 
-const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const undash = (s) => String(s ?? "").replace(/\s*—\s*/g, " - ").replace(/–/g, "-");
+const esc = (s) => undash(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const t = (s, p) => {
   const table = lang === "en" ? null : (window.I18N || {})[lang];
-  let out = (table && table[s]) || s;
+  let out = undash((table && table[s]) || s);
   if (p) out = out.replace(/\{(\w+)\}/g, (m, k) => (p[k] === undefined || p[k] === null ? m : String(p[k])));
   return out;
 };
@@ -45,7 +52,7 @@ const pick = (o) => o[lang] || o.en;
 const nm = (name) => (name && S && S.names && S.names[name] ? L(S.names[name]) : name || "");
 const QUOTE_RE = /“[^”]*”|「[^」]*」|"[^"\n]*"|'[^'\n]+'(?=$|[\s.,;:)!?])/g;
 const rich = (value) => {
-  const s = String(value ?? "");
+  const s = undash(value);
   const prose = text => esc(lang === "en" ? text.replace(/bà Sáu/gi, "Mrs Sau").replace(/anh Hùng/gi, "Hung").replace(/Hộ thửa (\d+)/gi, "Field $1 farmer").replace(/\bphân\b/g, "cm") : text);
   let out = "";
   let last = 0;
@@ -195,9 +202,9 @@ const TASK_LABELS = {
 const taskL = (k) => t(TASK_LABELS[k] || k);
 
 const INTRO_HEAD = {
-  en: ["Rain falls, pump plans change — the agent helps decide which fields to water first", "Shown on one cluster of fields sharing a pump, with real rainfall from Long Xuyen (Feb–Mar 2026)"],
-  ja: ["雨が降り、ポンプの予定が変わる — どの田から給水するか、エージェントが判断を支えます", "共同ポンプを使う一つの田んぼ群を例に、ロンスエンの実際の降雨データ（2026年2〜3月）で示します"],
-  vi: ["Trời mưa, trạm bơm đổi lịch — agent giúp HTX quyết định tưới ruộng nào trước", "Ví dụ trên một cụm ruộng dùng chung trạm bơm, với số liệu mưa thật ở Long Xuyên (2–3/2026)"],
+  en: ["Rain comes, the pump schedule changes. The agent helps the HTX decide which fields to water first", "One cluster of fields sharing a pump, with real rainfall from Long Xuyen (Feb-Mar 2026)"],
+  ja: ["雨が降り、ポンプの予定が変わる。どの田に先に水を入れるか、エージェントがHTXの判断を助けます", "共同ポンプを使う一つの田んぼ群を例に、ロンスエンの実際の降雨データ（2026年2-3月）で示します"],
+  vi: ["Trời mưa, trạm bơm đổi lịch. Agent giúp HTX quyết định tưới ruộng nào trước", "Một cụm ruộng dùng chung trạm bơm, với số liệu mưa thật ở Long Xuyên (2-3/2026)"],
 };
 const STEP_HEAD = {
   start: { en: "Fields are drying out; the shared pump runs Fri 27 Feb", ja: "田んぼが乾き始め、共同ポンプは2月27日（金）に送水予定", vi: "Ruộng đang khô dần; trạm bơm chung dự kiến chạy thứ Sáu 27/02" },
@@ -320,18 +327,25 @@ function renderStatic() {
   $$("[data-tp]").forEach((el) => { el.placeholder = t(el.dataset.tp); });
   $$("#langseg button").forEach((b) => { const on = b.dataset.lang === lang; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); b.title = LANG_NAME[b.dataset.lang]; });
   renderSamples();
+  const eb = $("#engToggle");
+  eb.textContent = sx("engToggle");
+  eb.title = sx("engToggleTip");
+  eb.setAttribute("aria-pressed", String(mode === "eng"));
+  $("#chatTitle").textContent = sx("chatTitle");
+  $("#text").placeholder = mode === "story" ? sx("sendPlaceholder") : t("Type in Vietnamese, like a farmer… (M)");
   const mb = $("#motionbtn");
   if (mb) mb.textContent = t(document.body.classList.contains("still") ? "Resume motion" : "Pause motion");
 }
 
 function render() {
   if (!S || S.version === undefined) return;
-  const full = S.version !== renderedVersion || lang !== renderedLang || view !== renderedView;
+  const full = S.version !== renderedVersion || lang !== renderedLang || view !== renderedView || mode !== renderedMode;
   renderLive();
   if (!full) return;
   const key = `${S.epoch}:${S.history_len}:${S.step}`;
-  const animate = key !== sceneKey || view !== renderedView;
+  const animate = key !== sceneKey || view !== renderedView || mode !== renderedMode;
   sceneKey = key;
+  renderedMode = mode;
   renderedVersion = S.version;
   if (lang !== renderedLang) renderStatic();
   renderedLang = lang;
@@ -342,7 +356,8 @@ function render() {
   $("#view-carbon").hidden = view !== "carbon";
   renderRail();
   renderChat();
-  if (view === "htx") {
+  if (view === "htx" && mode === "eng") {
+    $("#story").hidden = true;
     $("#view-htx").classList.toggle("anim", animate);
     renderHead();
     renderFocal();
@@ -350,8 +365,14 @@ function render() {
     renderTrace();
     renderFields();
     renderWiCard();
-  } else {
+  } else if (view === "htx") {
+    $("#story").hidden = false;
+    ["#shead", "#focal", "#plan", "#trace", "#fields", "#wicard"].forEach((q) => { $(q).innerHTML = ""; });
+    renderStory(animate);
+  } else if (mode === "eng") {
     renderCarbon(animate);
+  } else {
+    renderStoryCarbon(animate);
   }
   renderFoot();
   if (!$("#whatif").hidden) renderWhatif();
@@ -364,9 +385,9 @@ function renderLive() {
   const live = S.live || {};
   const cli = (live.server && live.server.cli) || {};
   const totals = e.totals || {};
-  const mode = { live: ["live", t("LLM live")], replay: ["info", t("Replay · offline cache")], auto: ["llm", t("Auto · cache → Claude")], rules: ["g", t("Rules only")] }[e.mode] || ["g", e.mode];
+  const engineMode = { live: ["live", t("LLM live")], replay: ["info", t("Replay · offline cache")], auto: ["llm", t("Auto · cache → Claude")], rules: ["g", t("Rules only")] }[e.mode] || ["g", e.mode];
   const chips = [];
-  chips.push(`<span class="chip ${mode[0]}"><i></i>${esc(mode[1])}</span>`);
+  chips.push(`<span class="chip ${engineMode[0]}"><i></i>${esc(engineMode[1])}</span>`);
   if (e.llm) chips.push(`<span class="chip llm" title="${esc(t("Claude Haiku 4.5 reads messages, Sonnet 5.5 explains plans and reads photos"))}"><i></i>LLM · Haiku 4.5 + Sonnet 5.5</span>`);
   if (e.mode !== "rules" && e.mode !== "replay") chips.push(cli.found ? `<span class="chip ok" title="${esc(cli.version || "")}"><i></i>Claude CLI ✓</span>` : `<span class="chip bad" title="${esc(t("Claude CLI not on PATH: cached replies or rules are used"))}"><i></i>${esc(t("Claude CLI missing → cache/rules"))}</span>`);
   chips.push(`<span class="chip ${totals.fallback ? "hum" : "g"}" title="${esc(totals.last_error ? t("Last fallback: {reason}", { reason: L(totals.last_error_t) || totals.last_error }) : t("no fallback"))}">${esc(t("{n} calls · fallback {m}", { n: totals.calls || 0, m: totals.fallback || 0 }))}</span>`);
@@ -377,10 +398,25 @@ function renderLive() {
   const last = S.step >= S.total_steps - 1;
   const plan = S.plan;
   const next = $("#next");
-  next.classList.toggle("approve", last && plan && plan.status === "proposed");
-  next.textContent = last && plan && plan.status === "proposed" ? t("Approve ✓") : last && plan && plan.status !== "proposed" ? t("Carbon view ▶") : t("Next ▶");
+  const prev = $("#prev");
+  if (mode === "story") {
+    const label = S.step < 0 ? sx("btnStart") : last && plan && plan.status !== "proposed" ? sx("btnEvidence") : sx("btnNext");
+    if (next.textContent !== label) next.textContent = label;
+    next.classList.remove("approve");
+    next.hidden = storyCanDecide();
+    prev.hidden = S.step < 0;
+    if (prev.textContent !== sx("btnBack")) prev.textContent = sx("btnBack");
+  } else {
+    next.hidden = false;
+    prev.hidden = false;
+    next.classList.toggle("approve", last && plan && plan.status === "proposed");
+    const label = last && plan && plan.status === "proposed" ? t("Approve ✓") : last && plan && plan.status !== "proposed" ? t("Carbon view ▶") : t("Next ▶");
+    if (next.textContent !== label) next.textContent = label;
+    if (prev.textContent !== "◀") prev.textContent = "◀";
+  }
   next.disabled = !!job || (last && view === "carbon" && !(plan && plan.status === "proposed"));
-  $("#prev").disabled = !!job || S.step < 0;
+  prev.disabled = !!job || S.step < 0;
+  if (mode === "story" && view === "htx") renderStoryBusy();
   $("#send").disabled = false;
   $$(".dbtn").forEach((b) => (b.disabled = !!job));
   $$(".wibtn").forEach((b) => (b.disabled = !!job || !S.plan));
@@ -468,7 +504,16 @@ function messageContent(original, translations, quoteCls = "") {
   return `<div class="translated et">${rich(translated)}</div><details class="original-message"><summary>${label}</summary>${source}</details>`;
 }
 
+function storyBubble(m, isNew) {
+  const who = m.role === "agent" ? `${nm("RiceBridge agent")}${m.to ? ` → ${nm(m.to)}` : ""}` : nm(m.from);
+  const tr = lang === "vi" ? "" : (m.tl && m.tl[lang]) || (lang === "en" ? m.en : "");
+  const photo = m.vision && m.vision.image ? `<img class="mthumb" src="/media/${esc(m.vision.image.split("/").pop())}" alt="">` : "";
+  return `<div class="msg ${esc(m.role)}${isNew ? " new" : ""}"><div class="who">${esc(who)} · ${hhmm(m.time)}</div>
+    <div class="bubble"><div class="orig" lang="vi" data-src>${esc(m.vi)}</div>${tr && tr !== m.vi ? `<div class="et">${rich(tr)}</div>` : ""}${photo}</div></div>`;
+}
+
 function bubble(m, isNew) {
+  if (mode === "story") return storyBubble(m, isNew);
   const who = m.role === "agent" ? `${nm("RiceBridge agent")}${m.to ? ` → ${nm(m.to)}` : ""}` : nm(m.from);
   let extra = "";
   if (m.vision && m.vision.image) {
@@ -479,8 +524,9 @@ function bubble(m, isNew) {
   if (m.parsed) {
     const p = m.parsed;
     tips.push(p.value_cm === null || p.value_cm === undefined ? `${t("intent")}: ${intentL(p.intent)}` : `${p.field || "?"} · ${cm(p.value_cm)} · ${t("conf")} ${num(p.confidence, 2)}`);
-    const reading = p.value_cm === null || p.value_cm === undefined ? `${esc(t("intent"))}: ${esc(intentL(p.intent))}` : `${esc(p.field || "?")} · ${cm(p.value_cm)} · ${esc(t("conf"))} ${num(p.confidence, 2)}`;
-    const cls = p.intent !== "water_level" ? "g" : p.value_cm !== null && p.confidence >= 0.75 ? "ok" : "hum";
+    const guarded = (p.instruction_hits || []).length > 0;
+    const reading = guarded ? esc(t("refused by the guard")) : p.value_cm === null || p.value_cm === undefined ? `${esc(t("intent"))}: ${esc(intentL(p.intent))}` : `${esc(p.field || "?")} · ${cm(p.value_cm)} · ${esc(t("conf"))} ${num(p.confidence, 2)}`;
+    const cls = guarded ? "bad" : p.intent !== "water_level" ? "g" : p.value_cm !== null && p.confidence >= 0.75 ? "ok" : "hum";
     extra += `<span class="tag pill ${cls}">${reading}</span>`;
   }
   if (m.engine === "llm") tips.push(`LLM · ${modelName(m.model)}${m.ms ? ` · ${secs(m.ms)}` : ""}`);
@@ -497,7 +543,7 @@ function bubble(m, isNew) {
 }
 
 function chatSignature(chat) {
-  return lang + "|" + chat.map((m) => L(m.tl) + (m.lines || []).map((l) => L(l.t)).join("¦")).join("|") + "|" + JSON.stringify(S.names ? Object.keys(S.names).length : 0);
+  return mode + lang + "|" + chat.map((m) => L(m.tl) + (m.lines || []).map((l) => L(l.t)).join("¦")).join("|") + "|" + JSON.stringify(S.names ? Object.keys(S.names).length : 0);
 }
 
 function renderChat() {
@@ -509,7 +555,7 @@ function renderChat() {
   if (key !== chatKey || chat.length < chatCount || sig !== chatSig) {
     const keepTop = key === chatKey && !nearBottom ? box.scrollTop : null;
     chatKey = key;
-    box.innerHTML = chat.length ? chat.map((m) => bubble(m, false)).join("") : `<p class="empty">${esc(t("Press → to start, or type a farmer message below."))}</p>`;
+    box.innerHTML = chat.length ? chat.map((m) => bubble(m, false)).join("") : `<p class="empty">${esc(mode === "story" ? sx("chatEmpty") : t("Press → to start, or type a farmer message below."))}</p>`;
     chatCount = chat.length;
     chatSig = chatSignature(chat);
     box.scrollTop = keepTop === null ? box.scrollHeight : keepTop;
@@ -553,13 +599,11 @@ function renderHead() {
 }
 
 const HALO = `paint-order="stroke" stroke="rgba(8,16,36,.85)" stroke-width="3.5" stroke-linejoin="round"`;
+const ET0_AXIS = { en: "right axis", ja: "右軸", vi: "trục phải" };
 const ET0_LABEL = { en: "Evaporation ET0", ja: "蒸発散量 ET0", vi: "Bốc hơi ET0" };
 const RAIN_LABEL = { en: "Rain", ja: "降雨", vi: "Mưa" };
 const PER_DAY = { en: "mm/day", ja: "mm/日", vi: "mm/ngày" };
 const ET0_WHY = { en: "Water leaves the field by evaporation; the agent subtracts it in the water balance.", ja: "水は蒸発で田から失われます。エージェントは水収支でこの分を差し引きます。", vi: "Nước trong ruộng mất đi do bốc hơi; agent trừ phần này trong cân bằng nước." };
-function weatherSvg(w, today, W, H, rem) {
-  return RiceWeather.render(w, today, W, H, rem, {lang, date: dmy});
-}
 function chartLegend() {
   return `<div class="wxlegend"><span class="lg-rain"><i></i>${esc(pick(RAIN_LABEL))} (${esc(pick(PER_DAY))})</span><span class="lg-et0" title="${esc(pick(ET0_WHY))}"><i></i>${esc(pick(ET0_LABEL))} (${esc(pick(PER_DAY))})</span>${why(esc(pick(ET0_WHY)))}</div>`;
 }
@@ -572,7 +616,7 @@ function drawCharts() {
     const key = `${W}x${H}:${lang}:${S.clock}`;
     if (box.dataset.key === key) return;
     box.dataset.key = key;
-    box.innerHTML = W > 60 && H > 60 ? weatherSvg(S.weather, S.clock.slice(0, 10), W, H, rem) : "";
+    box.innerHTML = W > 60 && H > 60 ? RiceWeather.render(S.weather, S.clock.slice(0, 10), W, H, rem, { lang, date: dmy, bare: box.dataset.bare === "1" }) : "";
     RiceWeather.bind(box);
   });
 }
@@ -677,7 +721,8 @@ function checkList(r) {
 function readingTile(r) {
   const p = r.parse || {};
   const has = p.intent === "water_level" && p.value_cm !== null && p.value_cm !== undefined;
-  const what = has ? `${esc(p.field || "?")} <span class="mono">${cm(p.value_cm)}</span>` : esc(t(INTENT_PLAIN[p.intent] || "Not a water-level report"));
+  const guarded = (p.instruction_hits || []).length > 0;
+  const what = guarded ? esc(t("An order to the agent, not a reading")) : has ? `${esc(p.field || "?")} <span class="mono">${cm(p.value_cm)}</span>` : esc(t(INTENT_PLAIN[p.intent] || "Not a water-level report"));
   const conf = Number(p.confidence || 0);
   const reasoning = L(p.reasoning_t) || (lang === "en" ? p.reasoning_en : "");
   const meter = has ? `<div class="confrow"><div class="confbar"><div class="fill" style="width:${Math.min(100, conf * 100)}%"></div><div class="thr" style="left:${(S.thresholds.accept_confidence || 0.75) * 100}%"></div></div><span>${esc(t("confidence"))} ${conf.toFixed(2)}</span></div>` : "";
@@ -1002,9 +1047,10 @@ function renderCarbon(animate) {
 
 function renderFoot() {
   const m = S.weather_meta;
+  if (mode === "story") { $("#foot").innerHTML = `<span>${esc(sx("footStory"))}</span>`; return; }
   const tip = `${t("water balance · crop stage · pump capacity:")} ${t("deterministic tools")} · ${t("language · whom to ask · wording:")} ${S.engine.llm ? "Claude LLM" : t("rules")}`;
-  $("#foot").innerHTML = `<span title="${esc(tip)}"><span class="dotk" style="background:var(--info)"></span>${t("<b>Open-Meteo</b> archive {a} → {b} (real)", { a: esc(m.window[0]), b: esc(m.window[1]) })}</span>
-    <span><span class="dotk" style="background:var(--hum)"></span>${esc(t("fields, people, chat:"))} <b>${esc(t(S.scenario_label))}</b></span>`;
+  $("#foot").innerHTML = `<span title="${esc(tip)}">${t("<b>Open-Meteo</b> archive {a} → {b} (real)", { a: esc(m.window[0]), b: esc(m.window[1]) })}</span>
+    <span>${esc(t("fields, people, chat:"))} <b>${esc(t(S.scenario_label))}</b></span>`;
 }
 
 function openWhatif(tab) {
@@ -1236,7 +1282,7 @@ $("#reset").onclick = (ev) => { ev.currentTarget.blur(); setMenu(false); resetAl
 const setStill = (on) => { document.body.classList.toggle("still", on); store.set("rb.still", on ? "1" : "0"); $("#motionbtn").textContent = t(on ? "Resume motion" : "Pause motion"); $("#motionbtn").setAttribute("aria-pressed", String(on)); };
 setStill(store.get("rb.still", "0") === "1");
 $("#motionbtn").onclick = (ev) => { ev.currentTarget.blur(); setStill(!document.body.classList.contains("still")); };
-$("#whatifbtn").onclick = (ev) => { ev.currentTarget.blur(); setMenu(false); view = "htx"; render(); openWhatif(); };
+$("#whatifbtn").onclick = (ev) => { ev.currentTarget.blur(); setMenu(false); if (mode !== "eng") setMode("eng"); view = "htx"; render(); openWhatif(); };
 $("#more").onclick = (ev) => { ev.stopPropagation(); ev.currentTarget.blur(); setMenu($("#menu").hidden); };
 $("#samplebtn").onclick = (ev) => { ev.currentTarget.blur(); setSamples($("#samples").hidden); };
 document.addEventListener("click", (ev) => { if (!$("#menu").hidden && !ev.target.closest("#menu, #more")) setMenu(false); });
@@ -1256,17 +1302,47 @@ document.addEventListener("keydown", (ev) => {
   if (["ArrowRight", "PageDown", " "].includes(ev.key)) { ev.preventDefault(); next(); }
   else if (["ArrowLeft", "PageUp"].includes(ev.key)) { ev.preventDefault(); if (S) gotoStep(Math.max(-1, S.step - 1)); }
   else if (k === "c") { view = view === "htx" ? "carbon" : "htx"; store.set("rb.view", view); render(); }
+  else if (k === "e") setMode(mode === "eng" ? "story" : "eng");
   else if (k === "j") setLang(LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]);
   else if (k === "r") resetAll();
-  else if (k === "w") { view = "htx"; render(); openWhatif(); }
+  else if (k === "w") { if (mode !== "eng") setMode("eng"); view = "htx"; render(); openWhatif(); }
   else if (k === "m") { ev.preventDefault(); view = "htx"; render(); $("#text").focus(); }
   else if (/^[1-6]$/.test(ev.key)) gotoStep(Number(ev.key) - 1);
 });
 
-window.__rb = { state: () => S, busy: () => isBusy() || sideJobs().length > 0 || queue.length > 0 || flushing, lang: () => lang };
+function placeControls() {
+  const controls = $(".controls");
+  const slot = mode === "story" ? $("#storyNav") : $("#hdrControls");
+  if (controls.parentElement !== slot) slot.append(controls);
+}
+
+function setMode(next) {
+  mode = MODES.includes(next) ? next : "story";
+  store.set("rb.mode", mode);
+  document.body.classList.toggle("mode-eng", mode === "eng");
+  document.body.classList.toggle("show-details", mode === "eng");
+  document.body.classList.toggle("mode-story", mode === "story");
+  const url = new URL(location.href);
+  if (MODES.includes(url.searchParams.get("view")) || url.searchParams.has("mode")) {
+    url.searchParams.delete("mode");
+    url.searchParams.set("view", mode);
+    history.replaceState(null, "", url);
+  }
+  placeControls();
+  if (mode === "story" && !$("#whatif").hidden) closeWhatif();
+  if (!$("#menu").hidden) setMenu(false);
+  chatKey = "";
+  renderStatic();
+  if (S) render();
+  drawCharts();
+}
+
+$("#engToggle").onclick = (ev) => { ev.currentTarget.blur(); setMode(mode === "eng" ? "story" : "eng"); };
+
+window.__rb = { state: () => S, busy: () => isBusy() || sideJobs().length > 0 || queue.length > 0 || flushing, lang: () => lang, mode: () => mode };
 
 (async () => {
-  renderStatic();
+  setMode(mode);
   const first = await request("/api/state");
   if (first && first.version !== undefined) {
     S = first;

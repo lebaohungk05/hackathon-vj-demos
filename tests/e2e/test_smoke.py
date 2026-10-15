@@ -4,51 +4,14 @@ Run: ``pytest tests/e2e -m e2e``  (needs ``pip install -e ".[test]"`` and ``pyth
 For the exhaustive suite (viewports, languages, what-if, exports) use ``python tests/e2e/run_e2e.py``.
 """
 import json
-import socket
-import subprocess
-import sys
-import time
 import urllib.request
-from pathlib import Path
 
 import pytest
 
 playwright_sync = pytest.importorskip("playwright.sync_api")
 
-ROOT = Path(__file__).resolve().parents[2]
 STEPS = 6  # scripted events after the intro screen
 pytestmark = pytest.mark.e2e
-
-
-def free_port():
-    with socket.socket() as s:
-        s.bind(("127.0.0.1", 0))
-        return s.getsockname()[1]
-
-
-@pytest.fixture(scope="module")
-def base_url():
-    port = free_port()
-    log = (ROOT / ".cache").joinpath("smoke-server.log")
-    log.parent.mkdir(parents=True, exist_ok=True)
-    with log.open("w", encoding="utf-8") as out:
-        proc = subprocess.Popen([sys.executable, "-m", "ricebridge.server.app", "--port", str(port), "--replay"],
-                                cwd=ROOT, stdout=out, stderr=subprocess.STDOUT)
-        url = f"http://127.0.0.1:{port}"
-        try:
-            for _ in range(60):
-                try:
-                    with urllib.request.urlopen(url + "/api/health", timeout=1) as r:
-                        if json.loads(r.read()).get("ok"):
-                            break
-                except OSError:
-                    time.sleep(0.5)
-            else:
-                pytest.fail("server did not start; see .cache/smoke-server.log")
-            yield url
-        finally:
-            proc.terminate()
-            proc.wait(timeout=10)
 
 
 @pytest.fixture(scope="module")
@@ -61,7 +24,7 @@ def page(base_url):
         page.on("console", lambda m: page.problems.append(f"console {m.type}: {m.text}") if m.type == "error" else None)
         page.on("pageerror", lambda e: page.problems.append(f"pageerror: {e}"))
         page.on("response", lambda r: page.problems.append(f"HTTP {r.status} {r.url}") if r.status >= 400 else None)
-        page.goto(base_url + "/?lang=en")
+        page.goto(base_url + "/?view=eng&lang=en")
         page.wait_for_function("() => window.__rb && window.__rb.state()")
         yield page
         browser.close()

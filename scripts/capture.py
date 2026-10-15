@@ -73,7 +73,7 @@ def main():
                 options.update(record_video_dir=str(VIDEO / "_raw"), record_video_size={"width": width, "height": height})
             context = browser.new_context(**options)
             page = context.new_page()
-            page.goto(url + "/?view=htx&lang=en")
+            page.goto(url + "/?view=eng&lang=en")
             settle(page, 800)
             page.click("#reset")
             settle(page, 2500)
